@@ -15,6 +15,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    @guest
+
+    @else
+    <meta name="api-token" content="{{$api_token}}">
+    @endguest
+
     <title>Панель Управления</title>
 
     <!-- Scripts -->
@@ -30,7 +36,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark bg-success shadow-sm" style="z-index: 10">
+    <nav class="nav navbar navbar-expand-md navbar-dark bg-success shadow-sm">
         <a class="navbar-brand" href="{{ url('/') }}">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
             Назад к Сайту

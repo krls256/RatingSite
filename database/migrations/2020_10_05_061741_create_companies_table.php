@@ -27,8 +27,23 @@ class CreateCompaniesTable extends Migration
             // statistic variables
             $table->integer('company_positive')->default(0);
             $table->integer('company_negative')->default(0);
+            $table->integer('company_mark_difference')->default(0);
             $table->integer('company_position')->unsigned()->nullable()->default(null);
+
             $table->float('company_average_mark')->default(0);
+            $table->float('company_average_mark_yandex')->default(0);
+            $table->float('company_average_mark_google')->default(0);
+            $table->float('company_average_mark_otzovick')->default(0);
+            $table->float('company_average_mark_yell')->default(0);
+            $table->float('company_average_mark_flamp')->default(0);
+
+            $table->integer('company_quantity_review')->default(0);
+            $table->integer('company_quantity_review_yandex')->default(0);
+            $table->integer('company_quantity_review_google')->default(0);
+            $table->integer('company_quantity_review_otzovick')->default(0);
+            $table->integer('company_quantity_review_yell')->default(0);
+            $table->integer('company_quantity_review_flamp')->default(0);
+
 
             //important data
             $table->string('company_logo_link');
@@ -70,6 +85,7 @@ class CreateCompaniesTable extends Migration
             $table->string('company_instagram')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

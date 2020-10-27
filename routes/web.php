@@ -23,6 +23,7 @@ Route::group([], function () {
         return view('welcome');
     });
 
+//    Auth::routes();
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
     Route::post('logout', 'Auth\LoginController@logout')->name('logout');
@@ -37,7 +38,7 @@ Route::group([], function () {
 
 
     Route::group($adminGroupData, function () {
-        Route::get('/{path?}', 'MainController@index')->name('admin.main');
+        Route::get('{any?}', 'MainController@index')->name('admin.main')->where('any', '.*');
     });
     Route::group([], function() {
         Route::get('/err', 'ExeptionController@notAnAdmin')->name('you-are-not-an-admin');

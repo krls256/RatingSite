@@ -14,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')
+    ->get('/user', function (Request $request)
+    {
+        return $request->user();
+    });
+
+$adminApiOptions = [
+    'namespace' => 'Api',
+    'prefix' => 'admin',
+    'middleware' => 'auth:api'
+];
+Route::group($adminApiOptions, function ()
+{
+    $companiesMethods = ['index'];
+    Route::apiResource('companies', 'ApiCompaniesController')
+        ->names('api.admin.companies')
+        ->only($companiesMethods);
 });

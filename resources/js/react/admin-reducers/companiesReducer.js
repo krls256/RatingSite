@@ -1,8 +1,14 @@
-const companiesReducer = (state = ['inspire'], action) => {
-    if(action.type === "NEW") {
-        return ['desire']
+const companiesReducer = (state = {}, action) => {
+    switch (action.type) {
+        case "companies/addCompaniesPage": {
+            const key = action.key;
+            const payload = action.payload;
+            const newState = {...state};
+            newState[key] = payload;
+            return newState;
+        } break;
+        default: return state; break;
     }
-    return state;
 }
 
 export default companiesReducer;

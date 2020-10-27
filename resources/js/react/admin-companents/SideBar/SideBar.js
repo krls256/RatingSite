@@ -1,16 +1,22 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import SideBarItem from "../SideBarItem";
+
+const pathes = [
+    {path: '/admin/', name: 'Панель Администратора'},
+    {path: '/admin/companies', name: 'Компании'},
+    {path: '/admin/reviews', name: 'Отзывы'},
+    {path: '/admin/images', name: 'Картинки'},
+    {path: '/admin/articles', name: 'Статьи'},
+    {path: '/admin/videos', name: 'SEO параметры'},
+    {path: '/admin/headers', name: 'Заголовки'},
+];
+
 const SideBar = () => {
+    const LinksArray = pathes.map(item => <SideBarItem path={item.path} name={item.name} key={item.path}/>)
     return (
         <nav className='bg-dark side-bar navbar-dark'>
-            <Link to={'/admin/'} className={'navbar-brand'}>Панель Администратора</Link>
-            <Link to={'/admin/companies'} className={'navbar-brand'}>Компании</Link>
-            <Link to={'/admin/reviews'} className={'navbar-brand'}>Отзывы</Link>
-            <Link to={'/admin/images'} className={'navbar-brand'}>Картинки</Link>
-            <Link to={'/admin/articles'} className={'navbar-brand'}>Статьи</Link>
-            <Link to={'/admin/videos'} className={'navbar-brand'}>Видео</Link>
-            <Link to={'/admin/seo'} className={'navbar-brand'}>SEO параметры</Link>
-            <Link to={'/admin/headers'} className={'navbar-brand'}>Заголовки</Link>
+            {LinksArray}
         </nav>
     )
 }

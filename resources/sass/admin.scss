@@ -7,6 +7,11 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import "./admin/general";
 @import "./admin/main";
 @import './admin/side-bar';
 @import "./admin/spinner";
+@import "./admin/nav";
+@import "./admin/pagination";
+
+@import "./admin/includes/table-list";

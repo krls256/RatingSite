@@ -16,7 +16,7 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table)
         {
             $table->increments('review_id')->unsigned();
-            $table->timestamps();
+
 
             $table->integer('review_place_in_top_10')->nullable()->default(null);
             $table->integer('review_type_of_work')->nullable()->default(null);
@@ -26,7 +26,7 @@ class CreateReviewsTable extends Migration
             //3
             //4
             //5
-
+            $table->boolean('is_published')->default(1);
             $table->date('review_date');
             $table->string('review_link', 512);
             $table->integer('review_mark');
@@ -37,6 +37,9 @@ class CreateReviewsTable extends Migration
             $table->integer('company_id')->unsigned();
             $table->foreign('company_id')->references('company_id')
                 ->on('companies');
+
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

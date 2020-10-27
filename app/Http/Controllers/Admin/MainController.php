@@ -11,6 +11,9 @@ class MainController extends AdminAbstractController
         parent::__construct();
     }
     public function index() {
-        return view('admin.admin');
+        $api_token = $this->user->api_token;
+        return view('admin.admin', [
+            'api_token' => $api_token
+        ]);
     }
 }
