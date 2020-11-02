@@ -1,5 +1,5 @@
 import CompaniesService from "../admin-services/CompaniesService";
-import {setLastPage} from './lastPageActions'
+import {setLastPage} from './lastPageActions';
 export const getCompanies = (page) => (dispatch, getState) => {
     const apiToken = getState().apiToken;
     const companiesService = new CompaniesService(apiToken);

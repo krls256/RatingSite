@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\ApiCompanyUpdateRequest;
 use App\Http\Requests\CompaniesApiRequest;
 use App\Repositories\ApiCompanyRepository;
-use Illuminate\Http\Request;
+use App\Services\ApiCompanyServices\DeleteStatisticFieldsService;
 
 class ApiCompaniesController extends ApiController
 {
@@ -23,20 +24,21 @@ class ApiCompaniesController extends ApiController
     }
 
 
-    public function store(Request $request)
-    {
-        //
-    }
-
     public function edit($id)
     {
-        //
+        return $this->companyRepository->getEdit($id);
     }
 
 
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(ApiCompanyUpdateRequest $request, $id, DeleteStatisticFieldsService $service)
+    {   $safeData = $service->clear($request->all());
+        $company = $this->companyRepository->getUpdate($id);
+        if (!$company)
+        {
+            abort(404);
+        }
+        $result = $company->update($safeData);
+        return $result;
     }
 
 }

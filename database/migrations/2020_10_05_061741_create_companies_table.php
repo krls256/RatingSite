@@ -46,10 +46,10 @@ class CreateCompaniesTable extends Migration
 
 
             //important data
-            $table->string('company_logo_link');
-            $table->string('company_yandex_map_link');
-            $table->text('company_description');
-            $table->string('company_description_styles');
+            $table->string('company_logo_link')->nullable();
+            $table->string('company_yandex_map_link')->nullable();
+            $table->text('company_description')->nullable();
+            $table->string('company_description_styles')->nullable();
 
             // less important data
             $table->string('company_tin')->nullable(); // Taxpayer identification number

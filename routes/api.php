@@ -27,7 +27,7 @@ $adminApiOptions = [
 ];
 Route::group($adminApiOptions, function ()
 {
-    $companiesMethods = ['index'];
+    $companiesMethods = ['index', 'edit', 'update'];
     Route::apiResource('companies', 'ApiCompaniesController')
         ->names('api.admin.companies')
         ->only($companiesMethods);

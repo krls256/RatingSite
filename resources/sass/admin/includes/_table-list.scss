@@ -1,21 +1,9 @@
 .table-list {
     &_companies {
-        display: grid;
-        grid-template-columns: 3% 54% 24%;
         font-size: 1.5rem;
-        cursor: pointer;
-        width: 100%;
         color: $dark;
         &:hover {
             text-decoration: none;
         }
-    }
-    &__item {
-
-        padding-left: .3rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        align-self: center;
     }
 }

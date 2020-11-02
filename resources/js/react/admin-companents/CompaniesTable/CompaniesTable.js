@@ -25,9 +25,19 @@ const CompaniesTable = ({companies, apiToken, currentPage}) => {
                                   key={item.company_name}/>)
     return (
         <div>
-            <ul className='list-group'>
-                {CompanyItems}
-            </ul>
+            <table className="table table-list_companies">
+                <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Средний рейтинг</th>
+                    <th scope="col">Ссылки</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {CompanyItems}
+                </tbody>
+            </table>
             <Pagination />
         </div>
 

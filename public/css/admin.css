@@ -10905,6 +10905,12 @@ a.text-dark:focus {
   box-sizing: border-box;
 }
 
+.hidden {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
 .main {
   margin-left: 300px;
   margin-top: 3.5rem;
@@ -11177,24 +11183,72 @@ a.text-dark:focus {
   border: solid 1px #38c172;
 }
 
-.table-list_companies {
-  display: grid;
-  grid-template-columns: 3% 54% 24%;
-  font-size: 1.5rem;
-  cursor: pointer;
+.edit-navbar {
   width: 100%;
+  height: 4rem;
+  border-bottom: 2px solid #343a40;
+}
+
+.edit-navbar__list {
+  height: 100%;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.edit-navbar__item {
+  height: 100%;
+  width: 100px;
+  border-right: 2px solid #343a40;
+}
+
+.edit-navbar__item-content {
+  font-size: 1rem;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  text-align: center;
+  line-height: 4rem;
+}
+
+.edit-navbar__item-content_active {
+  color: white;
+  background-color: #38c172;
+}
+
+.page__content {
+  display: flex;
+}
+
+.message-line {
+  position: relative;
+  list-style-type: none;
+  margin-bottom: 0;
+}
+
+.message-line__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.table-list_companies {
+  font-size: 1.5rem;
   color: #343a40;
 }
 
 .table-list_companies:hover {
   text-decoration: none;
-}
-
-.table-list__item {
-  padding-left: 0.3rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  align-self: center;
 }
 

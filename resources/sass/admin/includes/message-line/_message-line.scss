@@ -1,0 +1,10 @@
+.message-line {
+    position: relative;
+    list-style-type: none;
+    margin-bottom: 0;
+    &__close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+}

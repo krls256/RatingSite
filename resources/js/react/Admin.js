@@ -19,6 +19,7 @@ import HeadersTable from "./admin-companents/HeadersTable";
 import MainPage from "./admin-companents/MainPage";
 import ApiToken from "./admin-companents/ApiToken";
 import CompanyEdit from "./admin-companents/CompanyEdit";
+import LoadingScreen from "./admin-companents/LoadingScreen";
 
 function App() {
        return (
@@ -27,6 +28,7 @@ function App() {
                 <ApiToken>
                     <div className="main">
                         <Route path='/admin' component={SideBar}/>
+                        <Route path='/admin' component={LoadingScreen}/>
                         <Route path='/admin' exact component={MainPage}/>
                         <Route path='/admin/companies' exact component={CompaniesTable}/>
                         <Route path='/admin/companies/:id/edit' exact component={CompanyEdit}/>
