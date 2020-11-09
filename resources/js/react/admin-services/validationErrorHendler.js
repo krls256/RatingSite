@@ -1,7 +1,7 @@
-import {updateErrors} from '../admin-actions/errorActions'
+import {updateErrorsMessage} from '../admin-actions/errorMessageActions'
 
 const handleError =  (error) => {
-    return updateErrors(error.response.data.errors);
+    return updateErrorsMessage(error.response.data.errors);
 }
 
 export default handleError;

@@ -5,18 +5,25 @@ import companiesCurrentPageReducer from "./currentPageReducer";
 import lastPageReducer from "./lastPageReducer";
 import companyEditReducer from "./companyEditReducer";
 import csrfTokenReducer from "./csrfTokenReducer";
-import errorsReducer from "./errorsReducer";
+import errorsMessageReducer from "./errorsMessageReducer";
 import isLoadngReducer from "./isLoadingReducer";
 import successMessageReducer from "./successMessageReducer";
+import reviewsReducer from "./reviewsReducer";
+import reviewEditReducer from "./reviewEditReducer";
 
 export default combineReducers({
-    errors: errorsReducer,
+    errorsMessage: errorsMessageReducer,
     successMessage: successMessageReducer,
-    companies: companiesReducer,
+    isLoading: isLoadngReducer,
+
     apiToken: apiTokenReducer,
     csrfToken: csrfTokenReducer,
+
     currentPage: companiesCurrentPageReducer,
     lastPage: lastPageReducer,
+
+    companies: companiesReducer,
     companyEdit: companyEditReducer,
-    isLoading: isLoadngReducer,
+    reviews: reviewsReducer,
+    reviewEdit: reviewEditReducer
 })

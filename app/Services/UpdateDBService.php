@@ -4,7 +4,7 @@
 namespace App\Services;
 
 
-use App\Repositories\RatingCompanies\UpdateServireCompanyRepository;
+use App\Repositories\Companies\UpdateServireCompanyRepository;
 
 
 class UpdateDBService

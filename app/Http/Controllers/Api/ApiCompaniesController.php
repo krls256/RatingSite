@@ -6,6 +6,7 @@ use App\Http\Requests\ApiCompanyUpdateRequest;
 use App\Http\Requests\CompaniesApiRequest;
 use App\Repositories\ApiCompanyRepository;
 use App\Services\ApiCompanyServices\DeleteStatisticFieldsService;
+use App\Services\PrepareCompanyDataFromSeederService;
 
 class ApiCompaniesController extends ApiController
 {
@@ -38,7 +39,9 @@ class ApiCompaniesController extends ApiController
             abort(404);
         }
         $result = $company->update($safeData);
-        return $result;
+        if($result)
+            return ['msg' => ['База была успешно обновлена', "Id обновленной компании равен $id"]];
+        return ['msg' => ['Что-то пошло не так']];
     }
 
 }

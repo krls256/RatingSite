@@ -26,7 +26,7 @@ class CreateImagesTable extends Migration
 
             $table->boolean('is_published')
                 ->default(true);
-            $table->boolean('image_on_company_page')
+            $table->boolean('is_on_company_page')
                 ->default(false);
 
             $table->foreign('review_id')

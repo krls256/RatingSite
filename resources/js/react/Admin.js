@@ -8,18 +8,19 @@ import {createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from './admin-reducers';
 
-import SideBar from "./admin-companents/SideBar";
-import CompaniesTable from "./admin-companents/CompaniesTable";
-import ReviewsTable from "./admin-companents/ReviewsTable";
-import ImagesPage from "./admin-companents/ImagesPage";
-import ArticlesTable from "./admin-companents/ArticlesTable";
-import VideosTable from "./admin-companents/VideosTable";
-import SEOTable from "./admin-companents/SEOTable";
-import HeadersTable from "./admin-companents/HeadersTable";
-import MainPage from "./admin-companents/MainPage";
-import ApiToken from "./admin-companents/ApiToken";
-import CompanyEdit from "./admin-companents/CompanyEdit";
-import LoadingScreen from "./admin-companents/LoadingScreen";
+import SideBar from "./admin-components/SideBar";
+import CompaniesTable from "./admin-components/CompaniesTable";
+import ReviewsTable from "./admin-components/ReviewsTable";
+import ImagesPage from "./admin-components/ImagesPage";
+import ArticlesTable from "./admin-components/ArticlesTable";
+import VideosTable from "./admin-components/VideosTable";
+import SEOTable from "./admin-components/SEOTable";
+import HeadersTable from "./admin-components/HeadersTable";
+import MainPage from "./admin-components/MainPage";
+import ApiToken from "./admin-components/ApiToken";
+import CompanyEdit from "./admin-components/CompanyEdit";
+import LoadingScreen from "./admin-components/LoadingScreen";
+import ReviewEdit from "./admin-components/ReviewsEdit";
 
 function App() {
        return (
@@ -32,7 +33,8 @@ function App() {
                         <Route path='/admin' exact component={MainPage}/>
                         <Route path='/admin/companies' exact component={CompaniesTable}/>
                         <Route path='/admin/companies/:id/edit' exact component={CompanyEdit}/>
-                        <Route path='/admin/reviews' component={ReviewsTable}/>
+                        <Route path='/admin/reviews' exact component={ReviewsTable}/>
+                        <Route path='/admin/reviews/:id/edit' component={ReviewEdit}/>
                         <Route path='/admin/images' component={ImagesPage}/>
                         <Route path='/admin/articles' component={ArticlesTable}/>
                         <Route path='/admin/videos' component={VideosTable}/>

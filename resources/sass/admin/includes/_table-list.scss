@@ -6,4 +6,9 @@
             text-decoration: none;
         }
     }
+    &__item {
+        &_unpublished {
+            background: #999;
+        }
+    }
 }

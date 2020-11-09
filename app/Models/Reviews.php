@@ -12,6 +12,15 @@ class Reviews extends Model
 
     protected $primaryKey = 'review_id';
 
+    protected $fillable = [
+        'is_published',
+        'review_text',
+        'reviewer_name',
+        'review_date',
+        'review_mark',
+        'source_id'
+    ];
+
     public function company() {
         return $this->belongsTo(Companies::class, 'company_id');
     }

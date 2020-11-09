@@ -2,7 +2,7 @@ $height: 4rem;
 .edit-navbar {
     width: 100%;
     height: $height;
-    border-bottom: 2px solid $dark;
+    border-bottom: 2px solid $dark-a100;
     &__list {
         height: 100%;
         list-style-type: none;
@@ -11,10 +11,13 @@ $height: 4rem;
     }
     &__item {
         height: 100%;
-        width: 100px;
-        border-right: 2px solid $dark;
+        min-width: 100px;
+
+
+        border-right: 2px solid $dark-a100;
     }
     &__item-content {
+        padding: 0 1rem;
         font-size: 1rem;
         display: block;
         width: 100%;
@@ -23,8 +26,8 @@ $height: 4rem;
         text-align: center;
         line-height: $height;
         &_active {
-            color: white;
-            background-color: $success;
+            color: $white;
+            background-color: $dark-a100;
         }
     }
 }

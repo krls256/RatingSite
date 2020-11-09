@@ -17,8 +17,8 @@ class CreateArticlesTable extends Migration
             $table->increments('article_id')->unsigned();
             $table->timestamps();
 
-            $table->string('article_title');
-            $table->string('article_slug');
+            $table->string('article_title', 256);
+            $table->string('article_slug', 256);
             $table->string('article_main_image');
             $table->text('article_description');
 

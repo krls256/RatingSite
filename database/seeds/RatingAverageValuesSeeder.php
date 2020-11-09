@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Services\UpdateDBService;
-use App\Repositories\RatingCompanies\UpdateServireCompanyRepository;
+use App\Repositories\Companies\UpdateServireCompanyRepository;
 
 class RatingAverageValuesSeeder extends Seeder
 {

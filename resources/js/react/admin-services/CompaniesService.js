@@ -1,9 +1,9 @@
 import axios from 'axios'
+import AbstractService from "./AbctractService";
 
-class CompaniesService {
+class CompaniesService extends AbstractService {
     constructor(apiToken) {
-        this.apiToken = apiToken;
-        this.baseUrl = '/api/admin';
+        super(apiToken)
         this.getCompanies = async (page = 1) => {
             return (await fetch(`${this.baseUrl}/companies?page=${page}&api_token=${this.apiToken}`)).json();
         }

@@ -1,0 +1,6 @@
+.textarea {
+    &:focus {
+        border: 1px solid $dark-a100;
+        box-shadow: 5px 10px $dark-a75;
+    }
+}

@@ -9,3 +9,21 @@
     width: 0;
     height: 0;
 }
+
+.b-dark {
+    background-color: $dark-a100;
+}
+
+.c-dark {
+    color: $dark-a100;
+}
+
+.c-white {
+    color: $white;
+}
+
+.h-silver {
+    &:hover {
+        color: $silver-a100;
+    }
+}

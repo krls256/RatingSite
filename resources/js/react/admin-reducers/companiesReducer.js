@@ -6,7 +6,7 @@ const companiesReducer = (state = {}, action) => {
             const newState = {...state};
             newState[key] = payload;
             return newState;
-        } break;
+        }
         default: return state; break;
     }
 }

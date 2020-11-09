@@ -36,7 +36,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="nav navbar navbar-expand-md navbar-dark bg-success shadow-sm">
+    <nav class="nav navbar navbar-expand-md navbar-dark b-dark shadow-sm">
         <a class="navbar-brand" href="{{ url('/') }}">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
             Назад к Сайту

@@ -1,3 +1,28 @@
+//Colors
+$dark-a100: rgba(0,0,0, 1);
+$dark-a75: rgba(0,0,0, .75);
+$dark-a50: rgba(0,0,0, .5);
+$dark-a25: rgba(0,0,0, .25);
+
+$gray-light-a100: rgba(211,211,211, 1);
+$gray-light-a75: rgba(211,211,211, .75);
+$gray-light-a50: rgba(211,211,211, .5);
+$gray-light-a25: rgba(211,211,211, .25);
+
+$silver-a100: rgba(192,192,192, 1);
+$silver-a75: rgba(192,192,192, .75);
+$silver-a50: rgba(192,192,192, .5);
+$silver-a25: rgba(192,192,192, .25);
+
+$gray-dark-a100: rgba(80,80,80, 1);
+$gray-dark-a75: rgba(80,80,80, .75);
+$gray-dark-a50: rgba(80,80,80, .5);
+$gray-dark-a25: rgba(80,80,80, .25);
+
+$light: rgba(255, 255, 255, 1);
+
+
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -17,5 +42,8 @@
 @import "admin/includes/page/page";
 @import "admin/includes/message-line/message-line";
 @import "admin/includes/loading-screen/loading-screen";
+@import "admin/includes/input/input";
+@import "admin/includes/textarea";
+@import "admin/includes/checkbox";
 
 @import "admin/includes/table-list";
