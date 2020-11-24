@@ -22,6 +22,8 @@ class CreateArticlesTable extends Migration
             $table->string('article_main_image');
             $table->text('article_description');
 
+            $table->boolean('is_published')->default(1);
+
             $table->mediumText('article_content');
         });
     }

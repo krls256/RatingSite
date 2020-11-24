@@ -28,7 +28,7 @@ class ApiArticlesRepository extends CoreRepository
     public function getEdit($id)
     {
         $column = ['article_id', 'article_title', 'article_slug', 'article_main_image', 'article_description',
-            'article_content'];
+            'article_content', 'is_published'];
 
         $response = $this->startCondition()
             ->select($column)

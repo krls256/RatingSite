@@ -10,6 +10,11 @@ import isLoadngReducer from "./isLoadingReducer";
 import successMessageReducer from "./successMessageReducer";
 import reviewsReducer from "./reviewsReducer";
 import reviewEditReducer from "./reviewEditReducer";
+import imagesReducer from "./imagesReducer";
+import companiesShortListReducer from "./companiesShortListReducer";
+import imagesCommandLineReducer from "./imagesCommandLineReducer";
+import articlesReducer from "./articlesReducer";
+import articleEditReducer from "./articleEditReducer";
 
 export default combineReducers({
     errorsMessage: errorsMessageReducer,
@@ -23,7 +28,15 @@ export default combineReducers({
     lastPage: lastPageReducer,
 
     companies: companiesReducer,
+    companiesShortList: companiesShortListReducer,
     companyEdit: companyEditReducer,
+
     reviews: reviewsReducer,
-    reviewEdit: reviewEditReducer
+    reviewEdit: reviewEditReducer,
+
+    images: imagesReducer,
+    imagesCommandLine: imagesCommandLineReducer,
+
+    articles: articlesReducer,
+    articleEdit: articleEditReducer,
 })

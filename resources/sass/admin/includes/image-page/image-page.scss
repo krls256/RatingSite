@@ -1,0 +1,17 @@
+.image-page {
+
+
+    &__list {
+        padding: 2rem 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        list-style-type: none;
+    }
+
+    &__list-item {
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+    }
+}

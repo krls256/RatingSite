@@ -5,6 +5,7 @@ import {getCompanies} from '../../admin-actions/companiesActions';
 import CompanyItem from "../CompanyItem";
 import Spinner from "../Spinner";
 import Pagination from "../Pagination";
+import Table from "../Table";
 
 const CompaniesTable = ({companies, apiToken, currentPage}) => {
     const dispatch = useDispatch();
@@ -18,26 +19,13 @@ const CompaniesTable = ({companies, apiToken, currentPage}) => {
         return <Spinner />
     }
 
-    const CompanyItems = companies[currentPage]
-        .map(item => <CompanyItem id={item.company_id}
-                                  name={item.company_name}
-                                  averageMark={item.company_average_mark}
-                                  key={item.company_name}/>)
     return (
         <div>
-            <table className="table table-list_companies">
-                <thead>
-                <tr className='c-dark'>
-                    <th scope="col">id</th>
-                    <th scope="col">Название</th>
-                    <th scope="col">Средний рейтинг</th>
-                    <th scope="col">Ссылки</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {CompanyItems}
-                </tbody>
-            </table>
+            <Table fields={['ID', 'Название', 'Средний рейтинг', 'Ссылки']}
+                   head_key={'companies'}
+                   key_field={'company_name'}
+                   component={CompanyItem}
+                   items={companies[currentPage]}/>
             <Pagination />
         </div>
 

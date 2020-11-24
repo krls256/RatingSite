@@ -31,6 +31,8 @@ Route::group($adminApiOptions, function ()
     Route::apiResource('companies', 'ApiCompaniesController')
         ->names('api.admin.companies')
         ->only($companiesMethods);
+    Route::get('companies/short-list', 'ApiCompaniesController@shortList')
+        ->name('api.admin.companies.short-list');
 
     $reviewsMethods = ['index', 'edit', 'update'];
     Route::apiResource('reviews', 'ApiReviewsController')
@@ -41,7 +43,7 @@ Route::group($adminApiOptions, function ()
     Route::apiResource('images', 'ApiImagesController')
         ->names('api.admin.reviews')
         ->only($imagesMethod);
-    Route::post('images/changeImagesState')->name('api.admin.reviews.change-images-state');
+    Route::post('images/change-images-state', 'ApiImagesController@changeImagesState')->name('api.admin.reviews.change-images-state');
 
     $articlesMethods = ['index', 'edit', 'update'];
     Route::apiResource('articles', 'ApiArticlesController')

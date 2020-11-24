@@ -30,7 +30,6 @@ class ApiCompaniesController extends ApiController
         return $this->companyRepository->getEdit($id);
     }
 
-
     public function update(ApiCompanyUpdateRequest $request, $id, DeleteStatisticFieldsService $service)
     {   $safeData = $service->clear($request->all());
         $company = $this->companyRepository->getUpdate($id);
@@ -42,6 +41,10 @@ class ApiCompaniesController extends ApiController
         if($result)
             return ['msg' => ['База была успешно обновлена', "Id обновленной компании равен $id"]];
         return ['msg' => ['Что-то пошло не так']];
+    }
+    public function shortList() {
+        $shortList = $this->companyRepository->getShortList();
+        return $shortList;
     }
 
 }

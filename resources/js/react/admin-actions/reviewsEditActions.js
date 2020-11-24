@@ -1,4 +1,4 @@
-import ReviewsService from "../admin-services/ReviewsService";
+import ReviewsService from "../admin-services/api-services/ReviewsService";
 import {resetErrorsMessage, updateErrorsMessage} from './errorMessageActions'
 import {successMessageReset, successMessageUpdate} from "./successMessageActions";
 import {isLoadingSetFalse, isLoadingSetTrue} from "./isLoadingActions";

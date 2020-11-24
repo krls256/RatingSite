@@ -1,4 +1,4 @@
-import CompaniesService from "../admin-services/CompaniesService";
+import CompaniesService from "../admin-services/api-services/CompaniesService";
 import handleError from "../admin-services/validationErrorHendler";
 import {resetErrorsMessage} from './errorMessageActions'
 import {isLoadingSetFalse, isLoadingSetTrue} from './isLoadingActions'

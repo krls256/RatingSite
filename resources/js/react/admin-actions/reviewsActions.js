@@ -1,9 +1,9 @@
-import ReviewsService from "../admin-services/ReviewsService";
+import ReviewsService from "../admin-services/api-services/ReviewsService";
 import {updateErrorsMessage} from './errorMessageActions'
 import {setLastPage} from "./lastPageActions";
 
-export const getReviews = (currentPage) => (dispatch, getState) => {
-    const {apiToken} = getState()
+export const getReviews = () => (dispatch, getState) => {
+    const {apiToken, currentPage} = getState()
     const service = new ReviewsService(apiToken)
 
     service.getReviews(currentPage)

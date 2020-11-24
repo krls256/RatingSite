@@ -1,0 +1,40 @@
+.image-item {
+    position: relative;
+
+    width: 300px;
+    height: 400px;
+
+    cursor: pointer;
+    border-radius: 1rem;
+    border: 2px solid $dark-a100 ;
+    overflow: hidden;
+    background-color: $dark-a100;
+
+    &__img {
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+        opacity: .7;
+    }
+
+    &__list {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        padding: .5rem;
+
+        background-color: white;
+        list-style-type: none;
+    }
+
+    &__list-item {
+        color: $dark-a100;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}

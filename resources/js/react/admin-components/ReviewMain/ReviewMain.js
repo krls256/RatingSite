@@ -4,6 +4,7 @@ import reviewInputOnChange from "../../admin-services/InputOnChange/reviewInputO
 import {useDispatch, useSelector} from "react-redux";
 import checkboxToggle from '../../admin-services/InputOnChange/checkboxToggle'
 import {updateReviewEdit} from '../../admin-actions/reviewsEditActions'
+import Checkbox from "../Checkbox/Checkbox";
 
 const ReviewMain = () => {
     const {reviewEdit} = useSelector(selector)
@@ -17,17 +18,9 @@ const ReviewMain = () => {
                            onChange={reviewInputOnChange(useDispatch)(field, reviewEdit)}
                            key={field}/>)
             }
-            <label className='checkbox'>
-                <input
-                    className='checkbox__input'
-                    name="is_published"
-                    type="checkbox"
-                    checked={reviewEdit.is_published}
-                    value={reviewEdit.is_published}
-                    onChange={checkboxToggle(useDispatch, updateReviewEdit)(reviewEdit)}/>
-                    <span className="checkbox__fake"></span>
-                    <span>Опубликовано</span>
-            </label>
+            <Checkbox label={'Опубликовано'}
+                      value={reviewEdit.is_published}
+                      onChange={checkboxToggle(useDispatch, updateReviewEdit)(reviewEdit)}/>
         </div>
     )
 }

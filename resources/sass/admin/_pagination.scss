@@ -1,7 +1,7 @@
 .pagination > li > a
 {
     background-color: white;
-    color: $green;
+    color: $dark-a100;
 }
 .pagination-wrapper {
     margin: 1rem auto;
@@ -22,12 +22,12 @@
 .pagination > .active > a
 {
     color: white;
-    background-color: $green !Important;
-    border: solid 1px $green !Important;
+    background-color: $dark-a100 !Important;
+    border: solid 1px $dark-a100 !Important;
 }
 
 .pagination > .active > a:hover
 {
-    background-color: $green !Important;
-    border: solid 1px $green;
+    background-color: $dark-a100 !Important;
+    border: solid 1px $dark-a100;
 }

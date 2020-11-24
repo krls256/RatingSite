@@ -5,46 +5,26 @@ import ErrorLine from "../ErrorLine/ErrorLine";
 import Pagination from "../Pagination";
 import Spinner from "../Spinner";
 import ReviewItem from "../ReviewItem";
+import Table from "../Table";
 
 const ReviewsTable = () => {
     const {currentPage, apiToken, reviews} = useSelector(selectProps);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(apiToken !== null && reviews[currentPage] === undefined) {
-            dispatch(getReviews(currentPage))
+        if (apiToken !== null && reviews[currentPage] === undefined) {
+            dispatch(getReviews())
         }
     }, [apiToken, currentPage])
-    if(reviews[currentPage] === undefined)
+    if (reviews[currentPage] === undefined)
         return <Spinner />
     return (
         <div>
             <ErrorLine />
-            <table className="table table-list_companies">
-                <thead>
-                <tr className='c-dark'>
-                    <th scope="col">ID</th>
-                    <th scope="col">Никнейм</th>
-                    <th scope="col">Балл</th>
-                    <th scope="col">Дата</th>
-                    <th scope="col">Ссылки</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    reviews[currentPage].map(({review_id, reviewer_name, review_date, review_mark, is_published}) => {
-                        return (
-                            <ReviewItem id={review_id}
-                                        name={reviewer_name}
-                                        date={review_date}
-                                        mark={review_mark}
-                                        key={`${reviewer_name}${review_date}`}
-                                        isPublished={is_published}/>
-                        )
-                    })
-                }
-                </tbody>
-            </table>
+            <Table fields={['ID', 'Никнейм', 'Балл', 'Дата', 'Ссылки']}
+                   head_key={'reviews'}
+                   key_field={'reviewer_name'}
+                   component={ReviewItem} items={reviews[currentPage]}/>
             <Pagination />
         </div>
     )

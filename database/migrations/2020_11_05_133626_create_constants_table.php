@@ -19,6 +19,8 @@ class CreateConstantsTable extends Migration
             $table->string('constant_key')->index()->unique();
             $table->string('constant_value');
 
+            $table->boolean('is_published')->default(1);
+
             $table->timestamps();
         });
     }

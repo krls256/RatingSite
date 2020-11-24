@@ -1,0 +1,24 @@
+.image-command-line {
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    padding: 1rem;
+    width: 100%;
+    min-height: 5rem;
+
+
+    border-bottom: 2px solid $dark-a100;
+
+
+    &__item:last-child {
+        margin-left: 3rem;
+        box-shadow: 5px 5px 10px $dark-a75;
+
+        &:hover {
+            box-shadow: 5px 5px 20px $dark-a75;
+        }
+    }
+}

@@ -55,4 +55,15 @@ class ApiCompanyRepository extends CoreRepository
         return $response;
 
     }
+
+    public function getShortList()
+    {
+        $column = ['company_id', 'company_name'];
+        $response = $this->startCondition()
+            ->select($column)
+            ->toBase()
+            ->get();
+
+        return $response;
+    }
 }

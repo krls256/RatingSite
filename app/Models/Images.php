@@ -10,6 +10,8 @@ class Images extends Model
     use Timestamp;
 
     protected $fillable = [
-
+        'is_published',
+        'is_on_company_page'
     ];
+
 }

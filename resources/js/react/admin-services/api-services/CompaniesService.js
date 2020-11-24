@@ -17,6 +17,18 @@ class CompaniesService extends AbstractService {
            return await (axios.patch(`${this.baseUrl}/companies/${id}`, params, headers))
 
         }
+
+        this.getShortList = async () => {
+            try {
+                const {data} = await axios.get(`${this.baseUrl}/companies/short-list?api_token=${this.apiToken}`)
+                return  data
+            } catch (e) {
+                throw {
+                    value: e.response.data,
+                    status: e.response.status
+                }
+            }
+        }
     }
 }
 

@@ -17,16 +17,17 @@ import VideosTable from "./admin-components/VideosTable";
 import SEOTable from "./admin-components/SEOTable";
 import HeadersTable from "./admin-components/HeadersTable";
 import MainPage from "./admin-components/MainPage";
-import ApiToken from "./admin-components/ApiToken";
+import Setup from "./admin-components/Setup";
 import CompanyEdit from "./admin-components/CompanyEdit";
 import LoadingScreen from "./admin-components/LoadingScreen";
 import ReviewEdit from "./admin-components/ReviewsEdit";
+import ArticleEdit from "./admin-components/ArticleEdit";
 
 function App() {
        return (
         <Provider store={createStore(reducers, applyMiddleware(thunkMiddleware))}>
             <Router>
-                <ApiToken>
+                <Setup>
                     <div className="main">
                         <Route path='/admin' component={SideBar}/>
                         <Route path='/admin' component={LoadingScreen}/>
@@ -36,12 +37,13 @@ function App() {
                         <Route path='/admin/reviews' exact component={ReviewsTable}/>
                         <Route path='/admin/reviews/:id/edit' component={ReviewEdit}/>
                         <Route path='/admin/images' component={ImagesPage}/>
-                        <Route path='/admin/articles' component={ArticlesTable}/>
+                        <Route path='/admin/articles' exact component={ArticlesTable}/>
+                        <Route path='/admin/articles/:id/edit' component={ArticleEdit}/>
                         <Route path='/admin/videos' component={VideosTable}/>
                         <Route path='/admin/seo' component={SEOTable}/>
                         <Route path='/admin/headers' component={HeadersTable}/>
                     </div>
-                </ApiToken>
+                </Setup>
             </Router>
         </Provider>
     );
