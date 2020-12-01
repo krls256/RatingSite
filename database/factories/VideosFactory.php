@@ -6,9 +6,12 @@ use App\Models\Videos;
 use Faker\Generator as Faker;
 
 $factory->define(Videos::class, function (Faker $faker) {
+    $title = $faker->sentence();
+    $slug = Str::slug($title);
     return [
         'video_link' => $faker->url,
-        'video_title' => $faker->sentence(),
+        'video_title' => $title,
+        'video_slug' => $slug,
         'video_description' => $faker->realText(200)
     ];
 });

@@ -21,8 +21,8 @@ const getArticleEdit = (id) => (dispatch, getState) => {
 }
 
 
-const updateArticleMain = () => (dispatch, getStete) => {
-    const {apiToken, articleEdit} = getStete()
+const updateArticleMain = () => (dispatch, getState) => {
+    const {apiToken, articleEdit} = getState()
     const {article_id} = articleEdit;
     const service = new ArticlesService(apiToken);
 

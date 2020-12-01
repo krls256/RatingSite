@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Spinner from "../Spinner";
+import Spinner from "../GeneralComponents/Spinner";
 
 const LoadingScreen = ({isLoading}) => {
     if (isLoading) {

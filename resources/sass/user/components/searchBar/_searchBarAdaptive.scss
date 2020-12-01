@@ -1,0 +1,40 @@
+@media (min-width: $smallDevices) {
+    .search-bar {
+        &__item {
+            display: flex;
+            align-items: center;
+        }
+
+        &__label {
+            margin-right: 1rem;
+            margin-bottom: 0;
+        }
+
+        &__input, &__select {
+            width: 50%;
+            margin-bottom: 0;
+        }
+
+        &__input {
+            width: calc(50% - 2rem);
+            margin-right: .5rem;
+        }
+    }
+}
+
+@media (min-width: $largeDevices) {
+    .search-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__item {
+            width: unset;
+        }
+
+        &__input, &__select {
+            width: unset;
+            min-width: 19rem;
+        }
+    }
+}

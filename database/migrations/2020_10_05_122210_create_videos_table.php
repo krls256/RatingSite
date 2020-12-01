@@ -19,6 +19,7 @@ class CreateVideosTable extends Migration
 
             $table->string('video_link')->unique();
             $table->string('video_title')->unique();
+            $table->string('video_slug')->unique();
             $table->text('video_description');
         });
     }

@@ -1,0 +1,27 @@
+@import "user/libs/normalize";
+
+@import "user/general/resets";
+@import "user/general/variables";
+@import "user/general/offsets";
+@import "user/general/mixins";
+@import "user/general/fonts";
+@import "user/general/general-classes";
+@import "user/general/h";
+@import "user/general/text";
+@import "user/general/par";
+@import "user/general/btn";
+@import "user/general/bg";
+@import "user/general/stars";
+@import "user/general/smile";
+
+@import "user/components/header";
+@import "user/components/footer/footer";
+@import "user/components/burger";
+@import "user/components/searchBar";
+@import "user/components/beforeRating";
+@import "user/components/splitter";
+@import "user/components/calcSideForm";
+@import "user/components/addReview";
+@import "user/components/newArticlesSide";
+@import "user/components/rating";
+@import "user/components/leaveReview";

@@ -8,20 +8,21 @@ import {createStore, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import reducers from './admin-reducers';
 
-import SideBar from "./admin-components/SideBar";
-import CompaniesTable from "./admin-components/CompaniesTable";
-import ReviewsTable from "./admin-components/ReviewsTable";
-import ImagesPage from "./admin-components/ImagesPage";
-import ArticlesTable from "./admin-components/ArticlesTable";
-import VideosTable from "./admin-components/VideosTable";
-import SEOTable from "./admin-components/SEOTable";
-import HeadersTable from "./admin-components/HeadersTable";
+import SideBar from "./admin-components/Side/SideBar";
+import CompaniesTable from "./admin-components/Companies/CompaniesTable";
+import ReviewsTable from "./admin-components/Reviews/ReviewsTable";
+import ImagesPage from "./admin-components/Images/ImagesPage";
+import ArticlesTable from "./admin-components/Articles/ArticlesTable";
+import VideosTable from "./admin-components/Videos/VideosTable";
+import SEOTable from "./admin-components/SEO/SEOTable";
+import HeadersTable from "./admin-components/Headers/HeadersTable";
 import MainPage from "./admin-components/MainPage";
 import Setup from "./admin-components/Setup";
-import CompanyEdit from "./admin-components/CompanyEdit";
+import CompanyEdit from "./admin-components/Companies/CompanyEdit";
 import LoadingScreen from "./admin-components/LoadingScreen";
-import ReviewEdit from "./admin-components/ReviewsEdit";
-import ArticleEdit from "./admin-components/ArticleEdit";
+import ReviewEdit from "./admin-components/Reviews/ReviewsEdit";
+import ArticleEdit from "./admin-components/Articles/ArticleEdit";
+import VideosEdit from "./admin-components/Videos/VideosEdit";
 
 function App() {
        return (
@@ -39,7 +40,8 @@ function App() {
                         <Route path='/admin/images' component={ImagesPage}/>
                         <Route path='/admin/articles' exact component={ArticlesTable}/>
                         <Route path='/admin/articles/:id/edit' component={ArticleEdit}/>
-                        <Route path='/admin/videos' component={VideosTable}/>
+                        <Route path='/admin/videos' exact component={VideosTable}/>
+                        <Route path='/admin/videos/:id/edit' component={VideosEdit}/>
                         <Route path='/admin/seo' component={SEOTable}/>
                         <Route path='/admin/headers' component={HeadersTable}/>
                     </div>

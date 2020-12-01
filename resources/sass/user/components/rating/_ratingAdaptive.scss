@@ -1,0 +1,145 @@
+@media (min-width: 992px) {
+    .rating {
+        &__line {
+            display: flex;
+        }
+        &__link {
+            flex-direction: row;
+            max-width: unset;
+            margin: 0;
+
+        }
+
+        &__index {
+            &::before, &::after {
+                right: 1rem;
+                left: unset;
+
+                width: .125rem;
+                height: calc((50% / 0.86) + .063rem);
+            }
+
+            &::before {
+                top: -.063rem;
+                transform: rotate(-30deg);
+            }
+
+            &::after {
+                bottom: -.063rem;
+                transform: rotate(30deg);
+            }
+        }
+
+        &__content {
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding-top: 0;
+            padding-left: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        &__logo {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0;
+
+            background: $gray-light;
+        }
+
+        &__name {
+            position: relative;
+            left: -.5rem;
+            z-index: 0;
+
+
+            margin-bottom: 0;
+            padding: .5rem .5rem .5rem 1rem;
+            flex-basis: 9rem;
+            flex-grow: 4;
+
+            text-align: center;
+
+            background-color: $gray-light;
+        }
+
+        &__stars {
+            position: relative;
+            left: -1rem;
+
+            height: 1.75rem;
+            margin-bottom: 0;
+            padding-left: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+            background: $gray-light-3;
+            border-top: 0.125rem solid $yellow;
+            border-bottom: 0.125rem solid $yellow;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: -.675rem;
+                top: .125rem;
+
+                display: block;
+                height: calc(2rem * .64);
+                width: calc(2rem * .64);
+                border-left: 0.125rem solid $yellow;
+                border-bottom: 0.125rem solid $yellow;
+                transform: rotate(-135deg);
+
+                background-color: $gray-light;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                right: -.7rem;
+                top: .17rem;
+
+                display: block;
+                height: calc(2rem * .64); //sin 45
+                width: calc(2rem * .64);
+                border-left: 0.125rem solid $yellow;
+                border-bottom: 0.125rem solid $yellow;
+                transform: rotate(-135deg);
+            }
+        }
+
+        &__mail {
+            &::before, &::after {
+                left: -1.5rem;
+                right: unset;
+                top: unset;
+                bottom: unset;
+
+                width: .125rem;
+                height: calc((50% / 0.86) + .063rem);
+            }
+
+            &::before {
+                top: -.063rem;
+                transform: rotate(-30deg);
+            }
+
+            &::after {
+                bottom: -.063rem;
+                transform: rotate(30deg);
+            }
+        }
+
+        &__smile {
+            margin-bottom: 0;
+            flex-basis: 5.625rem;
+            flex-grow: 2;
+        }
+
+        &__reviews {
+            flex-basis: 4.25rem;
+            flex-grow: 2;
+        }
+    }
+}

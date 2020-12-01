@@ -1,0 +1,26 @@
+.text {
+    &-center {
+        text-align: center;
+    }
+    &-left {
+        text-align: left;
+    }
+    &-right {
+        text-align: right;
+    }
+
+    &-black {
+        font-weight: 900;
+    }
+
+    &-norm {
+        font-weight: 400;
+    }
+
+}
+
+.c {
+    &-white {
+        color: $white;
+    }
+}

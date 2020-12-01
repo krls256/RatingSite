@@ -9,6 +9,8 @@ class Videos extends Model
 {
     use Timestamp;
 
+    protected $primaryKey = 'video_id';
+
     protected $fillable = [
         'video_title',
         'video_link',

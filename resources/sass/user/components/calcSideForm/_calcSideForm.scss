@@ -1,0 +1,11 @@
+.calc-side-from {
+    display: flex;
+    flex-direction: column;
+
+    &__text {
+        font-size: 0.75rem;
+        line-height: 1rem;
+
+        @include box;
+    }
+}

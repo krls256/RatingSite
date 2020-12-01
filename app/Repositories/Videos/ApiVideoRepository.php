@@ -16,10 +16,11 @@ class ApiVideoRepository extends CoreRepository
 
     public function getPaginate($count = 20)
     {
-        $column = ['video_id', 'video_title'];
+        $column = ['video_id', 'video_title', 'video_slug'];
 
         $response = $this->startCondition()
             ->select($column)
+            ->orderBy('video_id')
             ->paginate($count);
 
         return $response;
@@ -27,7 +28,7 @@ class ApiVideoRepository extends CoreRepository
 
     public function getEdit($id)
     {
-        $column = ['video_id', 'video_title', 'video_description', 'video_link'];
+        $column = ['video_id', 'video_title', 'video_description', 'video_link', 'video_slug'];
 
         $response = $this->startCondition()
             ->select($column)

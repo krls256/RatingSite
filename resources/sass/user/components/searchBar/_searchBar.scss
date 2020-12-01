@@ -1,0 +1,31 @@
+.search-bar {
+    &__item {
+        padding-top: .25rem;
+        max-width: calc(100vw - 4rem);
+    }
+    &__label {
+        display: block;
+        margin-bottom: .25rem;
+
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: $black;
+
+
+    }
+    &__select, &__input {
+        width: 100%;
+
+        border-radius: 0.125rem;
+        border: 0.063rem solid $gray-light-2;
+        background-color: $white;
+    }
+    &__input {
+        margin-bottom: .25rem;
+        width: calc(100% - 1.5rem);
+    }
+
+    &__select {
+    }
+}
+

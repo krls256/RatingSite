@@ -24,10 +24,10 @@ class PrepareCompanyDataFromSeederService
             "company_yell_link"     => $data->yell_link,
             "company_flamp_link"    => $data->flamp_link,
 
-            "company_logo_link" => Str::random(9),
             "company_yandex_map_link" => Str::random(9),
             "company_description" => Str::random(23),
             "company_description_styles" => '',
+            "company_logo_link" => $data->logo_link
         ];
         return $result;
     }

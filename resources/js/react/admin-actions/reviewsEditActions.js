@@ -17,8 +17,9 @@ export const getReviewEdit = (id) => (dispatch, getState) => {
 }
 
 
-export const updateReviewMain = (id) => (dispatch, getState) => {
+export const updateReviewMain = () => (dispatch, getState) => {
     const {apiToken, reviewEdit} = getState();
+    const {review_id: id} = reviewEdit;
     const service = new ReviewsService(apiToken)
 
     dispatch(resetErrorsMessage());

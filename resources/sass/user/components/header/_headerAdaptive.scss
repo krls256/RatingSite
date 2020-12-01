@@ -1,0 +1,66 @@
+@media (min-width: $largeDevices) {
+    .header {
+        min-height: 5.3rem;
+
+        &__wrapper {
+            min-height: 5.3rem;
+            max-width: 1200px;
+
+            margin: 0 auto;
+        }
+
+        &__name {
+            font-size: 1.25rem;
+        }
+
+        &__logo {
+            max-height: 4rem;
+            max-width: 4rem;
+        }
+
+        &__nav {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            min-height: 5.3rem;
+            height: unset;
+            width: unset;
+            padding: 0;
+
+            &--initial {
+                transform: none;
+                opacity: 1;
+            }
+
+            &--disabled {
+                animation: none;
+            }
+
+            &--active {
+                animation: none;
+            }
+        }
+
+        &__list {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        &__list-item {
+            margin-right: 3rem;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        &__list-link {
+            min-height: unset;
+
+            font-size: 1rem;
+        }
+    }
+}

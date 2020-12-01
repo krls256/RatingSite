@@ -1,0 +1,16 @@
+.par {
+    color: $black;
+    font-weight: 400;
+
+    &--main {
+        font-size: .9rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .par {
+        &--main {
+            font-size: 1rem;
+        }
+    }
+}

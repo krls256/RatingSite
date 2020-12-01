@@ -1,0 +1,21 @@
+@mixin reset-button {
+    display: block;
+    border: none;
+    background-color: transparent;
+    &:focus {
+        outline: none;
+    }
+}
+
+@mixin reset-link {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+@mixin box {
+    border: 0.125rem solid $gray-light;
+    background-color: $gray-light-3-a3;
+}

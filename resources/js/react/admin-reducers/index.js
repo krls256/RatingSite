@@ -15,6 +15,9 @@ import companiesShortListReducer from "./companiesShortListReducer";
 import imagesCommandLineReducer from "./imagesCommandLineReducer";
 import articlesReducer from "./articlesReducer";
 import articleEditReducer from "./articleEditReducer";
+import videosReducer from "./videosReducer";
+import videosEditReducer from "./videosEditReducer";
+
 
 export default combineReducers({
     errorsMessage: errorsMessageReducer,
@@ -39,4 +42,7 @@ export default combineReducers({
 
     articles: articlesReducer,
     articleEdit: articleEditReducer,
+
+    videos: videosReducer,
+    videoEdit: videosEditReducer,
 })

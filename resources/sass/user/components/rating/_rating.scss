@@ -1,0 +1,188 @@
+.rating {
+    &__line {
+        display: none;
+    }
+
+    &__list {
+
+    }
+
+    &__list-item {
+        margin-bottom: .5rem;
+    }
+
+    &__link {
+        @include reset-link;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        min-height: 6rem;
+        max-width: 19rem;
+        margin: 0 auto;
+
+        border: 0.125rem solid $gray-light-2;
+        background-color: $gray-light-3;
+
+        &--first {
+            border: 0.125rem solid $orange-light;
+            .rating__index::before, .rating__index::after {
+                background-color: $orange-light;
+            }
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    &__index {
+        position: relative;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+
+        flex-basis: 4.5rem;
+        min-height: 4.5rem;
+
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            bottom: -.5rem;
+
+            display: block;
+            width: calc((50% / 0.99) + .12rem);
+            height: .125rem;
+
+            background-color: $gray-light-2;
+            border-radius: .125rem;
+        }
+
+        &::before {
+            right: -.125rem;
+            transform: rotate(-8deg);
+            transform-origin: 0 0;
+        }
+
+        &::after {
+            left: -.125rem;
+            transform: rotate(8deg);
+            transform-origin: 100% 100%;
+        }
+    }
+
+    &__index-value {
+        font-size: 3rem;
+        color: $gray-dark;
+
+        &--first {
+            color: $orange-light;
+        }
+    }
+
+    &__index-signature {
+        font-size: 0.875rem;
+        color: $orange-light;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding-top: 1rem;
+        margin-bottom: 1rem;
+        flex-basis: calc(100% - 5rem);
+    }
+
+    &__logo {
+        display: block;
+        width: 4rem;
+        height: 4rem;
+        margin-bottom: .5rem;
+
+        border-radius: 2rem;
+        object-fit: contain;
+    }
+
+    &__name {
+        padding: 0 1rem;
+        max-width: 100%;
+        margin-bottom: .5rem;
+
+        color: $dark-blue;
+        font-size: 0.875rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    &__stars {
+        margin-bottom: .5rem;
+    }
+
+    &__mail {
+        position: relative;
+        background: url("/img/mail.svg") center center no-repeat;
+
+        flex-basis: 3rem;
+        min-width: 3rem;
+
+        &::before, &::after {
+            content: '';
+            position: absolute;
+            top: -.5rem;
+
+            display: block;
+            width: calc((50% / 0.99) + .12rem);
+            height: .125rem;
+
+            background-color: $gray-light-2;
+            border-radius: .125rem;
+        }
+
+        &::before {
+            right: -.125rem;
+            transform: rotate(-8deg);
+            transform-origin: 0 0;
+        }
+
+        &::after {
+            left: -.125rem;
+            transform: rotate(8deg);
+            transform-origin: 100% 100%;
+        }
+        &--first {
+            &::before, &::after {
+                background-color: $orange-light;
+            }
+        }
+    }
+    &__smile {
+        margin-bottom: .5rem;
+    }
+
+    &__review-text {
+        display: block;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        color: $gray;
+
+    }
+
+    &__reviews {
+        display: flex;
+
+        &::before {
+            content: url("/img/message.svg");
+            display: block;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: .25rem;
+
+        }
+    }
+}

@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,7 +12,14 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/js/app.js', 'public/js')
+mix
+    .copyDirectory('resources/img', 'public/img')
+    .copyDirectory('resources/fonts', 'public/fonts')
+    .copyDirectory('resources/logo', 'public/logo')
     .react('resources/js/admin.js', 'public/js')
+    .js('resources/js/script.js', 'public/js')
     .sass('resources/sass/admin.scss', 'public/css')
-    .copyDirectory('resources/img', 'public/img');
+    .sass('resources/sass/style.scss', 'public/css')
+    .options({
+        processCssUrls: false
+    });

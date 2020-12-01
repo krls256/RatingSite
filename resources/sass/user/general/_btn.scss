@@ -1,0 +1,10 @@
+.btn {
+    @include reset-button;
+
+    color: $white;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    border-radius: 0.125rem;
+}

@@ -12,7 +12,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/art_remont_kompaniya-70000001023722438",
     "address": "Россия, Москва, улица Золоторожский Вал, 32с4",
     "google_place_id": "ChIJ4xLfBE-1SkERhzJcNN3boWc",
-    "google_address": "ул. Золоторожский Вал, 32, строение 4, Москва"
+    "google_address": "ул. Золоторожский Вал, 32, строение 4, Москва",
+    "logo_link": "artremont.png"
 }, {
     "name": "Добрый дом",
     "yandex_id": "1756043491",
@@ -27,7 +28,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/dobryjj_dom_komfort_ooo_remontnaya_kompaniya-70000001028300728",
     "address": "Россия, Москва, Каширское шоссе, 19, корп. 1",
     "google_place_id": "ChIJrT_vXkGzSkERYJMnWnO4AaA",
-    "google_address": "Каширское ш., дом 19, Москва"
+    "google_address": "Каширское ш., дом 19, Москва",
+    "logo_link": "dobryy-dom.png"
 }, {
     "name": "Маана",
     "yandex_id": "49548319986",
@@ -42,9 +44,10 @@
     "flamp_id": "https://moscow.flamp.ru/firm/maana_remontnaya_kompaniya-70000001038154549",
     "address": "Россия, Москва, Варшавское шоссе, 42с1",
     "google_place_id": "ChIJGQ7OL2tLtUYRSSMfx1PdZHQ",
-    "google_address": "Варшавское ш., 42, Москва"
+    "google_address": "Варшавское ш., 42, Москва",
+    "logo_link": "maana.png"
 }, {
-    "name": "ГК Фундамент — дизайн интерьера и ремонт квартир",
+    "name": "ГК Фундамент",
     "yandex_id": "1015336884",
     "google_id": "4aa19ae68d54cb46e60205dc6fd953437d7bc7c6",
     "otzovick_id": "https://otzovik.com/reviews/fundament_ot_kompanii_kkzm/",
@@ -57,7 +60,8 @@
     "flamp_id": null,
     "address": "Россия, Москва, Мытная улица, 7, стр. 1",
     "google_place_id": "ChIJUebbYxFLtUYRZwK3TrPPfWc",
-    "google_address": "Мытная ул., 7, стр. 1, Москва"
+    "google_address": "Мытная ул., 7, стр. 1, Москва",
+    "logo_link": "gk-fundament.png"
 }, {
     "name": "Мастера ремонта",
     "yandex_id": "4107171362",
@@ -72,7 +76,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/mastera_remonta_ooo-70000001037994975",
     "address": "Россия, Москва, бульвар Энтузиастов, 2",
     "google_place_id": "ChIJJcswa79KtUYRkUyXFeNVm-8",
-    "google_address": "б-р Энтузиастов, 2, Москва"
+    "google_address": "б-р Энтузиастов, 2, Москва",
+    "logo_link": "mastera-remonta.png"
 }, {
     "name": "Авальремонт",
     "yandex_id": "1776947097",
@@ -87,7 +92,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/avalremont_remontnaya_kompaniya-70000001027311281",
     "address": "Россия, Москва, Южнопортовая улица, 5, стр. 1-6",
     "google_place_id": "ChIJBWlnvdC0SkER446YNgBkFnM",
-    "google_address": "Южнопортовая ул., 5 стр. 1, 6, офис 216, Москва"
+    "google_address": "Южнопортовая ул., 5 стр. 1, 6, офис 216, Москва",
+    "logo_link": "avalremont.png"
 }, {
     "name": "Сделано",
     "yandex_id": "1501948040",
@@ -102,7 +108,8 @@
     "flamp_id": null,
     "address": "Россия, Москва, Воронцовская улица, 18/20",
     "google_place_id": "ChIJBfGhxV5KtUYRlbZ7Mkf-2bw",
-    "google_address": "Воронцовская ул., 18/20, Москва"
+    "google_address": "Воронцовская ул., 18/20, Москва",
+    "logo_link": "sdelano.png"
 }, {
     "name": "Вира-АртСтрой",
     "yandex_id": "1005164739",
@@ -117,9 +124,10 @@
     "flamp_id": "https://moscow.flamp.ru/firm/vira_artstrojj_kompaniya_po_remontu_i_dizajjnu_intererov-70000001023066312",
     "address": "Россия, Москва, улица Берзарина, 23",
     "google_place_id": "ChIJf64lo_5ItUYRHhZpnmpK7Dk",
-    "google_address": "ул. Берзарина, 23, Москва"
+    "google_address": "ул. Берзарина, 23, Москва",
+    "logo_link": "vira-artstroy.png"
 }, {
-    "name": "Группа компаний Первая отделочная компания",
+    "name": "Первая отделочная компания",
     "yandex_id": "13813368405",
     "google_id": "05426e484b81833e81f9fd5ca696a74fd50abc48",
     "otzovick_id": "https://otzovik.com/reviews/stroitelnaya_organizaciya_pervaya_otdelochnaya_kompaniya_russia_moscow/",
@@ -132,7 +140,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/pervaya_otdelochnaya_kompaniya_gruppa_kompanijj-70000001026507194",
     "address": "Россия, Москва, Авиамоторная улица, 12",
     "google_place_id": "ChIJ6bqB2qhKtUYR-y8PwDk3pl8",
-    "google_address": "ул. Авиамоторная, 12, 10 этаж, Москва"
+    "google_address": "ул. Авиамоторная, 12, 10 этаж, Москва",
+    "logo_link": "pervaya-otdelochnaya-kompaniya.png"
 }, {
     "name": "Абада ГРУП",
     "yandex_id": "1194577548",
@@ -147,7 +156,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/abada_remontnaya_kompaniya-70000001024234260",
     "address": "Россия, Москва, Дмитровское шоссе, 100, стр. 2",
     "google_place_id": "ChIJzV7lySM2tUYR8cls-U6Sx5Y",
-    "google_address": "Дмитровское ш., 100, стр.2, Москва"
+    "google_address": "Дмитровское ш., 100, стр.2, Москва",
+    "logo_link": "abada-grup.png"
 }, {
     "name": "КоролевРемонт",
     "yandex_id": "1060736320",
@@ -162,7 +172,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/koroljovremont_ooo_remontno_otdelochnaya_firma-4504127908566595",
     "address": "Россия, Московская область, Королёв, улица Карла Маркса, 1А",
     "google_place_id": "ChIJwTmlXgEytUYRAwJEaZWspQs",
-    "google_address": "ул. Карла Маркса, 1А, офис 221, Королёв"
+    "google_address": "ул. Карла Маркса, 1А, офис 221, Королёв",
+    "logo_link": "korolevremont.png"
 }, {
     "name": "СМ-Ремонт",
     "yandex_id": "157086167494",
@@ -177,7 +188,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/sm_remont_remontnaya_kompaniya-70000001031916689",
     "address": "Россия, Москва, Маломосковская улица, 18с1",
     "google_place_id": "ChIJicATKN01tUYRgssIIZ0PhOA",
-    "google_address": "Маломосковская ул., 18 с 1, Москва"
+    "google_address": "Маломосковская ул., 18 с 1, Москва",
+    "logo_link": "sm-remont.png"
 }, {
     "name": "Небо",
     "yandex_id": "36334119902",
@@ -192,7 +204,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/nebo_ooo_stroitelnaya_kompaniya-70000001037102034",
     "address": "Россия, Москва, Одесская улица, 2кС",
     "google_place_id": "ChIJdSs5_amzSkER5POCTsaVgCg",
-    "google_address": "Одесская ул., 2кс, Москва"
+    "google_address": "Одесская ул., 2кс, Москва",
+    "logo_link": "nebo.png"
 }, {
     "name": "Евролюкс-групп",
     "yandex_id": "1196077543",
@@ -207,7 +220,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/evrolyuks_remontnaya_kompaniya-70000001017583192",
     "address": "Россия, Москва, улица Перерва, 1с1",
     "google_place_id": "ChIJ7URzaXa0SkERO8tWeVyMjss",
-    "google_address": "ул. Перерва, д. 1, 1, Москва"
+    "google_address": "ул. Перерва, д. 1, 1, Москва",
+    "logo_link": "evrolyuks-grupp.png"
 }, {
     "name": "Новая Москва",
     "yandex_id": "1274326722",
@@ -222,7 +236,8 @@
     "flamp_id": null,
     "address": "Россия, Москва, посёлок Коммунарка, 317Ю",
     "google_place_id": "ChIJf0iAxdusSkERfSanQ1yF8SU",
-    "google_address": "корпус АПК, поселение Сосенское, поселок Коммунарка, Москва"
+    "google_address": "корпус АПК, поселение Сосенское, поселок Коммунарка, Москва",
+    "logo_link": "novaya-moskva.png"
 }, {
     "name": "Вам Ремонт",
     "yandex_id": "226493154442",
@@ -237,7 +252,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/vam_remont_kompaniya-70000001039139161",
     "address": "Россия, Москва, улица Лавриненко, 5",
     "google_place_id": "ChIJmY5VvBPJSkERt20Roiz2AG4",
-    "google_address": "ул. Лавриненко, 5, Москва"
+    "google_address": "ул. Лавриненко, 5, Москва",
+    "logo_link": "vam-remont.png"
 }, {
     "name": "Студия Ремонтов",
     "yandex_id": "1704435823",
@@ -252,7 +268,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/studiya_remontov_ooo_kompaniya-70000001022983927",
     "address": "Россия, Москва, Пресненская набережная, 12",
     "google_place_id": "ChIJ42Um3ExKtUYRl-wYoyzKv5c",
-    "google_address": "Пресненская наб., 12, Москва"
+    "google_address": "Пресненская наб., 12, Москва",
+    "logo_link": "studiya-remontov.png"
 }, {
     "name": "Лео Компани",
     "yandex_id": "1006377692",
@@ -267,7 +284,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/leo_company_studiya_dizajjnerskikh_i_arkhitekturnykh_reshenijj-4504127919939252",
     "address": "Россия, Москва, Краснобогатырская улица, 6, стр. 8",
     "google_place_id": "ChIJCWYSOWU1tUYRm-OdcHJHX98",
-    "google_address": "Краснобогатырская ул., д. 6, стр.8, Москва"
+    "google_address": "Краснобогатырская ул., д. 6, стр.8, Москва",
+    "logo_link": "leo-kompani.png"
 }, {
     "name": "Панокна",
     "yandex_id": "182646986011",
@@ -282,7 +300,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/panokna_kompaniya-70000001026612364",
     "address": "Россия, Москва, улица Кирпичные Выемки, 2, корп. 1",
     "google_place_id": "ChIJl8OIVYitSkERJHW8dPXTkKE",
-    "google_address": "Кирпичные Выемки ул., 2, корп.1, Москва"
+    "google_address": "Кирпичные Выемки ул., 2, корп.1, Москва",
+    "logo_link": "panokna.png"
 }, {
     "name": "ГК Вмассиве",
     "yandex_id": "235747141054",
@@ -297,7 +316,8 @@
     "flamp_id": null,
     "address": "Россия, Москва, Нижняя Сыромятническая улица, 10, стр. 2",
     "google_place_id": "ChIJu_sch5RKtUYRCzrJIWQryJQ",
-    "google_address": "Нижняя Сыромятническая ул., 10с2, Москва"
+    "google_address": "Нижняя Сыромятническая ул., 10с2, Москва",
+    "logo_link": null
 }, {
     "name": "Еск 24",
     "yandex_id": "49608322526",
@@ -312,7 +332,8 @@
     "flamp_id": null,
     "address": "Россия, Москва, 2-я Звенигородская улица, 13с11",
     "google_place_id": "ChIJxT-lX9RLtUYR2elACVy-_Kk",
-    "google_address": "2-я Звенигородская улица, дом 13 КОРПУС 11, Москва"
+    "google_address": "2-я Звенигородская улица, дом 13 КОРПУС 11, Москва",
+    "logo_link": "esk-24.png"
 }, {
     "name": "Проблем в доме нет",
     "yandex_id": "1274563839",
@@ -327,7 +348,8 @@
     "flamp_id": null,
     "address": "Россия, Москва, улица Грузинский Вал, 26с1",
     "google_place_id": "ChIJeRiD2QtJtUYRs9rYluwdqkk",
-    "google_address": "ул. Грузинский Вал, дом 26, стр 1, Москва"
+    "google_address": "ул. Грузинский Вал, дом 26, стр 1, Москва",
+    "logo_link": "problem-v-dome-net.png"
 }, {
     "name": "БлагоДать",
     "yandex_id": "119935964720",
@@ -342,7 +364,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/blagodat_ooo_remontnaya_kompaniya-70000001027311031",
     "address": "Россия, Москва, Высоковольтный проезд, 1, стр. 49",
     "google_place_id": "ChIJhbIL5RY3tUYR61hMa-nLHAY",
-    "google_address": "Высоковольтный пр., 1 строение 49, Москва"
+    "google_address": "Высоковольтный пр., 1 строение 49, Москва",
+    "logo_link": "blagodat.png"
 }, {
     "name": "Флагман ремонта",
     "yandex_id": "172548770546",
@@ -357,7 +380,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/flagman_remonta_remontnaya_kompaniya-70000001032610652",
     "address": "Россия, Москва, Алтуфьевское шоссе, 29Б",
     "google_place_id": "ChIJZzkJJ6g3tUYRoeLh383JBhA",
-    "google_address": "Алтуфьевское ш., 29Б, Москва"
+    "google_address": "Алтуфьевское ш., 29Б, Москва",
+    "logo_link": "flagman-remonta.png"
 }, {
     "name": "Идет ремонт",
     "yandex_id": "1689932754",
@@ -372,7 +396,8 @@
     "flamp_id": "https://moscow.flamp.ru/firm/idjot_remont_kompaniya-70000001025487510",
     "address": "Россия, Москва, улица Главмосстроя, 6",
     "google_place_id": "ChIJ-3-d6gxStUYR-qp0vHjrwq8",
-    "google_address": "ул. Главмосстроя, дом 6 4Н помещение, Москва"
+    "google_address": "ул. Главмосстроя, дом 6 4Н помещение, Москва",
+    "logo_link": "idet-remont.png"
 }, {
     "name": "Ремонт Экспресс",
     "yandex_id": "1311889501",
@@ -387,5 +412,6 @@
     "flamp_id": "https://moscow.flamp.ru/firm/remont_ehkspress_ooo_remontnaya_kompaniya-70000001018374184",
     "address": "Россия, Москва, Ленинградский проспект, 80Д",
     "google_place_id": "ChIJ3wjxtJ-xSkERe5G04LZ_a8Y",
-    "google_address": "Ленинградский пр-т., 80 к, Д, 4 этаж, Москва"
+    "google_address": "Ленинградский пр-т., 80 к, Д, 4 этаж, Москва",
+    "logo_link": "remont-ekspress.png"
 }]
