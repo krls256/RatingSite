@@ -1,0 +1,10 @@
+@media (min-width: $largeDevices) {
+    .leave-review {
+        top: 5.3rem;
+        height: calc(100vh - 5.3rem);
+
+        &--disable {
+            height: 0;
+        }
+    }
+}

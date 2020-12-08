@@ -1,8 +1,9 @@
 <?php
 
 
-namespace App\Repositories;
+namespace App\Repositories\Companies;
 
+use App\Repositories\CoreRepository;
 use App\Models\Companies as Model;
 
 class ApiCompanyRepository extends CoreRepository
@@ -32,7 +33,7 @@ class ApiCompanyRepository extends CoreRepository
             'company_quantity_review_otzovick', 'company_quantity_review_yell',
             'company_quantity_review_flamp',
             'company_logo_link', 'company_yandex_map_link', 'company_description',
-            'company_description_styles', 'company_tin', 'company_phone',
+            'company_description_styles', 'company_inn', 'company_phone',
             'company_site', 'company_email', 'company_city', 'company_address',
             'company_creating_date', 'company_fb', 'company_ok', 'company_vk',
             'company_whatsapp', 'company_viber', 'company_telegram',

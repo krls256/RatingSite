@@ -57,4 +57,8 @@ class Companies extends Model
     public function reviews() {
        return $this->hasMany(Reviews::class, 'company_id');
     }
+
+    public function getSelfCollection() {
+        return collect()->push($this);
+    }
 }

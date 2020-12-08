@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\ApiCompanyUpdateRequest;
 use App\Http\Requests\CompaniesApiRequest;
-use App\Repositories\ApiCompanyRepository;
+use App\Repositories\Companies\ApiCompanyRepository;
 use App\Services\ApiCompanyServices\DeleteStatisticFieldsService;
-use App\Services\PrepareCompanyDataFromSeederService;
 
 class ApiCompaniesController extends ApiController
 {

@@ -19,3 +19,9 @@
     border: 0.125rem solid $gray-light;
     background-color: $gray-light-3-a3;
 }
+
+@mixin text-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

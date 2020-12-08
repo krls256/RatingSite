@@ -1,0 +1,13 @@
+.page {
+    &__header {
+        display: block;
+        padding-bottom: .875rem;
+        margin-bottom: 1rem;
+
+        border-bottom: 0.125rem solid $dark-blue;
+    }
+    &__nav {
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+    }
+}

@@ -1,0 +1,41 @@
+.about-project {
+    &__logo {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 1rem;
+        margin-bottom: .5rem;
+
+        float: left;
+        color: $orange-light;
+    }
+
+    &__logo-text {
+        height: 100%;
+        font-weight: 700;
+        align-self: flex-end;
+
+        color: $orange-light;
+    }
+
+    &__logo-img {
+        display: block;
+        max-height: 2rem;
+        max-width: 2rem;
+
+        margin-right: .5rem;
+
+        object-fit: contain;
+    }
+    &__content-text {
+        margin-bottom: 1rem;
+
+        text-align: justify;
+        line-height: 1.3rem;
+        font-size: 1.125rem;
+        font-weight: 400;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

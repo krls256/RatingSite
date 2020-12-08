@@ -22,7 +22,7 @@ class ApiReviewsRepository extends CoreRepository
         return $response;
     }
     public function getEdit($id) {
-        $column = ['review_id', 'review_place_in_top_10', 'review_type_of_work', 'is_published', 'review_date', 'review_link',
+        $column = ['review_id', 'review_place_in_top_10', 'is_published', 'review_date', 'review_link',
             'review_mark', 'reviewer_name', 'source_id', 'review_text', 'company_id',];
         $response = $this->startCondition()
             ->select($column)

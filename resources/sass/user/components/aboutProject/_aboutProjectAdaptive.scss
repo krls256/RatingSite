@@ -1,0 +1,11 @@
+@media (min-width: $largeDevices) {
+    .about-project {
+        &__logo-img {
+            max-height: 4rem;
+            max-width: 4rem;
+        }
+        &__logo-text {
+            font-size: 1.25rem;
+        }
+    }
+}

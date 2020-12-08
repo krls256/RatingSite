@@ -53,7 +53,7 @@
 
 
             margin-bottom: 0;
-            padding: .5rem .5rem .5rem 1rem;
+            padding: .4rem .5rem .4rem 1rem;
             flex-basis: 9rem;
             flex-grow: 4;
 
@@ -81,12 +81,12 @@
             &::before {
                 content: '';
                 position: absolute;
-                left: -.675rem;
+                left: -.6rem;
                 top: .125rem;
 
                 display: block;
-                height: calc(2rem * .64);
-                width: calc(2rem * .64);
+                height: calc(2rem * .55);
+                width: calc(2rem * .55);
                 border-left: 0.125rem solid $yellow;
                 border-bottom: 0.125rem solid $yellow;
                 transform: rotate(-135deg);
@@ -97,12 +97,12 @@
             &::after {
                 content: '';
                 position: absolute;
-                right: -.7rem;
+                right: -.625rem;
                 top: .17rem;
 
                 display: block;
-                height: calc(2rem * .64); //sin 45
-                width: calc(2rem * .64);
+                height: calc(2rem * .53);
+                width: calc(2rem * .53);
                 border-left: 0.125rem solid $yellow;
                 border-bottom: 0.125rem solid $yellow;
                 transform: rotate(-135deg);

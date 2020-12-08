@@ -11,7 +11,8 @@ class Images extends Model
 
     protected $fillable = [
         'is_published',
-        'is_on_company_page'
+        'is_on_company_page',
+        'image_link'
     ];
 
 }

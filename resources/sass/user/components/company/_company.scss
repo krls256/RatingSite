@@ -1,0 +1,137 @@
+.company {
+    &__main-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        //justify-content: flex-end;
+        padding: 1rem;
+
+
+        border: 0.125rem solid $gray-light-2;
+        background-color: $gray-light-3;
+    }
+
+    &__logo-wrapper {
+        margin-right: .75rem;
+        flex-basis: 4.5rem;
+        min-width: 4.5rem;
+    }
+
+    &__logo {
+        display: block;
+        width: 4.5rem;
+        height: 4.5rem;
+
+
+
+        border-radius: 50%;
+        background-color: rgb(196, 196, 196);
+        object-fit: contain;
+    }
+
+    &__title-wrapper {
+        flex-basis: 9rem;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        flex-grow: 5;
+    }
+
+    &__title {
+        color: $dark-blue;
+        font-size: 1.25rem;
+        font-weight: 400;
+    }
+
+    &__top-key {
+        color: $dark-blue;
+        font-size: 0.875rem;
+        font-weight: 400;
+    }
+
+    &__top-value {
+        color: $dark-blue;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    &__statistic {
+        display: flex;
+        flex-basis: 13rem;
+        min-height: 4rem;
+        margin-top: .75rem;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-between;
+        flex-grow: 1;
+    }
+
+    &__emoji {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__positive, &__negative {
+        @include reset-link;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding-left: .375rem;
+        padding-right: .375rem;
+
+        color: $gray;
+        font-size: 0.938rem;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        &::before {
+            content: "";
+            position: relative;
+
+            display: block;
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: .25rem;
+        }
+    }
+    &__positive {
+        &::before {
+            background: url("/img/smile-happy.svg") center center / cover no-repeat;
+        }
+    }
+
+    &__negative {
+        &::before {
+            background: url("/img/smile-sad.svg") center center / cover no-repeat;
+        }
+    }
+
+    &__info {
+        padding-top: .75rem;
+        padding-left: .75rem;
+    }
+    &__info-key {
+        display: inline;
+
+        color: $dark-blue;
+        font-size: 0.875rem;
+        font-weight: 700;
+    }
+
+    &__info-value {
+        color: $dark-blue;
+        font-size: 0.875rem;
+        font-weight: 400;
+        &--link {
+            @include reset-link;
+        }
+    }
+
+    &__map {
+        height: 300px;
+    }
+}

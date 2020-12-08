@@ -1,0 +1,25 @@
+@media (min-width: $smallDevices) {
+    .company {
+        &__statistic {
+            flex-direction: row;
+        }
+    }
+}
+
+@media (min-width: 360px) {
+    .company {
+        &__statistic {
+            flex-grow: unset;
+        }
+    }
+}
+
+
+@media (min-width: $mediumDevices) {
+    .company {
+        &__info {
+            padding-top: 1.5rem;
+            padding-left: 1.5rem;
+        }
+    }
+}

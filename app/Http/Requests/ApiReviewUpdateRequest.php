@@ -29,7 +29,7 @@ class ApiReviewUpdateRequest extends FormRequest
             'review_date' => 'date|nullable',
             'review_mark' => 'numeric|min:1|max:5',
             'company_id' => 'numeric|min:1',
-            'source_id' => 'numeric|min:0|max:4',
+            'source_id' => 'numeric|min:-1|max:4',
             'is_published' => 'numeric|min:0|max:1'
         ];
     }

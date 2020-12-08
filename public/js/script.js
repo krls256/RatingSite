@@ -97,15 +97,202 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user/header */ "./resources/js/user/header/index.js");
 /* harmony import */ var _user_stars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user/stars */ "./resources/js/user/stars/index.js");
-/* harmony import */ var _user_leave_review_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user/leave-review/index */ "./resources/js/user/leave-review/index.js");
+/* harmony import */ var _user_forms_leave_review__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user/forms/leave-review */ "./resources/js/user/forms/leave-review/index.js");
+/* harmony import */ var _user_forms_writeUs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user/forms/writeUs */ "./resources/js/user/forms/writeUs/index.js");
+/* harmony import */ var _user_watchVideo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user/watchVideo */ "./resources/js/user/watchVideo/index.js");
+/* harmony import */ var _user_forms_addReviewAnswer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./user/forms/addReviewAnswer */ "./resources/js/user/forms/addReviewAnswer/index.js");
+
+
+
 
 
 
 document.addEventListener('DOMContentLoaded', function () {
   Object(_user_header__WEBPACK_IMPORTED_MODULE_0__["toggleNav"])();
   Object(_user_stars__WEBPACK_IMPORTED_MODULE_1__["printStars"])();
-  Object(_user_leave_review_index__WEBPACK_IMPORTED_MODULE_2__["toggleReviewForm"])();
+  Object(_user_forms_leave_review__WEBPACK_IMPORTED_MODULE_2__["toggleReviewForm"])();
+  Object(_user_stars__WEBPACK_IMPORTED_MODULE_1__["formStars"])();
+  Object(_user_forms_writeUs__WEBPACK_IMPORTED_MODULE_3__["writeUsToggle"])();
+  Object(_user_watchVideo__WEBPACK_IMPORTED_MODULE_4__["watchVideo"])();
+  Object(_user_forms_addReviewAnswer__WEBPACK_IMPORTED_MODULE_5__["addReviewAnswerToggle"])();
 });
+
+/***/ }),
+
+/***/ "./resources/js/user/forms/addReviewAnswer/addReviewAnswerToggle.js":
+/*!**************************************************************************!*\
+  !*** ./resources/js/user/forms/addReviewAnswer/addReviewAnswerToggle.js ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var addReviewAnswerToggle = function addReviewAnswerToggle() {
+  var answerArr = document.querySelectorAll('[data-toggle="addReviewAnswer"]');
+  var form = document.querySelector('#addReviewAnswer');
+  var close = document.querySelector('#commentClose');
+  var body = document.querySelector('body');
+
+  if (answerArr && form && close && body) {
+    if (!form.classList.contains('form--disable')) {
+      body.style.overflow = 'hidden';
+    }
+
+    answerArr.forEach(function (item) {
+      return item.addEventListener('click', toggleForm(form, body));
+    });
+    close.addEventListener('click', toggleForm(form, body));
+  }
+};
+
+var toggleForm = function toggleForm(form, body) {
+  return function (e) {
+    e.preventDefault();
+    form.classList.toggle('form--disable');
+
+    if (body.style.overflow === 'hidden') {
+      body.style.overflow = '';
+    } else {
+      body.style.overflow = 'hidden';
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (addReviewAnswerToggle);
+
+/***/ }),
+
+/***/ "./resources/js/user/forms/addReviewAnswer/index.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/user/forms/addReviewAnswer/index.js ***!
+  \**********************************************************/
+/*! exports provided: addReviewAnswerToggle */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _addReviewAnswerToggle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addReviewAnswerToggle */ "./resources/js/user/forms/addReviewAnswer/addReviewAnswerToggle.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "addReviewAnswerToggle", function() { return _addReviewAnswerToggle__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+
+/***/ }),
+
+/***/ "./resources/js/user/forms/leave-review/index.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/user/forms/leave-review/index.js ***!
+  \*******************************************************/
+/*! exports provided: toggleReviewForm */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _toggle_review_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./toggle-review-form */ "./resources/js/user/forms/leave-review/toggle-review-form.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "toggleReviewForm", function() { return _toggle_review_form__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+
+/***/ }),
+
+/***/ "./resources/js/user/forms/leave-review/toggle-review-form.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/user/forms/leave-review/toggle-review-form.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var toggleReviewForm = function toggleReviewForm() {
+  var button = document.querySelector('#leave-review');
+  var form = document.querySelector('.leave-review');
+  var close = document.querySelector('#leaveClose');
+  var body = document.querySelector('body');
+
+  if (button && form && close && body) {
+    if (!form.classList.contains('leave-review--disable')) {
+      body.style.overflow = 'hidden';
+    }
+
+    button.addEventListener('click', toggleForm(form, body));
+    close.addEventListener('click', toggleForm(form, body));
+  }
+};
+
+var toggleForm = function toggleForm(block, body) {
+  return function () {
+    block.classList.toggle('leave-review--disable');
+
+    if (body.style.overflow === 'hidden') {
+      body.style.overflow = '';
+    } else {
+      body.style.overflow = 'hidden';
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (toggleReviewForm);
+
+/***/ }),
+
+/***/ "./resources/js/user/forms/writeUs/index.js":
+/*!**************************************************!*\
+  !*** ./resources/js/user/forms/writeUs/index.js ***!
+  \**************************************************/
+/*! exports provided: writeUsToggle */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _writeUsToggle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./writeUsToggle */ "./resources/js/user/forms/writeUs/writeUsToggle.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "writeUsToggle", function() { return _writeUsToggle__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+
+/***/ }),
+
+/***/ "./resources/js/user/forms/writeUs/writeUsToggle.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/user/forms/writeUs/writeUsToggle.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var writeUsToggle = function writeUsToggle() {
+  var button = document.querySelector('#write');
+  var block = document.querySelector('.write-us');
+  var close = document.querySelector('#writeClose');
+  var body = document.querySelector('body');
+
+  if (block && !block.classList.contains('write-us--disable')) {
+    body.style.overflow = 'hidden';
+  }
+
+  if (button && close) {
+    button.addEventListener('click', toggleForm(block, body));
+    close.addEventListener('click', toggleForm(block, body));
+  }
+};
+
+var toggleForm = function toggleForm(block, body) {
+  return function () {
+    block.classList.toggle('write-us--disable');
+
+    if (body.style.overflow === 'hidden') {
+      body.style.overflow = '';
+    } else {
+      body.style.overflow = 'hidden';
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (writeUsToggle);
 
 /***/ }),
 
@@ -161,54 +348,69 @@ var toggle = function toggle(close, list, overlay) {
 
 /***/ }),
 
-/***/ "./resources/js/user/leave-review/index.js":
-/*!*************************************************!*\
-  !*** ./resources/js/user/leave-review/index.js ***!
-  \*************************************************/
-/*! exports provided: toggleReviewForm */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _toggle_review_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./toggle-review-form */ "./resources/js/user/leave-review/toggle-review-form.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "toggleReviewForm", function() { return _toggle_review_form__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-
-
-
-/***/ }),
-
-/***/ "./resources/js/user/leave-review/toggle-review-form.js":
-/*!**************************************************************!*\
-  !*** ./resources/js/user/leave-review/toggle-review-form.js ***!
-  \**************************************************************/
+/***/ "./resources/js/user/stars/formStars.js":
+/*!**********************************************!*\
+  !*** ./resources/js/user/stars/formStars.js ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var toggleReviewForm = function toggleReviewForm() {
-  var button = document.querySelector('#leave-review');
-  var block = document.querySelector('.leave-review');
-  var close = document.querySelector('.leave-review__close');
-  var body = document.querySelector('body');
-  button.addEventListener('click', toggleForm(block, body));
-  close.addEventListener('click', toggleForm(block, body));
+var data = {
+  current: 0
 };
 
-var toggleForm = function toggleForm(block, body) {
-  return function () {
-    block.classList.toggle('leave-review--disable');
+var formStars = function formStars() {
+  var wrapper = document.querySelector('#formStars');
 
-    if (body.style.overflow === 'hidden') {
-      body.style.overflow = '';
-    } else {
-      body.style.overflow = 'hidden';
-    }
+  if (wrapper) {
+    funcLogic(wrapper);
+  }
+};
+
+var funcLogic = function funcLogic(wrapper) {
+  var passive = wrapper.querySelector('.stars__passive');
+  var passiveStars = wrapper.querySelectorAll('.stars__item--passive');
+  var active = wrapper.querySelector('.stars__active');
+  var activeStars = wrapper.querySelectorAll('.stars__item--active');
+  var input = wrapper.querySelector('input');
+  var mark = wrapper.querySelector('.stars__mark');
+  makeHover(passiveStars, active);
+  makeHover(activeStars, active);
+  makeClick(activeStars, mark, input);
+};
+
+var makeClick = function makeClick(array, mark, input) {
+  array.forEach(function (item, index) {
+    item.addEventListener('click', function () {
+      mark.textContent = index + 1;
+      input.value = index + 1;
+      data.current = index + 1;
+    });
+  });
+};
+
+var makeHover = function makeHover(array, activeWrapper) {
+  array.forEach(function (item, index) {
+    item.addEventListener('mouseover', printTillIndex(index + 1, activeWrapper));
+    item.addEventListener('mouseout', disPrint(activeWrapper));
+  });
+};
+
+var printTillIndex = function printTillIndex(index, activeWrapper) {
+  return function () {
+    activeWrapper.style.width = "".concat(index * 20, "%");
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (toggleReviewForm);
+var disPrint = function disPrint(activeWrapper) {
+  return function () {
+    activeWrapper.style.width = "".concat(data.current * 20, "%");
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (formStars);
 
 /***/ }),
 
@@ -216,13 +418,17 @@ var toggleForm = function toggleForm(block, body) {
 /*!******************************************!*\
   !*** ./resources/js/user/stars/index.js ***!
   \******************************************/
-/*! exports provided: printStars */
+/*! exports provided: printStars, formStars */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _printStars__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./printStars */ "./resources/js/user/stars/printStars.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "printStars", function() { return _printStars__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _formStars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./formStars */ "./resources/js/user/stars/formStars.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "formStars", function() { return _formStars__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
 
 
 
@@ -244,11 +450,73 @@ var printStars = function printStars() {
     var width = star.dataset.rate * 20;
     var activeStars = star.querySelector('.stars__active');
     activeStars.style.width = "".concat(width, "%");
-    console.log(activeStars, width, star);
   });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (printStars);
+
+/***/ }),
+
+/***/ "./resources/js/user/watchVideo/index.js":
+/*!***********************************************!*\
+  !*** ./resources/js/user/watchVideo/index.js ***!
+  \***********************************************/
+/*! exports provided: watchVideo */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _watchVideo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./watchVideo */ "./resources/js/user/watchVideo/watchVideo.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "watchVideo", function() { return _watchVideo__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+
+/***/ }),
+
+/***/ "./resources/js/user/watchVideo/watchVideo.js":
+/*!****************************************************!*\
+  !*** ./resources/js/user/watchVideo/watchVideo.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var watchVideo = function watchVideo() {
+  var wrappers = document.querySelectorAll('.videos__iframe-wrapper');
+  var mainIframe = document.querySelector('#mainIframe');
+  var close = document.querySelector('#videoClose');
+  var player = document.querySelector('.videos__player');
+  var body = document.querySelector('body');
+
+  if (wrappers && mainIframe && close && player && body) {
+    wrappers.forEach(function (wr) {
+      var video = wr.querySelector('.videos__iframe-click');
+      video.addEventListener('click', openFunc(player, mainIframe, body, wr));
+    });
+    close.addEventListener('click', closeFunc(player, mainIframe, body));
+    player.addEventListener('click', closeFunc(player, mainIframe, body));
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (watchVideo);
+
+var closeFunc = function closeFunc(player, mainIframe, body) {
+  return function () {
+    player.classList.add('videos__player--disable');
+    mainIframe.src = mainIframe.src;
+    body.style.overflow = '';
+  };
+};
+
+var openFunc = function openFunc(player, mainIframe, body, wr) {
+  return function () {
+    player.classList.toggle('videos__player--disable');
+    mainIframe.src = wr.querySelector('iframe').src;
+    body.style.overflow = 'hidden';
+  };
+};
 
 /***/ }),
 

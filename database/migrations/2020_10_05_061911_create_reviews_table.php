@@ -19,13 +19,7 @@ class CreateReviewsTable extends Migration
 
 
             $table->integer('review_place_in_top_10')->nullable()->default(null);
-            $table->integer('review_type_of_work')->nullable()->default(null);
 
-            //1
-            //2
-            //3
-            //4
-            //5
             $table->boolean('is_published')->default(1);
             $table->date('review_date');
             $table->string('review_link', 512);

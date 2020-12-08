@@ -1,0 +1,135 @@
+.reviews {
+    padding-top: 2rem;
+
+    &__starter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__button-wrapper {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 11rem;
+    }
+
+    &__list {
+        padding-top: 1.5rem;
+    }
+
+    &__item {
+        @include box;
+
+        margin-bottom: 1.25rem;
+
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__item-info {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: .875rem;
+
+        border-bottom: 0.125rem solid $gray-light
+    }
+
+    &__item-name {
+        margin-bottom: .25rem;
+        margin-right: .5rem;
+        flex-basis: 9.5rem;
+        max-width: 9.5rem;
+
+        font-size: 0.875rem;
+        font-weight: 400;
+        @include text-overflow;
+    }
+    &__item-date {
+        margin-bottom: .25rem;
+        flex-basis: 4.7rem;
+
+        color: $gray;
+        font-size: 0.875rem;
+        font-weight: 400;
+    }
+    &__item-stars {
+        min-width: calc(100% - 3rem);
+        flex-basis: calc(100% - 3rem);
+    }
+
+    &__item-span {
+        display: none;
+        padding-left: .25rem;
+        font-size: 0.875rem;
+    }
+
+    &__positive, &__negative {
+        display: flex;
+        align-items: center;
+
+        &::before {
+            content: "";
+            position: relative;
+            display: block;
+            width: 1.875rem;
+            height: 1.875rem;
+        }
+    }
+
+    &__positive {
+        &::before {
+            background: url(/img/smile-happy.svg) center center/cover no-repeat;
+        }
+    }
+    &__negative {
+        &::before {
+            background: url(/img/smile-sad.svg) center center/cover no-repeat;
+        }
+    }
+
+    &__item-content {
+        padding: .875rem .875rem 0;
+
+
+        text-align: justify;
+    }
+
+    &__item-leave {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.875rem;
+    }
+
+    &__item-answers {
+        @include reset-link;
+
+        display: flex;
+        align-items: center;
+
+        font-size: 0.938rem;
+        color: $dark-blue;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: .375rem;
+
+            background: url("/img/message.svg") center center / cover no-repeat;
+        }
+    }
+
+    &__item-leave-answer {
+        @include reset-link;
+        padding-left: 1.375rem;
+
+        font-size: 0.938rem;
+        color: $dark-blue;
+        line-height: 1.5rem;
+    }
+}

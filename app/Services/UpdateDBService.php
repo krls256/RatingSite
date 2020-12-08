@@ -29,7 +29,8 @@ class UpdateDBService
             $coefficient = 1;
         } else
         {
-            $coefficient = $this->cheatCoefficient;
+//            $coefficient = $this->cheatCoefficient;
+            $coefficient = 1;
         }
 
         $dbItem = $this->repository->getUpdateAverageValues($company_id);

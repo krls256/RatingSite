@@ -30,14 +30,31 @@ Route::group([], function () {
         Route::get('/videos', 'VideosController@index')->name('rating.user.videos');
 
         Route::get('/companies/{slug}', 'CompaniesController@index')->name('rating.user.companies');
+        Route::get('/companies/{slug}/positive', 'CompaniesController@positive')->name('rating.user.companies.positive');
+        Route::get('/companies/{slug}/negative', 'CompaniesController@negative')->name('rating.user.companies.negative');
 
         Route::get('/articles/{slug}', 'ArticlesController@show')->name('rating.user.articles.show');
 
-        Route::post('/left-review', function () {
-            dd(__METHOD__);
-        })->name('rating.user.left.review');
     });
 
+    $userFormGroupData = [
+        'namespace' => "Rating\UserControllers",
+        'prefix' => 'form'
+    ];
+
+    Route::group($userFormGroupData, function () {
+        Route::post('/leave-review', 'NewReviewsController@index')->name('rating.user.leave.review');
+
+        Route::get('/leave-review', 'NewReviewsController@redirect')->name('rating.user.leave.review.redirect');
+
+        Route::post('/write-us', 'WriteUsController@index')->name('rating.user.write-us');
+
+        Route::get('/write-us', 'WriteUsController@redirect')->name('rating.user.write-us.redirect');
+
+        Route::post('/add-comment', 'AddReviewAnswerController@index')->name('rating.user.addReviewAnswer');
+
+        Route::get('/add-comment', 'AddReviewAnswerController@redirect')->name('rating.user.addReviewAnswer.redirect');
+    });
 
 
 

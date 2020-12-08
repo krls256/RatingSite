@@ -52,7 +52,7 @@ class CreateCompaniesTable extends Migration
             $table->string('company_description_styles')->nullable();
 
             // less important data
-            $table->string('company_tin')->nullable(); // Taxpayer identification number
+            $table->string('company_inn')->nullable(); // Taxpayer identification number
             $table->string('company_phone')->nullable();
             $table->string('company_site')->nullable();
             $table->string('company_email')->nullable();

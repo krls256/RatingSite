@@ -7,4 +7,12 @@
     cursor: pointer;
 
     border-radius: 0.125rem;
+
+    &--wide {
+        min-width: 13rem;
+    }
+
+    &--medium {
+        width: 9rem;
+    }
 }

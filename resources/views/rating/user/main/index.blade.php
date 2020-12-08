@@ -7,5 +7,5 @@
         @include('rating.user.main.mainIncludes.bigColumn')
         @include('rating.user.main.mainIncludes.sideColumn')
     </div>
-    @include('rating.user.userIncludes.leaveReviewForm')
+    @include('rating.user.userIncludes.forms.leaveReviewForm')
 @endsection

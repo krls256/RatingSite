@@ -1,0 +1,26 @@
+@media (min-width: $smallDevices) {
+    .reviews {
+        &__item-stars {
+            min-width: 7.5rem;
+            flex-basis: 7.5rem;
+        }
+        &__item-name, &__item-date {
+            margin-bottom: 0;
+        }
+        &__item-name {
+            flex-basis: unset;
+        }
+        &__item-date {
+            flex-grow: 3;
+        }
+    }
+}
+
+
+@media (min-width: $largeDevices) {
+    .reviews {
+        &__item-span {
+            display: unset;
+        }
+    }
+}

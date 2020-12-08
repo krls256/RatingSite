@@ -48,7 +48,7 @@ const fields = [
     },
     {
         'field': 'company_address',
-        'label': 'Адресс компании'
+        'label': 'Адрес компании'
     },
     {
         'field': 'company_city',
@@ -75,7 +75,7 @@ const fields = [
         'label': 'URL-идентификатор'
     },
     {
-        'field': 'company_tin',
+        'field': 'company_inn',
         'label': 'Инн'
     }
 ]

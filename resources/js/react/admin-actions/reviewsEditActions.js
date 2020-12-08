@@ -36,5 +36,6 @@ export const updateReviewMain = () => (dispatch, getState) => {
             const errors = value.errors ? value.errors : {};
             errors.err = [`Сервер ответил ошибкой с кодом ${status}`]
             dispatch(updateErrorsMessage(errors))
+            dispatch(isLoadingSetFalse())
         })
 }

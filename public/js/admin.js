@@ -38375,7 +38375,8 @@ var resetCurrentPage = function resetCurrentPage() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateErrorsMessage", function() { return updateErrorsMessage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetErrorsMessage", function() { return resetErrorsMessage; });
-var updateErrorsMessage = function updateErrorsMessage(payload) {
+var updateErrorsMessage = function updateErrorsMessage() {
+  var payload = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   return {
     type: 'errorsMessage/updateErrors',
     payload: payload
@@ -38668,6 +38669,7 @@ var updateReviewMain = function updateReviewMain() {
       var errors = value.errors ? value.errors : {};
       errors.err = ["\u0421\u0435\u0440\u0432\u0435\u0440 \u043E\u0442\u0432\u0435\u0442\u0438\u043B \u043E\u0448\u0438\u0431\u043A\u043E\u0439 \u0441 \u043A\u043E\u0434\u043E\u043C ".concat(status)];
       dispatch(Object(_errorMessageActions__WEBPACK_IMPORTED_MODULE_1__["updateErrorsMessage"])(errors));
+      dispatch(Object(_isLoadingActions__WEBPACK_IMPORTED_MODULE_3__["isLoadingSetFalse"])());
     });
   };
 };
@@ -39746,7 +39748,7 @@ var fields = [{
   'label': 'Название компании'
 }, {
   'field': 'company_address',
-  'label': 'Адресс компании'
+  'label': 'Адрес компании'
 }, {
   'field': 'company_city',
   'label': 'Город компании'
@@ -39766,7 +39768,7 @@ var fields = [{
   'field': 'company_slug',
   'label': 'URL-идентификатор'
 }, {
-  'field': 'company_tin',
+  'field': 'company_inn',
   'label': 'Инн'
 }];
 

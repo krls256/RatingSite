@@ -24,7 +24,7 @@ class PrepareCompanyDataFromSeederService
             "company_yell_link"     => $data->yell_link,
             "company_flamp_link"    => $data->flamp_link,
 
-            "company_yandex_map_link" => Str::random(9),
+            "company_yandex_map_link" => 'https://yandex.ru/map-widget/v1/?um=constructor%3A26744005ad4603b220227d12de4e836d0d22567c2b86cedcaaed298e227ae5b6&amp;source=constructor',
             "company_description" => Str::random(23),
             "company_description_styles" => '',
             "company_logo_link" => $data->logo_link

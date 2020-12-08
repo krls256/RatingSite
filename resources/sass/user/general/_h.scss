@@ -9,16 +9,26 @@
     &--side {
         font-size: 1.25rem;
     }
+
+    &--page {
+        display: inline;
+        line-height: 1.25rem;
+        font-size: 1.125rem;
+    }
 }
 
 
-@media (min-width: 768px) {
+@media (min-width: $mediumDevices) {
     .h {
         &--main {
             font-size: 1.5rem;
         }
         &--side {
             font-size: 1.5rem;
+        }
+        &--page {
+            line-height: 1.5rem;
+            font-size: 1.375rem;
         }
     }
 }
