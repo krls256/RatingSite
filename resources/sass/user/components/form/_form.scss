@@ -42,6 +42,11 @@
         font-weight: 400;
 
         border-bottom: 0.063rem solid $gray;
+
+        &--no-border {
+            border: none;
+            margin-bottom: 0;
+        }
     }
 
     &__group {
@@ -58,6 +63,12 @@
         color: $black;
         font-size: 0.75rem;
         font-weight: 400;
+
+        &--hidden {
+            height: 0;
+            margin: 0;
+            visibility: hidden;
+        }
     }
 
     &__input {
@@ -92,29 +103,5 @@
     }
     &__errors {
         margin-bottom: .5rem;
-    }
-}
-
-@media (min-width: $largeDevices) {
-    .form {
-        top: 5.3rem;
-        height: calc(100vh - 5.3rem);
-
-        &--disable {
-            height: 0;
-        }
-
-        &__header {
-            margin-bottom: 1rem;
-        }
-        &__label {
-            font-size: 1rem;
-        }
-        &__important {
-            font-size: 1rem;
-        }
-        &__input {
-            font-size: 1rem;
-        }
     }
 }

@@ -18,7 +18,6 @@ class CreateReviewAnswersTable extends Migration
 
             $table->string('reviewer_answer_name');
             $table->text('review_answer_text');
-            $table->date('review_answer_date');
             $table->integer('review_id')->unsigned();
             $table->boolean('is_published')->default(false);
 

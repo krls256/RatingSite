@@ -1,5 +1,10 @@
 @media (min-width: $smallDevices) {
     .reviews {
+        &__item {
+            &--limit {
+                max-width: 80%;
+            }
+        }
         &__item-stars {
             min-width: 7.5rem;
             flex-basis: 7.5rem;
@@ -13,14 +18,41 @@
         &__item-date {
             flex-grow: 3;
         }
+        &__images {
+        }
+        &__image-wrapper {
+            flex-basis: 49%;
+            max-width: 49%;
+            margin-right: .5%;
+            margin-left: .5%;
+            margin-bottom: .375rem;
+        }
+
     }
 }
 
+@media (min-width: $mediumDevices) {
+    .reviews {
+        &__item {
+            &--limit {
+                margin: unset;
+                max-width: unset;
+            }
+        }
+    }
+}
 
 @media (min-width: $largeDevices) {
     .reviews {
         &__item-span {
             display: unset;
+        }
+        &__image-wrapper {
+            flex-basis: 32%;
+            max-width: 32%;
+            margin-right: .63%;
+            margin-left: .63%;
+            margin-bottom: .5rem;
         }
     }
 }

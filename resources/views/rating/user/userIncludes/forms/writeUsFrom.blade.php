@@ -1,4 +1,4 @@
-<aside class="write-us @if(!$errors->getBag('default')->get('second') ?? true) write-us--disable @endif">
+<aside class="form @if(!$errors->getBag('default')->get('second') ?? true) form--disable @endif" id="writeUsForm">
     <div class="form__wrapper">
         <form action="{{ route('rating.user.write-us') }}" method="post">
             @csrf

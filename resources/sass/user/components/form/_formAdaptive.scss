@@ -1,0 +1,26 @@
+@media (min-width: $largeDevices) {
+    .form {
+        top: 5.3rem;
+        height: calc(100vh - 5.3rem);
+
+        &--disable {
+            height: 0;
+        }
+
+        &__header {
+            margin-bottom: 1rem;
+            &--no-border {
+                margin-bottom: 0;
+            }
+        }
+        &__label {
+            font-size: 1rem;
+        }
+        &__important {
+            font-size: 1rem;
+        }
+        &__input {
+            font-size: 1rem;
+        }
+    }
+}

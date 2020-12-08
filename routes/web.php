@@ -35,6 +35,8 @@ Route::group([], function () {
 
         Route::get('/articles/{slug}', 'ArticlesController@show')->name('rating.user.articles.show');
 
+        Route::get('/review/{id}', 'ReviewController@index')->name('rating.user.reviews.index');
+
     });
 
     $userFormGroupData = [

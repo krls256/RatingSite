@@ -52,7 +52,6 @@ class UserReviewsRepository extends CoreRepository
     {
         $response = $this->paginationBase($id)
             ->paginate($count);
-
         return $response;
     }
 
@@ -87,8 +86,43 @@ class UserReviewsRepository extends CoreRepository
             {
                 $query->where('is_published', 1);
             }])
+            ->with(['images' => function ($query)
+            {
+                $column = ['image_id', 'image_link', 'review_id', 'is_published'];
+                $query->select($column)
+                    ->where('is_published', 1);
+            }])
             ->orderBy('review_date', 'desc');
 
+        return $response;
+    }
+
+    public function getReviewById(int $review_id)
+    {
+        $column =
+            ['review_id', 'company_id', 'review_date', 'reviewer_name', 'is_published', 'review_text', 'review_mark'];
+
+        $response = $this->startCondition()
+            ->select($column)
+            ->where('review_id', $review_id)
+            ->with([
+                'answers' => function ($query)
+                {
+                    $column =
+                        ['review_answer_id', 'reviewer_answer_name', 'review_answer_text', 'review_id', 'is_published',
+                            'created_at'];
+                    $query->select($column)
+                        ->where('is_published', 1);
+                },
+                'images' => function ($query)
+                {
+                    $column = ['image_id', 'image_link', 'review_id', 'is_published'];
+                    $query->select($column)
+                        ->where('is_published', 1);
+                }])
+            ->first();
+
+        $response->answers_count = $response->answers->count();
         return $response;
     }
 }

@@ -1,6 +1,6 @@
-<aside class="leave-review @if(!$errors->getBag('default')->get('first') ?? true) leave-review--disable @endif">
+<aside class="form @if(!$errors->getBag('default')->get('first') ?? true) form--disable @endif" id="leaveReviewForm">
     <div class="form__wrapper">
-        <form action="{{ route('rating.user.leave.review') }}" class="leave-review__form" method="post" enctype="multipart/form-data">
+        <form action="{{ route('rating.user.leave.review') }}" method="post" enctype="multipart/form-data">
             @csrf
             @method("POST")
             <h2 class="form__header">Оставить отзыв</h2>
@@ -35,9 +35,9 @@
             <div class="form__group">
                 <label for="company_id" class="form__label">Компания:<span class="c-red">*</span></label>
                 <select name="company_id" id="company_id" class="form__input">
-                    <option value="0" class="leave-review__option">Не выбрано</option>
+                    <option value="0" class="form__option">Не выбрано</option>
                     @foreach($companies as $k => $company)
-                        <option value="{{$company->company_id}}" @if(old('company_id') == $company->company_id) selected @endif class="leave-review__option">{{$k+1}}.{{$company->company_name}}</option>
+                        <option value="{{$company->company_id}}" @if(old('company_id') == $company->company_id) selected @endif class="form__option">{{$k+1}}.{{$company->company_name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -60,6 +60,4 @@
         </form>
         <div class="close" id="leaveClose"></div>
     </div>
-
-
 </aside>

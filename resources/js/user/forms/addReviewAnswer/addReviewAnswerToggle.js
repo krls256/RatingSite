@@ -1,27 +1,34 @@
+import toggleForm from "../helpers/toggleForm";
+import setInitialBodyOverflow from "../helpers/setInitialBodyOverflow";
+
 const addReviewAnswerToggle = () => {
-    const answerArr = document.querySelectorAll('[data-toggle="addReviewAnswer"]')
+    const answerArr = document.querySelectorAll('.reviews__item')
     const form = document.querySelector('#addReviewAnswer')
     const close = document.querySelector('#commentClose')
     const body = document.querySelector('body');
 
     if(answerArr && form && close && body) {
-        if(!form.classList.contains('form--disable')) {
-            body.style.overflow = 'hidden'
-        }
+        setInitialBodyOverflow(form, body);
+        answerArr.forEach(item => {
+            const {identifier : id} = item.dataset;
 
-        answerArr.forEach(item => item.addEventListener('click', toggleForm(form, body)))
+            const link = item.querySelector('[data-toggle="addReviewAnswer"]')
+            console.log(link)
+            link.addEventListener('click', onClick(form, id, body))
+        })
         close.addEventListener('click', toggleForm(form, body))
     }
 }
 
-const toggleForm = (form, body) => (e) => {
+const onClick = (form, id, body) => (e) => {
     e.preventDefault();
-    form.classList.toggle('form--disable');
-    if (body.style.overflow === 'hidden') {
-        body.style.overflow = '';
-    } else {
-        body.style.overflow = 'hidden'
-    }
+    toggleForm(form, body)()
+    const idInput = form.querySelector('[name=review_id]');
+    const nameInput = form.querySelector('[name=reviewer_answer_name]');
+    const textInput = form.querySelector('[name=review_answer_text]');
+    idInput.value = id;
+    nameInput.value = '';
+    textInput.value = '';
 }
 
 
