@@ -7,10 +7,8 @@ const watchVideo = () => {
 
 
     if(wrappers && mainIframe && close && player && body) {
-        wrappers.forEach(wr => {
-            const video = wr.querySelector('.videos__iframe-click');
-
-            video.addEventListener('click', openFunc(player, mainIframe, body, wr))
+        wrappers.forEach(video => {
+            video.addEventListener('click', openFunc(player, mainIframe, body,video))
         })
 
         close.addEventListener('click', closeFunc(player, mainIframe, body));
@@ -22,12 +20,12 @@ export default watchVideo;
 
 const closeFunc = (player, mainIframe, body) => () => {
     player.classList.add('videos__player--disable');
-    mainIframe.src = mainIframe.src;
+    mainIframe.src = '';
     body.style.overflow = '';
 }
 
-const openFunc = (player, mainIframe, body, wr) => () => {
+const openFunc = (player, mainIframe, body, video) => () => {
     player.classList.toggle('videos__player--disable');
-    mainIframe.src = wr.querySelector('iframe').src;
+    mainIframe.src = `https://www.youtube.com/embed/${video.dataset.ytid}?rel=0&showinfo=0&autoplay=1`;
     body.style.overflow = 'hidden';
 }

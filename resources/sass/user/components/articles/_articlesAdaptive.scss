@@ -1,0 +1,36 @@
+@media (min-width: $ultraSmallDevices) {
+    .articles {
+        &__list-item {
+            max-width: unset;
+            min-width: unset;
+            width: 90%;
+        }
+    }
+}
+
+@media (min-width: $smallDevices) {
+    .articles {
+        &__list-item {
+            width: 100%;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+        &__img {
+            margin-right: .5rem;
+        }
+
+        &__content {
+            padding-top: 0;
+        }
+
+        &__card-body {
+            display: unset;
+        }
+
+        &__card-image {
+            margin-bottom: .5rem;
+            margin-right: .5rem;
+            float: left;
+        }
+    }
+}

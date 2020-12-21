@@ -17,7 +17,8 @@ class CreateVideosTable extends Migration
             $table->increments('video_id')->unsigned();
             $table->timestamps();
 
-            $table->string('video_link')->unique();
+            $table->string('video_ytid');
+//                ->unique();
             $table->string('video_title')->unique();
             $table->string('video_slug')->unique();
             $table->text('video_description');

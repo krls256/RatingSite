@@ -20,6 +20,17 @@ Route::middleware('auth:api')
         return $request->user();
     });
 
+$searchApiOptions = [
+    'namespace' => 'Search',
+    'prefix' => 'search'
+];
+
+Route::group($searchApiOptions, function ()
+{
+    Route::get('search-bar/{query}/{counter}', 'SearchBarController@index')
+        ->name('search.search-bar');
+});
+
 $adminApiOptions = [
     'namespace' => 'Api',
     'prefix' => 'admin',
@@ -43,7 +54,8 @@ Route::group($adminApiOptions, function ()
     Route::apiResource('images', 'ApiImagesController')
         ->names('api.admin.reviews')
         ->only($imagesMethod);
-    Route::post('images/change-images-state', 'ApiImagesController@changeImagesState')->name('api.admin.reviews.change-images-state');
+    Route::post('images/change-images-state', 'ApiImagesController@changeImagesState')
+        ->name('api.admin.reviews.change-images-state');
 
     $articlesMethods = ['index', 'edit', 'update'];
     Route::apiResource('articles', 'ApiArticlesController')
@@ -70,5 +82,17 @@ Route::group($adminApiOptions, function ()
     Route::apiResource('headers', 'ApiHeadersController')
         ->names('api.admin.headers')
         ->only($headersMethods);
+
+    $reviewAnswerMethods = ['index', 'edit', 'update'];
+
+    Route::apiResource('review-answers', 'ApiReviewAnswersController')
+        ->only($reviewAnswerMethods)
+        ->names('api.admin.review-answers');
+
+    $userMessagesMethods = ['index', 'edit', 'update'];
+
+    Route::apiResource('user-messages', 'ApiUserMessagesController')
+        ->only($userMessagesMethods)
+        ->names('api.admin.user-messages');
 
 });

@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Rating\UserControllers;
 use App\Http\Controllers\Controller;
 use App\Repositories\Articles\UserArticlesRepository;
 use App\Repositories\Reviews\UserReviewsRepository;
+use App\Repositories\SEO\UserSEORepository;
 
-class ReviewController extends Controller
+class ReviewController extends UserController
 {
+    public function __construct(UserSEORepository $SEORepository) { parent::__construct($SEORepository); }
+
     public function index($review_id, UserReviewsRepository $reviewsRepository, UserArticlesRepository $articlesRepository)
     {
         $review = $reviewsRepository->getReviewById($review_id);
@@ -17,6 +20,7 @@ class ReviewController extends Controller
         }
 
         $articles = $articlesRepository->getSomeLastArticle(2);
-        return view('rating.user.review.index', ['review' => $review, 'articles' => $articles]);
+        $seo = $this->getSEOAttributes('review');
+        return view('rating.user.review.index', ['review' => $review, 'articles' => $articles, 'seo' => $seo]);
     }
 }

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import { connect, useDispatch } from 'react-redux';
 import getNearPage from "./getNearPage";
 import PaginationItem from "./PaginationItem";
-import {setCurrentPage} from "../../../admin-actions/currentPageActions";
+import {setCurrentPage} from "../../../admin-actions/appState/currentPageActions";
 
 const Pagination = ({currentPage, lastPage}) => {
     const dispatch = useDispatch()

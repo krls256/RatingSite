@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {resetCurrentPage} from '../../../admin-actions/currentPageActions';
+import {resetCurrentPage} from '../../../admin-actions/appState/currentPageActions';
 
 const SideBarItem = ({path, name}) => {
     const dispatch = useDispatch();

@@ -2,8 +2,8 @@
     <h3 class="h h--side mb-3">Новые статьи</h3>
     @foreach($articles as $article)
         <div class="new-articles-side__item p-3">
-            <img src="{{ asset('img/text-image.jpg') }}"
-                 alt="Картинка статьи 1"
+            <img src="{{$article->LinkWithDir}}"
+                 alt="Картинка статьи номер {{$article->article_id}}"
                  class="new-articles-side__img mb-4">
             <h4 class="new-articles-side__title mb-2">{{$article->article_title}}</h4>
             <p class="new-articles-side__description mb-2">{{$article->article_description}}</p>

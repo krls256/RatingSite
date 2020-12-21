@@ -28,7 +28,7 @@ class ApiVideoRepository extends CoreRepository
 
     public function getEdit($id)
     {
-        $column = ['video_id', 'video_title', 'video_description', 'video_link', 'video_slug'];
+        $column = ['video_id', 'video_title', 'video_description', 'video_ytid', 'video_slug'];
 
         $response = $this->startCondition()
             ->select($column)

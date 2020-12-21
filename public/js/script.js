@@ -101,6 +101,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_forms_writeUs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user/forms/writeUs */ "./resources/js/user/forms/writeUs/index.js");
 /* harmony import */ var _user_watchVideo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user/watchVideo */ "./resources/js/user/watchVideo/index.js");
 /* harmony import */ var _user_forms_addReviewAnswer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./user/forms/addReviewAnswer */ "./resources/js/user/forms/addReviewAnswer/index.js");
+/* harmony import */ var _user_footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./user/footer */ "./resources/js/user/footer/index.js");
+
 
 
 
@@ -115,7 +117,55 @@ document.addEventListener('DOMContentLoaded', function () {
   Object(_user_forms_writeUs__WEBPACK_IMPORTED_MODULE_3__["writeUsToggle"])();
   Object(_user_watchVideo__WEBPACK_IMPORTED_MODULE_4__["watchVideo"])();
   Object(_user_forms_addReviewAnswer__WEBPACK_IMPORTED_MODULE_5__["addReviewAnswerToggle"])();
+  Object(_user_footer__WEBPACK_IMPORTED_MODULE_6__["footerToBottom"])();
 });
+
+/***/ }),
+
+/***/ "./resources/js/user/footer/footerToBottom.js":
+/*!****************************************************!*\
+  !*** ./resources/js/user/footer/footerToBottom.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var footerToBottom = function footerToBottom() {
+  var footer = document.querySelector('.footer');
+  var body = document.querySelector('body');
+
+  var _footer$getBoundingCl = footer.getBoundingClientRect(),
+      footerBottom = _footer$getBoundingCl.bottom;
+
+  var _body$getBoundingClie = body.getBoundingClientRect(),
+      bodyBottom = _body$getBoundingClie.bottom;
+
+  if (bodyBottom > footerBottom) {
+    footer.style.position = 'absolute';
+    footer.style.bottom = 0;
+    footer.style.left = 0;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (footerToBottom);
+
+/***/ }),
+
+/***/ "./resources/js/user/footer/index.js":
+/*!*******************************************!*\
+  !*** ./resources/js/user/footer/index.js ***!
+  \*******************************************/
+/*! exports provided: footerToBottom */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _footerToBottom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./footerToBottom */ "./resources/js/user/footer/footerToBottom.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "footerToBottom", function() { return _footerToBottom__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
 
 /***/ }),
 
@@ -144,7 +194,6 @@ var addReviewAnswerToggle = function addReviewAnswerToggle() {
     answerArr.forEach(function (item) {
       var id = item.dataset.identifier;
       var link = item.querySelector('[data-toggle="addReviewAnswer"]');
-      console.log(link);
       link.addEventListener('click', onClick(form, id, body));
     });
     close.addEventListener('click', Object(_helpers_toggleForm__WEBPACK_IMPORTED_MODULE_0__["default"])(form, body));
@@ -523,9 +572,8 @@ var watchVideo = function watchVideo() {
   var body = document.querySelector('body');
 
   if (wrappers && mainIframe && close && player && body) {
-    wrappers.forEach(function (wr) {
-      var video = wr.querySelector('.videos__iframe-click');
-      video.addEventListener('click', openFunc(player, mainIframe, body, wr));
+    wrappers.forEach(function (video) {
+      video.addEventListener('click', openFunc(player, mainIframe, body, video));
     });
     close.addEventListener('click', closeFunc(player, mainIframe, body));
     player.addEventListener('click', closeFunc(player, mainIframe, body));
@@ -537,15 +585,15 @@ var watchVideo = function watchVideo() {
 var closeFunc = function closeFunc(player, mainIframe, body) {
   return function () {
     player.classList.add('videos__player--disable');
-    mainIframe.src = mainIframe.src;
+    mainIframe.src = '';
     body.style.overflow = '';
   };
 };
 
-var openFunc = function openFunc(player, mainIframe, body, wr) {
+var openFunc = function openFunc(player, mainIframe, body, video) {
   return function () {
     player.classList.toggle('videos__player--disable');
-    mainIframe.src = wr.querySelector('iframe').src;
+    mainIframe.src = "https://www.youtube.com/embed/".concat(video.dataset.ytid, "?rel=0&showinfo=0&autoplay=1");
     body.style.overflow = 'hidden';
   };
 };

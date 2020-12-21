@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {setCurrentPage} from '../../../admin-actions/currentPageActions';
+import {setCurrentPage} from '../../../admin-actions/appState/currentPageActions';
 
 const PaginationItem = ({data, current = false}) => {
     const link = `?page=${data}`;

@@ -4,6 +4,7 @@ import {toggleReviewForm} from './user/forms/leave-review';
 import {writeUsToggle} from './user/forms/writeUs';
 import {watchVideo} from './user/watchVideo';
 import {addReviewAnswerToggle} from './user/forms/addReviewAnswer'
+import {footerToBottom} from './user/footer'
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,4 +15,5 @@ document.addEventListener('DOMContentLoaded', () => {
     writeUsToggle();
     watchVideo();
     addReviewAnswerToggle();
+    footerToBottom();
 })

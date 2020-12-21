@@ -43,56 +43,72 @@
             <li class="company__info-item">
                 <h4 class="company__info-key">Facebook:</h4>
                 <a href="{{$company->company_fb}}"
-                   class="company__info-value company__info-value--link c-orange-light">{{$company->company_fb}}</a>
+                   class="company__info-value company__info-value--link c-orange-light" aria-label="Ссылка на facebook">
+                    <img src="{{ asset('/img/social-networks/fb.svg') }}" alt="Логотип Facebook" class="company__social-img" data-type="fb">
+                </a>
             </li>
         @endif
         @if($company->company_vk)
             <li class="company__info-item">
                 <h4 class="company__info-key">Вконтакте:</h4>
                 <a href="{{$company->company_vk}}"
-                   class="company__info-value company__info-value--link c-orange-light">{{$company->company_vk}}</a>
+                   class="company__info-value company__info-value--link c-orange-light">
+                    <img src="{{ asset('/img/social-networks/vk.svg') }}" alt="Логотип Вконтакте" class="company__social-img" data-type="vk">
+                </a>
             </li>
         @endif
         @if($company->company_telegram)
             <li class="company__info-item">
                 <h4 class="company__info-key">Telegram:</h4>
                 <a href="{{$company->company_telegram}}"
-                   class="company__info-value company__info-value--link c-orange-light">{{$company->company_telegram}}</a>
+                   class="company__info-value company__info-value--link c-orange-light">
+                    <img src="{{ asset('/img/social-networks/telegram.svg') }}" alt="Логотип Telegram" class="company__social-img" data-type="telegram">
+                </a>
             </li>
         @endif
         @if($company->company_instagram)
             <li class="company__info-item">
                 <h4 class="company__info-key">Instagram:</h4>
                 <a href="{{$company->company_instagram}}"
-                   class="company__info-value company__info-value--link c-orange-light">{{$company->company_instagram}}</a>
+                   class="company__info-value company__info-value--link c-orange-light">
+                    <img src="{{ asset('/img/social-networks/instagram.svg') }}" alt="Логотип Instagram" class="company__social-img" data-type="instagram">
+                </a>
             </li>
         @endif
         @if($company->company_twitter)
             <li class="company__info-item">
                 <h4 class="company__info-key">Twitter:</h4>
                 <a href="{{$company->company_twitter}}"
-                   class="company__info-value company__info-value--link c-orange-light">{{$company->company_twitter}}</a>
+                   class="company__info-value company__info-value--link c-orange-light">
+                    <img src="{{ asset('/img/social-networks/twitter.svg') }}" alt="Логотип Twitter" class="company__social-img" data-type="twitter">
+                </a>
             </li>
         @endif
         @if($company->company_viber)
             <li class="company__info-item">
                 <h4 class="company__info-key">Viber:</h4>
                 <a href="{{$company->company_viber}}"
-                   class="company__info-value company__info-value--link c-orange-light">{{$company->company_viber}}</a>
+                   class="company__info-value company__info-value--link c-orange-light">
+                    <img src="{{ asset('/img/social-networks/viber.svg') }}" alt="Логотип Viber" class="company__social-img" data-type="viber">
+                </a>
             </li>
         @endif
         @if($company->company_whatsapp)
             <li class="company__info-item">
-                <h4 class="company__info-key">Viber:</h4>
+                <h4 class="company__info-key">WhatsApp:</h4>
                 <a href="{{$company->company_whatsapp}}"
-                   class="company__info-value company__info-value--link c-orange-light">{{$company->company_whatsapp}}</a>
+                   class="company__info-value company__info-value--link c-orange-light">
+                    <img src="{{ asset('/img/social-networks/whatsapp.svg') }}" alt="Логотип WhatsApp" class="company__social-img" data-type="whatsapp">
+                </a>
             </li>
         @endif
         @if($company->company_ok)
             <li class="company__info-item">
                 <h4 class="company__info-key">Одноклассники:</h4>
                 <a href="{{$company->company_ok}}"
-                   class="company__info-value company__info-value--link c-orange-light">{{$company->company_ok}}</a>
+                   class="company__info-value company__info-value--link c-orange-light">
+                    <img src="{{ asset('/img/social-networks/ok.svg') }}" alt="Логотип Одноклассники" class="company__social-img" data-type="ok">
+                </a>
             </li>
         @endif
     </ul>

@@ -27,3 +27,11 @@
         color: $silver-a100;
     }
 }
+
+.text-overflow-25 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 15rem;
+    max-width: 15rem;
+}

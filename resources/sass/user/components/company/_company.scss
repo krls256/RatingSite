@@ -104,6 +104,12 @@
         }
     }
 
+    &__social-img {
+        display: block;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
     &__negative {
         &::before {
             background: url("/img/smile-sad.svg") center center / cover no-repeat;
@@ -114,8 +120,20 @@
         padding-top: .75rem;
         padding-left: .75rem;
     }
+
+    &__info-item {
+        display: flex;
+        align-items: center;
+
+        margin-bottom: .5rem;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
     &__info-key {
         display: inline;
+        margin-right: .25rem;
 
         color: $dark-blue;
         font-size: 0.875rem;
@@ -133,5 +151,11 @@
 
     &__map {
         height: 300px;
+    }
+    &__description {
+        padding-top: 1rem;
+
+        font-size: .938rem;
+        line-height: 1.25rem;
     }
 }

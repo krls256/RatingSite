@@ -2,19 +2,20 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import Input from "../../FormComponent/Input";
 import Textarea from "../../FormComponent/Textarea";
-import videoInputOnChange from "../../../admin-services/InputOnChange/videoInputOnChange";
+import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
+import {setVideoEdit} from "../../../admin-actions/videos/videoEditAction";
 
 const VideoMain = () => {
     const {videoEdit} = useSelector(selector)
     return (
-        <div className="page-wrapper card m-3 p-3 col-8">
+        <div className="page-wrapper card mt-3 p-3">
             {
                 fields.map(({label, field}) => (
                     <Input label={label}
                            field={field}
                            ReduxObj={videoEdit}
                            key={field}
-                           onChange={videoInputOnChange(useDispatch)(field, videoEdit)}/>
+                           onChange={generalInputOnChange(useDispatch, setVideoEdit)(field, videoEdit)}/>
                 ))
             }
             {
@@ -23,7 +24,7 @@ const VideoMain = () => {
                               field={field}
                               ReduxObj={videoEdit}
                               key={field}
-                              onChange={videoInputOnChange(useDispatch)(field, videoEdit)}
+                              onChange={generalInputOnChange(useDispatch, setVideoEdit)(field, videoEdit)}
                     />
                 ))
             }
@@ -42,8 +43,8 @@ const fields = [
         label: 'Название видео',
     },
     {
-        field: 'video_link',
-        label: 'Ссылка на видео',
+        field: 'video_ytid',
+        label: 'YouTube Id',
     },
     {
         field: 'video_slug',

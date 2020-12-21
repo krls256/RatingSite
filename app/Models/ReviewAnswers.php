@@ -11,10 +11,13 @@ class ReviewAnswers extends Model
 {
     use Timestamp, SoftDeletes;
 
+    protected $primaryKey = 'review_answer_id';
+
     protected $fillable = [
         'reviewer_answer_name',
         'review_answer_text',
-        'review_id'
+        'review_id',
+        'is_published'
     ];
 
     public function getBeautifulDateAttribute()

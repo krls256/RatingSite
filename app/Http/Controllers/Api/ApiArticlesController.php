@@ -36,9 +36,7 @@ class ApiArticlesController extends ApiController
 
         $result = $article->update($data);
 
-        if($result)
-            return ['msg' => ['База была успешно обновлена', "Id обновленной статьи равен $id"]];
-        return ['msg' => ['Что-то пошло не так']];
+        return $this->updateResponse($result, $id);
     }
 
 }

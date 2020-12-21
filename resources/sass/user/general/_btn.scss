@@ -15,4 +15,16 @@
     &--medium {
         width: 9rem;
     }
+
+    &--search {
+        display: none;
+    }
+}
+
+@media (min-width: $smallDevices) {
+    .btn {
+        &--search {
+            display: unset;
+        }
+    }
 }

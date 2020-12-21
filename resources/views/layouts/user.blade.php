@@ -2,8 +2,6 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 
-
-
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -12,7 +10,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <title>Document</title>
+
+
+    <title>{{$seo->title}}</title>
+    <meta name="description" content="{{$seo->title}}"/>
+    @if($seo->keywords) <meta name="keywords" content="{{$seo->keywords}}" /> @endif
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('img/apple-touch-icon.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicon-32x32.png') }}">
@@ -21,8 +23,6 @@
     <link rel="mask-icon" href="{{ asset('img/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-
-
 </head>
 <body>
     <header class="header">
@@ -43,8 +43,8 @@
                            @if(\Request::route()->getName() === 'rating.user.about') class="header__list-link header__list-link--selected" @else class="header__list-link" @endif>О проекте</a>
                     </li>
                     <li class="header__list-item">
-                        <a href="{{ route('rating.user.articles') }}"
-                           @if(\Request::route()->getName() === 'rating.user.articles') class="header__list-link header__list-link--selected" @else class="header__list-link" @endif>Статьи</a>
+                        <a href="{{ route('rating.user.articles.index') }}"
+                           @if(\Request::route()->getName() === 'rating.user.articles.index') class="header__list-link header__list-link--selected" @else class="header__list-link" @endif>Статьи</a>
                     </li>
                     <li class="header__list-item">
                         <a href="{{ route('rating.user.videos') }}"
@@ -72,5 +72,6 @@
         <h5 class="c-white text-norm text-center pt-3">Полезные статьи</h5>
     </footer>
     <script src="{{ asset('/js/script.js') }}"></script>
+    <script src="{{ asset('/js/search.js') }}"></script>
 </body>
 </html>

@@ -3,21 +3,41 @@
 namespace App\Http\Controllers\Api;
 
 
+use App\Http\Requests\Headers\ApiHeadersUpdateRequest;
+use App\Repositories\Headers\ApiHeadersRepository;
 use Illuminate\Http\Request;
 
 class ApiHeadersController extends ApiController
 {
+    private $repository;
+
+    public function __construct(ApiHeadersRepository $headersRepository)
+    {
+        parent::__construct();
+        $this->repository = $headersRepository;
+    }
+
     public function index()
     {
-        dd(__METHOD__);
+        return $this->repository->getHeadersPaginate();
     }
 
-    public function edit($id) {
-        dd(__METHOD__);
-    }
-
-    public function update(Request $request, $id)
+    public function edit($id)
     {
-        dd(__METHOD__);
+        $result = $this->repository->getHeaderEdit($id);
+        if($result === null) {
+            abort(404);
+        }
+
+        return $result;
+    }
+
+    public function update(ApiHeadersUpdateRequest $request, $id)
+    {
+        $data = $request->all();
+
+        $result = $this->repository->updateHeader($data, $id);
+
+        return $this->updateResponse($result, $id);
     }
 }

@@ -36,8 +36,6 @@ class ApiVideosController extends ApiController
 
         $result = $video->update($data);
 
-        if($result)
-            return ['msg' => ['База была успешно обновлена', "Id обновленного видео равен $id"]];
-        return ['msg' => ['Что-то пошло не так']];
+        return $this->updateResponse($result, $id);
     }
 }

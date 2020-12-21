@@ -23,6 +23,12 @@ import LoadingScreen from "./admin-components/LoadingScreen";
 import ReviewEdit from "./admin-components/Reviews/ReviewsEdit";
 import ArticleEdit from "./admin-components/Articles/ArticleEdit";
 import VideosEdit from "./admin-components/Videos/VideosEdit";
+import ReviewAnswersTable from "./admin-components/ReviewAnswers/ReviewAnswersTable";
+import UserMessagesTable from "./admin-components/UserMessages/UserMessagesTable";
+import ReviewAnswerEdit from "./admin-components/ReviewAnswers/ReviewAnswerEdit";
+import UserMessagesEdit from "./admin-components/UserMessages/UserMessagesEdit";
+import SEOEdit from "./admin-components/SEO/SEOEdit";
+import HeadersEdit from "./admin-components/Headers/HeadersEdit/HeadersEdit";
 
 function App() {
        return (
@@ -33,17 +39,33 @@ function App() {
                         <Route path='/admin' component={SideBar}/>
                         <Route path='/admin' component={LoadingScreen}/>
                         <Route path='/admin' exact component={MainPage}/>
-                        <Route path='/admin/companies' exact component={CompaniesTable}/>
-                        <Route path='/admin/companies/:id/edit' exact component={CompanyEdit}/>
-                        <Route path='/admin/reviews' exact component={ReviewsTable}/>
+
+                        <Route path='/admin/companies' component={CompaniesTable}/>
+                        <Route path='/admin/companies/:id/edit' component={CompanyEdit}/>
+
+                        <Route path='/admin/reviews' component={ReviewsTable}/>
                         <Route path='/admin/reviews/:id/edit' component={ReviewEdit}/>
+
                         <Route path='/admin/images' component={ImagesPage}/>
-                        <Route path='/admin/articles' exact component={ArticlesTable}/>
+
+                        <Route path='/admin/articles' component={ArticlesTable}/>
                         <Route path='/admin/articles/:id/edit' component={ArticleEdit}/>
-                        <Route path='/admin/videos' exact component={VideosTable}/>
+
+                        <Route path='/admin/videos' component={VideosTable}/>
                         <Route path='/admin/videos/:id/edit' component={VideosEdit}/>
+
                         <Route path='/admin/seo' component={SEOTable}/>
+                        <Route path='/admin/seo/:id/edit' component={SEOEdit}/>
+
                         <Route path='/admin/headers' component={HeadersTable}/>
+                        <Route path='/admin/headers/:id/edit' component={HeadersEdit}/>
+
+                        <Route path='/admin/review-answers' component={ReviewAnswersTable}/>
+                        <Route path='/admin/review-answers/:id/edit' component={ReviewAnswerEdit}/>
+                        <Route path='/admin/review-answers/:id/review' component={ReviewEdit}/>
+
+                        <Route path='/admin/user-messages' component={UserMessagesTable}/>
+                        <Route path='/admin/user-messages/:id/edit' component={UserMessagesEdit}/>
                     </div>
                 </Setup>
             </Router>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect, useDispatch} from 'react-redux'
-import {successMessageReset} from "../../../admin-actions/successMessageActions";
+import {successMessageReset} from "../../../admin-actions/appState/successMessageActions";
 
 const SuccessLine = ({successMessage}) => {
     const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const SuccessLine = ({successMessage}) => {
     if(list.length === 0)
         return null
     return (
-        <div className="alert alert-success mt-3 ml-3 mr-3 mb-0" role="alert">
+        <div className="alert alert-success mt-3 mb-0" role="alert">
             <ul className="message-line">
                 {list.map((li) => <li key={li}>{li}</li>)}
             </ul>

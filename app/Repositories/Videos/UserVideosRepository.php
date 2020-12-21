@@ -14,7 +14,7 @@ class UserVideosRepository extends CoreRepository
     }
 
     public function getVideosPaginate($count = 15) {
-        $column = ['video_id', 'video_link', 'video_title', 'video_description'];
+        $column = ['video_id', 'video_ytid', 'video_title', 'video_description'];
 
         $response = $this->startCondition()
             ->select($column)

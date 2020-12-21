@@ -1,7 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom'
-import {useDispatch, useSelector} from "react-redux";
-import {getVideoEdit, resetVideoEdit, updateVideoMain} from "../../../admin-actions/videoEditAction";
+import React, {useState} from 'react';
+import {getVideoEdit, resetVideoEdit, updateVideoMain} from "../../../admin-actions/videos/videoEditAction";
 import Spinner from "../../GeneralComponents/Spinner";
 import EditNavbar from "../../GeneralComponents/EditNavbar";
 import ErrorLine from "../../NotificationComponents/ErrorLine/ErrorLine";
@@ -9,41 +7,38 @@ import SuccessLine from "../../NotificationComponents/SuccessLine/SuccessLine";
 import PageHider from "../../../admin-hoc/PageHider";
 import VideoMain from "../VideosMain";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
+import EditWindow from "../../GeneralComponents/EditWindow";
+import useEditData from "../../../admin-hoooks/useEditData";
 
 const VideosEdit = () => {
-    const {videoEdit, apiToken} = useSelector(selector);
     const [navPages, setNavPages] = useState(pages)
-    const dispatch = useDispatch();
-    const {id} = useParams();
+    const {id, videoEdit} = useEditData('videoEdit', getVideoEdit, resetVideoEdit);
 
-    useEffect(() => {
-        if(apiToken) {
-            dispatch(getVideoEdit(id))
-        }
-        return () => dispatch(resetVideoEdit())
-    }, [apiToken, id]);
-
-    if(videoEdit === null)
-        return <Spinner />
+    if (videoEdit === null)
+        return (
+            <EditWindow>
+                <Spinner />
+            </EditWindow>
+        )
 
     return (
-        <form action={`/api/admin/videos/${id}`} method='POST' className='page'>
-            <EditNavbar navList={navPages} changeNavList={setNavPages}/>
-            <ErrorLine/>
-            <SuccessLine/>
-            <article className="page__content">
-                <PageHider component={VideoMain} active={navPages.active} index={0}/>
+        <EditWindow>
+            <form action={`/api/admin/videos/${id}`} method='POST' className='page'>
+                <EditNavbar navList={navPages} changeNavList={setNavPages} />
+                <ErrorLine />
+                <SuccessLine />
+                <article className="page__content">
+                    <PageHider component={VideoMain} active={navPages.active} index={0} />
 
-                <div className='card m-3 p-3 col-3 offset-3'>
-                    <SubmitButton action={updateVideoMain}/>
-                </div>
-            </article>
-        </form>
+                    <div className='mt-3 page__button'>
+                        <SubmitButton action={updateVideoMain} />
+                    </div>
+                </article>
+            </form>
+        </EditWindow>
     )
 
 }
-
-const selector = ({videoEdit, apiToken}) => ({videoEdit, apiToken})
 
 export default VideosEdit
 

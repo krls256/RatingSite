@@ -1,8 +1,8 @@
-const checkboxToggle = (useDispatch, actionToDispatch) => {
+const checkboxToggle = (useDispatch, actionToDispatch, fieldToDiapatch = 'is_published') => {
     const dispatch = useDispatch();
     return (data) => (e) => {
         const obj = {...data};
-        obj['is_published'] = Number(e.target.checked);
+        obj[fieldToDiapatch] = Number(e.target.checked);
         dispatch(actionToDispatch(obj))
     }
 }

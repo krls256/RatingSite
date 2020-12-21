@@ -1,8 +1,8 @@
 import React, {Fragment, useEffect} from 'react'
-import {setApiToken} from '../../admin-actions/apiTokenActions'
-import {setCsrfToken} from  '../../admin-actions/csrfTokenActon'
+import {setApiToken} from '../../admin-actions/tokens/apiTokenActions'
+import {setCsrfToken} from '../../admin-actions/tokens/csrfTokenActon'
 import {useDispatch} from "react-redux";
-import {getShortList} from "../../admin-actions/companiesShortListActions";
+import {getShortList} from "../../admin-actions/companies/companiesShortListActions";
 
 
 const Setup = ({children}) => {

@@ -8,13 +8,5 @@
         </select>
     </div>
 
-    <div class="search-bar__item">
-        <label for="query" class="search-bar__label">Поиск по сайту:</label>
-        <input type="text"
-               name="query"
-               id="query"
-               placeholder="Введите название компании"
-               class="search-bar__input p-3">
-        <button class="btn bg-orange pv-3 ph-6">Найти</button>
-    </div>
+    <div class="search-bar__item" id="search"></div>
 </section>

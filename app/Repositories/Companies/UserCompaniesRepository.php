@@ -50,11 +50,17 @@ class UserCompaniesRepository extends CoreRepository
     public function getCompanyForPage($slug)
     {
         $column =
-            ['company_id', 'company_slug', 'is_published', 'company_name',
+            [
+                'company_id', 'company_slug', 'is_published', 'company_name',
                 'company_average_mark', 'company_positive', 'company_negative',
-                'company_logo_link', 'company_address', 'company_phone',
-                'company_inn', 'company_site', 'company_email', 'company_creating_date',
-                'company_yandex_map_link'];
+                'company_logo_link',
+
+                'company_address', 'company_phone', 'company_inn', 'company_site', 'company_email',
+                'company_creating_date', 'company_yandex_map_link', 'company_instagram',
+                'company_fb', 'company_twitter', 'company_telegram', 'company_viber', 'company_whatsapp',
+                'company_vk', 'company_ok', 'company_city',
+
+                'company_description'];
 
         $response = $this->startCondition()
             ->select($column)

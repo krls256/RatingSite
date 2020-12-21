@@ -38,8 +38,7 @@ class ApiReviewsController extends ApiController
         }
 
         $result = $response->update($request->all());
-        if ($result)
-            return ['msg' => ['База была успешно обновлена', "Id обновленного отзыва равен $id"]];
-        return ['msg' => ['Что-то пошло не так']];
+
+        return $this->updateResponse($result, $id);
     }
 }

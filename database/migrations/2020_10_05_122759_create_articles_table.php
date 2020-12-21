@@ -15,7 +15,6 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('article_id')->unsigned();
-            $table->timestamps();
 
             $table->string('article_title', 256);
             $table->string('article_slug', 256);
@@ -25,6 +24,8 @@ class CreateArticlesTable extends Migration
             $table->boolean('is_published')->default(1);
 
             $table->mediumText('article_content');
+
+            $table->timestamps();
         });
     }
 

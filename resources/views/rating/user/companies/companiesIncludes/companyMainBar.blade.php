@@ -1,6 +1,6 @@
 <section class="company__main-bar">
     <div class="company__logo-wrapper">
-        <img src="{{ asset('logo/'.$company->company_logo_link) }}"
+        <img @if($company->company_logo_link) src="{{ asset('logo/'.$company->company_logo_link) }}" @else src="{{ asset('logo/default.png') }}" @endif
              alt="Логотип Компании {{$company->company_name}}"
              class="company__logo">
     </div>

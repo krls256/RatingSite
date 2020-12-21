@@ -17,8 +17,8 @@ class CreateHeadersTable extends Migration
             $table->increments('header_id');
 
             $table->string('header_key');
-            $table->string('header_value');
-            $table->string('header_description');
+            $table->text('header_value');
+            $table->text('header_description');
 
             $table->timestamps();
         });

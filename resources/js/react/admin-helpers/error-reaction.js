@@ -1,5 +1,5 @@
-import {updateErrorsMessage} from "../admin-actions/errorMessageActions";
-import {isLoadingSetFalse} from "../admin-actions/isLoadingActions";
+import {updateErrorsMessage} from "../admin-actions/appState/errorMessageActions";
+import {isLoadingSetFalse} from "../admin-actions/appState/isLoadingActions";
 
 const reactOnError = (dispatch) => ({value, status}) => {
     const errors = value.errors ? value.errors : {};

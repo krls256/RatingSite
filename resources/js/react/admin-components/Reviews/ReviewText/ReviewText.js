@@ -1,21 +1,21 @@
 import React from 'react';
-import reviewInputOnChange from "../../../admin-services/InputOnChange/reviewInputOnChange";
 import {useDispatch, useSelector} from "react-redux";
 import Textarea from "../../FormComponent/Textarea";
+import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
+import {updateReviewEdit} from "../../../admin-actions/reviews/reviewsEditActions";
 
 const ReviewText = () => {
     const {reviewEdit} = useSelector(selector)
     return (
-        <div className="page-wrapper card m-3 p-3 col-8">
+        <div className="page-wrapper card mt-3 p-3">
 
             {
                 textarias.map(({field, label}) =>
-                        <Textarea field={field}
-                                  label={label}
-                                  ReduxObj={reviewEdit}
-                                  onChange={reviewInputOnChange(useDispatch)(field, reviewEdit)}
-                                  key={field}/>
-                          )
+                    <Textarea field={field}
+                              label={label}
+                              ReduxObj={reviewEdit}
+                              onChange={generalInputOnChange(useDispatch, updateReviewEdit)(field, reviewEdit)}
+                              key={field} />)
             }
         </div>
     )

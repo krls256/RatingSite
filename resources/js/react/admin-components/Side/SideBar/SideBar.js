@@ -11,6 +11,8 @@ const pathes = [
     {path: '/admin/videos', name: 'Видео'},
     {path: '/admin/seo', name: 'SEO параметры'},
     {path: '/admin/headers', name: 'Заголовки'},
+    {path: '/admin/review-answers', name: 'Комментарии'},
+    {path: '/admin/user-messages', name: 'Сообщения от пользователей'},
 ];
 
 const SideBar = () => {

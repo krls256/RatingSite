@@ -1,21 +1,21 @@
 import React from 'react';
 import Input from "../../FormComponent/Input";
-import reviewInputOnChange from "../../../admin-services/InputOnChange/reviewInputOnChange";
 import {useDispatch, useSelector} from "react-redux";
 import checkboxToggle from '../../../admin-services/InputOnChange/checkboxToggle'
-import {updateReviewEdit} from '../../../admin-actions/reviewsEditActions'
+import {updateReviewEdit} from '../../../admin-actions/reviews/reviewsEditActions'
 import Checkbox from "../../FormComponent/Checkbox/Checkbox";
+import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
 
 const ReviewMain = () => {
     const {reviewEdit} = useSelector(selector)
     return (
-        <div className="page-wrapper card m-3 p-3 col-8">
+        <div className="page-wrapper card mt-3 p-3">
             {
                 fields.map(({field, label})=>
                     <Input field={field}
                            label={label}
                            ReduxObj={reviewEdit}
-                           onChange={reviewInputOnChange(useDispatch)(field, reviewEdit)}
+                           onChange={generalInputOnChange(useDispatch, updateReviewEdit)(field, reviewEdit)}
                            key={field}/>)
             }
             <Checkbox label={'Опубликовано'}

@@ -5,8 +5,6 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-
-
     public function run()
     {
         $this->call(UserSeeder::class);
@@ -16,5 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RatingAverageValuesSeeder::class);
         $this->call(ArticlesSeeder::class);
         $this->call(VideosSeeder::class);
+        $this->call(SEOSeeder::class);
+        $this->call(HeadersSeeder::class);
     }
 }

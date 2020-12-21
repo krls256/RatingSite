@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import Checkbox from "../../FormComponent/Checkbox/Checkbox";
 import checkboxToggleImages from "../../../admin-services/InputOnChange/checkboxToggleImages";
 import checkboxToggleImages2 from "../../../admin-services/InputOnChange/checkboxToggleImages2";
-import {updateImagePage} from "../../../admin-actions/imagesActions";
+import {updateImagePage} from "../../../admin-actions/images/imagesActions";
 
 const ImageItem = ({data, index, pageIndex}) => {
     const {image_link, company_name, is_published, is_on_company_page} = data;

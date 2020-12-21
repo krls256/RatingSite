@@ -25,7 +25,7 @@ class ApiVideoUpdateRequest extends FormRequest
     {
         return [
             'video_title' => 'required|string|min:3|max:255',
-            'video_link' => 'required|url',
+            'video_ytid' => 'required|string|min:1|max:255',
             'video_description' => 'required|string'
         ];
     }

@@ -17,6 +17,7 @@ mix
     .copyDirectory('resources/fonts', 'public/fonts')
     .copyDirectory('resources/logo', 'public/logo')
     .react('resources/js/admin.js', 'public/js')
+    .react('resources/js/Search.js', 'public/js/search.js')
     .js('resources/js/script.js', 'public/js')
     .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/style.scss', 'public/css')

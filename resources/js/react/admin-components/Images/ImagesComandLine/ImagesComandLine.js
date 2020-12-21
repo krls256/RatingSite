@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Select from "../../FormComponent/Select";
-import {updateImagesCommandLine} from "../../../admin-actions/imagesCommandLineActions";
-import {getImages, resetImages, updateImages} from "../../../admin-actions/imagesActions";
-import {setCurrentPage} from "../../../admin-actions/currentPageActions";
+import {updateImagesCommandLine} from "../../../admin-actions/images/imagesCommandLineActions";
+import {getImages, resetImages, updateImages} from "../../../admin-actions/images/imagesActions";
+import {setCurrentPage} from "../../../admin-actions/appState/currentPageActions";
 
 const ImagesCommandLine = () => {
     const {companiesShortList, imagesCommandLine} = useSelector(selector);

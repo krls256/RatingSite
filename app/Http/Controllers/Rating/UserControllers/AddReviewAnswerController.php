@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Rating\UserControllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReviewAnswers\ReviewAnswersStoreRequest;
 use App\Repositories\ReviewAnswers\UserReviewAnswersRepository;
+use App\Repositories\SEO\UserSEORepository;
 use Illuminate\Http\Request;
 
 
-class AddReviewAnswerController extends Controller
+class AddReviewAnswerController extends UserController
 {
+    public function __construct(UserSEORepository $SEORepository) { parent::__construct($SEORepository); }
+
     public function index(ReviewAnswersStoreRequest $request, UserReviewAnswersRepository $answersRepository)
     {
         $res = $answersRepository->storeReviewAnswer($request->all());
@@ -25,6 +28,11 @@ class AddReviewAnswerController extends Controller
 
     public function redirect() {
         $path = session()->all()['path'] ?? '/';
-        return view('rating.user.redirects.index', ['path' => $path, 'message' => 'Ваш комментарий принят на рассмотрение, и в ближайшее время появится на сайте']);
+        $seo = $this->getSEOAttributes('thanks');
+        return view('rating.user.redirects.index', [
+            'path' => $path,
+            'message' => 'Ваш комментарий принят на рассмотрение, и в ближайшее время появится на сайте',
+            'seo' => $seo
+        ]);
     }
 }

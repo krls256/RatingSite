@@ -37,10 +37,10 @@ class ApiCompaniesController extends ApiController
             abort(404);
         }
         $result = $company->update($safeData);
-        if($result)
-            return ['msg' => ['База была успешно обновлена', "Id обновленной компании равен $id"]];
-        return ['msg' => ['Что-то пошло не так']];
+
+        return $this->updateResponse($result, $id);
     }
+
     public function shortList() {
         $shortList = $this->companyRepository->getShortList();
         return $shortList;

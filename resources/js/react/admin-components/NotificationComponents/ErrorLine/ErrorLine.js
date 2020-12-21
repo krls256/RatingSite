@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, connect} from "react-redux";
-import {resetErrorsMessage} from '../../../admin-actions/errorMessageActions'
+import {resetErrorsMessage} from '../../../admin-actions/appState/errorMessageActions'
 
 const ErrorLine = ({errorsMessage}) => {
     const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const ErrorLine = ({errorsMessage}) => {
     if(list.length === 0)
         return null
     return (
-        <div className="alert alert-danger mt-3 ml-3 mr-3 mb-0" role="alert">
+        <div className="alert alert-danger mt-3 mb-0" role="alert">
             <ul className="message-line">
                 {list.map((li) => <li key={li}>{li}</li>)}
             </ul>

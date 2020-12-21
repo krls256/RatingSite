@@ -20,8 +20,12 @@ $gray-light-2: rgb(229, 229, 229);
 $gray-light-3: rgb(252, 252, 253);
 $gray-light-3-a3: rgba(252, 252, 253, 0.3);
 
+
+$blue-light: rgb(117, 218, 255);
+$blue-light-a5: rgba(117, 218, 255, .5);
 //Adaptive
 
+$ultraSmallDevices: 360px;
 $smallDevices: 576px;
 $mediumDevices: 768px;
 $largeDevices: 992px;

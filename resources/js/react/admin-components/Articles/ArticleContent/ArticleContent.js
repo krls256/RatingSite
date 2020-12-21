@@ -1,20 +1,21 @@
 import React from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import Textarea from "../../FormComponent/Textarea";
-import articleInputOnChange from "../../../admin-services/InputOnChange/articleInputOnChange";
+import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
+import {setArticleEdit} from "../../../admin-actions/articles/articlesEditAction";
 
 const ArticleContent = () => {
     const {articleEdit} = useSelector(selector)
 
     return (
-        <div className="page-wrapper card m-3 p-3 col-8">
+        <div className="page-wrapper card mt-3 p-3">
             {
                 textareas.map(({label, field}) => (
                     <Textarea label={label}
                               field={field}
                               ReduxObj={articleEdit}
                               key={field}
-                              onChange={articleInputOnChange(useDispatch)(field, articleEdit)}/>
+                              onChange={generalInputOnChange(useDispatch, setArticleEdit)(field, articleEdit)}/>
                 ))
             }
         </div>

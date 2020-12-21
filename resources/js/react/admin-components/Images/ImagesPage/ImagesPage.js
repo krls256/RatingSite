@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getImages} from "../../../admin-actions/imagesActions";
+import {getImages} from "../../../admin-actions/images/imagesActions";
 import Spinner from "../../GeneralComponents/Spinner";
 import ImageItem from "../ImageItem/ImageItem";
 import Pagination from "../../GeneralComponents/Pagination/Pagination";

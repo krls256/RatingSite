@@ -1,21 +1,22 @@
 import React, {} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import Textarea from "../../FormComponent/Textarea";
-import articleInputOnChange from "../../../admin-services/InputOnChange/articleInputOnChange";
 import Input from "../../FormComponent/Input";
+import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
+import {setArticleEdit} from "../../../admin-actions/articles/articlesEditAction";
 
 const ArticleMain = () => {
     const {articleEdit} = useSelector(selector)
 
     return (
-        <div className="page-wrapper card m-3 p-3 col-8">
+        <div className="page-wrapper card mt-3 p-3">
             {
                 fields.map(({label, field}) => (
                     <Input label={label}
                            field={field}
                            ReduxObj={articleEdit}
                            key={field}
-                           onChange={articleInputOnChange(useDispatch)(field, articleEdit)}/>
+                           onChange={generalInputOnChange(useDispatch, setArticleEdit)(field, articleEdit)}/>
                 ))
             }
             {
@@ -24,7 +25,7 @@ const ArticleMain = () => {
                               field={field}
                               ReduxObj={articleEdit}
                               key={field}
-                              onChange={articleInputOnChange(useDispatch)(field, articleEdit)}/>
+                              onChange={generalInputOnChange(useDispatch, setArticleEdit)(field, articleEdit)}/>
                 ))
             }
         </div>

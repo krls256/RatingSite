@@ -6,17 +6,15 @@
         }
 
         &__label {
-            margin-right: 1rem;
+            flex-basis: 7rem;
+            min-width: 7rem;
             margin-bottom: 0;
+            font-size: .75rem;
         }
-
-        &__input, &__select {
-            width: 50%;
+        &__input-wrapper {
             margin-bottom: 0;
-        }
-
-        &__input {
-            width: calc(50% - 2rem);
+            display: flex;
+            flex-direction: column;
             margin-right: .5rem;
         }
     }
@@ -28,8 +26,13 @@
         align-items: center;
         justify-content: space-between;
 
-        &__item {
-            width: unset;
+
+        &__label {
+
+            flex-basis: unset;
+            display: block;
+            margin-right: .5rem;
+            font-size: .875rem;
         }
 
         &__input, &__select {

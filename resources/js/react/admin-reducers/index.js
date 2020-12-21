@@ -1,22 +1,30 @@
 import {combineReducers} from 'redux';
-import companiesReducer from "./companiesReducer";
-import apiTokenReducer from "./apiTokenReducer";
-import companiesCurrentPageReducer from "./currentPageReducer";
-import lastPageReducer from "./lastPageReducer";
-import companyEditReducer from "./companyEditReducer";
-import csrfTokenReducer from "./csrfTokenReducer";
-import errorsMessageReducer from "./errorsMessageReducer";
-import isLoadngReducer from "./isLoadingReducer";
-import successMessageReducer from "./successMessageReducer";
-import reviewsReducer from "./reviewsReducer";
-import reviewEditReducer from "./reviewEditReducer";
-import imagesReducer from "./imagesReducer";
-import companiesShortListReducer from "./companiesShortListReducer";
-import imagesCommandLineReducer from "./imagesCommandLineReducer";
-import articlesReducer from "./articlesReducer";
-import articleEditReducer from "./articleEditReducer";
-import videosReducer from "./videosReducer";
-import videosEditReducer from "./videosEditReducer";
+import companiesReducer from "./companies/companiesReducer";
+import apiTokenReducer from "./tokens/apiTokenReducer";
+import companiesCurrentPageReducer from "./appState/currentPageReducer";
+import lastPageReducer from "./appState/lastPageReducer";
+import companyEditReducer from "./companies/companyEditReducer";
+import csrfTokenReducer from "./tokens/csrfTokenReducer";
+import errorsMessageReducer from "./appState/errorsMessageReducer";
+import isLoadngReducer from "./appState/isLoadingReducer";
+import successMessageReducer from "./appState/successMessageReducer";
+import reviewsReducer from "./reviews/reviewsReducer";
+import reviewEditReducer from "./reviews/reviewEditReducer";
+import imagesReducer from "./images/imagesReducer";
+import companiesShortListReducer from "./companies/companiesShortListReducer";
+import imagesCommandLineReducer from "./images/imagesCommandLineReducer";
+import articlesReducer from "./articles/articlesReducer";
+import articleEditReducer from "./articles/articleEditReducer";
+import videosReducer from "./videos/videosReducer";
+import videosEditReducer from "./videos/videosEditReducer";
+import reviewAnswersReducer from "./reviewAnswers/reviewAnswersReducer";
+import reviewsAnswerEditReducer from "./reviewAnswers/reviewAnswerEditReducer";
+import userMessagesReducer from "./userMessages/userMessagesReducer";
+import userMessageEditReducer from "./userMessages/userMessageEditReducer";
+import seoReducer from "./seo/seoReducer";
+import seoEditReducer from "./seo/seoEditReducer";
+import headersReducer from "./headers/headersReducer";
+import headerEditReducer from "./headers/headerEditReducer";
 
 
 export default combineReducers({
@@ -45,4 +53,16 @@ export default combineReducers({
 
     videos: videosReducer,
     videoEdit: videosEditReducer,
+
+    userMessages: userMessagesReducer,
+    userMessageEdit: userMessageEditReducer,
+
+    reviewAnswers: reviewAnswersReducer,
+    reviewAnswerEdit: reviewsAnswerEditReducer,
+
+    seo: seoReducer,
+    seoEdit: seoEditReducer,
+
+    headers: headersReducer,
+    headerEdit: headerEditReducer
 })

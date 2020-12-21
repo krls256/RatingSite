@@ -19,4 +19,9 @@ class Articles extends Model
         'article_content',
         'is_published'
     ];
+
+    public function getLinkWithDirAttribute()
+    {
+        return '/img/articles/'.$this->article_main_image;
+    }
 }

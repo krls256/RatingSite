@@ -1,0 +1,36 @@
+.search {
+
+
+    &__item {
+        @include box;
+
+
+        margin-bottom: .5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &--nores {
+            font-size: 1rem;
+        }
+    }
+
+    &__link {
+        @include reset-link;
+
+        display: block;
+        padding: .75rem;
+
+        color: $black;
+
+        &--nores {
+            @include reset-link;
+
+            color: $black;
+            text-decoration: underline;
+
+            font-size: .9rem;
+        }
+    }
+}

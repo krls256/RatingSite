@@ -1,0 +1,22 @@
+@mixin scrollbarAdmin {
+    &::-webkit-scrollbar {
+        background-color: $light;
+        border-radius: .25rem;
+        width: 1rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: $light;
+        border-radius: .25rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #000;
+        border-radius: 16px;
+        border: .25rem solid $light;
+    }
+
+    &::-webkit-scrollbar-button {
+        display:none;
+    }
+}

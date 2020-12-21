@@ -1,31 +1,28 @@
 import React from 'react';
 import Input from "../../FormComponent/Input";
-import companyInputOnChange from "../../../admin-services/InputOnChange/companyInputOnChange";
 import {useDispatch, connect} from "react-redux";
 import Textarea from "../../FormComponent/Textarea";
+import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
+import {updateCompanyEdit} from "../../../admin-actions/companies/companyEditActions";
 
 const CompanySocialNetworks = ({companyEdit}) => {
     return (
-        <div className="page-wrapper card m-3 p-3 col-8">
+        <div className="page-wrapper card mt-3 p-3">
             {
                 fields.map(({field, label})=>
                     <Input field={field}
                            label={label}
                            ReduxObj={companyEdit}
-                           onChange={companyInputOnChange(useDispatch)(field, companyEdit)}
+                           onChange={generalInputOnChange(useDispatch, updateCompanyEdit)(field, companyEdit)}
                            key={field}/>)
             }
             {
-                textarias.map(({field, label}) => {
-                    return (
-                        <Textarea field={field}
-                                  label={label}
-                                  ReduxObj={companyEdit}
-                                  onChange={companyInputOnChange(useDispatch)(field, companyEdit)}
-                                  key={field}/>
-                    )
-
-                })
+                textarias.map(({field, label}) =>
+                    <Textarea field={field}
+                              label={label}
+                              ReduxObj={companyEdit}
+                              onChange={generalInputOnChange(useDispatch, updateCompanyEdit)(field, companyEdit)}
+                              key={field}/>)
             }
         </div>
     )

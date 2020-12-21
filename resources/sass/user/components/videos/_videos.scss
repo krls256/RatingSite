@@ -19,27 +19,52 @@
         position: relative;
         z-index: 0;
 
-        max-width: 100%;
-        min-height: 12rem;
+        width: 100%;
+        height: 0;
         margin-bottom: .5rem;
+        padding-bottom: 56.25%;
 
-        iframe {
-            position: relative;
-
-            width: 100%;
-            height: 100%;
-            resize: both;
-            overflow: auto;
-        }
+        cursor: pointer;
     }
 
-    &__iframe-click {
+
+    &__media {
         position: absolute;
+        top: 0;
+        left: 0;
+
         width: 100%;
         height: 100%;
-        z-index: 3;
+        border: none;
+    }
 
-        cursor: zoom-in;
+
+    &__button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        padding: 0;
+        width: 68px;
+        height: 48px;
+
+        background-color: transparent;
+        border: none;
+
+        transform: translate(-50%, -50%);
+    }
+    &__button-shape {
+        fill: #212121;
+        fill-opacity: .8;
+    }
+
+    &__iframe-wrapper:hover &__button-shape {
+        fill: #ff0000;
+        fill-opacity: 1;
+    }
+
+    &__button-icon {
+        fill: #ffffff;
     }
 
     &__name {
@@ -71,7 +96,7 @@
 
         transition: .25s all;
 
-        cursor: zoom-out;
+        cursor: pointer;
 
         &--disable {
             height: 0;

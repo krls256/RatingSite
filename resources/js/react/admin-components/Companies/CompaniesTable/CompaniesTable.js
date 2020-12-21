@@ -1,21 +1,16 @@
-import React, {useEffect} from 'react'
-import {connect, useDispatch} from "react-redux";
-import {getCompanies} from '../../../admin-actions/companiesActions';
+import React from 'react'
+import {getCompanies} from '../../../admin-actions/companies/companiesActions';
 
 import CompanyItem from "../CompanyItem";
 import Spinner from "../../GeneralComponents/Spinner";
 import Pagination from "../../GeneralComponents/Pagination";
 import Table from "../../GeneralComponents/Table";
+import useTableData from "../../../admin-hoooks/useTableData";
 
-const CompaniesTable = ({companies, apiToken, currentPage}) => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-       if(apiToken !== null && companies[currentPage] === undefined) {
-           dispatch(getCompanies(currentPage))
-       }
-    }, [apiToken, currentPage]);
+const CompaniesTable = () => {
+    const companyPage = useTableData('companies', getCompanies);
 
-    if(companies[currentPage] === undefined) {
+    if (companyPage === undefined) {
         return <Spinner />
     }
 
@@ -25,12 +20,12 @@ const CompaniesTable = ({companies, apiToken, currentPage}) => {
                    head_key={'companies'}
                    key_field={'company_name'}
                    component={CompanyItem}
-                   items={companies[currentPage]}/>
+                   items={companyPage} />
             <Pagination />
         </div>
 
     )
 }
-const mapStateToProps = ({companies, apiToken, currentPage}) => ({companies, apiToken, currentPage});
 
-export default connect(mapStateToProps, null)(CompaniesTable);
+
+export default CompaniesTable;

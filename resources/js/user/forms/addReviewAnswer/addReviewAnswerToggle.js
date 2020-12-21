@@ -12,9 +12,8 @@ const addReviewAnswerToggle = () => {
         answerArr.forEach(item => {
             const {identifier : id} = item.dataset;
 
-            const link = item.querySelector('[data-toggle="addReviewAnswer"]')
-            console.log(link)
-            link.addEventListener('click', onClick(form, id, body))
+            const link = item.querySelector('[data-toggle="addReviewAnswer"]');
+            link.addEventListener('click', onClick(form, id, body));
         })
         close.addEventListener('click', toggleForm(form, body))
     }
