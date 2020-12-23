@@ -1,10 +1,5 @@
 import React, {useState} from 'react';
 import Spinner from "../../GeneralComponents/Spinner";
-import {
-    getReviewAnswerEdit,
-    resetReviewAnswerEdit,
-    updateReviewAnswerMain
-} from '../../../admin-actions/reviewAnswers/reviewAnswerEditActions'
 import EditNavbar from "../../GeneralComponents/EditNavbar";
 import ErrorLine from "../../NotificationComponents/ErrorLine/ErrorLine";
 import SuccessLine from "../../NotificationComponents/SuccessLine/SuccessLine";
@@ -12,11 +7,11 @@ import PageHider from "../../../admin-hoc/PageHider";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
 import ReviewAnswerMain from "../ReviewAnswerMain";
 import EditWindow from "../../GeneralComponents/EditWindow";
-import useEditData from "../../../admin-hoooks/useEditData";
+import useUniversalEditData from "../../../admin-hoooks/useUniversalEditData";
 
 const ReviewAnswerEdit = () => {
     const [navPages, setNavPages] = useState(pages);
-    const {id, reviewAnswerEdit} = useEditData('reviewAnswerEdit', getReviewAnswerEdit, resetReviewAnswerEdit);
+    const {id, tableItemEdit: reviewAnswerEdit} = useUniversalEditData('review-answers');
 
     if (reviewAnswerEdit === null)
         return (
@@ -33,9 +28,8 @@ const ReviewAnswerEdit = () => {
                 <SuccessLine />
                 <article className="page__content">
                     <PageHider active={navPages.active} index={0} component={ReviewAnswerMain} />
-
                     <div className='pt-3 page__button'>
-                        <SubmitButton action={updateReviewAnswerMain} />
+                        <SubmitButton tableName='review-answers' />
                     </div>
                 </article>
             </form>

@@ -10500,3 +10500,16 @@ h3 {
 .edit-window__content::-webkit-scrollbar-button {
   display: none;
 }
+
+.filter-bar {
+  padding: 0 0.5rem;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+}
+.filter-bar__button {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.75);
+}
+.filter-bar__form-wrapper {
+  margin-left: 1rem;
+}

@@ -18,7 +18,8 @@
         &__item-date {
             flex-grow: 3;
         }
-        &__images {
+        &__image {
+            max-height: 16rem;
         }
         &__image-wrapper {
             flex-basis: 49%;

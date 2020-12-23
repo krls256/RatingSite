@@ -3,12 +3,12 @@ import {useDispatch, useSelector} from "react-redux";
 import Input from "../../FormComponent/Input";
 import Textarea from "../../FormComponent/Textarea";
 import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
-import {setUserMessagesEdit} from "../../../admin-actions/userMessages/userMessageEditActions";
 import Checkbox from "../../FormComponent/Checkbox/Checkbox";
 import checkboxToggle from "../../../admin-services/InputOnChange/checkboxToggle";
+import editSelector from "../../../admin-helpers/editSelector";
 
 const UserMessagesMain = () => {
-    const {userMessageEdit} = useSelector(selector)
+    const {tableItemEdit: userMessageEdit} = useSelector(editSelector);
     return (
         <div className="page-wrapper card mt-3 p-3">
             {
@@ -17,7 +17,7 @@ const UserMessagesMain = () => {
                            field={field}
                            ReduxObj={userMessageEdit}
                            key={field}
-                           onChange={generalInputOnChange(useDispatch, setUserMessagesEdit)(field, userMessageEdit)}/>
+                           onChange={generalInputOnChange(useDispatch)(field, userMessageEdit)} />
                 ))
             }
             {
@@ -26,17 +26,16 @@ const UserMessagesMain = () => {
                               field={field}
                               ReduxObj={userMessageEdit}
                               key={field}
-                              onChange={generalInputOnChange(useDispatch, setUserMessagesEdit)(field, userMessageEdit)}/>
+                              onChange={generalInputOnChange(useDispatch)(field, userMessageEdit)} />
                 ))
             }
-            <Checkbox label='Отправлено на почту (поставить галочку, если не желаете получить это сообщение ближайшим письмом)'
-                      value={userMessageEdit.is_send}
-                      onChange={checkboxToggle(useDispatch, setUserMessagesEdit, 'is_send')(userMessageEdit)}/>
+            <Checkbox
+                label='Отправлено на почту (поставить галочку, если не желаете получить это сообщение ближайшим письмом)'
+                value={userMessageEdit.is_send}
+                onChange={checkboxToggle(useDispatch, 'is_send')(userMessageEdit)} />
         </div>
     )
 }
-
-const selector = ({userMessageEdit}) => ({userMessageEdit});
 
 export default UserMessagesMain;
 

@@ -1,7 +1,8 @@
 import inputOnChange from "./inputOnChange";
+import {setTableItemEdit} from "../../admin-actions/table/tableItemEditActions";
 
-const generalInputOnChange = (useDispatch, editFunction) =>  {
-    return inputOnChange(useDispatch, editFunction)
+const generalInputOnChange = (useDispatch) =>  {
+    return inputOnChange(useDispatch, setTableItemEdit)
 }
 
 export default generalInputOnChange;

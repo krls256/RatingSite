@@ -5,15 +5,10 @@ class ImagesService extends UniversalService {
     constructor(apiToken, prefix) {
         super(apiToken, prefix);
 
-        this.getImages = async (page = 1, attr) => {
-            let attributes = '';
-            for(const i in attr) {
-                if (attr[i] !== '')
-                    attributes += `&${i}=${attr[i]}`
-            }
-
+        this.getImages = async (page = 1, attributes) => {
+            const attributesString = this._getAttributes(attributes);
             try {
-                const {data} = await this.axios.get(`${this.baseUrl}/${this.prefix}?api_token=${this.apiToken}&page=${page}${attributes}`)
+                const {data} = await this.axios.get(`${this.baseUrl}/${this.prefix}?api_token=${this.apiToken}&page=${page}${attributesString}`)
                 return data;
             } catch (e) {
                 this.handleError(e);

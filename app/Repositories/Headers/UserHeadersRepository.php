@@ -22,7 +22,10 @@ class UserHeadersRepository extends CoreRepository
             ->whereIn('header_key', $keys)
             ->toBase()
             ->get()
-            ->keyBy('header_key');
+            ->keyBy('header_key')
+            ->map(function ($item) {
+               return $item->header_value;
+            });
         return $response;
     }
 }

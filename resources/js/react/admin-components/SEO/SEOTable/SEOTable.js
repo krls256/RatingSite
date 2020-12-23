@@ -1,13 +1,12 @@
 import React from 'react'
-import {getSEO} from "../../../admin-actions/seo/seoActions";
 import Spinner from "../../GeneralComponents/Spinner";
 import Pagination from "../../GeneralComponents/Pagination/Pagination";
 import Table from "../../GeneralComponents/Table";
 import SEOItem from "../SEOItem";
-import useTableData from "../../../admin-hoooks/useTableData";
+import useUniversalTableData from "../../../admin-hoooks/useUniversalTableData";
 
 const SEOTable = () => {
-    const seoPage = useTableData('seo', getSEO);
+    const seoPage = useUniversalTableData('seo-attributes');
     if (seoPage === undefined)
         return <Spinner />
 

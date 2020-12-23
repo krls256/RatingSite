@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {getArticleEdit, resetArticleEdit, updateArticleMain} from "../../../admin-actions/articles/articlesEditAction";
 import Spinner from "../../GeneralComponents/Spinner";
 import EditNavbar from "../../GeneralComponents/EditNavbar";
 import ErrorLine from "../../NotificationComponents/ErrorLine/ErrorLine";
@@ -9,14 +8,17 @@ import ArticleMain from "../ArticleMain";
 import ArticleContent from "../ArticleContent";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
 import EditWindow from "../../GeneralComponents/EditWindow";
-import useEditData from "../../../admin-hoooks/useEditData";
+import useUniversalEditData from "../../../admin-hoooks/useUniversalEditData";
 
 const ArticleEdit = () => {
     const [navPages, setNavPages] = useState(pages)
-    const {id, articleEdit} = useEditData('articleEdit', getArticleEdit, resetArticleEdit);
-
+    const {id, tableItemEdit: articleEdit} = useUniversalEditData('articles');
     if (articleEdit === null)
-        return <Spinner />
+        return (
+            <EditWindow>
+                <Spinner />
+            </EditWindow>
+        )
 
     return (
         <EditWindow>
@@ -29,7 +31,7 @@ const ArticleEdit = () => {
                     <PageHider active={navPages.active} index={1} component={ArticleContent} />
 
                     <div className='mt-3 page__button'>
-                        <SubmitButton action={updateArticleMain} />
+                        <SubmitButton tableName='articles'/>
                     </div>
                 </article>
             </form>

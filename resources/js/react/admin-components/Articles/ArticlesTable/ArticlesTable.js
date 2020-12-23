@@ -1,14 +1,13 @@
 import React from 'react'
-import {getArticles} from "../../../admin-actions/articles/articlesActions";
 import Spinner from "../../GeneralComponents/Spinner";
 
 import Pagination from "../../GeneralComponents/Pagination";
 import ArticleItem from "../ArticleItem";
 import Table from "../../GeneralComponents/Table";
-import useTableData from "../../../admin-hoooks/useTableData";
+import useUniversalTableData from "../../../admin-hoooks/useUniversalTableData";
 
 const ArticlesTable = () => {
-    const articlePage = useTableData('articles', getArticles);
+    const articlePage = useUniversalTableData('articles');
 
     if (articlePage === undefined) {
         return <Spinner />

@@ -22,10 +22,16 @@ class ArticlesController extends UserController
     {
         $articles = $this->articleRepository->getArticlesPaginate(19);
         $seo = $this->getSEOAttributes('articles');
-        return view('rating.user.articles.index', ['articles' => $articles, 'seo' => $seo]);
+        $headers = $this->getHeaders(['main', 'articles']);
+
+        return view('rating.user.articles.index', [
+            'articles' => $articles,
+            'seo' => $seo,
+            'headers' => $headers
+        ]);
     }
 
-    public function show($slug = '', UserArticlesRepository $articlesRepository, UserCompaniesRepository $companiesRepository)
+    public function show($slug, UserArticlesRepository $articlesRepository, UserCompaniesRepository $companiesRepository)
     {
         $article = $this->articleRepository->getArticleBySlug($slug);
         if ($article === null)
@@ -35,12 +41,15 @@ class ArticlesController extends UserController
         $articles = $articlesRepository->getSomeLastArticle();
         $companies = $companiesRepository->getCompaniesForForm();
         $seo = $this->getSEOAttributes('article');
+        $headers = $this->getHeaders(['main', 'side']);
+
         return view('rating.user.articles.show',
             [
                 'article' => $article,
                 'articles' => $articles,
                 'companies' => $companies,
-                'seo' => $seo
+                'seo' => $seo,
+                'headers' => $headers
             ]);
     }
 }

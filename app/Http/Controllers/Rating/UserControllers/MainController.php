@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Rating\UserControllers;
 
 use App\Repositories\Articles\UserArticlesRepository;
+use App\Repositories\BaseInfo\ColumnBaseInfoRepository;
 use App\Repositories\Companies\UserCompaniesRepository;
 use App\Repositories\SEO\UserSEORepository;
 

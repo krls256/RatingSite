@@ -1,4 +1,4 @@
-const footerToBottom = () => {
+const footerToBottomCore = () => {
     const footer = document.querySelector('.footer');
     const body = document.querySelector('body')
     const {bottom: footerBottom} = footer.getBoundingClientRect();
@@ -11,5 +11,8 @@ const footerToBottom = () => {
         footer.style.left = 0;
     }
 }
+
+const footerToBottom = () => window.onload = footerToBottomCore;
+
 
 export default footerToBottom;

@@ -21,6 +21,11 @@ class ReviewController extends UserController
 
         $articles = $articlesRepository->getSomeLastArticle(2);
         $seo = $this->getSEOAttributes('review');
-        return view('rating.user.review.index', ['review' => $review, 'articles' => $articles, 'seo' => $seo]);
+        $headers = $this->getHeaders(['main', 'side']);
+        return view('rating.user.review.index', [
+            'review' => $review,
+            'articles' => $articles,
+            'seo' => $seo,
+            'headers' => $headers]);
     }
 }

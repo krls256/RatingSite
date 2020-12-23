@@ -1,5 +1,5 @@
 <aside class="new-articles-side pt-4">
-    <h3 class="h h--side mb-3">Новые статьи</h3>
+    <h3 class="h h--side mb-3">{{$headers['side']}}</h3>
     @foreach($articles as $article)
         <div class="new-articles-side__item p-3">
             <img src="{{$article->LinkWithDir}}"

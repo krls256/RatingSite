@@ -45,12 +45,14 @@ class SearchBarController extends UserController
         }
 
         $seo = $this->getSEOAttributes('search');
+        $headers = $this->getHeaders(['main']);
 
         return view('rating.user.search.show',
             [
                 'query' => $query,
                 'response' => $companies->merge($articles),
-                'seo' => $seo
+                'seo' => $seo,
+                'headers' => $headers
             ]);
     }
 }

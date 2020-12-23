@@ -4,13 +4,11 @@ import Input from "../../FormComponent/Input";
 import Textarea from "../../FormComponent/Textarea";
 import Checkbox from "../../FormComponent/Checkbox/Checkbox";
 import checkboxToggle from "../../../admin-services/InputOnChange/checkboxToggle";
-import {
-    setReviewAnswerEdit
-} from "../../../admin-actions/reviewAnswers/reviewAnswerEditActions";
 import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
+import editSelector from "../../../admin-helpers/editSelector";
 
 const ReviewAnswerMain = () => {
-    const {reviewAnswerEdit} = useSelector(selector)
+    const {tableItemEdit: reviewAnswerEdit} = useSelector(editSelector)
     return (
         <div className="page-wrapper card mt-3 p-3">
             {
@@ -19,7 +17,7 @@ const ReviewAnswerMain = () => {
                            field={field}
                            ReduxObj={reviewAnswerEdit}
                            key={field}
-                           onChange={generalInputOnChange(useDispatch, setReviewAnswerEdit)(field, reviewAnswerEdit)}/>
+                           onChange={generalInputOnChange(useDispatch,)(field, reviewAnswerEdit)} />
                 ))
             }
             {
@@ -28,17 +26,15 @@ const ReviewAnswerMain = () => {
                               field={field}
                               ReduxObj={reviewAnswerEdit}
                               key={field}
-                              onChange={generalInputOnChange(useDispatch, setReviewAnswerEdit)(field, reviewAnswerEdit)}/>
+                              onChange={generalInputOnChange(useDispatch)(field, reviewAnswerEdit)} />
                 ))
             }
             <Checkbox label='Опубликовано'
                       value={reviewAnswerEdit.is_published}
-                      onChange={checkboxToggle(useDispatch, setReviewAnswerEdit)(reviewAnswerEdit)}/>
+                      onChange={checkboxToggle(useDispatch)(reviewAnswerEdit)} />
         </div>
     )
 }
-
-const selector = ({reviewAnswerEdit}) => ({reviewAnswerEdit})
 
 export default ReviewAnswerMain;
 

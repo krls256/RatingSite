@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {getVideoEdit, resetVideoEdit, updateVideoMain} from "../../../admin-actions/videos/videoEditAction";
 import Spinner from "../../GeneralComponents/Spinner";
 import EditNavbar from "../../GeneralComponents/EditNavbar";
 import ErrorLine from "../../NotificationComponents/ErrorLine/ErrorLine";
@@ -8,11 +7,11 @@ import PageHider from "../../../admin-hoc/PageHider";
 import VideoMain from "../VideosMain";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
 import EditWindow from "../../GeneralComponents/EditWindow";
-import useEditData from "../../../admin-hoooks/useEditData";
+import useUniversalEditData from "../../../admin-hoooks/useUniversalEditData";
 
 const VideosEdit = () => {
     const [navPages, setNavPages] = useState(pages)
-    const {id, videoEdit} = useEditData('videoEdit', getVideoEdit, resetVideoEdit);
+    const {id, tableItemEdit: videoEdit} = useUniversalEditData('videos');
 
     if (videoEdit === null)
         return (
@@ -31,7 +30,7 @@ const VideosEdit = () => {
                     <PageHider component={VideoMain} active={navPages.active} index={0} />
 
                     <div className='mt-3 page__button'>
-                        <SubmitButton action={updateVideoMain} />
+                        <SubmitButton tableName='videos' />
                     </div>
                 </article>
             </form>
@@ -40,11 +39,11 @@ const VideosEdit = () => {
 
 }
 
-export default VideosEdit
+export default VideosEdit;
 
 const pages = {
     data: [
         'Главная',
     ],
     active: 0
-}
+};

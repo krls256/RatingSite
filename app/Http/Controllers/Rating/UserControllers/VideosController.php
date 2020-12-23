@@ -24,12 +24,14 @@ class VideosController extends UserController
         $articles = $articlesRepository->getSomeLastArticle(2);
         $companies = $companiesRepository->getCompaniesForForm();
         $seo = $this->getSEOAttributes('videos');
+        $headers = $this->getHeaders(['main', 'side', 'videos']);
         return view('rating.user.videos.index',
             [
                 'videos' => $videos,
                 'articles' => $articles,
                 'companies' => $companies,
-                'seo' => $seo
+                'seo' => $seo,
+                'headers' => $headers
             ]);
     }
 }

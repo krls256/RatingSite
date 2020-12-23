@@ -8,7 +8,7 @@ const useTableData = (field, getFunc) => {
     useEffect(() => {
         if (apiToken !== null && d[currentPage] === undefined)
             dispatch(getFunc())
-    }, [apiToken, currentPage])
+    }, [apiToken, currentPage, d[currentPage]])
 
 
     return d[currentPage];

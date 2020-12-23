@@ -2208,6 +2208,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .reviews__button-wrapper {
   display: flex;
@@ -2369,8 +2370,8 @@ body {
   display: block;
   width: 100%;
   border-radius: 0.25rem;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media (min-width: 576px) {
@@ -2389,6 +2390,9 @@ body {
   }
   .reviews__item-date {
     flex-grow: 3;
+  }
+  .reviews__image {
+    max-height: 16rem;
   }
   .reviews__image-wrapper {
     flex-basis: 49%;

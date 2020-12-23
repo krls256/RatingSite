@@ -2,10 +2,10 @@ import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import Textarea from "../../FormComponent/Textarea";
 import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
-import {updateReviewEdit} from "../../../admin-actions/reviews/reviewsEditActions";
+import editSelector from "../../../admin-helpers/editSelector";
 
 const ReviewText = () => {
-    const {reviewEdit} = useSelector(selector)
+    const {tableItemEdit: reviewEdit} = useSelector(editSelector)
     return (
         <div className="page-wrapper card mt-3 p-3">
 
@@ -14,14 +14,12 @@ const ReviewText = () => {
                     <Textarea field={field}
                               label={label}
                               ReduxObj={reviewEdit}
-                              onChange={generalInputOnChange(useDispatch, updateReviewEdit)(field, reviewEdit)}
+                              onChange={generalInputOnChange(useDispatch)(field, reviewEdit)}
                               key={field} />)
             }
         </div>
     )
 }
-
-const selector = ({reviewEdit}) => ({reviewEdit})
 
 export default ReviewText;
 

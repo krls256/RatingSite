@@ -61,4 +61,8 @@ class Companies extends Model
     public function getSelfCollection() {
         return collect()->push($this);
     }
+
+    public function replaceName($str, $replace) {
+        return str_replace($replace, $this->company_name, $str);
+    }
 }

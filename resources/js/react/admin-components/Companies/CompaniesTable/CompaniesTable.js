@@ -1,27 +1,34 @@
-import React from 'react'
-import {getCompanies} from '../../../admin-actions/companies/companiesActions';
+import React, {Fragment} from 'react'
 
 import CompanyItem from "../CompanyItem";
 import Spinner from "../../GeneralComponents/Spinner";
 import Pagination from "../../GeneralComponents/Pagination";
 import Table from "../../GeneralComponents/Table";
-import useTableData from "../../../admin-hoooks/useTableData";
+import FilterBar from "../../GeneralComponents/FilterBar";
+import useUniversalTableData from "../../../admin-hoooks/useUniversalTableData";
+import {resetTablePages} from "../../../admin-actions/table/tablePagesActions";
 
 const CompaniesTable = () => {
-    const companyPage = useTableData('companies', getCompanies);
+    const companyPage = useUniversalTableData('companies');
 
-    if (companyPage === undefined) {
-        return <Spinner />
-    }
+    const content = companyPage === undefined ? <Spinner /> :
+        (
+            <Fragment>
+                <Table fields={['ID', 'Название', 'Средний рейтинг', 'Ссылки']}
+                       head_key={'companies'}
+                       key_field={'company_name'}
+                       component={CompanyItem}
+                       items={companyPage} />
+                <Pagination />
+            </Fragment>
+        )
 
     return (
         <div>
-            <Table fields={['ID', 'Название', 'Средний рейтинг', 'Ссылки']}
-                   head_key={'companies'}
-                   key_field={'company_name'}
-                   component={CompanyItem}
-                   items={companyPage} />
-            <Pagination />
+            <FilterBar orderBy={orderBy} apply={resetTablePages} />
+            {
+                content
+            }
         </div>
 
     )
@@ -29,3 +36,22 @@ const CompaniesTable = () => {
 
 
 export default CompaniesTable;
+
+const orderBy = [
+    {
+        label: 'Сортировка: ID компании',
+        value: 'company_id'
+    },
+    {
+        label: 'Сортировка: Средний рейтинг',
+        value: 'company_average_mark'
+    },
+    {
+        label: 'Сортировка: Количество отзывов',
+        value: 'company_quantity_review'
+    },
+    {
+        label: 'Сортировка: Название компании',
+        value: 'company_name'
+    }
+];

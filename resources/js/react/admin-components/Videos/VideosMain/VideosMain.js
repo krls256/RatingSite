@@ -3,10 +3,10 @@ import {useDispatch, useSelector} from "react-redux";
 import Input from "../../FormComponent/Input";
 import Textarea from "../../FormComponent/Textarea";
 import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
-import {setVideoEdit} from "../../../admin-actions/videos/videoEditAction";
+import editSelector from "../../../admin-helpers/editSelector";
 
 const VideoMain = () => {
-    const {videoEdit} = useSelector(selector)
+    const {tableItemEdit: videoEdit} = useSelector(editSelector)
     return (
         <div className="page-wrapper card mt-3 p-3">
             {
@@ -15,7 +15,7 @@ const VideoMain = () => {
                            field={field}
                            ReduxObj={videoEdit}
                            key={field}
-                           onChange={generalInputOnChange(useDispatch, setVideoEdit)(field, videoEdit)}/>
+                           onChange={generalInputOnChange(useDispatch)(field, videoEdit)} />
                 ))
             }
             {
@@ -24,15 +24,13 @@ const VideoMain = () => {
                               field={field}
                               ReduxObj={videoEdit}
                               key={field}
-                              onChange={generalInputOnChange(useDispatch, setVideoEdit)(field, videoEdit)}
+                              onChange={generalInputOnChange(useDispatch)(field, videoEdit)}
                     />
                 ))
             }
         </div>
     )
 }
-
-const selector = ({videoEdit}) => ({videoEdit})
 
 export default VideoMain;
 

@@ -1,5 +1,4 @@
 import React, {useRef, useState} from 'react';
-import {getCompanyEdit, resetCompanyEdit, updateCompanyMain} from '../../../admin-actions/companies/companyEditActions'
 import Spinner from "../../GeneralComponents/Spinner";
 import EditNavbar from "../../GeneralComponents/EditNavbar";
 import CompanyMain from "../CompanyMain";
@@ -11,11 +10,11 @@ import ErrorLine from "../../NotificationComponents/ErrorLine/ErrorLine";
 import SuccessLine from "../../NotificationComponents/SuccessLine/SuccessLine";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
 import EditWindow from "../../GeneralComponents/EditWindow";
-import useEditData from "../../../admin-hoooks/useEditData";
+import useUniversalEditData from "../../../admin-hoooks/useUniversalEditData";
 
 const CompanyEdit = () => {
     const [navPages, setNavPages] = useState(pages);
-    const {id, companyEdit} = useEditData('companyEdit', getCompanyEdit, resetCompanyEdit);
+    const {id, tableItemEdit: companyEdit} = useUniversalEditData('companies');
     const formRef = useRef(null);
 
     if (companyEdit === null)
@@ -38,7 +37,7 @@ const CompanyEdit = () => {
                     <PageHider component={CompanyStatistics} index={3} active={navPages.active} />
 
                     <div className='pt-3 page__button'>
-                        <SubmitButton action={updateCompanyMain} />
+                        <SubmitButton tableName='companies' />
                     </div>
                 </article>
             </form>

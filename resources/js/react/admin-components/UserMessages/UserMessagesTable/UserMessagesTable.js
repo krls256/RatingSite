@@ -1,14 +1,13 @@
 import React from 'react';
-import {getUserMessages} from "../../../admin-actions/userMessages/userMessagesActions";
 import Spinner from "../../GeneralComponents/Spinner";
 import ErrorLine from "../../NotificationComponents/ErrorLine/ErrorLine";
 import Table from "../../GeneralComponents/Table";
 import UserMessagesItem from "../UserMessagesItem";
 import Pagination from "../../GeneralComponents/Pagination";
-import useTableData from "../../../admin-hoooks/useTableData";
+import useUniversalTableData from "../../../admin-hoooks/useUniversalTableData";
 
 const UserMessagesTable = () => {
-    const userMessagesPage = useTableData('userMessages', getUserMessages);
+    const userMessagesPage = useUniversalTableData('user-messages');
 
     if (userMessagesPage === undefined)
         return <Spinner />

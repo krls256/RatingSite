@@ -18,9 +18,12 @@ class ApiCompaniesController extends ApiController
 
     public function index(CompaniesApiRequest $request)
     {
-        $page = $request->get('page');
+        $options = $request->all();
+        $response = $this->companyRepository->getCompaniesPaginate(15, $options)->toArray();
 
-        return $this->companyRepository->getCompaniesPaginate(15);
+        $response['options'] = $options;
+
+        return $response;
     }
 
 

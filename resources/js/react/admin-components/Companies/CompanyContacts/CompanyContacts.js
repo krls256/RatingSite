@@ -1,36 +1,35 @@
 import React from 'react';
 import Input from "../../FormComponent/Input";
-import {useDispatch, connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Textarea from "../../FormComponent/Textarea";
 import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
-import {updateCompanyEdit} from "../../../admin-actions/companies/companyEditActions";
+import editSelector from "../../../admin-helpers/editSelector";
 
-const CompanyContacts = ({companyEdit}) => {
+const CompanyContacts = () => {
+    const {tableItemEdit: companyEdit} = useSelector(editSelector)
     return (
         <div className="page-wrapper card mt-3 p-3">
             {
-                fields.map(({field, label})=>
+                fields.map(({field, label}) =>
                     <Input field={field}
                            label={label}
                            ReduxObj={companyEdit}
-                           onChange={generalInputOnChange(useDispatch, updateCompanyEdit)(field, companyEdit)}
-                           key={field}/>)
+                           onChange={generalInputOnChange(useDispatch)(field, companyEdit)}
+                           key={field} />)
             }
             {
                 textarias.map(({field, label}) =>
                     <Textarea field={field}
                               label={label}
                               ReduxObj={companyEdit}
-                              onChange={generalInputOnChange(useDispatch, updateCompanyEdit)(field, companyEdit)}
-                              key={field}/>)
+                              onChange={generalInputOnChange(useDispatch)(field, companyEdit)}
+                              key={field} />)
             }
         </div>
     )
 }
 
-const mapStateToProps = ({companyEdit}) => ({companyEdit})
-
-export default connect(mapStateToProps)(CompanyContacts)
+export default CompanyContacts;
 
 const fields = [
     {
@@ -47,6 +46,4 @@ const fields = [
     }
 ]
 
-const textarias = [
-
-]
+const textarias = []

@@ -27,7 +27,7 @@
     <ul class="reviews__images">
         @foreach($review->images as $image)
             <li class="reviews__image-wrapper">
-                <img src="{{$image->image_link}}" alt="" class="reviews__image">
+                <img src="{{$image->image_link}}" alt="Фоторгафия из отзыва номер {{$image->image_id}}" class="reviews__image">
             </li>
         @endforeach
     </ul>

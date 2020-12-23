@@ -13,12 +13,15 @@ class ApiCompanyRepository extends CoreRepository
         return Model::class;
     }
 
-    public function getCompaniesPaginate($count = 15)
+    public function getCompaniesPaginate($count = 15, $options = [])
     {
         $column = ['company_name', 'company_id', 'company_average_mark', 'is_published'];
         $response = $this->startCondition()
-            ->select($column)
-            ->paginate($count);
+            ->select($column);
+        if(isset($options['orderBy'])) {
+            $response = $response->orderBy($options['orderBy'], 'desc');
+        }
+        $response = $response->paginate($count);
         return $response;
     }
 

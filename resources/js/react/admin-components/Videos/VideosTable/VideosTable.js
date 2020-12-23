@@ -1,12 +1,11 @@
 import React from 'react'
-import {getVideos} from "../../../admin-actions/videos/videosActions";
 import Table from "../../GeneralComponents/Table";
 import VideoItem from "../VideoItem";
 import Spinner from "../../GeneralComponents/Spinner";
-import useTableData from "../../../admin-hoooks/useTableData";
+import useUniversalTableData from "../../../admin-hoooks/useUniversalTableData";
 
 const VideosTable = () => {
-    const videosPage = useTableData('videos', getVideos);
+    const videosPage = useUniversalTableData('videos');
 
     if (videosPage === undefined) {
         return <Spinner />

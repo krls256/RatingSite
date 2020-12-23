@@ -1,18 +1,17 @@
 import React, {useState} from 'react';
 import EditWindow from "../../GeneralComponents/EditWindow";
 import Spinner from "../../GeneralComponents/Spinner";
-import {getSeoEdit, resetSeoEdit, updateSeoMain} from "../../../admin-actions/seo/seoEditActions";
 import ErrorLine from "../../NotificationComponents/ErrorLine/ErrorLine";
 import SuccessLine from "../../NotificationComponents/SuccessLine/SuccessLine";
 import EditNavbar from "../../GeneralComponents/EditNavbar";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
 import PageHider from "../../../admin-hoc/PageHider";
 import SEOMain from "../SEOMain";
-import useEditData from "../../../admin-hoooks/useEditData";
+import useUniversalEditData from "../../../admin-hoooks/useUniversalEditData";
 
 const SEOEdit = () => {
     const [navPages, setNavPages] = useState(pages)
-    const {id, seoEdit} = useEditData('seoEdit', getSeoEdit, resetSeoEdit);
+    const {id, tableItemEdit: seoEdit} = useUniversalEditData('seo-attributes');
 
     if (seoEdit === null) {
         return (
@@ -31,7 +30,7 @@ const SEOEdit = () => {
                 <article className="page__content">
                     <PageHider active={navPages.active} index={0} component={SEOMain} />
                     <div className='pt-3 page__button'>
-                        <SubmitButton action={updateSeoMain} />
+                        <SubmitButton tableName='seo-attributes' />
                     </div>
                 </article>
             </form>

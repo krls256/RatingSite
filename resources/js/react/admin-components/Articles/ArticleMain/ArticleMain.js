@@ -1,12 +1,12 @@
-import React, {} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import Textarea from "../../FormComponent/Textarea";
 import Input from "../../FormComponent/Input";
 import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
-import {setArticleEdit} from "../../../admin-actions/articles/articlesEditAction";
+import editSelector from "../../../admin-helpers/editSelector";
 
 const ArticleMain = () => {
-    const {articleEdit} = useSelector(selector)
+    const {tableItemEdit: articleEdit} = useSelector(editSelector)
 
     return (
         <div className="page-wrapper card mt-3 p-3">
@@ -16,7 +16,7 @@ const ArticleMain = () => {
                            field={field}
                            ReduxObj={articleEdit}
                            key={field}
-                           onChange={generalInputOnChange(useDispatch, setArticleEdit)(field, articleEdit)}/>
+                           onChange={generalInputOnChange(useDispatch)(field, articleEdit)} />
                 ))
             }
             {
@@ -25,14 +25,12 @@ const ArticleMain = () => {
                               field={field}
                               ReduxObj={articleEdit}
                               key={field}
-                              onChange={generalInputOnChange(useDispatch, setArticleEdit)(field, articleEdit)}/>
+                              onChange={generalInputOnChange(useDispatch)(field, articleEdit)} />
                 ))
             }
         </div>
     )
 }
-
-const selector = ({articleEdit}) => ({articleEdit});
 
 export default ArticleMain;
 
@@ -49,11 +47,11 @@ const fields = [
         field: 'article_slug',
         label: 'Адресный идентификатор',
     }
-]
+];
 
 const textareas = [
     {
         field: 'article_description',
         label: 'Короткое описание',
     }
-]
+];

@@ -1,6 +1,6 @@
 <div class="splitter__main">
     <section class="about-project">
-        <h1 class="h h--page text-black page__header">О проекте</h1>
+        <h1 class="h h--page text-black page__header">{{$headers['about']}}</h1>
         <div class="page__nav">Рейтинг компаний > <span class="c-orange-light">О проекте</span></div>
         <div class="about-project__content mb-6">
             <div class="about-project__logo">

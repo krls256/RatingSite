@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var footerToBottom = function footerToBottom() {
+var footerToBottomCore = function footerToBottomCore() {
   var footer = document.querySelector('.footer');
   var body = document.querySelector('body');
 
@@ -146,6 +146,10 @@ var footerToBottom = function footerToBottom() {
     footer.style.bottom = 0;
     footer.style.left = 0;
   }
+};
+
+var footerToBottom = function footerToBottom() {
+  return window.onload = footerToBottomCore;
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (footerToBottom);

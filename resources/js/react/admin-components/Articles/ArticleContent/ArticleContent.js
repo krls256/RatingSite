@@ -1,11 +1,11 @@
 import React from 'react';
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Textarea from "../../FormComponent/Textarea";
 import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
-import {setArticleEdit} from "../../../admin-actions/articles/articlesEditAction";
+import editSelector from "../../../admin-helpers/editSelector";
 
 const ArticleContent = () => {
-    const {articleEdit} = useSelector(selector)
+    const {tableItemEdit: articleEdit} = useSelector(editSelector)
 
     return (
         <div className="page-wrapper card mt-3 p-3">
@@ -15,14 +15,12 @@ const ArticleContent = () => {
                               field={field}
                               ReduxObj={articleEdit}
                               key={field}
-                              onChange={generalInputOnChange(useDispatch, setArticleEdit)(field, articleEdit)}/>
+                              onChange={generalInputOnChange(useDispatch)(field, articleEdit)} />
                 ))
             }
         </div>
     )
 }
-
-const selector = ({articleEdit}) => ({articleEdit})
 
 export default ArticleContent;
 
@@ -31,4 +29,4 @@ const textareas = [
         'field': 'article_content',
         'label': 'Контент'
     },
-]
+];

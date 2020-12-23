@@ -32,12 +32,12 @@ class HeadersSeeder extends Seeder
             'header_description' => 'Заголовок страницы `О проекте`'
         ],
         [
-            'header_key' => 'article',
+            'header_key' => 'articles',
             'header_value' => 'Выберите любую статью для прочтения',
             'header_description' => 'Заголовок страницы `Статьи`'
         ],
         [
-            'header_key' => 'video',
+            'header_key' => 'videos',
             'header_value' => 'Полезное видео о возможностях в ремонте квартиры',
             'header_description' => 'Заголовок страницы `Видел`'
         ],

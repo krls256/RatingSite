@@ -16,6 +16,13 @@ class AboutController extends UserController
         $articles = $articlesRepository->getSomeLastArticle(2);
         $companies = $companiesRepository->getCompaniesForForm();
         $seo = $this->getSEOAttributes('about');
-        return view('rating.user.about.index', ['articles' => $articles, 'companies' => $companies, 'seo' => $seo]);
+        $headers = $this->getHeaders(['main', 'about', 'side']);
+
+        return view('rating.user.about.index', [
+            'articles' => $articles,
+            'companies' => $companies,
+            'seo' => $seo,
+            'headers' => $headers
+            ]);
     }
 }

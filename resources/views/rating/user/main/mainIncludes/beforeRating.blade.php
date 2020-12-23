@@ -7,7 +7,6 @@
             <i class="before-rating__star"></i>
             <i class="before-rating__star"></i>
         </span>
-        <h1 class="h h--page text-black">Рейтинг компаний по ремонте квартир в Москве. Отзывы реальных клиентов. Сравнение цен на услуги ремонта и дизайна интерьера квартир в строительных компаниях. Читайте отзывы и комментарии.</h1>
+        <h1 class="h h--page text-black">{{$headers['rating']}}</h1>
     </div>
-
 </section>

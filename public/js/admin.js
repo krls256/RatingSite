@@ -38164,165 +38164,6 @@ var successMessageReset = function successMessageReset() {
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-actions/articles/articlesActions.js":
-/*!**********************************************************************!*\
-  !*** ./resources/js/react/admin-actions/articles/articlesActions.js ***!
-  \**********************************************************************/
-/*! exports provided: getArticles */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getArticles", function() { return getArticles; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _appState_lastPageActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../appState/lastPageActions */ "./resources/js/react/admin-actions/appState/lastPageActions.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-
-
-
-
-var getArticles = function getArticles() {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        currentPage = _getState.currentPage,
-        apiToken = _getState.apiToken;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'articles');
-    service.getPagination(currentPage).then(function (_ref) {
-      var current_page = _ref.current_page,
-          last_page = _ref.last_page,
-          data = _ref.data;
-      dispatch(setArticles(current_page, data));
-      dispatch(Object(_appState_lastPageActions__WEBPACK_IMPORTED_MODULE_1__["setLastPage"])(last_page));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch));
-  };
-};
-
-var setArticles = function setArticles(key, payload) {
-  return {
-    type: 'articles/addPage',
-    key: key,
-    payload: payload
-  };
-};
-
-
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-actions/articles/articlesEditAction.js":
-/*!*************************************************************************!*\
-  !*** ./resources/js/react/admin-actions/articles/articlesEditAction.js ***!
-  \*************************************************************************/
-/*! exports provided: getArticleEdit, resetArticleEdit, setArticleEdit, updateArticleMain */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getArticleEdit", function() { return getArticleEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetArticleEdit", function() { return resetArticleEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setArticleEdit", function() { return setArticleEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateArticleMain", function() { return updateArticleMain; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-/* harmony import */ var _admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/updateStart */ "./resources/js/react/admin-helpers/updateStart.js");
-/* harmony import */ var _admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../admin-helpers/updateFinish */ "./resources/js/react/admin-helpers/updateFinish.js");
-
-
-
-
-
-var getArticleEdit = function getArticleEdit(id) {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        apiToken = _getState.apiToken;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'articles');
-    service.getEdit(id).then(function (r) {
-      return dispatch(setArticleEdit(r));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-var updateArticleMain = function updateArticleMain() {
-  return function (dispatch, getState) {
-    var _getState2 = getState(),
-        apiToken = _getState2.apiToken,
-        articleEdit = _getState2.articleEdit;
-
-    var article_id = articleEdit.article_id;
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'articles');
-    Object(_admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch);
-    service.update(article_id, articleEdit).then(function (r) {
-      Object(_admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__["default"])(dispatch, r);
-      dispatch(getArticleEdit(article_id));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-var resetArticleEdit = function resetArticleEdit() {
-  return {
-    type: 'articleEdit/reset'
-  };
-};
-
-var setArticleEdit = function setArticleEdit(payload) {
-  return {
-    type: 'articleEdit/update',
-    payload: payload
-  };
-};
-
-
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-actions/companies/companiesActions.js":
-/*!************************************************************************!*\
-  !*** ./resources/js/react/admin-actions/companies/companiesActions.js ***!
-  \************************************************************************/
-/*! exports provided: getCompanies */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCompanies", function() { return getCompanies; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _appState_lastPageActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../appState/lastPageActions */ "./resources/js/react/admin-actions/appState/lastPageActions.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-
-
-
-
-var getCompanies = function getCompanies() {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        apiToken = _getState.apiToken,
-        currentPage = _getState.currentPage;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'companies');
-    service.getPagination(currentPage).then(function (_ref) {
-      var current_page = _ref.current_page,
-          last_page = _ref.last_page,
-          data = _ref.data;
-      dispatch(Object(_appState_lastPageActions__WEBPACK_IMPORTED_MODULE_1__["setLastPage"])(last_page));
-      dispatch(addCompaniesPage(current_page, data));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch));
-  };
-};
-
-var addCompaniesPage = function addCompaniesPage(key, payload) {
-  return {
-    type: "companies/addCompaniesPage",
-    key: key,
-    payload: payload
-  };
-};
-
-
-
-/***/ }),
-
 /***/ "./resources/js/react/admin-actions/companies/companiesShortListActions.js":
 /*!*********************************************************************************!*\
   !*** ./resources/js/react/admin-actions/companies/companiesShortListActions.js ***!
@@ -38361,186 +38202,21 @@ var setShortList = function setShortList(payload) {
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-actions/companies/companyEditActions.js":
-/*!**************************************************************************!*\
-  !*** ./resources/js/react/admin-actions/companies/companyEditActions.js ***!
-  \**************************************************************************/
-/*! exports provided: updateCompanyMain, resetCompanyEdit, updateCompanyEdit, getCompanyEdit */
+/***/ "./resources/js/react/admin-actions/filterAttributes/filterAttributesActions.js":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/react/admin-actions/filterAttributes/filterAttributesActions.js ***!
+  \**************************************************************************************/
+/*! exports provided: setFilterAttributes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCompanyMain", function() { return updateCompanyMain; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetCompanyEdit", function() { return resetCompanyEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCompanyEdit", function() { return updateCompanyEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCompanyEdit", function() { return getCompanyEdit; });
-/* harmony import */ var _admin_services_validationErrorHendler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/validationErrorHendler */ "./resources/js/react/admin-services/validationErrorHendler.js");
-/* harmony import */ var _appState_isLoadingActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../appState/isLoadingActions */ "./resources/js/react/admin-actions/appState/isLoadingActions.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-/* harmony import */ var _admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../admin-helpers/updateStart */ "./resources/js/react/admin-helpers/updateStart.js");
-/* harmony import */ var _admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../admin-helpers/updateFinish */ "./resources/js/react/admin-helpers/updateFinish.js");
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-
-
-
-
-
-
-
-var getCompanyEdit = function getCompanyEdit(id) {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        apiToken = _getState.apiToken;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_5__["default"](apiToken, 'companies');
-    service.getEdit(id).then(function (res) {
-      return dispatch(updateCompanyEdit(res));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch));
-  };
-};
-
-var updateCompanyMain = function updateCompanyMain() {
-  return function (dispatch, getState) {
-    var _getState2 = getState(),
-        apiToken = _getState2.apiToken,
-        companyEdit = _getState2.companyEdit;
-
-    var id = companyEdit.company_id;
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_5__["default"](apiToken, 'companies');
-    Object(_admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_3__["default"])(dispatch);
-    service.update(id, companyEdit).then(function (r) {
-      Object(_admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_4__["default"])(dispatch, r);
-      dispatch(getCompanyEdit(id));
-    })["catch"](function (err) {
-      dispatch(Object(_admin_services_validationErrorHendler__WEBPACK_IMPORTED_MODULE_0__["default"])(err));
-      dispatch(Object(_appState_isLoadingActions__WEBPACK_IMPORTED_MODULE_1__["isLoadingSetFalse"])());
-    });
-  };
-};
-
-var updateCompanyEdit = function updateCompanyEdit(payload) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFilterAttributes", function() { return setFilterAttributes; });
+var setFilterAttributes = function setFilterAttributes(key, payload) {
   return {
-    'type': 'companyEdit/update',
-    payload: payload
-  };
-};
-
-var resetCompanyEdit = function resetCompanyEdit() {
-  return {
-    'type': 'companyEdit/reset'
-  };
-};
-
-
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-actions/headers/headersActions.js":
-/*!********************************************************************!*\
-  !*** ./resources/js/react/admin-actions/headers/headersActions.js ***!
-  \********************************************************************/
-/*! exports provided: getHeaders */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeaders", function() { return getHeaders; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-/* harmony import */ var _appState_lastPageActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../appState/lastPageActions */ "./resources/js/react/admin-actions/appState/lastPageActions.js");
-
-
-
-
-var getHeaders = function getHeaders() {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        apiToken = _getState.apiToken,
-        currentPage = _getState.currentPage;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'headers');
-    service.getPagination(currentPage).then(function (_ref) {
-      var current_page = _ref.current_page,
-          last_page = _ref.last_page,
-          data = _ref.data;
-      dispatch(Object(_appState_lastPageActions__WEBPACK_IMPORTED_MODULE_2__["setLastPage"])(last_page));
-      dispatch(setHeaders(current_page, data));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-var setHeaders = function setHeaders(key, payload) {
-  return {
-    type: 'headers/addPage',
+    type: 'filterAttributes/set',
     key: key,
     payload: payload
-  };
-};
-
-
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-actions/headers/headersEditActions.js":
-/*!************************************************************************!*\
-  !*** ./resources/js/react/admin-actions/headers/headersEditActions.js ***!
-  \************************************************************************/
-/*! exports provided: resetHeaderEdit, getHeaderEdit, updateHeaderEdit, updateHeaderMain */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetHeaderEdit", function() { return resetHeaderEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHeaderEdit", function() { return getHeaderEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateHeaderEdit", function() { return updateHeaderEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateHeaderMain", function() { return updateHeaderMain; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-/* harmony import */ var _admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/updateStart */ "./resources/js/react/admin-helpers/updateStart.js");
-/* harmony import */ var _admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../admin-helpers/updateFinish */ "./resources/js/react/admin-helpers/updateFinish.js");
-
-
-
-
-
-var getHeaderEdit = function getHeaderEdit(id) {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        apiToken = _getState.apiToken;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'headers');
-    service.getEdit(id).then(function (r) {
-      return dispatch(updateHeaderEdit(r));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-var updateHeaderEdit = function updateHeaderEdit(payload) {
-  return {
-    type: 'headerEdit/update',
-    payload: payload
-  };
-};
-
-var resetHeaderEdit = function resetHeaderEdit() {
-  return {
-    type: 'headerEdit/reset'
-  };
-};
-
-var updateHeaderMain = function updateHeaderMain() {
-  return function (dispatch, getState) {
-    var _getState2 = getState(),
-        apiToken = _getState2.apiToken,
-        headerEdit = _getState2.headerEdit;
-
-    var header_id = headerEdit.header_id;
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'headers');
-    Object(_admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch);
-    service.update(header_id, headerEdit).then(function (r) {
-      Object(_admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__["default"])(dispatch, r);
-      dispatch(getHeaderEdit(header_id));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
   };
 };
 
@@ -38653,19 +38329,19 @@ var updateImagesCommandLine = function updateImagesCommandLine(payload) {
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-actions/reviewAnswers/reviewAnswerEditActions.js":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/react/admin-actions/reviewAnswers/reviewAnswerEditActions.js ***!
-  \***********************************************************************************/
-/*! exports provided: resetReviewAnswerEdit, getReviewAnswerEdit, updateReviewAnswerMain, setReviewAnswerEdit */
+/***/ "./resources/js/react/admin-actions/table/tableItemEditActions.js":
+/*!************************************************************************!*\
+  !*** ./resources/js/react/admin-actions/table/tableItemEditActions.js ***!
+  \************************************************************************/
+/*! exports provided: getTableItemEdit, resetTableItemEdit, setTableItemEdit, updateTableItemMain */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetReviewAnswerEdit", function() { return resetReviewAnswerEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReviewAnswerEdit", function() { return getReviewAnswerEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateReviewAnswerMain", function() { return updateReviewAnswerMain; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setReviewAnswerEdit", function() { return setReviewAnswerEdit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTableItemEdit", function() { return getTableItemEdit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetTableItemEdit", function() { return resetTableItemEdit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTableItemEdit", function() { return setTableItemEdit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTableItemMain", function() { return updateTableItemMain; });
 /* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
 /* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
 /* harmony import */ var _admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/updateStart */ "./resources/js/react/admin-helpers/updateStart.js");
@@ -38675,43 +38351,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var getReviewAnswerEdit = function getReviewAnswerEdit(id) {
+var getTableItemEdit = function getTableItemEdit(tableName, id) {
   return function (dispatch, getState) {
     var _getState = getState(),
         apiToken = _getState.apiToken;
 
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'review-answers');
+    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, tableName);
     service.getEdit(id).then(function (r) {
-      dispatch(setReviewAnswerEdit(r));
+      return dispatch(setTableItemEdit(r));
     })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
   };
 };
 
-var setReviewAnswerEdit = function setReviewAnswerEdit(payload) {
+var setTableItemEdit = function setTableItemEdit(payload) {
   return {
-    type: 'reviewAnswerEdit/update',
+    type: 'tableItemEdit/update',
     payload: payload
   };
 };
 
-var resetReviewAnswerEdit = function resetReviewAnswerEdit() {
+var resetTableItemEdit = function resetTableItemEdit() {
   return {
-    type: 'reviewAnswerEdit/reset'
+    type: 'tableItemEdit/reset'
   };
 };
 
-var updateReviewAnswerMain = function updateReviewAnswerMain() {
+var updateTableItemMain = function updateTableItemMain(tableName, id) {
   return function (dispatch, getState) {
     var _getState2 = getState(),
         apiToken = _getState2.apiToken,
-        reviewAnswerEdit = _getState2.reviewAnswerEdit;
+        tableItemEdit = _getState2.tableItemEdit;
 
-    var id = reviewAnswerEdit.review_answer_id;
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'review-answers');
+    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, tableName);
     Object(_admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch);
-    service.update(id, reviewAnswerEdit).then(function (r) {
+    service.update(id, tableItemEdit).then(function (r) {
       Object(_admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__["default"])(dispatch, r);
-      dispatch(getReviewAnswerEdit(id));
+      dispatch(getTableItemEdit(tableName, id));
     })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
   };
 };
@@ -38720,16 +38395,17 @@ var updateReviewAnswerMain = function updateReviewAnswerMain() {
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-actions/reviewAnswers/reviewAnswersAntions.js":
-/*!********************************************************************************!*\
-  !*** ./resources/js/react/admin-actions/reviewAnswers/reviewAnswersAntions.js ***!
-  \********************************************************************************/
-/*! exports provided: getReviewAnswers */
+/***/ "./resources/js/react/admin-actions/table/tablePagesActions.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/react/admin-actions/table/tablePagesActions.js ***!
+  \*********************************************************************/
+/*! exports provided: getTablePage, resetTablePages */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReviewAnswers", function() { return getReviewAnswers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTablePage", function() { return getTablePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetTablePages", function() { return resetTablePages; });
 /* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
 /* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
 /* harmony import */ var _appState_lastPageActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../appState/lastPageActions */ "./resources/js/react/admin-actions/appState/lastPageActions.js");
@@ -38737,245 +38413,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var getReviewAnswers = function getReviewAnswers() {
+var getTablePage = function getTablePage(tableName) {
   return function (dispatch, getState) {
     var _getState = getState(),
         currentPage = _getState.currentPage,
-        apiToken = _getState.apiToken;
+        apiToken = _getState.apiToken,
+        filterAttributes = _getState.filterAttributes;
 
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'review-answers');
-    service.getPagination(currentPage).then(function (_ref) {
+    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, tableName);
+    service.getPagination(currentPage, filterAttributes).then(function (_ref) {
       var current_page = _ref.current_page,
           last_page = _ref.last_page,
           data = _ref.data;
-      dispatch(setReviewAnswers(current_page, data));
       dispatch(Object(_appState_lastPageActions__WEBPACK_IMPORTED_MODULE_2__["setLastPage"])(last_page));
+      dispatch(setTablePage(current_page, data));
     })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
   };
 };
 
-var setReviewAnswers = function setReviewAnswers(key, payload) {
+var setTablePage = function setTablePage(key, payload) {
   return {
-    type: 'reviewAnswers/addPage',
+    type: 'tablePages/addPage',
     key: key,
     payload: payload
   };
 };
 
-
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-actions/reviews/reviewsActions.js":
-/*!********************************************************************!*\
-  !*** ./resources/js/react/admin-actions/reviews/reviewsActions.js ***!
-  \********************************************************************/
-/*! exports provided: getReviews */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReviews", function() { return getReviews; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _appState_lastPageActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../appState/lastPageActions */ "./resources/js/react/admin-actions/appState/lastPageActions.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-
-
-
-var getReviews = function getReviews() {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        apiToken = _getState.apiToken,
-        currentPage = _getState.currentPage;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'reviews');
-    service.getPagination(currentPage).then(function (_ref) {
-      var last_page = _ref.last_page,
-          current_page = _ref.current_page,
-          data = _ref.data;
-      dispatch(Object(_appState_lastPageActions__WEBPACK_IMPORTED_MODULE_1__["setLastPage"])(last_page));
-      dispatch(addReviewPage(current_page, data));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch));
-  };
-};
-
-var addReviewPage = function addReviewPage(key, payload) {
+var resetTablePages = function resetTablePages() {
   return {
-    type: "reviews/addReviewsPage",
-    key: key,
-    payload: payload
-  };
-};
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-actions/reviews/reviewsEditActions.js":
-/*!************************************************************************!*\
-  !*** ./resources/js/react/admin-actions/reviews/reviewsEditActions.js ***!
-  \************************************************************************/
-/*! exports provided: resetReviewEdit, updateReviewEdit, getReviewEdit, updateReviewMain */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetReviewEdit", function() { return resetReviewEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateReviewEdit", function() { return updateReviewEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReviewEdit", function() { return getReviewEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateReviewMain", function() { return updateReviewMain; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/updateStart */ "./resources/js/react/admin-helpers/updateStart.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-/* harmony import */ var _admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../admin-helpers/updateFinish */ "./resources/js/react/admin-helpers/updateFinish.js");
-
-
-
-
-var resetReviewEdit = function resetReviewEdit() {
-  return {
-    type: 'reviewEdit/reset'
-  };
-};
-var updateReviewEdit = function updateReviewEdit(payload) {
-  return {
-    type: 'reviewEdit/update',
-    payload: payload
-  };
-};
-var getReviewEdit = function getReviewEdit(id) {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        apiToken = _getState.apiToken;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'reviews');
-    service.getEdit(id).then(function (r) {
-      dispatch(updateReviewEdit(r));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch));
-  };
-};
-var updateReviewMain = function updateReviewMain() {
-  return function (dispatch, getState) {
-    var _getState2 = getState(),
-        apiToken = _getState2.apiToken,
-        reviewEdit = _getState2.reviewEdit;
-
-    var id = reviewEdit.review_id;
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'reviews');
-    Object(_admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch);
-    service.update(id, reviewEdit).then(function (r) {
-      Object(_admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__["default"])(dispatch, r);
-      dispatch(getReviewEdit(id));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch));
-  };
-};
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-actions/seo/seoActions.js":
-/*!************************************************************!*\
-  !*** ./resources/js/react/admin-actions/seo/seoActions.js ***!
-  \************************************************************/
-/*! exports provided: getSEO */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSEO", function() { return getSEO; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-/* harmony import */ var _appState_lastPageActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../appState/lastPageActions */ "./resources/js/react/admin-actions/appState/lastPageActions.js");
-
-
-
-
-var getSEO = function getSEO() {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        apiToken = _getState.apiToken,
-        currentPage = _getState.currentPage;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'seo-attributes');
-    service.getPagination(currentPage).then(function (_ref) {
-      var current_page = _ref.current_page,
-          last_page = _ref.last_page,
-          data = _ref.data;
-      dispatch(setSEO(current_page, data));
-      dispatch(Object(_appState_lastPageActions__WEBPACK_IMPORTED_MODULE_2__["setLastPage"])(last_page));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-var setSEO = function setSEO(key, payload) {
-  return {
-    key: key,
-    payload: payload,
-    type: 'seo/addPage'
-  };
-};
-
-
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-actions/seo/seoEditActions.js":
-/*!****************************************************************!*\
-  !*** ./resources/js/react/admin-actions/seo/seoEditActions.js ***!
-  \****************************************************************/
-/*! exports provided: getSeoEdit, resetSeoEdit, updateSeoEdit, updateSeoMain */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSeoEdit", function() { return getSeoEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetSeoEdit", function() { return resetSeoEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSeoEdit", function() { return updateSeoEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSeoMain", function() { return updateSeoMain; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-/* harmony import */ var _admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/updateStart */ "./resources/js/react/admin-helpers/updateStart.js");
-/* harmony import */ var _admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../admin-helpers/updateFinish */ "./resources/js/react/admin-helpers/updateFinish.js");
-
-
-
-
-
-var getSeoEdit = function getSeoEdit(id) {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        apiToken = _getState.apiToken;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'seo-attributes');
-    service.getEdit(id).then(function (r) {
-      return dispatch(updateSeoEdit(r));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-var resetSeoEdit = function resetSeoEdit() {
-  return {
-    type: 'seoEdit/reset'
-  };
-};
-
-var updateSeoEdit = function updateSeoEdit(payload) {
-  return {
-    type: 'seoEdit/update',
-    payload: payload
-  };
-};
-
-var updateSeoMain = function updateSeoMain() {
-  return function (dispatch, getState) {
-    var _getState2 = getState(),
-        apiToken = _getState2.apiToken,
-        seoEdit = _getState2.seoEdit;
-
-    var id = seoEdit.id;
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'seo-attributes');
-    Object(_admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch);
-    service.update(id, seoEdit).then(function (r) {
-      Object(_admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__["default"])(dispatch, r);
-      getSeoEdit(id);
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
+    type: 'tablePages/reset'
   };
 };
 
@@ -39021,232 +38487,6 @@ var setCsrfToken = function setCsrfToken(payload) {
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-actions/userMessages/userMessageEditActions.js":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/react/admin-actions/userMessages/userMessageEditActions.js ***!
-  \*********************************************************************************/
-/*! exports provided: getUserMessageEdit, resetUserMessagesEdit, setUserMessagesEdit, updateUserMessagesMain */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserMessageEdit", function() { return getUserMessageEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetUserMessagesEdit", function() { return resetUserMessagesEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setUserMessagesEdit", function() { return setUserMessagesEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserMessagesMain", function() { return updateUserMessagesMain; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-/* harmony import */ var _admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/updateStart */ "./resources/js/react/admin-helpers/updateStart.js");
-/* harmony import */ var _admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../admin-helpers/updateFinish */ "./resources/js/react/admin-helpers/updateFinish.js");
-
-
-
-
-
-var getUserMessageEdit = function getUserMessageEdit(id) {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        apiToken = _getState.apiToken;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'user-messages');
-    service.getEdit(id).then(function (r) {
-      return dispatch(setUserMessagesEdit(r));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-var resetUserMessagesEdit = function resetUserMessagesEdit() {
-  return {
-    type: 'userMessageEdit/reset'
-  };
-};
-
-var setUserMessagesEdit = function setUserMessagesEdit(payload) {
-  return {
-    type: 'userMessageEdit/update',
-    payload: payload
-  };
-};
-
-var updateUserMessagesMain = function updateUserMessagesMain() {
-  return function (dispatch, getState) {
-    var _getState2 = getState(),
-        apiToken = _getState2.apiToken,
-        userMessageEdit = _getState2.userMessageEdit;
-
-    var id = userMessageEdit.message_id;
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'user-messages');
-    Object(_admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch);
-    service.update(id, userMessageEdit).then(function (r) {
-      Object(_admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__["default"])(dispatch, r);
-      dispatch(getUserMessageEdit(id));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-actions/userMessages/userMessagesActions.js":
-/*!******************************************************************************!*\
-  !*** ./resources/js/react/admin-actions/userMessages/userMessagesActions.js ***!
-  \******************************************************************************/
-/*! exports provided: getUserMessages */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserMessages", function() { return getUserMessages; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-/* harmony import */ var _appState_lastPageActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../appState/lastPageActions */ "./resources/js/react/admin-actions/appState/lastPageActions.js");
-
-
-
-
-var getUserMessages = function getUserMessages() {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        currentPage = _getState.currentPage,
-        apiToken = _getState.apiToken;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'user-messages');
-    service.getPagination(currentPage).then(function (_ref) {
-      var current_page = _ref.current_page,
-          last_page = _ref.last_page,
-          data = _ref.data;
-      dispatch(setUserMessages(current_page, data));
-      dispatch(Object(_appState_lastPageActions__WEBPACK_IMPORTED_MODULE_2__["setLastPage"])(last_page));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-var setUserMessages = function setUserMessages(key, payload) {
-  return {
-    type: 'userMessages/addPage',
-    key: key,
-    payload: payload
-  };
-};
-
-
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-actions/videos/videoEditAction.js":
-/*!********************************************************************!*\
-  !*** ./resources/js/react/admin-actions/videos/videoEditAction.js ***!
-  \********************************************************************/
-/*! exports provided: getVideoEdit, resetVideoEdit, setVideoEdit, updateVideoMain */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getVideoEdit", function() { return getVideoEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetVideoEdit", function() { return resetVideoEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setVideoEdit", function() { return setVideoEdit; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateVideoMain", function() { return updateVideoMain; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-/* harmony import */ var _admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/updateStart */ "./resources/js/react/admin-helpers/updateStart.js");
-/* harmony import */ var _admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../admin-helpers/updateFinish */ "./resources/js/react/admin-helpers/updateFinish.js");
-
-
-
-
-
-var getVideoEdit = function getVideoEdit(id) {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        apiToken = _getState.apiToken;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'videos');
-    service.getEdit(id).then(function (r) {
-      dispatch(setVideoEdit(r));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-var setVideoEdit = function setVideoEdit(payload) {
-  return {
-    type: 'videoEdit/update',
-    payload: payload
-  };
-};
-
-var resetVideoEdit = function resetVideoEdit() {
-  return {
-    type: 'videoEdit/reset'
-  };
-};
-
-var updateVideoMain = function updateVideoMain() {
-  return function (dispatch, getState) {
-    var _getState2 = getState(),
-        apiToken = _getState2.apiToken,
-        videoEdit = _getState2.videoEdit;
-
-    var video_id = videoEdit.video_id;
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'videos');
-    Object(_admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch);
-    service.update(video_id, videoEdit).then(function (r) {
-      Object(_admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_3__["default"])(dispatch, r);
-      dispatch(getVideoEdit(video_id));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-actions/videos/videosActions.js":
-/*!******************************************************************!*\
-  !*** ./resources/js/react/admin-actions/videos/videosActions.js ***!
-  \******************************************************************/
-/*! exports provided: getVideos */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getVideos", function() { return getVideos; });
-/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
-/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
-/* harmony import */ var _appState_lastPageActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../appState/lastPageActions */ "./resources/js/react/admin-actions/appState/lastPageActions.js");
-
-
-
-
-var getVideos = function getVideos() {
-  return function (dispatch, getState) {
-    var _getState = getState(),
-        currentPage = _getState.currentPage,
-        apiToken = _getState.apiToken;
-
-    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, 'videos');
-    service.getPagination(currentPage).then(function (_ref) {
-      var current_page = _ref.current_page,
-          last_page = _ref.last_page,
-          data = _ref.data;
-      dispatch(setVideos(current_page, data));
-      dispatch(Object(_appState_lastPageActions__WEBPACK_IMPORTED_MODULE_2__["setLastPage"])(last_page));
-    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
-  };
-};
-
-var setVideos = function setVideos(key, payload) {
-  return {
-    type: 'videos/addPage',
-    key: key,
-    payload: payload
-  };
-};
-
-
-
-/***/ }),
-
 /***/ "./resources/js/react/admin-components/Articles/ArticleContent/ArticleContent.js":
 /*!***************************************************************************************!*\
   !*** ./resources/js/react/admin-components/Articles/ArticleContent/ArticleContent.js ***!
@@ -39261,7 +38501,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_articles_articlesEditAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-actions/articles/articlesEditAction */ "./resources/js/react/admin-actions/articles/articlesEditAction.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -39269,8 +38509,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ArticleContent = function ArticleContent() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
-      articleEdit = _useSelector.articleEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_4__["default"]),
+      articleEdit = _useSelector.tableItemEdit;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
@@ -39282,16 +38522,9 @@ var ArticleContent = function ArticleContent() {
       field: field,
       ReduxObj: articleEdit,
       key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_articles_articlesEditAction__WEBPACK_IMPORTED_MODULE_4__["setArticleEdit"])(field, articleEdit)
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, articleEdit)
     });
   }));
-};
-
-var selector = function selector(_ref2) {
-  var articleEdit = _ref2.articleEdit;
-  return {
-    articleEdit: articleEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ArticleContent);
@@ -39328,17 +38561,16 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_actions_articles_articlesEditAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-actions/articles/articlesEditAction */ "./resources/js/react/admin-actions/articles/articlesEditAction.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
-/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
-/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
-/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
-/* harmony import */ var _ArticleMain__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../ArticleMain */ "./resources/js/react/admin-components/Articles/ArticleMain/index.js");
-/* harmony import */ var _ArticleContent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../ArticleContent */ "./resources/js/react/admin-components/Articles/ArticleContent/index.js");
-/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
-/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
-/* harmony import */ var _admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../admin-hoooks/useEditData */ "./resources/js/react/admin-hoooks/useEditData.js");
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
+/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
+/* harmony import */ var _ArticleMain__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ArticleMain */ "./resources/js/react/admin-components/Articles/ArticleMain/index.js");
+/* harmony import */ var _ArticleContent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../ArticleContent */ "./resources/js/react/admin-components/Articles/ArticleContent/index.js");
+/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
+/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalEditData */ "./resources/js/react/admin-hoooks/useUniversalEditData.js");
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
@@ -39409,39 +38641,38 @@ function _arrayWithHoles(arr) {
 
 
 
-
 var ArticleEdit = function ArticleEdit() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
       _useState2 = _slicedToArray(_useState, 2),
       navPages = _useState2[0],
       setNavPages = _useState2[1];
 
-  var _useEditData = Object(_admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_11__["default"])('articleEdit', _admin_actions_articles_articlesEditAction__WEBPACK_IMPORTED_MODULE_1__["getArticleEdit"], _admin_actions_articles_articlesEditAction__WEBPACK_IMPORTED_MODULE_1__["resetArticleEdit"]),
-      id = _useEditData.id,
-      articleEdit = _useEditData.articleEdit;
+  var _useUniversalEditData = Object(_admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_10__["default"])('articles'),
+      id = _useUniversalEditData.id,
+      articleEdit = _useUniversalEditData.tableItemEdit;
 
-  if (articleEdit === null) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  if (articleEdit === null) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     action: "/api/admin/articles/".concat(id),
     method: "POST",
     className: "page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     navList: navPages,
     changeNavList: setNavPages
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
     className: "page__content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_5__["default"], {
     active: navPages.active,
     index: 0,
-    component: _ArticleMain__WEBPACK_IMPORTED_MODULE_7__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    component: _ArticleMain__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_5__["default"], {
     active: navPages.active,
     index: 1,
-    component: _ArticleContent__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _ArticleContent__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-3 page__button"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    action: _admin_actions_articles_articlesEditAction__WEBPACK_IMPORTED_MODULE_1__["updateArticleMain"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    tableName: "articles"
   })))));
 };
 
@@ -39532,7 +38763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _FormComponent_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Input */ "./resources/js/react/admin-components/FormComponent/Input/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_articles_articlesEditAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-actions/articles/articlesEditAction */ "./resources/js/react/admin-actions/articles/articlesEditAction.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -39541,8 +38772,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ArticleMain = function ArticleMain() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
-      articleEdit = _useSelector.articleEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__["default"]),
+      articleEdit = _useSelector.tableItemEdit;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
@@ -39554,7 +38785,7 @@ var ArticleMain = function ArticleMain() {
       field: field,
       ReduxObj: articleEdit,
       key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_articles_articlesEditAction__WEBPACK_IMPORTED_MODULE_5__["setArticleEdit"])(field, articleEdit)
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, articleEdit)
     });
   }), textareas.map(function (_ref2) {
     var label = _ref2.label,
@@ -39564,16 +38795,9 @@ var ArticleMain = function ArticleMain() {
       field: field,
       ReduxObj: articleEdit,
       key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_articles_articlesEditAction__WEBPACK_IMPORTED_MODULE_5__["setArticleEdit"])(field, articleEdit)
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, articleEdit)
     });
   }));
-};
-
-var selector = function selector(_ref3) {
-  var articleEdit = _ref3.articleEdit;
-  return {
-    articleEdit: articleEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ArticleMain);
@@ -39620,13 +38844,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_actions_articles_articlesActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-actions/articles/articlesActions */ "./resources/js/react/admin-actions/articles/articlesActions.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
-/* harmony import */ var _ArticleItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ArticleItem */ "./resources/js/react/admin-components/Articles/ArticleItem/index.js");
-/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
-/* harmony import */ var _admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoooks/useTableData */ "./resources/js/react/admin-hoooks/useTableData.js");
-
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
+/* harmony import */ var _ArticleItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ArticleItem */ "./resources/js/react/admin-components/Articles/ArticleItem/index.js");
+/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
 
 
 
@@ -39635,19 +38857,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ArticlesTable = function ArticlesTable() {
-  var articlePage = Object(_admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_6__["default"])('articles', _admin_actions_articles_articlesActions__WEBPACK_IMPORTED_MODULE_1__["getArticles"]);
+  var articlePage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('articles');
 
   if (articlePage === undefined) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null);
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    component: _ArticleItem__WEBPACK_IMPORTED_MODULE_4__["default"],
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    component: _ArticleItem__WEBPACK_IMPORTED_MODULE_3__["default"],
     fields: ['ID', 'Название', 'Идентификатор', 'Ссылки'],
     head_key: 'article',
     key_field: 'article_slug',
     items: articlePage
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ArticlesTable);
@@ -39680,12 +38902,14 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_actions_companies_companiesActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-actions/companies/companiesActions */ "./resources/js/react/admin-actions/companies/companiesActions.js");
-/* harmony import */ var _CompanyItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../CompanyItem */ "./resources/js/react/admin-components/Companies/CompanyItem/index.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
-/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
-/* harmony import */ var _admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoooks/useTableData */ "./resources/js/react/admin-hoooks/useTableData.js");
+/* harmony import */ var _CompanyItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../CompanyItem */ "./resources/js/react/admin-components/Companies/CompanyItem/index.js");
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
+/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
+/* harmony import */ var _GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/FilterBar */ "./resources/js/react/admin-components/GeneralComponents/FilterBar/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
+/* harmony import */ var _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-actions/table/tablePagesActions */ "./resources/js/react/admin-actions/table/tablePagesActions.js");
+
 
 
 
@@ -39695,22 +38919,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CompaniesTable = function CompaniesTable() {
-  var companyPage = Object(_admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_6__["default"])('companies', _admin_actions_companies_companiesActions__WEBPACK_IMPORTED_MODULE_1__["getCompanies"]);
-
-  if (companyPage === undefined) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_3__["default"], null);
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  var companyPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_6__["default"])('companies');
+  var content = companyPage === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
     fields: ['ID', 'Название', 'Средний рейтинг', 'Ссылки'],
     head_key: 'companies',
     key_field: 'company_name',
-    component: _CompanyItem__WEBPACK_IMPORTED_MODULE_2__["default"],
+    component: _CompanyItem__WEBPACK_IMPORTED_MODULE_1__["default"],
     items: companyPage
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    orderBy: orderBy,
+    apply: _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_7__["resetTablePages"]
+  }), content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CompaniesTable);
+var orderBy = [{
+  label: 'Сортировка: ID компании',
+  value: 'company_id'
+}, {
+  label: 'Сортировка: Средний рейтинг',
+  value: 'company_average_mark'
+}, {
+  label: 'Сортировка: Количество отзывов',
+  value: 'company_quantity_review'
+}, {
+  label: 'Сортировка: Название компании',
+  value: 'company_name'
+}];
 
 /***/ }),
 
@@ -39744,7 +38980,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-actions/companies/companyEditActions */ "./resources/js/react/admin-actions/companies/companyEditActions.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -39752,41 +38988,36 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var CompanyContacts = function CompanyContacts(_ref) {
-  var companyEdit = _ref.companyEdit;
+var CompanyContacts = function CompanyContacts() {
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__["default"]),
+      companyEdit = _useSelector.tableItemEdit;
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
-  }, fields.map(function (_ref2) {
-    var field = _ref2.field,
-        label = _ref2.label;
+  }, fields.map(function (_ref) {
+    var field = _ref.field,
+        label = _ref.label;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Input__WEBPACK_IMPORTED_MODULE_1__["default"], {
       field: field,
       label: label,
       ReduxObj: companyEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"], _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__["updateCompanyEdit"])(field, companyEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, companyEdit),
       key: field
     });
-  }), textarias.map(function (_ref3) {
-    var field = _ref3.field,
-        label = _ref3.label;
+  }), textarias.map(function (_ref2) {
+    var field = _ref2.field,
+        label = _ref2.label;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__["default"], {
       field: field,
       label: label,
       ReduxObj: companyEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"], _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__["updateCompanyEdit"])(field, companyEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, companyEdit),
       key: field
     });
   }));
 };
 
-var mapStateToProps = function mapStateToProps(_ref4) {
-  var companyEdit = _ref4.companyEdit;
-  return {
-    companyEdit: companyEdit
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps)(CompanyContacts));
+/* harmony default export */ __webpack_exports__["default"] = (CompanyContacts);
 var fields = [{
   'field': 'company_email',
   'label': 'Почта компании'
@@ -39827,19 +39058,18 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-actions/companies/companyEditActions */ "./resources/js/react/admin-actions/companies/companyEditActions.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
-/* harmony import */ var _CompanyMain__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../CompanyMain */ "./resources/js/react/admin-components/Companies/CompanyMain/index.js");
-/* harmony import */ var _CompanyContacts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../CompanyContacts */ "./resources/js/react/admin-components/Companies/CompanyContacts/index.js");
-/* harmony import */ var _CompanySocialNetworks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CompanySocialNetworks */ "./resources/js/react/admin-components/Companies/CompanySocialNetworks/index.js");
-/* harmony import */ var _CompanyStatistics__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../CompanyStatistics */ "./resources/js/react/admin-components/Companies/CompanyStatistics/index.js");
-/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
-/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
-/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
-/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
-/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
-/* harmony import */ var _admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../admin-hoooks/useEditData */ "./resources/js/react/admin-hoooks/useEditData.js");
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
+/* harmony import */ var _CompanyMain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../CompanyMain */ "./resources/js/react/admin-components/Companies/CompanyMain/index.js");
+/* harmony import */ var _CompanyContacts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../CompanyContacts */ "./resources/js/react/admin-components/Companies/CompanyContacts/index.js");
+/* harmony import */ var _CompanySocialNetworks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../CompanySocialNetworks */ "./resources/js/react/admin-components/Companies/CompanySocialNetworks/index.js");
+/* harmony import */ var _CompanyStatistics__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../CompanyStatistics */ "./resources/js/react/admin-components/Companies/CompanyStatistics/index.js");
+/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
+/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
+/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalEditData */ "./resources/js/react/admin-hoooks/useUniversalEditData.js");
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
@@ -39912,49 +39142,48 @@ function _arrayWithHoles(arr) {
 
 
 
-
 var CompanyEdit = function CompanyEdit() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
       _useState2 = _slicedToArray(_useState, 2),
       navPages = _useState2[0],
       setNavPages = _useState2[1];
 
-  var _useEditData = Object(_admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_13__["default"])('companyEdit', _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_1__["getCompanyEdit"], _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_1__["resetCompanyEdit"]),
-      id = _useEditData.id,
-      companyEdit = _useEditData.companyEdit;
+  var _useUniversalEditData = Object(_admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_12__["default"])('companies'),
+      id = _useUniversalEditData.id,
+      companyEdit = _useUniversalEditData.tableItemEdit;
 
   var formRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
-  if (companyEdit === null) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_12__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null));
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_12__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  if (companyEdit === null) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_11__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     action: "/api/admin/companies/".concat(id),
     method: "post",
     ref: formRef,
     className: "page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     navList: navPages,
     changeNavList: setNavPages
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_9__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_10__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_9__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
     className: "page__content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    component: _CompanyMain__WEBPACK_IMPORTED_MODULE_4__["default"],
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: _CompanyMain__WEBPACK_IMPORTED_MODULE_3__["default"],
     index: 0,
     active: navPages.active
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    component: _CompanyContacts__WEBPACK_IMPORTED_MODULE_5__["default"],
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: _CompanyContacts__WEBPACK_IMPORTED_MODULE_4__["default"],
     index: 1,
     active: navPages.active
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    component: _CompanySocialNetworks__WEBPACK_IMPORTED_MODULE_6__["default"],
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: _CompanySocialNetworks__WEBPACK_IMPORTED_MODULE_5__["default"],
     index: 2,
     active: navPages.active
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    component: _CompanyStatistics__WEBPACK_IMPORTED_MODULE_7__["default"],
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: _CompanyStatistics__WEBPACK_IMPORTED_MODULE_6__["default"],
     index: 3,
     active: navPages.active
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pt-3 page__button"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    action: _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_1__["updateCompanyMain"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    tableName: "companies"
   })))));
 };
 
@@ -40045,7 +39274,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormComponent_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../FormComponent/Input */ "./resources/js/react/admin-components/FormComponent/Input/index.js");
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-actions/companies/companyEditActions */ "./resources/js/react/admin-actions/companies/companyEditActions.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -40054,8 +39283,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CompanyMain = function CompanyMain() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
-      companyEdit = _useSelector.companyEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__["default"]),
+      companyEdit = _useSelector.tableItemEdit;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
@@ -40066,7 +39295,7 @@ var CompanyMain = function CompanyMain() {
       field: field,
       label: label,
       ReduxObj: companyEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__["updateCompanyEdit"])(field, companyEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, companyEdit),
       key: field
     });
   }), textarias.map(function (_ref2) {
@@ -40076,17 +39305,10 @@ var CompanyMain = function CompanyMain() {
       field: field,
       label: label,
       ReduxObj: companyEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__["updateCompanyEdit"])(field, companyEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, companyEdit),
       key: field
     });
   }));
-};
-
-var selector = function selector(_ref3) {
-  var companyEdit = _ref3.companyEdit;
-  return {
-    companyEdit: companyEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CompanyMain);
@@ -40155,7 +39377,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-actions/companies/companyEditActions */ "./resources/js/react/admin-actions/companies/companyEditActions.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -40163,41 +39385,36 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var CompanySocialNetworks = function CompanySocialNetworks(_ref) {
-  var companyEdit = _ref.companyEdit;
+var CompanySocialNetworks = function CompanySocialNetworks() {
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__["default"]),
+      companyEdit = _useSelector.tableItemEdit;
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
-  }, fields.map(function (_ref2) {
-    var field = _ref2.field,
-        label = _ref2.label;
+  }, fields.map(function (_ref) {
+    var field = _ref.field,
+        label = _ref.label;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Input__WEBPACK_IMPORTED_MODULE_1__["default"], {
       field: field,
       label: label,
       ReduxObj: companyEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"], _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__["updateCompanyEdit"])(field, companyEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, companyEdit),
       key: field
     });
-  }), textarias.map(function (_ref3) {
-    var field = _ref3.field,
-        label = _ref3.label;
+  }), textarias.map(function (_ref2) {
+    var field = _ref2.field,
+        label = _ref2.label;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__["default"], {
       field: field,
       label: label,
       ReduxObj: companyEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"], _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__["updateCompanyEdit"])(field, companyEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, companyEdit),
       key: field
     });
   }));
 };
 
-var mapStateToProps = function mapStateToProps(_ref4) {
-  var companyEdit = _ref4.companyEdit;
-  return {
-    companyEdit: companyEdit
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps)(CompanySocialNetworks));
+/* harmony default export */ __webpack_exports__["default"] = (CompanySocialNetworks);
 var fields = [{
   'field': 'company_fb',
   'label': 'Facebook'
@@ -40257,7 +39474,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-actions/companies/companyEditActions */ "./resources/js/react/admin-actions/companies/companyEditActions.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -40265,43 +39482,38 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var CompanyStatistics = function CompanyStatistics(_ref) {
-  var companyEdit = _ref.companyEdit;
+var CompanyStatistics = function CompanyStatistics() {
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__["default"]),
+      companyEdit = _useSelector.tableItemEdit;
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
-  }, fields.map(function (_ref2) {
-    var field = _ref2.field,
-        label = _ref2.label;
+  }, fields.map(function (_ref) {
+    var field = _ref.field,
+        label = _ref.label;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Input__WEBPACK_IMPORTED_MODULE_1__["default"], {
       field: field,
       label: label,
       ReduxObj: companyEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"], _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__["updateCompanyEdit"])(field, companyEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, companyEdit),
       key: field,
       disabled: true
     });
-  }), textarias.map(function (_ref3) {
-    var field = _ref3.field,
-        label = _ref3.label;
+  }), textarias.map(function (_ref2) {
+    var field = _ref2.field,
+        label = _ref2.label;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__["default"], {
       field: field,
       label: label,
       ReduxObj: companyEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"], _admin_actions_companies_companyEditActions__WEBPACK_IMPORTED_MODULE_5__["updateCompanyEdit"])(field, companyEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, companyEdit),
       key: field,
       disabled: true
     });
   }));
 };
 
-var mapStateToProps = function mapStateToProps(_ref4) {
-  var companyEdit = _ref4.companyEdit;
-  return {
-    companyEdit: companyEdit
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps)(CompanyStatistics));
+/* harmony default export */ __webpack_exports__["default"] = (CompanyStatistics);
 var fields = [{
   'field': 'company_average_mark',
   'label': 'Средняя оценка'
@@ -40785,6 +39997,70 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/react/admin-components/GeneralComponents/FilterBar/FilterBar.js":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/GeneralComponents/FilterBar/FilterBar.js ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _FormComponent_Select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../FormComponent/Select */ "./resources/js/react/admin-components/FormComponent/Select/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _admin_actions_filterAttributes_filterAttributesActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-actions/filterAttributes/filterAttributesActions */ "./resources/js/react/admin-actions/filterAttributes/filterAttributesActions.js");
+
+
+
+
+
+var FilterBar = function FilterBar(_ref) {
+  var orderBy = _ref.orderBy,
+      apply = _ref.apply;
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+
+  var onChange = function onChange(e) {
+    dispatch(Object(_admin_actions_filterAttributes_filterAttributesActions__WEBPACK_IMPORTED_MODULE_3__["setFilterAttributes"])('orderBy', e.target.value));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
+    className: "filter-bar"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn b-dark c-white filter-ban__button",
+    onClick: function onClick() {
+      return dispatch(apply());
+    },
+    "aria-label": "\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u044B"
+  }, "\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-bar__form-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Select__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    id: "orderBy",
+    options: orderBy,
+    onChange: onChange
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FilterBar);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/GeneralComponents/FilterBar/index.js":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/react/admin-components/GeneralComponents/FilterBar/index.js ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FilterBar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FilterBar */ "./resources/js/react/admin-components/GeneralComponents/FilterBar/FilterBar.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_FilterBar__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
 /***/ "./resources/js/react/admin-components/GeneralComponents/Pagination/Pagination.js":
 /*!****************************************************************************************!*\
   !*** ./resources/js/react/admin-components/GeneralComponents/Pagination/Pagination.js ***!
@@ -41017,16 +40293,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _admin_actions_table_tableItemEditActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-actions/table/tableItemEditActions */ "./resources/js/react/admin-actions/table/tableItemEditActions.js");
+
+
 
 
 
 var SubmitButton = function SubmitButton(_ref) {
-  var action = _ref.action;
+  var tableName = _ref.tableName;
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
+
+  var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useParams"])(),
+      id = _useParams.id;
 
   var onClick = function onClick(e) {
     e.preventDefault();
-    dispatch(action());
+    dispatch(Object(_admin_actions_table_tableItemEditActions__WEBPACK_IMPORTED_MODULE_3__["updateTableItemMain"])(tableName, id));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -41123,15 +40406,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
-/* harmony import */ var _admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-hoooks/useEditData */ "./resources/js/react/admin-hoooks/useEditData.js");
-/* harmony import */ var _admin_actions_headers_headersEditActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-actions/headers/headersEditActions */ "./resources/js/react/admin-actions/headers/headersEditActions.js");
-/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
-/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
-/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
-/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
-/* harmony import */ var _HeadersMain__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../HeadersMain */ "./resources/js/react/admin-components/Headers/HeadersMain/index.js");
-/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
+/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
+/* harmony import */ var _HeadersMain__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../HeadersMain */ "./resources/js/react/admin-components/Headers/HeadersMain/index.js");
+/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalEditData */ "./resources/js/react/admin-hoooks/useUniversalEditData.js");
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
@@ -41201,38 +40483,37 @@ function _arrayWithHoles(arr) {
 
 
 
-
 var HeadersEdit = function HeadersEdit() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
       _useState2 = _slicedToArray(_useState, 2),
       navPages = _useState2[0],
       setNavPages = _useState2[1];
 
-  var _useEditData = Object(_admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_2__["default"])('headerEdit', _admin_actions_headers_headersEditActions__WEBPACK_IMPORTED_MODULE_3__["getHeaderEdit"], _admin_actions_headers_headersEditActions__WEBPACK_IMPORTED_MODULE_3__["resetHeaderEdit"]),
-      id = _useEditData.id,
-      headerEdit = _useEditData.headerEdit;
+  var _useUniversalEditData = Object(_admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_9__["default"])('headers'),
+      id = _useUniversalEditData.id,
+      headerEdit = _useUniversalEditData.tableItemEdit;
 
   if (headerEdit === null) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_10__["default"], null));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_8__["default"], null));
   }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     action: "/api/admin/headers/".concat(id),
     method: "post",
     className: "page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     navList: navPages,
     changeNavList: setNavPages
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
     className: "page__content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    component: _HeadersMain__WEBPACK_IMPORTED_MODULE_8__["default"],
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    component: _HeadersMain__WEBPACK_IMPORTED_MODULE_6__["default"],
     index: 0,
     active: navPages.active
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pt-3 page__button"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    action: _admin_actions_headers_headersEditActions__WEBPACK_IMPORTED_MODULE_3__["updateHeaderMain"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    tableName: "headers"
   })))));
 };
 
@@ -41310,7 +40591,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_headers_headersEditActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-actions/headers/headersEditActions */ "./resources/js/react/admin-actions/headers/headersEditActions.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -41318,8 +40599,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HeadersMain = function HeadersMain() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
-      headerEdit = _useSelector.headerEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_4__["default"]),
+      headerEdit = _useSelector.tableItemEdit;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
@@ -41330,17 +40611,10 @@ var HeadersMain = function HeadersMain() {
       field: field,
       label: label,
       ReduxObj: headerEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_headers_headersEditActions__WEBPACK_IMPORTED_MODULE_4__["updateHeaderEdit"])(field, headerEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, headerEdit),
       key: field
     });
   }));
-};
-
-var selector = function selector(_ref2) {
-  var headerEdit = _ref2.headerEdit;
-  return {
-    headerEdit: headerEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (HeadersMain);
@@ -41380,13 +40654,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-hoooks/useTableData */ "./resources/js/react/admin-hoooks/useTableData.js");
-/* harmony import */ var _admin_actions_headers_headersActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-actions/headers/headersActions */ "./resources/js/react/admin-actions/headers/headersActions.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Pagination/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/Pagination.js");
-/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
-/* harmony import */ var _HeadersItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../HeadersItem */ "./resources/js/react/admin-components/Headers/HeadersItem/index.js");
-
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Pagination/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/Pagination.js");
+/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
+/* harmony import */ var _HeadersItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../HeadersItem */ "./resources/js/react/admin-components/Headers/HeadersItem/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
 
 
 
@@ -41395,19 +40667,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var HeadersTable = function HeadersTable() {
-  var headersPage = Object(_admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_1__["default"])('headers', _admin_actions_headers_headersActions__WEBPACK_IMPORTED_MODULE_2__["getHeaders"]);
+  var headersPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('headers');
 
   if (headersPage === undefined) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null);
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    component: _HeadersItem__WEBPACK_IMPORTED_MODULE_6__["default"],
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    component: _HeadersItem__WEBPACK_IMPORTED_MODULE_4__["default"],
     fields: ['ID', 'Строковый ID', 'Значение', 'Описание', 'Ссылки'],
     head_key: 'headers',
     key_field: 'header_key',
     items: headersPage
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (HeadersTable);
@@ -42068,15 +41340,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _admin_actions_reviewAnswers_reviewAnswerEditActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-actions/reviewAnswers/reviewAnswerEditActions */ "./resources/js/react/admin-actions/reviewAnswers/reviewAnswerEditActions.js");
-/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
-/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
-/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
-/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
-/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
-/* harmony import */ var _ReviewAnswerMain__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../ReviewAnswerMain */ "./resources/js/react/admin-components/ReviewAnswers/ReviewAnswerMain/index.js");
-/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
-/* harmony import */ var _admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../admin-hoooks/useEditData */ "./resources/js/react/admin-hoooks/useEditData.js");
+/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
+/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
+/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
+/* harmony import */ var _ReviewAnswerMain__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../ReviewAnswerMain */ "./resources/js/react/admin-components/ReviewAnswers/ReviewAnswerMain/index.js");
+/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalEditData */ "./resources/js/react/admin-hoooks/useUniversalEditData.js");
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
@@ -42146,35 +41417,34 @@ function _arrayWithHoles(arr) {
 
 
 
-
 var ReviewAnswerEdit = function ReviewAnswerEdit() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
       _useState2 = _slicedToArray(_useState, 2),
       navPages = _useState2[0],
       setNavPages = _useState2[1];
 
-  var _useEditData = Object(_admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_10__["default"])('reviewAnswerEdit', _admin_actions_reviewAnswers_reviewAnswerEditActions__WEBPACK_IMPORTED_MODULE_2__["getReviewAnswerEdit"], _admin_actions_reviewAnswers_reviewAnswerEditActions__WEBPACK_IMPORTED_MODULE_2__["resetReviewAnswerEdit"]),
-      id = _useEditData.id,
-      reviewAnswerEdit = _useEditData.reviewAnswerEdit;
+  var _useUniversalEditData = Object(_admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_9__["default"])('review-answers'),
+      id = _useUniversalEditData.id,
+      reviewAnswerEdit = _useUniversalEditData.tableItemEdit;
 
-  if (reviewAnswerEdit === null) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null));
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  if (reviewAnswerEdit === null) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     action: "/api/admin/review-answers/".concat(id),
     method: "POST",
     className: "page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     navList: navPages,
     changeNavList: setNavPages
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
     className: "page__content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_5__["default"], {
     active: navPages.active,
     index: 0,
-    component: _ReviewAnswerMain__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _ReviewAnswerMain__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pt-3 page__button"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    action: _admin_actions_reviewAnswers_reviewAnswerEditActions__WEBPACK_IMPORTED_MODULE_2__["updateReviewAnswerMain"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    tableName: "review-answers"
   })))));
 };
 
@@ -42217,8 +41487,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../FormComponent/Checkbox/Checkbox */ "./resources/js/react/admin-components/FormComponent/Checkbox/Checkbox.js");
 /* harmony import */ var _admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/checkboxToggle */ "./resources/js/react/admin-services/InputOnChange/checkboxToggle.js");
-/* harmony import */ var _admin_actions_reviewAnswers_reviewAnswerEditActions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-actions/reviewAnswers/reviewAnswerEditActions */ "./resources/js/react/admin-actions/reviewAnswers/reviewAnswerEditActions.js");
-/* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
+/* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -42229,8 +41499,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReviewAnswerMain = function ReviewAnswerMain() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
-      reviewAnswerEdit = _useSelector.reviewAnswerEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_7__["default"]),
+      reviewAnswerEdit = _useSelector.tableItemEdit;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
@@ -42242,7 +41512,7 @@ var ReviewAnswerMain = function ReviewAnswerMain() {
       field: field,
       ReduxObj: reviewAnswerEdit,
       key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_7__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_reviewAnswers_reviewAnswerEditActions__WEBPACK_IMPORTED_MODULE_6__["setReviewAnswerEdit"])(field, reviewAnswerEdit)
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_6__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, reviewAnswerEdit)
     });
   }), textareas.map(function (_ref2) {
     var label = _ref2.label,
@@ -42252,20 +41522,13 @@ var ReviewAnswerMain = function ReviewAnswerMain() {
       field: field,
       ReduxObj: reviewAnswerEdit,
       key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_7__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_reviewAnswers_reviewAnswerEditActions__WEBPACK_IMPORTED_MODULE_6__["setReviewAnswerEdit"])(field, reviewAnswerEdit)
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_6__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, reviewAnswerEdit)
     });
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: "\u041E\u043F\u0443\u0431\u043B\u0438\u043A\u043E\u0432\u0430\u043D\u043E",
     value: reviewAnswerEdit.is_published,
-    onChange: Object(_admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_5__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_reviewAnswers_reviewAnswerEditActions__WEBPACK_IMPORTED_MODULE_6__["setReviewAnswerEdit"])(reviewAnswerEdit)
+    onChange: Object(_admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_5__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(reviewAnswerEdit)
   }));
-};
-
-var selector = function selector(_ref3) {
-  var reviewAnswerEdit = _ref3.reviewAnswerEdit;
-  return {
-    reviewAnswerEdit: reviewAnswerEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewAnswerMain);
@@ -42362,12 +41625,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _admin_actions_reviewAnswers_reviewAnswersAntions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-actions/reviewAnswers/reviewAnswersAntions */ "./resources/js/react/admin-actions/reviewAnswers/reviewAnswersAntions.js");
-/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
-/* harmony import */ var _ReviewAnswersItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ReviewAnswersItem */ "./resources/js/react/admin-components/ReviewAnswers/ReviewAnswersItem/index.js");
-/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
-/* harmony import */ var _admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoooks/useTableData */ "./resources/js/react/admin-hoooks/useTableData.js");
-
+/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
+/* harmony import */ var _ReviewAnswersItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ReviewAnswersItem */ "./resources/js/react/admin-components/ReviewAnswers/ReviewAnswersItem/index.js");
+/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
 
 
 
@@ -42376,15 +41637,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReviewAnswersTable = function ReviewAnswersTable() {
-  var reviewAnswersPage = Object(_admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_6__["default"])('reviewAnswers', _admin_actions_reviewAnswers_reviewAnswersAntions__WEBPACK_IMPORTED_MODULE_2__["getReviewAnswers"]);
+  var reviewAnswersPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('review-answers');
   if (reviewAnswersPage === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
     fields: ['ID', 'Имя', 'Смотреть отзыв', 'Ссылки'],
     head_key: 'review-answers',
     key_field: 'review_answer_id',
-    component: _ReviewAnswersItem__WEBPACK_IMPORTED_MODULE_4__["default"],
+    component: _ReviewAnswersItem__WEBPACK_IMPORTED_MODULE_3__["default"],
     items: reviewAnswersPage
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_5__["default"], null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewAnswersTable);
@@ -42420,7 +41681,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _FormComponent_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../FormComponent/Input */ "./resources/js/react/admin-components/FormComponent/Input/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_reviews_reviewsEditActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-actions/reviews/reviewsEditActions */ "./resources/js/react/admin-actions/reviews/reviewsEditActions.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -42428,8 +41689,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReviewImmutable = function ReviewImmutable() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
-      reviewEdit = _useSelector.reviewEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_4__["default"]),
+      reviewEdit = _useSelector.tableItemEdit;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
@@ -42441,17 +41702,10 @@ var ReviewImmutable = function ReviewImmutable() {
       label: label,
       disabled: true,
       ReduxObj: reviewEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_reviews_reviewsEditActions__WEBPACK_IMPORTED_MODULE_4__["updateReviewEdit"])(field, reviewEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, reviewEdit),
       key: field
     });
   }));
-};
-
-var selector = function selector(_ref2) {
-  var reviewEdit = _ref2.reviewEdit;
-  return {
-    reviewEdit: reviewEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewImmutable);
@@ -42549,9 +41803,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormComponent_Input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../FormComponent/Input */ "./resources/js/react/admin-components/FormComponent/Input/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/checkboxToggle */ "./resources/js/react/admin-services/InputOnChange/checkboxToggle.js");
-/* harmony import */ var _admin_actions_reviews_reviewsEditActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-actions/reviews/reviewsEditActions */ "./resources/js/react/admin-actions/reviews/reviewsEditActions.js");
-/* harmony import */ var _FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../FormComponent/Checkbox/Checkbox */ "./resources/js/react/admin-components/FormComponent/Checkbox/Checkbox.js");
-/* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
+/* harmony import */ var _FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../FormComponent/Checkbox/Checkbox */ "./resources/js/react/admin-components/FormComponent/Checkbox/Checkbox.js");
+/* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -42561,8 +41815,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReviewMain = function ReviewMain() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(selector),
-      reviewEdit = _useSelector.reviewEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_6__["default"]),
+      reviewEdit = _useSelector.tableItemEdit;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
@@ -42573,21 +41827,14 @@ var ReviewMain = function ReviewMain() {
       field: field,
       label: label,
       ReduxObj: reviewEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_6__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"], _admin_actions_reviews_reviewsEditActions__WEBPACK_IMPORTED_MODULE_4__["updateReviewEdit"])(field, reviewEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_5__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, reviewEdit),
       key: field
     });
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: 'Опубликовано',
     value: reviewEdit.is_published,
-    onChange: Object(_admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"], _admin_actions_reviews_reviewsEditActions__WEBPACK_IMPORTED_MODULE_4__["updateReviewEdit"])(reviewEdit)
+    onChange: Object(_admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(reviewEdit)
   }));
-};
-
-var selector = function selector(_ref2) {
-  var reviewEdit = _ref2.reviewEdit;
-  return {
-    reviewEdit: reviewEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewMain);
@@ -42633,7 +41880,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_reviews_reviewsEditActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-actions/reviews/reviewsEditActions */ "./resources/js/react/admin-actions/reviews/reviewsEditActions.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -42641,8 +41888,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReviewText = function ReviewText() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
-      reviewEdit = _useSelector.reviewEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_4__["default"]),
+      reviewEdit = _useSelector.tableItemEdit;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
@@ -42653,17 +41900,10 @@ var ReviewText = function ReviewText() {
       field: field,
       label: label,
       ReduxObj: reviewEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_reviews_reviewsEditActions__WEBPACK_IMPORTED_MODULE_4__["updateReviewEdit"])(field, reviewEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, reviewEdit),
       key: field
     });
   }));
-};
-
-var selector = function selector(_ref2) {
-  var reviewEdit = _ref2.reviewEdit;
-  return {
-    reviewEdit: reviewEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewText);
@@ -42685,20 +41925,17 @@ var textarias = [{
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _admin_actions_reviews_reviewsEditActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-actions/reviews/reviewsEditActions */ "./resources/js/react/admin-actions/reviews/reviewsEditActions.js");
-/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
-/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
-/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
-/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
-/* harmony import */ var _ReviewMain__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../ReviewMain */ "./resources/js/react/admin-components/Reviews/ReviewMain/index.js");
-/* harmony import */ var _ReviewText_ReviewText__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../ReviewText/ReviewText */ "./resources/js/react/admin-components/Reviews/ReviewText/ReviewText.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _ReviewImmutable__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../ReviewImmutable */ "./resources/js/react/admin-components/Reviews/ReviewImmutable/index.js");
-/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
-/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
-/* harmony import */ var _admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../admin-hoooks/useEditData */ "./resources/js/react/admin-hoooks/useEditData.js");
+/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
+/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
+/* harmony import */ var _ReviewMain__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ReviewMain */ "./resources/js/react/admin-components/Reviews/ReviewMain/index.js");
+/* harmony import */ var _ReviewText_ReviewText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../ReviewText/ReviewText */ "./resources/js/react/admin-components/Reviews/ReviewText/ReviewText.js");
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _ReviewImmutable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../ReviewImmutable */ "./resources/js/react/admin-components/Reviews/ReviewImmutable/index.js");
+/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
+/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalEditData */ "./resources/js/react/admin-hoooks/useUniversalEditData.js");
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
@@ -42770,58 +42007,46 @@ function _arrayWithHoles(arr) {
 
 
 
-
-
-
 var ReviewEdit = function ReviewEdit() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
       _useState2 = _slicedToArray(_useState, 2),
       navPages = _useState2[0],
       setNavPages = _useState2[1];
 
-  var _useEditData = Object(_admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_14__["default"])('reviewEdit', _admin_actions_reviews_reviewsEditActions__WEBPACK_IMPORTED_MODULE_3__["getReviewEdit"], _admin_actions_reviews_reviewsEditActions__WEBPACK_IMPORTED_MODULE_3__["resetReviewEdit"]),
-      id = _useEditData.id,
-      reviewEdit = _useEditData.reviewEdit;
+  var _useUniversalEditData = Object(_admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_11__["default"])('reviews'),
+      id = _useUniversalEditData.id,
+      reviewEdit = _useUniversalEditData.tableItemEdit;
 
   if (reviewEdit === null) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_13__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_10__["default"], null));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_7__["default"], null));
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_13__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_10__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     action: "/api/admin/reviews/".concat(id),
     method: "post",
     className: "page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_1__["default"], {
     navList: navPages,
     changeNavList: setNavPages
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
     className: "page__content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_4__["default"], {
     active: navPages.active,
     index: 0,
-    component: _ReviewMain__WEBPACK_IMPORTED_MODULE_8__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: _ReviewMain__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_4__["default"], {
     active: navPages.active,
     index: 1,
-    component: _ReviewText_ReviewText__WEBPACK_IMPORTED_MODULE_9__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    component: _ReviewText_ReviewText__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_4__["default"], {
     active: navPages.active,
     index: 2,
-    component: _ReviewImmutable__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _ReviewImmutable__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pt-3 page__button"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    action: _admin_actions_reviews_reviewsEditActions__WEBPACK_IMPORTED_MODULE_3__["updateReviewMain"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    tableName: "reviews"
   })))));
-};
-
-var selector = function selector(_ref) {
-  var apiToken = _ref.apiToken,
-      reviewEdit = _ref.reviewEdit;
-  return {
-    apiToken: apiToken,
-    reviewEdit: reviewEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewEdit);
@@ -42858,13 +42083,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_actions_reviews_reviewsActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-actions/reviews/reviewsActions */ "./resources/js/react/admin-actions/reviews/reviewsActions.js");
-/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _ReviewItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ReviewItem */ "./resources/js/react/admin-components/Reviews/ReviewItem/index.js");
-/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
-/* harmony import */ var _admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoooks/useTableData */ "./resources/js/react/admin-hoooks/useTableData.js");
-
+/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _ReviewItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ReviewItem */ "./resources/js/react/admin-components/Reviews/ReviewItem/index.js");
+/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
 
 
 
@@ -42873,15 +42096,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReviewsTable = function ReviewsTable() {
-  var reviewsPage = Object(_admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_6__["default"])('reviews', _admin_actions_reviews_reviewsActions__WEBPACK_IMPORTED_MODULE_1__["getReviews"]);
-  if (reviewsPage === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_3__["default"], null);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  var reviewsPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('reviews');
+  if (reviewsPage === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
     fields: ['ID', 'Никнейм', 'Балл', 'Дата', 'Ссылки'],
     head_key: 'reviews',
     key_field: 'reviewer_name',
-    component: _ReviewItem__WEBPACK_IMPORTED_MODULE_4__["default"],
+    component: _ReviewItem__WEBPACK_IMPORTED_MODULE_3__["default"],
     items: reviewsPage
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewsTable);
@@ -42916,14 +42139,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
 /* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _admin_actions_seo_seoEditActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-actions/seo/seoEditActions */ "./resources/js/react/admin-actions/seo/seoEditActions.js");
-/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
-/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
-/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
-/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
-/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
-/* harmony import */ var _SEOMain__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../SEOMain */ "./resources/js/react/admin-components/SEO/SEOMain/index.js");
-/* harmony import */ var _admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../admin-hoooks/useEditData */ "./resources/js/react/admin-hoooks/useEditData.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
+/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
+/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
+/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
+/* harmony import */ var _SEOMain__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../SEOMain */ "./resources/js/react/admin-components/SEO/SEOMain/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalEditData */ "./resources/js/react/admin-hoooks/useUniversalEditData.js");
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
@@ -42993,16 +42215,15 @@ function _arrayWithHoles(arr) {
 
 
 
-
 var SEOEdit = function SEOEdit() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
       _useState2 = _slicedToArray(_useState, 2),
       navPages = _useState2[0],
       setNavPages = _useState2[1];
 
-  var _useEditData = Object(_admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_10__["default"])('seoEdit', _admin_actions_seo_seoEditActions__WEBPACK_IMPORTED_MODULE_3__["getSeoEdit"], _admin_actions_seo_seoEditActions__WEBPACK_IMPORTED_MODULE_3__["resetSeoEdit"]),
-      id = _useEditData.id,
-      seoEdit = _useEditData.seoEdit;
+  var _useUniversalEditData = Object(_admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_9__["default"])('seo-attributes'),
+      id = _useUniversalEditData.id,
+      seoEdit = _useUniversalEditData.tableItemEdit;
 
   if (seoEdit === null) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null));
@@ -43012,19 +42233,19 @@ var SEOEdit = function SEOEdit() {
     action: "/api/admin/reviews/".concat(id),
     method: "post",
     className: "page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
     navList: navPages,
     changeNavList: setNavPages
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
     className: "page__content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__["default"], {
     active: navPages.active,
     index: 0,
-    component: _SEOMain__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _SEOMain__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pt-3 page__button"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    action: _admin_actions_seo_seoEditActions__WEBPACK_IMPORTED_MODULE_3__["updateSeoMain"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    tableName: "seo-attributes"
   })))));
 };
 
@@ -43114,8 +42335,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _FormComponent_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../FormComponent/Input */ "./resources/js/react/admin-components/FormComponent/Input/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_seo_seoEditActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-actions/seo/seoEditActions */ "./resources/js/react/admin-actions/seo/seoEditActions.js");
-/* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
+/* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -43124,8 +42345,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var SEOMain = function SEOMain() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
-      seoEdit = _useSelector.seoEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__["default"]),
+      seoEdit = _useSelector.tableItemEdit;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
@@ -43136,27 +42357,20 @@ var SEOMain = function SEOMain() {
       field: field,
       label: label,
       ReduxObj: seoEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_seo_seoEditActions__WEBPACK_IMPORTED_MODULE_4__["updateSeoEdit"])(field, seoEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, seoEdit),
       key: field
     });
   }), textareas.map(function (_ref2) {
     var field = _ref2.field,
         label = _ref2.label;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_4__["default"], {
       field: field,
       label: label,
       ReduxObj: seoEdit,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_seo_seoEditActions__WEBPACK_IMPORTED_MODULE_4__["updateSeoEdit"])(field, seoEdit),
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, seoEdit),
       key: field
     });
   }));
-};
-
-var selector = function selector(_ref3) {
-  var seoEdit = _ref3.seoEdit;
-  return {
-    seoEdit: seoEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SEOMain);
@@ -43200,13 +42414,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_actions_seo_seoActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-actions/seo/seoActions */ "./resources/js/react/admin-actions/seo/seoActions.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Pagination/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/Pagination.js");
-/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
-/* harmony import */ var _SEOItem__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../SEOItem */ "./resources/js/react/admin-components/SEO/SEOItem/index.js");
-/* harmony import */ var _admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoooks/useTableData */ "./resources/js/react/admin-hoooks/useTableData.js");
-
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Pagination/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/Pagination.js");
+/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
+/* harmony import */ var _SEOItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../SEOItem */ "./resources/js/react/admin-components/SEO/SEOItem/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
 
 
 
@@ -43215,15 +42427,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var SEOTable = function SEOTable() {
-  var seoPage = Object(_admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_6__["default"])('seo', _admin_actions_seo_seoActions__WEBPACK_IMPORTED_MODULE_1__["getSEO"]);
-  if (seoPage === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  var seoPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('seo-attributes');
+  if (seoPage === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
     fields: ['ID', 'Строковый идентификатор', 'Заголовок', 'Ссылки'],
     head_key: 'seo',
     key_field: 'title_index',
-    component: _SEOItem__WEBPACK_IMPORTED_MODULE_5__["default"],
+    component: _SEOItem__WEBPACK_IMPORTED_MODULE_4__["default"],
     items: seoPage
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SEOTable);
@@ -43309,49 +42521,62 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _SideBarItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../SideBarItem */ "./resources/js/react/admin-components/Side/SideBarItem/index.js");
+/* harmony import */ var _SideBarItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SideBarItem */ "./resources/js/react/admin-components/Side/SideBarItem/index.js");
+/* harmony import */ var _admin_actions_images_imagesActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-actions/images/imagesActions */ "./resources/js/react/admin-actions/images/imagesActions.js");
+/* harmony import */ var _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-actions/table/tablePagesActions */ "./resources/js/react/admin-actions/table/tablePagesActions.js");
+
 
 
 
 var pathes = [{
   path: '/admin/',
-  name: 'Панель Администратора'
+  name: 'Панель Администратора',
+  func: null
 }, {
   path: '/admin/companies',
-  name: 'Компании'
+  name: 'Компании',
+  func: _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_3__["resetTablePages"]
 }, {
   path: '/admin/reviews',
-  name: 'Отзывы'
+  name: 'Отзывы',
+  func: _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_3__["resetTablePages"]
 }, {
   path: '/admin/images',
-  name: 'Картинки'
+  name: 'Картинки',
+  func: _admin_actions_images_imagesActions__WEBPACK_IMPORTED_MODULE_2__["resetImages"]
 }, {
   path: '/admin/articles',
-  name: 'Статьи'
+  name: 'Статьи',
+  func: _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_3__["resetTablePages"]
 }, {
   path: '/admin/videos',
-  name: 'Видео'
+  name: 'Видео',
+  func: _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_3__["resetTablePages"]
 }, {
   path: '/admin/seo',
-  name: 'SEO параметры'
+  name: 'SEO параметры',
+  func: _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_3__["resetTablePages"]
 }, {
   path: '/admin/headers',
-  name: 'Заголовки'
+  name: 'Заголовки',
+  func: _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_3__["resetTablePages"]
 }, {
   path: '/admin/review-answers',
-  name: 'Комментарии'
+  name: 'Комментарии',
+  func: _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_3__["resetTablePages"]
 }, {
   path: '/admin/user-messages',
-  name: 'Сообщения от пользователей'
+  name: 'Сообщения от пользователей',
+  func: _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_3__["resetTablePages"]
 }];
 
 var SideBar = function SideBar() {
   var LinksArray = pathes.map(function (item) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBarItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SideBarItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
       path: item.path,
       name: item.name,
-      key: item.path
+      key: item.path,
+      func: item.func
     });
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
@@ -43399,11 +42624,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var SideBarItem = function SideBarItem(_ref) {
   var path = _ref.path,
-      name = _ref.name;
+      name = _ref.name,
+      func = _ref.func;
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
 
   var onClick = function onClick() {
     dispatch(Object(_admin_actions_appState_currentPageActions__WEBPACK_IMPORTED_MODULE_3__["resetCurrentPage"])());
+
+    if (func) {
+      dispatch(func());
+    }
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -43443,18 +42673,15 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
-/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
-/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
-/* harmony import */ var _admin_actions_userMessages_userMessageEditActions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../admin-actions/userMessages/userMessageEditActions */ "./resources/js/react/admin-actions/userMessages/userMessageEditActions.js");
-/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
-/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
-/* harmony import */ var _UserMessagesMain__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../UserMessagesMain */ "./resources/js/react/admin-components/UserMessages/UserMessagesMain/index.js");
-/* harmony import */ var _admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../admin-hoooks/useEditData */ "./resources/js/react/admin-hoooks/useEditData.js");
+/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
+/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
+/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
+/* harmony import */ var _UserMessagesMain__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../UserMessagesMain */ "./resources/js/react/admin-components/UserMessages/UserMessagesMain/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalEditData */ "./resources/js/react/admin-hoooks/useUniversalEditData.js");
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
@@ -43524,37 +42751,34 @@ function _arrayWithHoles(arr) {
 
 
 
-
-
-
 var UserMessagesEdit = function UserMessagesEdit() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
       _useState2 = _slicedToArray(_useState, 2),
       navPages = _useState2[0],
       setNavPages = _useState2[1];
 
-  var _useEditData = Object(_admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_12__["default"])('userMessageEdit', _admin_actions_userMessages_userMessageEditActions__WEBPACK_IMPORTED_MODULE_8__["getUserMessageEdit"], _admin_actions_userMessages_userMessageEditActions__WEBPACK_IMPORTED_MODULE_8__["resetUserMessagesEdit"]),
-      id = _useEditData.id,
-      userMessageEdit = _useEditData.userMessageEdit;
+  var _useUniversalEditData = Object(_admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_9__["default"])('user-messages'),
+      id = _useUniversalEditData.id,
+      userMessageEdit = _useUniversalEditData.tableItemEdit;
 
-  if (userMessageEdit === null) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null));
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  if (userMessageEdit === null) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     action: "/api/admin/user-messages/".concat(id),
     method: "POST",
     className: "page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
     navList: navPages,
     changeNavList: setNavPages
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
     className: "page__content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_7__["default"], {
     active: navPages.active,
     index: 0,
-    component: _UserMessagesMain__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _UserMessagesMain__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pt-3 page__button"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    action: _admin_actions_userMessages_userMessageEditActions__WEBPACK_IMPORTED_MODULE_8__["updateUserMessagesMain"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    action: "user-messages"
   })))));
 };
 
@@ -43653,9 +42877,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormComponent_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../FormComponent/Input */ "./resources/js/react/admin-components/FormComponent/Input/index.js");
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_userMessages_userMessageEditActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-actions/userMessages/userMessageEditActions */ "./resources/js/react/admin-actions/userMessages/userMessageEditActions.js");
-/* harmony import */ var _FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../FormComponent/Checkbox/Checkbox */ "./resources/js/react/admin-components/FormComponent/Checkbox/Checkbox.js");
-/* harmony import */ var _admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/checkboxToggle */ "./resources/js/react/admin-services/InputOnChange/checkboxToggle.js");
+/* harmony import */ var _FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../FormComponent/Checkbox/Checkbox */ "./resources/js/react/admin-components/FormComponent/Checkbox/Checkbox.js");
+/* harmony import */ var _admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/checkboxToggle */ "./resources/js/react/admin-services/InputOnChange/checkboxToggle.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -43666,8 +42890,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var UserMessagesMain = function UserMessagesMain() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
-      userMessageEdit = _useSelector.userMessageEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_7__["default"]),
+      userMessageEdit = _useSelector.tableItemEdit;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
@@ -43679,7 +42903,7 @@ var UserMessagesMain = function UserMessagesMain() {
       field: field,
       ReduxObj: userMessageEdit,
       key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_userMessages_userMessageEditActions__WEBPACK_IMPORTED_MODULE_5__["setUserMessagesEdit"])(field, userMessageEdit)
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, userMessageEdit)
     });
   }), textareas.map(function (_ref2) {
     var label = _ref2.label,
@@ -43689,20 +42913,13 @@ var UserMessagesMain = function UserMessagesMain() {
       field: field,
       ReduxObj: userMessageEdit,
       key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_userMessages_userMessageEditActions__WEBPACK_IMPORTED_MODULE_5__["setUserMessagesEdit"])(field, userMessageEdit)
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, userMessageEdit)
     });
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
     label: "\u041E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043E \u043D\u0430 \u043F\u043E\u0447\u0442\u0443 (\u043F\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0433\u0430\u043B\u043E\u0447\u043A\u0443, \u0435\u0441\u043B\u0438 \u043D\u0435 \u0436\u0435\u043B\u0430\u0435\u0442\u0435 \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u044D\u0442\u043E \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0438\u043C \u043F\u0438\u0441\u044C\u043C\u043E\u043C)",
     value: userMessageEdit.is_send,
-    onChange: Object(_admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_7__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_userMessages_userMessageEditActions__WEBPACK_IMPORTED_MODULE_5__["setUserMessagesEdit"], 'is_send')(userMessageEdit)
+    onChange: Object(_admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_6__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], 'is_send')(userMessageEdit)
   }));
-};
-
-var selector = function selector(_ref3) {
-  var userMessageEdit = _ref3.userMessageEdit;
-  return {
-    userMessageEdit: userMessageEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (UserMessagesMain);
@@ -43746,14 +42963,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_actions_userMessages_userMessagesActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-actions/userMessages/userMessagesActions */ "./resources/js/react/admin-actions/userMessages/userMessagesActions.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
-/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
-/* harmony import */ var _UserMessagesItem__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../UserMessagesItem */ "./resources/js/react/admin-components/UserMessages/UserMessagesItem/index.js");
-/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
-/* harmony import */ var _admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-hoooks/useTableData */ "./resources/js/react/admin-hoooks/useTableData.js");
-
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
+/* harmony import */ var _UserMessagesItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../UserMessagesItem */ "./resources/js/react/admin-components/UserMessages/UserMessagesItem/index.js");
+/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
 
 
 
@@ -43763,15 +42978,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var UserMessagesTable = function UserMessagesTable() {
-  var userMessagesPage = Object(_admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_7__["default"])('userMessages', _admin_actions_userMessages_userMessagesActions__WEBPACK_IMPORTED_MODULE_1__["getUserMessages"]);
-  if (userMessagesPage === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  var userMessagesPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_6__["default"])('user-messages');
+  if (userMessagesPage === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
     fields: ['ID', 'Имя', 'e-Mail', 'Прочитано', 'Ссылки'],
     head_key: 'user-messages',
     key_field: 'message_id',
-    component: _UserMessagesItem__WEBPACK_IMPORTED_MODULE_5__["default"],
+    component: _UserMessagesItem__WEBPACK_IMPORTED_MODULE_4__["default"],
     items: userMessagesPage
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_6__["default"], null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_5__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (UserMessagesTable);
@@ -43853,16 +43068,15 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_actions_videos_videoEditAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-actions/videos/videoEditAction */ "./resources/js/react/admin-actions/videos/videoEditAction.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
-/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
-/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
-/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
-/* harmony import */ var _VideosMain__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../VideosMain */ "./resources/js/react/admin-components/Videos/VideosMain/index.js");
-/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
-/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
-/* harmony import */ var _admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../admin-hoooks/useEditData */ "./resources/js/react/admin-hoooks/useEditData.js");
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var _NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../NotificationComponents/SuccessLine/SuccessLine */ "./resources/js/react/admin-components/NotificationComponents/SuccessLine/SuccessLine.js");
+/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
+/* harmony import */ var _VideosMain__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../VideosMain */ "./resources/js/react/admin-components/Videos/VideosMain/index.js");
+/* harmony import */ var _GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../GeneralComponents/SubmitButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitButton/index.js");
+/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalEditData */ "./resources/js/react/admin-hoooks/useUniversalEditData.js");
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
@@ -43932,35 +43146,34 @@ function _arrayWithHoles(arr) {
 
 
 
-
 var VideosEdit = function VideosEdit() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
       _useState2 = _slicedToArray(_useState, 2),
       navPages = _useState2[0],
       setNavPages = _useState2[1];
 
-  var _useEditData = Object(_admin_hoooks_useEditData__WEBPACK_IMPORTED_MODULE_10__["default"])('videoEdit', _admin_actions_videos_videoEditAction__WEBPACK_IMPORTED_MODULE_1__["getVideoEdit"], _admin_actions_videos_videoEditAction__WEBPACK_IMPORTED_MODULE_1__["resetVideoEdit"]),
-      id = _useEditData.id,
-      videoEdit = _useEditData.videoEdit;
+  var _useUniversalEditData = Object(_admin_hoooks_useUniversalEditData__WEBPACK_IMPORTED_MODULE_9__["default"])('videos'),
+      id = _useUniversalEditData.id,
+      videoEdit = _useUniversalEditData.tableItemEdit;
 
-  if (videoEdit === null) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null));
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_9__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  if (videoEdit === null) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_8__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     action: "/api/admin/videos/".concat(id),
     method: "POST",
     className: "page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     navList: navPages,
     changeNavList: setNavPages
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_SuccessLine_SuccessLine__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
     className: "page__content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    component: _VideosMain__WEBPACK_IMPORTED_MODULE_7__["default"],
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    component: _VideosMain__WEBPACK_IMPORTED_MODULE_6__["default"],
     active: navPages.active,
     index: 0
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-3 page__button"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    action: _admin_actions_videos_videoEditAction__WEBPACK_IMPORTED_MODULE_1__["updateVideoMain"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    tableName: "videos"
   })))));
 };
 
@@ -44002,7 +43215,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormComponent_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../FormComponent/Input */ "./resources/js/react/admin-components/FormComponent/Input/index.js");
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_actions_videos_videoEditAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-actions/videos/videoEditAction */ "./resources/js/react/admin-actions/videos/videoEditAction.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 
 
 
@@ -44011,8 +43224,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var VideoMain = function VideoMain() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
-      videoEdit = _useSelector.videoEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__["default"]),
+      videoEdit = _useSelector.tableItemEdit;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "page-wrapper card mt-3 p-3"
@@ -44024,7 +43237,7 @@ var VideoMain = function VideoMain() {
       field: field,
       ReduxObj: videoEdit,
       key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_videos_videoEditAction__WEBPACK_IMPORTED_MODULE_5__["setVideoEdit"])(field, videoEdit)
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, videoEdit)
     });
   }), textareas.map(function (_ref2) {
     var label = _ref2.label,
@@ -44034,16 +43247,9 @@ var VideoMain = function VideoMain() {
       field: field,
       ReduxObj: videoEdit,
       key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"], _admin_actions_videos_videoEditAction__WEBPACK_IMPORTED_MODULE_5__["setVideoEdit"])(field, videoEdit)
+      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, videoEdit)
     });
   }));
-};
-
-var selector = function selector(_ref3) {
-  var videoEdit = _ref3.videoEdit;
-  return {
-    videoEdit: videoEdit
-  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (VideoMain);
@@ -44090,12 +43296,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_actions_videos_videosActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-actions/videos/videosActions */ "./resources/js/react/admin-actions/videos/videosActions.js");
-/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
-/* harmony import */ var _VideoItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../VideoItem */ "./resources/js/react/admin-components/Videos/VideoItem/index.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useTableData */ "./resources/js/react/admin-hoooks/useTableData.js");
-
+/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
+/* harmony import */ var _VideoItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VideoItem */ "./resources/js/react/admin-components/Videos/VideoItem/index.js");
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
 
 
 
@@ -44103,14 +43307,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var VideosTable = function VideosTable() {
-  var videosPage = Object(_admin_hoooks_useTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('videos', _admin_actions_videos_videosActions__WEBPACK_IMPORTED_MODULE_1__["getVideos"]);
+  var videosPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_4__["default"])('videos');
 
   if (videosPage === undefined) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_3__["default"], null);
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    component: _VideoItem__WEBPACK_IMPORTED_MODULE_3__["default"],
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    component: _VideoItem__WEBPACK_IMPORTED_MODULE_2__["default"],
     fields: ['ID', 'Название видео', 'Идентификатор видео', 'Изменить'],
     head_key: 'video',
     key_field: 'video_slug',
@@ -44134,6 +43338,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _VideosTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VideosTable */ "./resources/js/react/admin-components/Videos/VideosTable/VideosTable.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (_VideosTable__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-helpers/editSelector.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/react/admin-helpers/editSelector.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var editSelector = function editSelector(_ref) {
+  var tableItemEdit = _ref.tableItemEdit;
+  return {
+    tableItemEdit: tableItemEdit
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (editSelector);
 
 /***/ }),
 
@@ -44246,10 +43470,10 @@ var PageHider = function PageHider(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-hoooks/useEditData.js":
-/*!********************************************************!*\
-  !*** ./resources/js/react/admin-hoooks/useEditData.js ***!
-  \********************************************************/
+/***/ "./resources/js/react/admin-hoooks/useUniversalEditData.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/react/admin-hoooks/useUniversalEditData.js ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -44259,14 +43483,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _admin_actions_table_tableItemEditActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../admin-actions/table/tableItemEditActions */ "./resources/js/react/admin-actions/table/tableItemEditActions.js");
 
 
 
 
-var useEditData = function useEditData(field, getFunc, returnFunc) {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector(field)),
+
+var useUniversalEditData = function useUniversalEditData(tableName) {
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
       apiToken = _useSelector.apiToken,
-      d = _useSelector.d;
+      tableItemEdit = _useSelector.tableItemEdit;
 
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useParams"])(),
       id = _useParams.id;
@@ -44274,37 +43500,36 @@ var useEditData = function useEditData(field, getFunc, returnFunc) {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (apiToken) {
-      dispatch(getFunc(id));
+      dispatch(Object(_admin_actions_table_tableItemEditActions__WEBPACK_IMPORTED_MODULE_3__["getTableItemEdit"])(tableName, id));
     }
 
     return function () {
-      return dispatch(returnFunc());
+      return dispatch(Object(_admin_actions_table_tableItemEditActions__WEBPACK_IMPORTED_MODULE_3__["resetTableItemEdit"])());
     };
   }, [id, apiToken]);
-  var returnData = {
-    id: id
-  };
-  returnData[field] = d;
-  return returnData;
-};
-
-var selector = function selector(field) {
-  return function (data) {
-    return {
-      apiToken: data.apiToken,
-      d: data[field]
-    };
+  return {
+    id: id,
+    tableItemEdit: tableItemEdit
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (useEditData);
+var selector = function selector(_ref) {
+  var apiToken = _ref.apiToken,
+      tableItemEdit = _ref.tableItemEdit;
+  return {
+    apiToken: apiToken,
+    tableItemEdit: tableItemEdit
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (useUniversalEditData);
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-hoooks/useTableData.js":
-/*!*********************************************************!*\
-  !*** ./resources/js/react/admin-hoooks/useTableData.js ***!
-  \*********************************************************/
+/***/ "./resources/js/react/admin-hoooks/useUniversalTableData.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/react/admin-hoooks/useUniversalTableData.js ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -44313,33 +43538,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../admin-actions/table/tablePagesActions */ "./resources/js/react/admin-actions/table/tablePagesActions.js");
 
 
 
-var useTableData = function useTableData(field, getFunc) {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector(field)),
+
+var useUniversalTableData = function useUniversalTableData(tableName) {
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(selector),
       apiToken = _useSelector.apiToken,
       currentPage = _useSelector.currentPage,
-      d = _useSelector.d;
+      tablePages = _useSelector.tablePages;
 
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    if (apiToken !== null && d[currentPage] === undefined) dispatch(getFunc());
-  }, [apiToken, currentPage]);
-  return d[currentPage];
+    if (apiToken !== null && tablePages[currentPage] === undefined) dispatch(Object(_admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_2__["getTablePage"])(tableName));
+  }, [apiToken, currentPage, tablePages[currentPage]]);
+  return tablePages[currentPage];
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (useTableData);
+/* harmony default export */ __webpack_exports__["default"] = (useUniversalTableData);
 
-var selector = function selector(field) {
-  return function (data) {
-    var apiToken = data.apiToken,
-        currentPage = data.currentPage;
-    return {
-      apiToken: apiToken,
-      currentPage: currentPage,
-      d: data[field]
-    };
+var selector = function selector(_ref) {
+  var apiToken = _ref.apiToken,
+      currentPage = _ref.currentPage,
+      tablePages = _ref.tablePages;
+  return {
+    apiToken: apiToken,
+    currentPage: currentPage,
+    tablePages: tablePages
   };
 };
 
@@ -44361,15 +43587,12 @@ var currentPageReducer = function currentPageReducer() {
   switch (action.type) {
     case "currentPage/setCurrentPage":
       return action.payload;
-      break;
 
     case "currentPage/resetCurrentPage":
       return 1;
-      break;
 
     default:
       return state;
-      break;
   }
 };
 
@@ -44494,201 +43717,6 @@ var successMessageReducer = function successMessageReducer() {
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-reducers/articles/articleEditReducer.js":
-/*!**************************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/articles/articleEditReducer.js ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var articleEditReducer = function articleEditReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'articleEdit/update':
-      return action.payload;
-
-    case 'articleEdit/reset':
-      return null;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (articleEditReducer);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-reducers/articles/articlesReducer.js":
-/*!***********************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/articles/articlesReducer.js ***!
-  \***********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var articlesReducer = function articlesReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'articles/addPage':
-      {
-        var newState = _objectSpread({}, state);
-
-        var key = action.key,
-            payload = action.payload;
-        newState[key] = payload;
-        return newState;
-      }
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (articlesReducer);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-reducers/companies/companiesReducer.js":
-/*!*************************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/companies/companiesReducer.js ***!
-  \*************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var companiesReducer = function companiesReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case "companies/addCompaniesPage":
-      {
-        var key = action.key;
-        var payload = action.payload;
-
-        var newState = _objectSpread({}, state);
-
-        newState[key] = payload;
-        return newState;
-      }
-
-    default:
-      return state;
-      break;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (companiesReducer);
-
-/***/ }),
-
 /***/ "./resources/js/react/admin-reducers/companies/companiesShortListReducer.js":
 /*!**********************************************************************************!*\
   !*** ./resources/js/react/admin-reducers/companies/companiesShortListReducer.js ***!
@@ -44715,68 +43743,10 @@ var companiesShortListReducer = function companiesShortListReducer() {
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-reducers/companies/companyEditReducer.js":
-/*!***************************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/companies/companyEditReducer.js ***!
-  \***************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var companyEditReducer = function companyEditReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'companyEdit/update':
-      return action.payload;
-
-    case 'companyEdit/reset':
-      return null;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (companyEditReducer);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-reducers/headers/headerEditReducer.js":
-/*!************************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/headers/headerEditReducer.js ***!
-  \************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var headerEditReducer = function headerEditReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'headerEdit/update':
-      return action.payload;
-
-    case 'headerEdit/reset':
-      return null;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (headerEditReducer);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-reducers/headers/headersReducer.js":
-/*!*********************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/headers/headersReducer.js ***!
-  \*********************************************************************/
+/***/ "./resources/js/react/admin-reducers/filterAttributes/filterAttributesReducer.js":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/react/admin-reducers/filterAttributes/filterAttributesReducer.js ***!
+  \***************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -44831,26 +43801,33 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-var headersReducer = function headersReducer() {
+var filterAttributesReducer = function filterAttributesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'headers/addPage':
-      var key = action.key;
-      var payload = action.payload;
+    case 'filterAttributes/set':
+      {
+        var key = action.key,
+            payload = action.payload;
 
-      var newState = _objectSpread({}, state);
+        var newState = _objectSpread({}, state);
 
-      newState[key] = payload;
-      return newState;
+        newState[key] = payload;
+        return newState;
+      }
+
+    case 'filterAttributes/reset':
+      {
+        return {};
+      }
 
     default:
       return state;
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (headersReducer);
+/* harmony default export */ __webpack_exports__["default"] = (filterAttributesReducer);
 
 /***/ }),
 
@@ -45004,45 +43981,19 @@ var imagesReducer = function imagesReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _companies_companiesReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./companies/companiesReducer */ "./resources/js/react/admin-reducers/companies/companiesReducer.js");
-/* harmony import */ var _tokens_apiTokenReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tokens/apiTokenReducer */ "./resources/js/react/admin-reducers/tokens/apiTokenReducer.js");
-/* harmony import */ var _appState_currentPageReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./appState/currentPageReducer */ "./resources/js/react/admin-reducers/appState/currentPageReducer.js");
-/* harmony import */ var _appState_lastPageReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./appState/lastPageReducer */ "./resources/js/react/admin-reducers/appState/lastPageReducer.js");
-/* harmony import */ var _companies_companyEditReducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./companies/companyEditReducer */ "./resources/js/react/admin-reducers/companies/companyEditReducer.js");
-/* harmony import */ var _tokens_csrfTokenReducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tokens/csrfTokenReducer */ "./resources/js/react/admin-reducers/tokens/csrfTokenReducer.js");
-/* harmony import */ var _appState_errorsMessageReducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./appState/errorsMessageReducer */ "./resources/js/react/admin-reducers/appState/errorsMessageReducer.js");
-/* harmony import */ var _appState_isLoadingReducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./appState/isLoadingReducer */ "./resources/js/react/admin-reducers/appState/isLoadingReducer.js");
-/* harmony import */ var _appState_successMessageReducer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./appState/successMessageReducer */ "./resources/js/react/admin-reducers/appState/successMessageReducer.js");
-/* harmony import */ var _reviews_reviewsReducer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./reviews/reviewsReducer */ "./resources/js/react/admin-reducers/reviews/reviewsReducer.js");
-/* harmony import */ var _reviews_reviewEditReducer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./reviews/reviewEditReducer */ "./resources/js/react/admin-reducers/reviews/reviewEditReducer.js");
-/* harmony import */ var _images_imagesReducer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./images/imagesReducer */ "./resources/js/react/admin-reducers/images/imagesReducer.js");
-/* harmony import */ var _companies_companiesShortListReducer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./companies/companiesShortListReducer */ "./resources/js/react/admin-reducers/companies/companiesShortListReducer.js");
-/* harmony import */ var _images_imagesCommandLineReducer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./images/imagesCommandLineReducer */ "./resources/js/react/admin-reducers/images/imagesCommandLineReducer.js");
-/* harmony import */ var _articles_articlesReducer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./articles/articlesReducer */ "./resources/js/react/admin-reducers/articles/articlesReducer.js");
-/* harmony import */ var _articles_articleEditReducer__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./articles/articleEditReducer */ "./resources/js/react/admin-reducers/articles/articleEditReducer.js");
-/* harmony import */ var _videos_videosReducer__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./videos/videosReducer */ "./resources/js/react/admin-reducers/videos/videosReducer.js");
-/* harmony import */ var _videos_videosEditReducer__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./videos/videosEditReducer */ "./resources/js/react/admin-reducers/videos/videosEditReducer.js");
-/* harmony import */ var _reviewAnswers_reviewAnswersReducer__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./reviewAnswers/reviewAnswersReducer */ "./resources/js/react/admin-reducers/reviewAnswers/reviewAnswersReducer.js");
-/* harmony import */ var _reviewAnswers_reviewAnswerEditReducer__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./reviewAnswers/reviewAnswerEditReducer */ "./resources/js/react/admin-reducers/reviewAnswers/reviewAnswerEditReducer.js");
-/* harmony import */ var _userMessages_userMessagesReducer__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./userMessages/userMessagesReducer */ "./resources/js/react/admin-reducers/userMessages/userMessagesReducer.js");
-/* harmony import */ var _userMessages_userMessageEditReducer__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./userMessages/userMessageEditReducer */ "./resources/js/react/admin-reducers/userMessages/userMessageEditReducer.js");
-/* harmony import */ var _seo_seoReducer__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./seo/seoReducer */ "./resources/js/react/admin-reducers/seo/seoReducer.js");
-/* harmony import */ var _seo_seoEditReducer__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./seo/seoEditReducer */ "./resources/js/react/admin-reducers/seo/seoEditReducer.js");
-/* harmony import */ var _headers_headersReducer__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./headers/headersReducer */ "./resources/js/react/admin-reducers/headers/headersReducer.js");
-/* harmony import */ var _headers_headerEditReducer__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./headers/headerEditReducer */ "./resources/js/react/admin-reducers/headers/headerEditReducer.js");
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* harmony import */ var _tokens_apiTokenReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tokens/apiTokenReducer */ "./resources/js/react/admin-reducers/tokens/apiTokenReducer.js");
+/* harmony import */ var _appState_currentPageReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./appState/currentPageReducer */ "./resources/js/react/admin-reducers/appState/currentPageReducer.js");
+/* harmony import */ var _appState_lastPageReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./appState/lastPageReducer */ "./resources/js/react/admin-reducers/appState/lastPageReducer.js");
+/* harmony import */ var _tokens_csrfTokenReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tokens/csrfTokenReducer */ "./resources/js/react/admin-reducers/tokens/csrfTokenReducer.js");
+/* harmony import */ var _appState_errorsMessageReducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./appState/errorsMessageReducer */ "./resources/js/react/admin-reducers/appState/errorsMessageReducer.js");
+/* harmony import */ var _appState_isLoadingReducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./appState/isLoadingReducer */ "./resources/js/react/admin-reducers/appState/isLoadingReducer.js");
+/* harmony import */ var _appState_successMessageReducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./appState/successMessageReducer */ "./resources/js/react/admin-reducers/appState/successMessageReducer.js");
+/* harmony import */ var _images_imagesReducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./images/imagesReducer */ "./resources/js/react/admin-reducers/images/imagesReducer.js");
+/* harmony import */ var _companies_companiesShortListReducer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./companies/companiesShortListReducer */ "./resources/js/react/admin-reducers/companies/companiesShortListReducer.js");
+/* harmony import */ var _images_imagesCommandLineReducer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./images/imagesCommandLineReducer */ "./resources/js/react/admin-reducers/images/imagesCommandLineReducer.js");
+/* harmony import */ var _filterAttributes_filterAttributesReducer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./filterAttributes/filterAttributesReducer */ "./resources/js/react/admin-reducers/filterAttributes/filterAttributesReducer.js");
+/* harmony import */ var _table_tablePagesReducer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./table/tablePagesReducer */ "./resources/js/react/admin-reducers/table/tablePagesReducer.js");
+/* harmony import */ var _table_tableItemEditReducer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./table/tableItemEditReducer */ "./resources/js/react/admin-reducers/table/tableItemEditReducer.js");
 
 
 
@@ -45058,54 +44009,41 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  errorsMessage: _appState_errorsMessageReducer__WEBPACK_IMPORTED_MODULE_7__["default"],
-  successMessage: _appState_successMessageReducer__WEBPACK_IMPORTED_MODULE_9__["default"],
-  isLoading: _appState_isLoadingReducer__WEBPACK_IMPORTED_MODULE_8__["default"],
-  apiToken: _tokens_apiTokenReducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  csrfToken: _tokens_csrfTokenReducer__WEBPACK_IMPORTED_MODULE_6__["default"],
-  currentPage: _appState_currentPageReducer__WEBPACK_IMPORTED_MODULE_3__["default"],
-  lastPage: _appState_lastPageReducer__WEBPACK_IMPORTED_MODULE_4__["default"],
-  companies: _companies_companiesReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  companiesShortList: _companies_companiesShortListReducer__WEBPACK_IMPORTED_MODULE_13__["default"],
-  companyEdit: _companies_companyEditReducer__WEBPACK_IMPORTED_MODULE_5__["default"],
-  reviews: _reviews_reviewsReducer__WEBPACK_IMPORTED_MODULE_10__["default"],
-  reviewEdit: _reviews_reviewEditReducer__WEBPACK_IMPORTED_MODULE_11__["default"],
-  images: _images_imagesReducer__WEBPACK_IMPORTED_MODULE_12__["default"],
-  imagesCommandLine: _images_imagesCommandLineReducer__WEBPACK_IMPORTED_MODULE_14__["default"],
-  articles: _articles_articlesReducer__WEBPACK_IMPORTED_MODULE_15__["default"],
-  articleEdit: _articles_articleEditReducer__WEBPACK_IMPORTED_MODULE_16__["default"],
-  videos: _videos_videosReducer__WEBPACK_IMPORTED_MODULE_17__["default"],
-  videoEdit: _videos_videosEditReducer__WEBPACK_IMPORTED_MODULE_18__["default"],
-  userMessages: _userMessages_userMessagesReducer__WEBPACK_IMPORTED_MODULE_21__["default"],
-  userMessageEdit: _userMessages_userMessageEditReducer__WEBPACK_IMPORTED_MODULE_22__["default"],
-  reviewAnswers: _reviewAnswers_reviewAnswersReducer__WEBPACK_IMPORTED_MODULE_19__["default"],
-  reviewAnswerEdit: _reviewAnswers_reviewAnswerEditReducer__WEBPACK_IMPORTED_MODULE_20__["default"],
-  seo: _seo_seoReducer__WEBPACK_IMPORTED_MODULE_23__["default"],
-  seoEdit: _seo_seoEditReducer__WEBPACK_IMPORTED_MODULE_24__["default"],
-  headers: _headers_headersReducer__WEBPACK_IMPORTED_MODULE_25__["default"],
-  headerEdit: _headers_headerEditReducer__WEBPACK_IMPORTED_MODULE_26__["default"]
+  errorsMessage: _appState_errorsMessageReducer__WEBPACK_IMPORTED_MODULE_5__["default"],
+  successMessage: _appState_successMessageReducer__WEBPACK_IMPORTED_MODULE_7__["default"],
+  isLoading: _appState_isLoadingReducer__WEBPACK_IMPORTED_MODULE_6__["default"],
+  apiToken: _tokens_apiTokenReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  csrfToken: _tokens_csrfTokenReducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  currentPage: _appState_currentPageReducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  lastPage: _appState_lastPageReducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  companiesShortList: _companies_companiesShortListReducer__WEBPACK_IMPORTED_MODULE_9__["default"],
+  images: _images_imagesReducer__WEBPACK_IMPORTED_MODULE_8__["default"],
+  imagesCommandLine: _images_imagesCommandLineReducer__WEBPACK_IMPORTED_MODULE_10__["default"],
+  tablePages: _table_tablePagesReducer__WEBPACK_IMPORTED_MODULE_12__["default"],
+  tableItemEdit: _table_tableItemEditReducer__WEBPACK_IMPORTED_MODULE_13__["default"],
+  filterAttributes: _filterAttributes_filterAttributesReducer__WEBPACK_IMPORTED_MODULE_11__["default"]
 }));
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-reducers/reviewAnswers/reviewAnswerEditReducer.js":
-/*!************************************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/reviewAnswers/reviewAnswerEditReducer.js ***!
-  \************************************************************************************/
+/***/ "./resources/js/react/admin-reducers/table/tableItemEditReducer.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/react/admin-reducers/table/tableItemEditReducer.js ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var reviewsAnswerEditReducer = function reviewsAnswerEditReducer() {
+var tableItemEditReducer = function tableItemEditReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'reviewAnswerEdit/update':
+    case 'tableItemEdit/update':
       return action.payload;
 
-    case 'reviewAnswerEdit/reset':
+    case 'tableItemEdit/reset':
       return null;
 
     default:
@@ -45113,14 +44051,14 @@ var reviewsAnswerEditReducer = function reviewsAnswerEditReducer() {
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (reviewsAnswerEditReducer);
+/* harmony default export */ __webpack_exports__["default"] = (tableItemEditReducer);
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-reducers/reviewAnswers/reviewAnswersReducer.js":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/reviewAnswers/reviewAnswersReducer.js ***!
-  \*********************************************************************************/
+/***/ "./resources/js/react/admin-reducers/table/tablePagesReducer.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/react/admin-reducers/table/tablePagesReducer.js ***!
+  \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -45175,247 +44113,28 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-var reviewAnswersReducer = function reviewAnswersReducer() {
+var tablePagesReducer = function tablePagesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'reviewAnswers/addPage':
-      {
-        var newState = _objectSpread({}, state);
-
-        var key = action.key,
-            payload = action.payload;
-        newState[key] = payload;
-        return newState;
-      }
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (reviewAnswersReducer);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-reducers/reviews/reviewEditReducer.js":
-/*!************************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/reviews/reviewEditReducer.js ***!
-  \************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var reviewEditReducer = function reviewEditReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'reviewEdit/update':
-      return action.payload;
-
-    case 'reviewEdit/reset':
-      return null;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (reviewEditReducer);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-reducers/reviews/reviewsReducer.js":
-/*!*********************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/reviews/reviewsReducer.js ***!
-  \*********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var reviewsReducer = function reviewsReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'reviews/addReviewsPage':
-      var key = action.key;
-      var payload = action.payload;
-
+    case 'tablePages/addPage':
       var newState = _objectSpread({}, state);
 
+      var payload = action.payload,
+          key = action.key;
       newState[key] = payload;
       return newState;
 
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (reviewsReducer);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-reducers/seo/seoEditReducer.js":
-/*!*****************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/seo/seoEditReducer.js ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var seoEditReducer = function seoEditReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'seoEdit/update':
-      return action.payload;
-
-    case 'seoEdit/reset':
-      return null;
+    case 'tablePages/reset':
+      return {};
 
     default:
       return state;
   }
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (seoEditReducer);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-reducers/seo/seoReducer.js":
-/*!*************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/seo/seoReducer.js ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var seoReducer = function seoReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'seo/addPage':
-      var key = action.key;
-      var payload = action.payload;
-
-      var newState = _objectSpread({}, state);
-
-      newState[key] = payload;
-      return newState;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (seoReducer);
+/* harmony default export */ __webpack_exports__["default"] = (tablePagesReducer);
 
 /***/ }),
 
@@ -45474,228 +44193,6 @@ var csrfTokenReducer = function csrfTokenReducer() {
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-reducers/userMessages/userMessageEditReducer.js":
-/*!**********************************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/userMessages/userMessageEditReducer.js ***!
-  \**********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var userMessageEditReducer = function userMessageEditReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'userMessageEdit/update':
-      return action.payload;
-
-    case 'userMessageEdit/reset':
-      return null;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (userMessageEditReducer);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-reducers/userMessages/userMessagesReducer.js":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/userMessages/userMessagesReducer.js ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var userMessagesReducer = function userMessagesReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'userMessages/addPage':
-      {
-        var newState = _objectSpread({}, state);
-
-        var key = action.key,
-            payload = action.payload;
-        newState[key] = payload;
-        return newState;
-      }
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (userMessagesReducer);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-reducers/videos/videosEditReducer.js":
-/*!***********************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/videos/videosEditReducer.js ***!
-  \***********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var videosEditReducer = function videosEditReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'videoEdit/update':
-      return action.payload;
-
-    case 'videoEdit/reset':
-      return null;
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (videosEditReducer);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-reducers/videos/videosReducer.js":
-/*!*******************************************************************!*\
-  !*** ./resources/js/react/admin-reducers/videos/videosReducer.js ***!
-  \*******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var videosReducer = function videosReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-
-  switch (action.type) {
-    case 'videos/addPage':
-      {
-        var newState = _objectSpread({}, state);
-
-        var key = action.key,
-            payload = action.payload;
-        newState[key] = payload;
-        return newState;
-      }
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (videosReducer);
-
-/***/ }),
-
 /***/ "./resources/js/react/admin-services/InputOnChange/checkboxToggle.js":
 /*!***************************************************************************!*\
   !*** ./resources/js/react/admin-services/InputOnChange/checkboxToggle.js ***!
@@ -45705,6 +44202,7 @@ var videosReducer = function videosReducer() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _admin_actions_table_tableItemEditActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-actions/table/tableItemEditActions */ "./resources/js/react/admin-actions/table/tableItemEditActions.js");
 function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
 
@@ -45754,15 +44252,17 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-var checkboxToggle = function checkboxToggle(useDispatch, actionToDispatch) {
-  var fieldToDiapatch = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'is_published';
+
+
+var checkboxToggle = function checkboxToggle(useDispatch) {
+  var fieldToDispatch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'is_published';
   var dispatch = useDispatch();
   return function (data) {
     return function (e) {
       var obj = _objectSpread({}, data);
 
-      obj[fieldToDiapatch] = Number(e.target.checked);
-      dispatch(actionToDispatch(obj));
+      obj[fieldToDispatch] = Number(e.target.checked);
+      dispatch(Object(_admin_actions_table_tableItemEditActions__WEBPACK_IMPORTED_MODULE_0__["setTableItemEdit"])(obj));
     };
   };
 };
@@ -45929,10 +44429,12 @@ var checkboxToggleImages2 = function checkboxToggleImages2(useDispatch, actionTo
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inputOnChange__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inputOnChange */ "./resources/js/react/admin-services/InputOnChange/inputOnChange.js");
+/* harmony import */ var _admin_actions_table_tableItemEditActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-actions/table/tableItemEditActions */ "./resources/js/react/admin-actions/table/tableItemEditActions.js");
 
 
-var generalInputOnChange = function generalInputOnChange(useDispatch, editFunction) {
-  return Object(_inputOnChange__WEBPACK_IMPORTED_MODULE_0__["default"])(useDispatch, editFunction);
+
+var generalInputOnChange = function generalInputOnChange(useDispatch) {
+  return Object(_inputOnChange__WEBPACK_IMPORTED_MODULE_0__["default"])(useDispatch, _admin_actions_table_tableItemEditActions__WEBPACK_IMPORTED_MODULE_1__["setTableItemEdit"]);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (generalInputOnChange);
@@ -46408,9 +44910,8 @@ var ImagesService = /*#__PURE__*/function (_UniversalService) {
     _this = _super.call(this, apiToken, prefix);
     _this.getImages = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var page,
-          attr,
           attributes,
-          i,
+          attributesString,
           _yield$_this$axios$ge,
           data,
           _args = arguments;
@@ -46420,34 +44921,29 @@ var ImagesService = /*#__PURE__*/function (_UniversalService) {
           switch (_context.prev = _context.next) {
             case 0:
               page = _args.length > 0 && _args[0] !== undefined ? _args[0] : 1;
-              attr = _args.length > 1 ? _args[1] : undefined;
-              attributes = '';
+              attributes = _args.length > 1 ? _args[1] : undefined;
+              attributesString = _this._getAttributes(attributes);
+              _context.prev = 3;
+              _context.next = 6;
+              return _this.axios.get("".concat(_this.baseUrl, "/").concat(_this.prefix, "?api_token=").concat(_this.apiToken, "&page=").concat(page).concat(attributesString));
 
-              for (i in attr) {
-                if (attr[i] !== '') attributes += "&".concat(i, "=").concat(attr[i]);
-              }
-
-              _context.prev = 4;
-              _context.next = 7;
-              return _this.axios.get("".concat(_this.baseUrl, "/").concat(_this.prefix, "?api_token=").concat(_this.apiToken, "&page=").concat(page).concat(attributes));
-
-            case 7:
+            case 6:
               _yield$_this$axios$ge = _context.sent;
               data = _yield$_this$axios$ge.data;
               return _context.abrupt("return", data);
 
-            case 12:
-              _context.prev = 12;
-              _context.t0 = _context["catch"](4);
+            case 11:
+              _context.prev = 11;
+              _context.t0 = _context["catch"](3);
 
               _this.handleError(_context.t0);
 
-            case 15:
+            case 14:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[4, 12]]);
+      }, _callee, null, [[3, 11]]);
     }));
 
     _this.updatePage = /*#__PURE__*/function () {
@@ -46730,33 +45226,39 @@ var UniversalService = /*#__PURE__*/function (_AbstractService) {
 
     _this.getPagination = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(page) {
-        var _yield$_this$axios$ge, data;
+        var attributes,
+            attributesString,
+            _yield$_this$axios$ge,
+            data,
+            _args = arguments;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return _this.axios.get("".concat(_this.baseUrl, "/").concat(_this.prefix, "?api_token=").concat(_this.apiToken, "&page=").concat(page));
+                attributes = _args.length > 1 && _args[1] !== undefined ? _args[1] : '';
+                attributesString = attributes === '' ? attributes : _this._getAttributes(attributes);
+                _context.prev = 2;
+                _context.next = 5;
+                return _this.axios.get("".concat(_this.baseUrl, "/").concat(_this.prefix, "?api_token=").concat(_this.apiToken, "&page=").concat(page).concat(attributesString));
 
-              case 3:
+              case 5:
                 _yield$_this$axios$ge = _context.sent;
                 data = _yield$_this$axios$ge.data;
                 return _context.abrupt("return", data);
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](0);
+              case 10:
+                _context.prev = 10;
+                _context.t0 = _context["catch"](2);
 
                 _this.handleError(_context.t0);
 
-              case 11:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[2, 10]]);
       }));
 
       return function (_x) {
@@ -46841,6 +45343,16 @@ var UniversalService = /*#__PURE__*/function (_AbstractService) {
       };
     }();
 
+    _this._getAttributes = function (attributes) {
+      var str = '';
+
+      for (var i in attributes) {
+        if (attributes[i] !== '') str += "&".concat(i, "=").concat(attributes[i]);
+      }
+
+      return str;
+    };
+
     return _this;
   }
 
@@ -46848,26 +45360,6 @@ var UniversalService = /*#__PURE__*/function (_AbstractService) {
 }(_AbctractService__WEBPACK_IMPORTED_MODULE_2__["default"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (UniversalService);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-services/validationErrorHendler.js":
-/*!*********************************************************************!*\
-  !*** ./resources/js/react/admin-services/validationErrorHendler.js ***!
-  \*********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _admin_actions_appState_errorMessageActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../admin-actions/appState/errorMessageActions */ "./resources/js/react/admin-actions/appState/errorMessageActions.js");
-
-
-var handleError = function handleError(error) {
-  return Object(_admin_actions_appState_errorMessageActions__WEBPACK_IMPORTED_MODULE_0__["updateErrorsMessage"])(error.response.data.errors);
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (handleError);
 
 /***/ }),
 

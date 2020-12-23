@@ -15,6 +15,7 @@ class CompaniesController extends UserController
     private $company;
     private $reviewsRepository;
     private $seo;
+    private $headers;
 
     public function __construct(
         UserSEORepository $SEORepository,
@@ -39,6 +40,9 @@ class CompaniesController extends UserController
         $this->articles = $articlesRepository->getSomeLastArticle(2);
         $this->reviewsRepository = $reviewsRepository;
         $this->seo = $this->getSEOAttributes('companies');
+        $this->headers = $this->getHeaders(['main', 'side', 'reviews']);
+
+        return 1;
     }
 
     public function index()
@@ -50,7 +54,9 @@ class CompaniesController extends UserController
                 'company' => $this->company,
                 'articles' => $this->articles,
                 'reviews' => $reviews,
-                'seo' => $this->seo]);
+                'seo' => $this->seo,
+                'headers' => $this->headers
+            ]);
     }
 
     public function positive()
@@ -62,7 +68,9 @@ class CompaniesController extends UserController
                 'company' => $this->company,
                 'articles' => $this->articles,
                 'reviews' => $reviews,
-                'seo' => $this->seo]);
+                'seo' => $this->seo,
+                'headers' => $this->headers
+            ]);
     }
 
     public function negative()
@@ -74,6 +82,8 @@ class CompaniesController extends UserController
                 'company' => $this->company,
                 'articles' => $this->articles,
                 'reviews' => $reviews,
-                'seo' => $this->seo]);
+                'seo' => $this->seo,
+                'headers' => $this->headers
+            ]);
     }
 }

@@ -14,9 +14,10 @@ class UniversalService extends AbstractService {
             }
         }
 
-        this.getPagination = async (page) => {
+        this.getPagination = async (page, attributes = '') => {
+            const attributesString = attributes === '' ? attributes : this._getAttributes(attributes);
             try {
-                const {data} = await this.axios.get(`${this.baseUrl}/${this.prefix}?api_token=${this.apiToken}&page=${page}`);
+                const {data} = await this.axios.get(`${this.baseUrl}/${this.prefix}?api_token=${this.apiToken}&page=${page}${attributesString}`);
                 return data;
             } catch (e) {
                 this.handleError(e);
@@ -41,6 +42,14 @@ class UniversalService extends AbstractService {
             } catch (e) {
                 this.handleError(e);
             }
+        }
+        this._getAttributes = (attributes) => {
+            let str = '';
+            for(const i in attributes) {
+                if (attributes[i] !== '')
+                    str += `&${i}=${attributes[i]}`
+            }
+            return str;
         }
     }
 }

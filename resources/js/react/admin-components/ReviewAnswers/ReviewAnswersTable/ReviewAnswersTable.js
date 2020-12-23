@@ -1,13 +1,12 @@
 import React from 'react';
 import Spinner from "../../GeneralComponents/Spinner";
-import {getReviewAnswers} from "../../../admin-actions/reviewAnswers/reviewAnswersAntions";
 import Table from "../../GeneralComponents/Table";
 import ReviewAnswersItem from "../ReviewAnswersItem";
 import Pagination from "../../GeneralComponents/Pagination";
-import useTableData from "../../../admin-hoooks/useTableData";
+import useUniversalTableData from "../../../admin-hoooks/useUniversalTableData";
 
 const ReviewAnswersTable = () => {
-    const reviewAnswersPage = useTableData('reviewAnswers', getReviewAnswers);
+    const reviewAnswersPage = useUniversalTableData('review-answers');
     if (reviewAnswersPage === undefined)
         return <Spinner />
 

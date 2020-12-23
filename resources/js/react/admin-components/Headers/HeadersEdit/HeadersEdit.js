@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import EditWindow from "../../GeneralComponents/EditWindow";
-import useEditData from "../../../admin-hoooks/useEditData";
-import {getHeaderEdit, resetHeaderEdit, updateHeaderMain} from "../../../admin-actions/headers/headersEditActions";
 import EditNavbar from "../../GeneralComponents/EditNavbar";
 import ErrorLine from "../../NotificationComponents/ErrorLine/ErrorLine";
 import SuccessLine from "../../NotificationComponents/SuccessLine/SuccessLine";
@@ -9,12 +7,13 @@ import PageHider from "../../../admin-hoc/PageHider";
 import HeadersMain from "../HeadersMain";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
 import Spinner from "../../GeneralComponents/Spinner";
+import useUniversalEditData from "../../../admin-hoooks/useUniversalEditData";
 
 const HeadersEdit = () => {
     const [navPages, setNavPages] = useState(pages);
-    const {id, headerEdit} = useEditData('headerEdit', getHeaderEdit, resetHeaderEdit)
+    const {id, tableItemEdit: headerEdit} = useUniversalEditData('headers')
 
-    if(headerEdit === null) {
+    if (headerEdit === null) {
         return (
             <EditWindow>
                 <Spinner />
@@ -29,10 +28,9 @@ const HeadersEdit = () => {
                 <ErrorLine />
                 <SuccessLine />
                 <article className="page__content">
-                    <PageHider component={HeadersMain} index={0} active={navPages.active}/>
-
+                    <PageHider component={HeadersMain} index={0} active={navPages.active} />
                     <div className='pt-3 page__button'>
-                        <SubmitButton action={updateHeaderMain}/>
+                        <SubmitButton tableName='headers' />
                     </div>
                 </article>
             </form>
@@ -47,4 +45,4 @@ const pages = {
         'Главная'
     ],
     active: 0
-}
+};
