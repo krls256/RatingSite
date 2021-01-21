@@ -19,7 +19,6 @@ const ReviewAnswerEdit = () => {
                 <Spinner />
             </EditWindow>
         )
-
     return (
         <EditWindow>
             <form action={`/api/admin/review-answers/${id}`} method='POST' className='page'>
@@ -29,7 +28,7 @@ const ReviewAnswerEdit = () => {
                 <article className="page__content">
                     <PageHider active={navPages.active} index={0} component={ReviewAnswerMain} />
                     <div className='pt-3 page__button'>
-                        <SubmitButton tableName='review-answers' />
+                        <SubmitButton tableName={'review-answers'} />
                     </div>
                 </article>
             </form>

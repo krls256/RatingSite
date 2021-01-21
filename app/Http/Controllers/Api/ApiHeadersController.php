@@ -11,15 +11,17 @@ class ApiHeadersController extends ApiController
 {
     private $repository;
 
-    public function __construct(ApiHeadersRepository $headersRepository)
+    public function __construct(ApiHeadersRepository $headersRepository, Request $request)
     {
-        parent::__construct();
+        parent::__construct($request, 'headers');
         $this->repository = $headersRepository;
     }
 
     public function index()
     {
-        return $this->repository->getHeadersPaginate();
+        $response = $this->repository->getHeadersPaginate(15, $this->options);
+
+        return $this->returnWithOptions($response, $this->options);
     }
 
     public function edit($id)

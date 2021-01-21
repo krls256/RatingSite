@@ -2,9 +2,10 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 const VideoItem = ({data}) => {
-    const {video_id, video_title, video_slug} = data
+    const {video_id, video_title, video_slug, is_published} = data;
+    const classList = is_published ? 'c-dark' : 'c-dark table-list__item_unpublished';
     return (
-        <tr className='c-dark'>
+        <tr className={classList}>
             <th scope="row">{video_id}</th>
             <td>{video_title}</td>
             <td>{video_slug}</td>

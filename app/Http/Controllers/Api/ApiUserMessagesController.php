@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\UserMessages\UserMessagesUpdateRequest;
 use App\Repositories\UserMessages\ApiUserMessagesRepository;
+use Illuminate\Http\Request;
 
 class ApiUserMessagesController extends ApiController
 {
     private $repository;
 
-    public function __construct(ApiUserMessagesRepository $userMessagesRepository)
+    public function __construct(ApiUserMessagesRepository $userMessagesRepository, Request $request)
     {
+        parent::__construct($request, 'user_messages');
         $this->repository = $userMessagesRepository;
     }
 
@@ -19,7 +21,9 @@ class ApiUserMessagesController extends ApiController
      */
     public function index()
     {
-        return $this->repository->getUserMessagesPaginate(15);
+        $response = $this->repository->getUserMessagesPaginate(15, $this->options);
+
+        return $this->returnWithOptions($response, $this->options);
     }
 
     /**

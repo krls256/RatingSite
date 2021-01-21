@@ -24,6 +24,7 @@ class CreateArticlesTable extends Migration
             $table->boolean('is_published')->default(1);
 
             $table->mediumText('article_content');
+            $table->mediumText('article_html');
 
             $table->timestamps();
         });

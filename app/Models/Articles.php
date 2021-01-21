@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Traits\GetFillableTrait;
 use Carbon\Traits\Timestamp;
 use Illuminate\Database\Eloquent\Model;
 
 class Articles extends Model
 {
-    use Timestamp;
+    use Timestamp, GetFillableTrait;
 
     protected $primaryKey = 'article_id';
 
     protected $fillable = [
         'article_title',
-        'article_slug',
         'article_main_image',
         'article_description',
         'article_content',

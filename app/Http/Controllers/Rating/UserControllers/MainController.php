@@ -6,6 +6,7 @@ use App\Repositories\Articles\UserArticlesRepository;
 use App\Repositories\BaseInfo\ColumnBaseInfoRepository;
 use App\Repositories\Companies\UserCompaniesRepository;
 use App\Repositories\SEO\UserSEORepository;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 class MainController extends UserController {
 

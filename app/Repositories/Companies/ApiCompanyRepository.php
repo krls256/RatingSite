@@ -3,10 +3,10 @@
 
 namespace App\Repositories\Companies;
 
-use App\Repositories\CoreRepository;
+use App\Repositories\ApiRepository;
 use App\Models\Companies as Model;
 
-class ApiCompanyRepository extends CoreRepository
+class ApiCompanyRepository extends ApiRepository
 {
     protected function getModelClass()
     {
@@ -16,11 +16,9 @@ class ApiCompanyRepository extends CoreRepository
     public function getCompaniesPaginate($count = 15, $options = [])
     {
         $column = ['company_name', 'company_id', 'company_average_mark', 'is_published'];
-        $response = $this->startCondition()
-            ->select($column);
-        if(isset($options['orderBy'])) {
-            $response = $response->orderBy($options['orderBy'], 'desc');
-        }
+        $response = $this->startCondition()->select($column);
+        $response = $this->addOrder($response, $options);
+        $response = $this->addFilters($response, $options);
         $response = $response->paginate($count);
         return $response;
     }

@@ -37934,6 +37934,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_components_UserMessages_UserMessagesEdit__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./admin-components/UserMessages/UserMessagesEdit */ "./resources/js/react/admin-components/UserMessages/UserMessagesEdit/index.js");
 /* harmony import */ var _admin_components_SEO_SEOEdit__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./admin-components/SEO/SEOEdit */ "./resources/js/react/admin-components/SEO/SEOEdit/index.js");
 /* harmony import */ var _admin_components_Headers_HeadersEdit_HeadersEdit__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./admin-components/Headers/HeadersEdit/HeadersEdit */ "./resources/js/react/admin-components/Headers/HeadersEdit/HeadersEdit.js");
+/* harmony import */ var _admin_components_Videos_VideosCreate__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./admin-components/Videos/VideosCreate */ "./resources/js/react/admin-components/Videos/VideosCreate/index.js");
+/* harmony import */ var _admin_components_Articles_ArticlesCreate__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./admin-components/Articles/ArticlesCreate */ "./resources/js/react/admin-components/Articles/ArticlesCreate/index.js");
+
+
 
 
 
@@ -37997,11 +38001,17 @@ function App() {
     path: "/admin/articles",
     component: _admin_components_Articles_ArticlesTable__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/admin/articles/create",
+    component: _admin_components_Articles_ArticlesCreate__WEBPACK_IMPORTED_MODULE_29__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/admin/articles/:id/edit",
     component: _admin_components_Articles_ArticleEdit__WEBPACK_IMPORTED_MODULE_20__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/admin/videos",
     component: _admin_components_Videos_VideosTable__WEBPACK_IMPORTED_MODULE_12__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/admin/videos/create",
+    component: _admin_components_Videos_VideosCreate__WEBPACK_IMPORTED_MODULE_28__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/admin/videos/:id/edit",
     component: _admin_components_Videos_VideosEdit__WEBPACK_IMPORTED_MODULE_21__["default"]
@@ -38139,6 +38149,34 @@ var setLastPage = function setLastPage(payload) {
 
 /***/ }),
 
+/***/ "./resources/js/react/admin-actions/appState/redirectActions.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/react/admin-actions/appState/redirectActions.js ***!
+  \**********************************************************************/
+/*! exports provided: updateRedirect, resetRedirect */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateRedirect", function() { return updateRedirect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetRedirect", function() { return resetRedirect; });
+var updateRedirect = function updateRedirect(payload) {
+  return {
+    type: 'redirect/update',
+    payload: payload
+  };
+};
+
+var resetRedirect = function resetRedirect() {
+  return {
+    type: 'redirect/reset'
+  };
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/js/react/admin-actions/appState/successMessageActions.js":
 /*!****************************************************************************!*\
   !*** ./resources/js/react/admin-actions/appState/successMessageActions.js ***!
@@ -38206,17 +38244,24 @@ var setShortList = function setShortList(payload) {
 /*!**************************************************************************************!*\
   !*** ./resources/js/react/admin-actions/filterAttributes/filterAttributesActions.js ***!
   \**************************************************************************************/
-/*! exports provided: setFilterAttributes */
+/*! exports provided: setFilterAttributes, resetFilterAttributes */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFilterAttributes", function() { return setFilterAttributes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetFilterAttributes", function() { return resetFilterAttributes; });
 var setFilterAttributes = function setFilterAttributes(key, payload) {
   return {
     type: 'filterAttributes/set',
     key: key,
     payload: payload
+  };
+};
+
+var resetFilterAttributes = function resetFilterAttributes() {
+  return {
+    type: 'filterAttributes/reset'
   };
 };
 
@@ -38322,6 +38367,71 @@ var updateImagesCommandLine = function updateImagesCommandLine(payload) {
   return {
     type: 'imagesCommandLine/update',
     payload: payload
+  };
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-actions/table/tableItemCreateActions.js":
+/*!**************************************************************************!*\
+  !*** ./resources/js/react/admin-actions/table/tableItemCreateActions.js ***!
+  \**************************************************************************/
+/*! exports provided: getTableItemCreate, setTableItemCreate, createTableItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTableItemCreate", function() { return getTableItemCreate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setTableItemCreate", function() { return setTableItemCreate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTableItem", function() { return createTableItem; });
+/* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
+/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
+/* harmony import */ var _admin_helpers_prepareCreateResponse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../admin-helpers/prepareCreateResponse */ "./resources/js/react/admin-helpers/prepareCreateResponse.js");
+/* harmony import */ var _admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../admin-helpers/updateStart */ "./resources/js/react/admin-helpers/updateStart.js");
+/* harmony import */ var _admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../admin-helpers/updateFinish */ "./resources/js/react/admin-helpers/updateFinish.js");
+/* harmony import */ var _appState_redirectActions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../appState/redirectActions */ "./resources/js/react/admin-actions/appState/redirectActions.js");
+
+
+
+
+
+
+
+var getTableItemCreate = function getTableItemCreate(tableName) {
+  return function (dispatch, getState) {
+    var _getState = getState(),
+        apiToken = _getState.apiToken;
+
+    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, tableName);
+    service.getCreate().then(function (r) {
+      return dispatch(setTableItemCreate(Object(_admin_helpers_prepareCreateResponse__WEBPACK_IMPORTED_MODULE_2__["default"])(r)));
+    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
+  };
+};
+
+var setTableItemCreate = function setTableItemCreate(payload) {
+  return {
+    type: 'tableItemCreate/update',
+    payload: payload
+  };
+};
+
+var createTableItem = function createTableItem(tableName) {
+  return function (dispatch, getState) {
+    var _getState2 = getState(),
+        apiToken = _getState2.apiToken,
+        tableItemCreate = _getState2.tableItemCreate;
+
+    var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, tableName);
+    Object(_admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_3__["default"])(dispatch);
+    service.store(tableItemCreate).then(function (r) {
+      var id = r.id;
+      delete r.id;
+      Object(_admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_4__["default"])(dispatch, r);
+      dispatch(Object(_appState_redirectActions__WEBPACK_IMPORTED_MODULE_5__["updateRedirect"])(id));
+    })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__["default"])(dispatch));
   };
 };
 
@@ -38499,9 +38609,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
-/* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
+/* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
+/* harmony import */ var _ArticleContentAbstract__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ArticleContentAbstract */ "./resources/js/react/admin-components/Articles/ArticleContentAbstract/index.js");
 
 
 
@@ -38509,29 +38619,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ArticleContent = function ArticleContent() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_4__["default"]),
-      articleEdit = _useSelector.tableItemEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_3__["default"]),
+      tableItemEdit = _useSelector.tableItemEdit;
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "page-wrapper card mt-3 p-3"
-  }, textareas.map(function (_ref) {
-    var label = _ref.label,
-        field = _ref.field;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      label: label,
-      field: field,
-      ReduxObj: articleEdit,
-      key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, articleEdit)
-    });
-  }));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ArticleContentAbstract__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    data: tableItemEdit,
+    inputChange: _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_2__["default"]
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ArticleContent);
-var textareas = [{
-  'field': 'article_content',
-  'label': 'Контент'
-}];
 
 /***/ }),
 
@@ -38547,6 +38644,114 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ArticleContent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleContent */ "./resources/js/react/admin-components/Articles/ArticleContent/ArticleContent.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (_ArticleContent__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleContentAbstract/ArticleContentAbstract.js":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleContentAbstract/ArticleContentAbstract.js ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+
+
+var ArticleContentAbstract = function ArticleContentAbstract(_ref) {
+  var data = _ref.data,
+      inputChange = _ref.inputChange;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-wrapper card mt-3 p-3"
+  }, textareas.map(function (_ref2) {
+    var label = _ref2.label,
+        field = _ref2.field;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      label: label,
+      field: field,
+      ReduxObj: data,
+      key: field,
+      onChange: inputChange(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, data)
+    });
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticleContentAbstract);
+var textareas = [{
+  'field': 'article_content',
+  'label': 'Контент'
+}];
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleContentAbstract/index.js":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleContentAbstract/index.js ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ArticleContentAbstract__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleContentAbstract */ "./resources/js/react/admin-components/Articles/ArticleContentAbstract/ArticleContentAbstract.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_ArticleContentAbstract__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleContentCreate/ArticleContentCreate.js":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleContentCreate/ArticleContentCreate.js ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _admin_helpers_createSelector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-helpers/createSelector */ "./resources/js/react/admin-helpers/createSelector.js");
+/* harmony import */ var _ArticleContentAbstract__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ArticleContentAbstract */ "./resources/js/react/admin-components/Articles/ArticleContentAbstract/index.js");
+/* harmony import */ var _admin_services_InputOnChange_createInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/createInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/createInputOnChenge.js");
+
+
+
+
+
+
+var ArticleContentCreate = function ArticleContentCreate() {
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_createSelector__WEBPACK_IMPORTED_MODULE_2__["default"]),
+      tableItemCreate = _useSelector.tableItemCreate;
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ArticleContentAbstract__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    data: tableItemCreate,
+    inputChange: _admin_services_InputOnChange_createInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"]
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticleContentCreate);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleContentCreate/index.js":
+/*!************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleContentCreate/index.js ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ArticleContentCreate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleContentCreate */ "./resources/js/react/admin-components/Articles/ArticleContentCreate/ArticleContentCreate.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_ArticleContentCreate__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -38718,9 +38923,11 @@ var ArticleItem = function ArticleItem(_ref) {
   var data = _ref.data;
   var article_id = data.article_id,
       article_title = data.article_title,
-      article_slug = data.article_slug;
+      article_slug = data.article_slug,
+      is_published = data.is_published;
+  var className = is_published ? 'c-dark' : 'c-dark table-list__item_unpublished';
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-    className: "c-dark"
+    className: className
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "row"
   }, article_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, article_title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, article_slug), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -38760,10 +38967,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
-/* harmony import */ var _FormComponent_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Input */ "./resources/js/react/admin-components/FormComponent/Input/index.js");
-/* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
-/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
+/* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
+/* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
+/* harmony import */ var _admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/checkboxToggle */ "./resources/js/react/admin-services/InputOnChange/checkboxToggle.js");
+/* harmony import */ var _ArticleMainAbstract__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ArticleMainAbstract */ "./resources/js/react/admin-components/Articles/ArticleMainAbstract/index.js");
 
 
 
@@ -38772,35 +38979,90 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ArticleMain = function ArticleMain() {
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__["default"]),
-      articleEdit = _useSelector.tableItemEdit;
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_3__["default"]),
+      tableItemEdit = _useSelector.tableItemEdit;
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "page-wrapper card mt-3 p-3"
-  }, fields.map(function (_ref) {
-    var label = _ref.label,
-        field = _ref.field;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      label: label,
-      field: field,
-      ReduxObj: articleEdit,
-      key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, articleEdit)
-    });
-  }), textareas.map(function (_ref2) {
-    var label = _ref2.label,
-        field = _ref2.field;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      label: label,
-      field: field,
-      ReduxObj: articleEdit,
-      key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, articleEdit)
-    });
-  }));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ArticleMainAbstract__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    data: tableItemEdit,
+    inputChange: _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_2__["default"],
+    checkboxChange: _admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_4__["default"]
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ArticleMain);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleMain/index.js":
+/*!***************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleMain/index.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ArticleMain__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleMain */ "./resources/js/react/admin-components/Articles/ArticleMain/ArticleMain.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_ArticleMain__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleMainAbstract/ArticleMainAbstract.js":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleMainAbstract/ArticleMainAbstract.js ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _FormComponent_Input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../FormComponent/Input */ "./resources/js/react/admin-components/FormComponent/Input/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
+/* harmony import */ var _FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../FormComponent/Checkbox/Checkbox */ "./resources/js/react/admin-components/FormComponent/Checkbox/Checkbox.js");
+
+
+
+
+
+
+var ArticleMainAbstract = function ArticleMainAbstract(_ref) {
+  var data = _ref.data,
+      inputChange = _ref.inputChange,
+      checkboxChange = _ref.checkboxChange;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-wrapper card mt-3 p-3"
+  }, fields.map(function (_ref2) {
+    var label = _ref2.label,
+        field = _ref2.field;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Input__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      label: label,
+      field: field,
+      ReduxObj: data,
+      key: field,
+      onChange: inputChange(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, data)
+    });
+  }), textareas.map(function (_ref3) {
+    var label = _ref3.label,
+        field = _ref3.field;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      label: label,
+      field: field,
+      ReduxObj: data,
+      key: field,
+      onChange: inputChange(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, data)
+    });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    label: 'Опубликовано',
+    value: data.is_published,
+    onChange: checkboxChange(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(data)
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticleMainAbstract);
 var fields = [{
   field: 'article_title',
   label: 'Название'
@@ -38818,18 +39080,231 @@ var textareas = [{
 
 /***/ }),
 
-/***/ "./resources/js/react/admin-components/Articles/ArticleMain/index.js":
-/*!***************************************************************************!*\
-  !*** ./resources/js/react/admin-components/Articles/ArticleMain/index.js ***!
-  \***************************************************************************/
+/***/ "./resources/js/react/admin-components/Articles/ArticleMainAbstract/index.js":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleMainAbstract/index.js ***!
+  \***********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ArticleMain__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleMain */ "./resources/js/react/admin-components/Articles/ArticleMain/ArticleMain.js");
+/* harmony import */ var _ArticleMainAbstract__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleMainAbstract */ "./resources/js/react/admin-components/Articles/ArticleMainAbstract/ArticleMainAbstract.js");
 
-/* harmony default export */ __webpack_exports__["default"] = (_ArticleMain__WEBPACK_IMPORTED_MODULE_0__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (_ArticleMainAbstract__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleMainCreate/ArticleMainCreate.js":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleMainCreate/ArticleMainCreate.js ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _admin_helpers_createSelector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-helpers/createSelector */ "./resources/js/react/admin-helpers/createSelector.js");
+/* harmony import */ var _ArticleMainAbstract__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ArticleMainAbstract */ "./resources/js/react/admin-components/Articles/ArticleMainAbstract/index.js");
+/* harmony import */ var _admin_services_InputOnChange_createInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/createInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/createInputOnChenge.js");
+/* harmony import */ var _admin_services_InputOnChange_createCheckboxToggle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/createCheckboxToggle */ "./resources/js/react/admin-services/InputOnChange/createCheckboxToggle.js");
+
+
+
+
+
+
+
+var ArticleMainCreate = function ArticleMainCreate() {
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_createSelector__WEBPACK_IMPORTED_MODULE_2__["default"]),
+      tableItemCreate = _useSelector.tableItemCreate;
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ArticleMainAbstract__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    data: tableItemCreate,
+    inputChange: _admin_services_InputOnChange_createInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"],
+    checkboxChange: _admin_services_InputOnChange_createCheckboxToggle__WEBPACK_IMPORTED_MODULE_5__["default"]
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticleMainCreate);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleMainCreate/index.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleMainCreate/index.js ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ArticleMainCreate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleMainCreate */ "./resources/js/react/admin-components/Articles/ArticleMainCreate/ArticleMainCreate.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_ArticleMainCreate__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticlesCreate/ArticlesCreate.js":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticlesCreate/ArticlesCreate.js ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _admin_hoooks_useUniversalCreateData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalCreateData */ "./resources/js/react/admin-hoooks/useUniversalCreateData.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var _GeneralComponents_SubmitCreateButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../GeneralComponents/SubmitCreateButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitCreateButton/index.js");
+/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
+/* harmony import */ var _ArticleMainCreate__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../ArticleMainCreate */ "./resources/js/react/admin-components/Articles/ArticleMainCreate/index.js");
+/* harmony import */ var _ArticleContentCreate__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../ArticleContentCreate */ "./resources/js/react/admin-components/Articles/ArticleContentCreate/index.js");
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+var ArticlesCreate = function ArticlesCreate() {
+  var tableName = 'articles';
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
+      _useState2 = _slicedToArray(_useState, 2),
+      navPages = _useState2[0],
+      setNavPages = _useState2[1];
+
+  var _useUniversalCreateDa = Object(_admin_hoooks_useUniversalCreateData__WEBPACK_IMPORTED_MODULE_1__["default"])(tableName),
+      tableItemCreate = _useUniversalCreateDa.tableItemCreate,
+      redirect = _useUniversalCreateDa.redirect;
+
+  if (redirect) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+      to: "/admin/".concat(tableName, "/").concat(redirect, "/edit")
+    });
+  }
+
+  if (tableItemCreate === null) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    action: "/api/admin/videos/create",
+    method: "POST",
+    className: "page"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    navList: navPages,
+    changeNavList: setNavPages
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+    className: "page__content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    active: navPages.active,
+    index: 0,
+    component: _ArticleMainCreate__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    active: navPages.active,
+    index: 1,
+    component: _ArticleContentCreate__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mt-3 page__button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitCreateButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    tableName: tableName
+  })))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticlesCreate);
+var pages = {
+  data: ['Главная', 'Контент'],
+  active: 0
+};
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticlesCreate/index.js":
+/*!******************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticlesCreate/index.js ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ArticlesCreate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticlesCreate */ "./resources/js/react/admin-components/Articles/ArticlesCreate/ArticlesCreate.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_ArticlesCreate__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -38849,6 +39324,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ArticleItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ArticleItem */ "./resources/js/react/admin-components/Articles/ArticleItem/index.js");
 /* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
 /* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
+/* harmony import */ var _GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/FilterBar */ "./resources/js/react/admin-components/GeneralComponents/FilterBar/index.js");
+
 
 
 
@@ -38858,21 +39335,42 @@ __webpack_require__.r(__webpack_exports__);
 
 var ArticlesTable = function ArticlesTable() {
   var articlePage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('articles');
-
-  if (articlePage === undefined) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null);
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  var content = articlePage === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
     component: _ArticleItem__WEBPACK_IMPORTED_MODULE_3__["default"],
     fields: ['ID', 'Название', 'Идентификатор', 'Ссылки'],
     head_key: 'article',
     key_field: 'article_slug',
+    id_key: "article_id",
     items: articlePage
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    orderBy: orderBy,
+    filters: filters,
+    createButton: true
+  }), content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ArticlesTable);
+var orderBy = [{
+  label: 'Сортировка: ID статьи',
+  value: 'article_id'
+}, {
+  label: 'Сортировка: Дата создания',
+  value: 'created_at'
+}];
+var filters = [{
+  field: 'is_published',
+  options: [{
+    label: 'Без фильтра публикации',
+    value: 'null,null'
+  }, {
+    label: 'Опубликовано',
+    value: 'equal,1'
+  }, {
+    label: 'Не опубликовано',
+    value: 'equal,0'
+  }]
+}];
 
 /***/ }),
 
@@ -38908,8 +39406,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
 /* harmony import */ var _GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/FilterBar */ "./resources/js/react/admin-components/GeneralComponents/FilterBar/index.js");
 /* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
-/* harmony import */ var _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-actions/table/tablePagesActions */ "./resources/js/react/admin-actions/table/tablePagesActions.js");
-
 
 
 
@@ -38925,11 +39421,12 @@ var CompaniesTable = function CompaniesTable() {
     head_key: 'companies',
     key_field: 'company_name',
     component: _CompanyItem__WEBPACK_IMPORTED_MODULE_1__["default"],
+    id_key: "company_id",
     items: companyPage
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"], null));
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
     orderBy: orderBy,
-    apply: _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_7__["resetTablePages"]
+    filters: filters
   }), content);
 };
 
@@ -38946,6 +39443,34 @@ var orderBy = [{
 }, {
   label: 'Сортировка: Название компании',
   value: 'company_name'
+}];
+var filters = [{
+  field: 'company_average_mark',
+  options: [{
+    label: 'Без фильтра среднего балла',
+    value: 'null,null'
+  }, {
+    label: 'Средний балл меньше 4',
+    value: 'less-equal,4'
+  }, {
+    label: 'Средний балл меньше 3',
+    value: 'less-equal,3'
+  }, {
+    label: 'Средний балл больше 3',
+    value: 'more-equal,3'
+  }]
+}, {
+  field: 'is_published',
+  options: [{
+    label: 'Без фильтра публикации',
+    value: 'null,null'
+  }, {
+    label: 'Опубликовано',
+    value: 'equal,1'
+  }, {
+    label: 'Не опубликовано',
+    value: 'equal,0'
+  }]
 }];
 
 /***/ }),
@@ -39229,9 +39754,11 @@ var CompanyItem = function CompanyItem(_ref) {
   var data = _ref.data;
   var company_id = data.company_id,
       company_name = data.company_name,
-      company_average_mark = data.company_average_mark;
+      company_average_mark = data.company_average_mark,
+      is_published = data.is_published;
+  var className = is_published ? 'c-dark' : 'c-dark table-list__item_unpublished';
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-    className: "c-dark"
+    className: className
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "row"
   }, company_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, company_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, company_average_mark), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -39275,6 +39802,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
 /* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
+/* harmony import */ var _FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../FormComponent/Checkbox/Checkbox */ "./resources/js/react/admin-components/FormComponent/Checkbox/Checkbox.js");
+/* harmony import */ var _admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/checkboxToggle */ "./resources/js/react/admin-services/InputOnChange/checkboxToggle.js");
+
+
 
 
 
@@ -39308,6 +39839,10 @@ var CompanyMain = function CompanyMain() {
       onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, companyEdit),
       key: field
     });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    label: 'Опубликовано',
+    value: companyEdit.is_published,
+    onChange: Object(_admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_7__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(companyEdit)
   }));
 };
 
@@ -39684,7 +40219,7 @@ var Select = function Select(_ref) {
       onChange = _ref.onChange;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: id,
-    className: "select  mr-2"
+    className: "select"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     name: id,
     id: id,
@@ -40011,6 +40546,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormComponent_Select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../FormComponent/Select */ "./resources/js/react/admin-components/FormComponent/Select/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _admin_actions_filterAttributes_filterAttributesActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-actions/filterAttributes/filterAttributesActions */ "./resources/js/react/admin-actions/filterAttributes/filterAttributesActions.js");
+/* harmony import */ var _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-actions/table/tablePagesActions */ "./resources/js/react/admin-actions/table/tablePagesActions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
 
 
 
@@ -40018,19 +40557,33 @@ __webpack_require__.r(__webpack_exports__);
 
 var FilterBar = function FilterBar(_ref) {
   var orderBy = _ref.orderBy,
-      apply = _ref.apply;
+      _ref$filters = _ref.filters,
+      filters = _ref$filters === void 0 ? [] : _ref$filters,
+      _ref$createButton = _ref.createButton,
+      createButton = _ref$createButton === void 0 ? false : _ref$createButton;
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    dispatch(Object(_admin_actions_filterAttributes_filterAttributesActions__WEBPACK_IMPORTED_MODULE_3__["setFilterAttributes"])('orderBy', orderBy[0].value));
+    dispatch(Object(_admin_actions_filterAttributes_filterAttributesActions__WEBPACK_IMPORTED_MODULE_3__["setFilterAttributes"])('order', order[0].value));
+    return function () {
+      return dispatch(Object(_admin_actions_filterAttributes_filterAttributesActions__WEBPACK_IMPORTED_MODULE_3__["resetFilterAttributes"])());
+    };
+  }, []);
 
-  var onChange = function onChange(e) {
+  var onChangeOrderBy = function onChangeOrderBy(e) {
     dispatch(Object(_admin_actions_filterAttributes_filterAttributesActions__WEBPACK_IMPORTED_MODULE_3__["setFilterAttributes"])('orderBy', e.target.value));
+  };
+
+  var onChangeOrder = function onChangeOrder(e) {
+    dispatch(Object(_admin_actions_filterAttributes_filterAttributesActions__WEBPACK_IMPORTED_MODULE_3__["setFilterAttributes"])('order', e.target.value));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("aside", {
     className: "filter-bar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "btn b-dark c-white filter-ban__button",
+    className: "btn b-dark c-white filter-bar__button",
     onClick: function onClick() {
-      return dispatch(apply());
+      return dispatch(Object(_admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_4__["resetTablePages"])());
     },
     "aria-label": "\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u044B"
   }, "\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -40038,11 +40591,51 @@ var FilterBar = function FilterBar(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     id: "orderBy",
     options: orderBy,
-    onChange: onChange
-  })));
+    onChange: onChangeOrderBy
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-bar__form-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Select__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    id: "orderBy",
+    options: order,
+    onChange: onChangeOrder
+  })), filters.map(function (_ref2) {
+    var field = _ref2.field,
+        options = _ref2.options;
+
+    var onChangeFilter = function onChangeFilter(e) {
+      dispatch(Object(_admin_actions_filterAttributes_filterAttributesActions__WEBPACK_IMPORTED_MODULE_3__["setFilterAttributes"])(field, e.target.value));
+    };
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "filter-bar__form-wrapper",
+      key: field
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Select__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      options: options,
+      onChange: onChangeFilter
+    }));
+  }), createButton ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CreateButton, null) : null);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (FilterBar);
+
+var CreateButton = function CreateButton() {
+  var _useLocation = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["useLocation"])(),
+      pathname = _useLocation.pathname;
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "btn b-dark c-white filter-bar__button",
+    href: "".concat(pathname, "/create"),
+    "aria-label": "\u0421\u043E\u0437\u0434\u0430\u0442\u044C"
+  }, "\u0421\u043E\u0437\u0434\u0430\u0442\u044C");
+};
+
+var order = [{
+  label: 'По Возростанию',
+  value: 'asc'
+}, {
+  label: 'По убыванию',
+  value: 'desc'
+}];
 
 /***/ }),
 
@@ -40295,6 +40888,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _admin_actions_table_tableItemEditActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-actions/table/tableItemEditActions */ "./resources/js/react/admin-actions/table/tableItemEditActions.js");
+/* harmony import */ var _SubmitButtonAbstract__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../SubmitButtonAbstract */ "./resources/js/react/admin-components/GeneralComponents/SubmitButtonAbstract/index.js");
+
 
 
 
@@ -40312,11 +40907,9 @@ var SubmitButton = function SubmitButton(_ref) {
     dispatch(Object(_admin_actions_table_tableItemEditActions__WEBPACK_IMPORTED_MODULE_3__["updateTableItemMain"])(tableName, id));
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "submit",
-    onClick: onClick,
-    className: "btn b-dark c-white"
-  }, "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SubmitButtonAbstract__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    onClick: onClick
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SubmitButton);
@@ -40338,6 +40931,99 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/react/admin-components/GeneralComponents/SubmitButtonAbstract/SubmitButtonAbstract.js":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/GeneralComponents/SubmitButtonAbstract/SubmitButtonAbstract.js ***!
+  \************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var SubmitButtonAbstract = function SubmitButtonAbstract(_ref) {
+  var onClick = _ref.onClick;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "submit",
+    onClick: onClick,
+    className: "btn b-dark c-white"
+  }, "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SubmitButtonAbstract);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/GeneralComponents/SubmitButtonAbstract/index.js":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/GeneralComponents/SubmitButtonAbstract/index.js ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SubmitButtonAbstract__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SubmitButtonAbstract */ "./resources/js/react/admin-components/GeneralComponents/SubmitButtonAbstract/SubmitButtonAbstract.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_SubmitButtonAbstract__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/GeneralComponents/SubmitCreateButton/SubmitCreateButton.js":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/GeneralComponents/SubmitCreateButton/SubmitCreateButton.js ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _SubmitButtonAbstract__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SubmitButtonAbstract */ "./resources/js/react/admin-components/GeneralComponents/SubmitButtonAbstract/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _admin_actions_table_tableItemCreateActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-actions/table/tableItemCreateActions */ "./resources/js/react/admin-actions/table/tableItemCreateActions.js");
+
+
+
+
+
+var SubmitCreateButton = function SubmitCreateButton(_ref) {
+  var tableName = _ref.tableName;
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+
+  var onClick = function onClick(e) {
+    e.preventDefault();
+    dispatch(Object(_admin_actions_table_tableItemCreateActions__WEBPACK_IMPORTED_MODULE_3__["createTableItem"])(tableName));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SubmitButtonAbstract__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    onClick: onClick
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SubmitCreateButton);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/GeneralComponents/SubmitCreateButton/index.js":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/GeneralComponents/SubmitCreateButton/index.js ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SubmitCreateButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SubmitCreateButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitCreateButton/SubmitCreateButton.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_SubmitCreateButton__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
 /***/ "./resources/js/react/admin-components/GeneralComponents/Table/Table.js":
 /*!******************************************************************************!*\
   !*** ./resources/js/react/admin-components/GeneralComponents/Table/Table.js ***!
@@ -40356,7 +41042,8 @@ var Table = function Table(_ref) {
       head_key = _ref.head_key,
       component = _ref.component,
       items = _ref.items,
-      key_field = _ref.key_field;
+      key_field = _ref.key_field,
+      id_key = _ref.id_key;
   var Component = component;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
     className: "table table-list_companies"
@@ -40370,7 +41057,7 @@ var Table = function Table(_ref) {
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, items.map(function (data) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, {
       data: data,
-      key: data[key_field]
+      key: "".concat(data[id_key], ".").concat(data[key_field])
     });
   })));
 };
@@ -40659,6 +41346,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
 /* harmony import */ var _HeadersItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../HeadersItem */ "./resources/js/react/admin-components/Headers/HeadersItem/index.js");
 /* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
+/* harmony import */ var _GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/FilterBar */ "./resources/js/react/admin-components/GeneralComponents/FilterBar/index.js");
+
 
 
 
@@ -40668,21 +41357,30 @@ __webpack_require__.r(__webpack_exports__);
 
 var HeadersTable = function HeadersTable() {
   var headersPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('headers');
-
-  if (headersPage === undefined) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null);
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  var content = headersPage === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
     component: _HeadersItem__WEBPACK_IMPORTED_MODULE_4__["default"],
     fields: ['ID', 'Строковый ID', 'Значение', 'Описание', 'Ссылки'],
     head_key: 'headers',
     key_field: 'header_key',
+    id_key: "header_id",
     items: headersPage
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    orderBy: orderBy
+  }), content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (HeadersTable);
+var orderBy = [{
+  label: 'Сортировка: ID заголовка',
+  value: 'header_id'
+}, {
+  label: 'Сортировка: Ключ заголовка',
+  value: 'header_key'
+}, {
+  label: 'Сортировка: Дата создания',
+  value: 'created_at'
+}];
 
 /***/ }),
 
@@ -40952,7 +41650,7 @@ var ImagesCommandLine = function ImagesCommandLine() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
     className: "image-command-line"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "btn b-dark c-white mr-2 image-command-line__item",
+    className: "btn b-dark c-white image-command-line__item",
     onClick: apply
   }, "\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Select__WEBPACK_IMPORTED_MODULE_2__["default"], {
     id: "company_id",
@@ -41444,7 +42142,7 @@ var ReviewAnswerEdit = function ReviewAnswerEdit() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pt-3 page__button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    tableName: "review-answers"
+    tableName: 'review-answers'
   })))));
 };
 
@@ -41629,6 +42327,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ReviewAnswersItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ReviewAnswersItem */ "./resources/js/react/admin-components/ReviewAnswers/ReviewAnswersItem/index.js");
 /* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
 /* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
+/* harmony import */ var _GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/FilterBar */ "./resources/js/react/admin-components/GeneralComponents/FilterBar/index.js");
+
 
 
 
@@ -41638,17 +42338,47 @@ __webpack_require__.r(__webpack_exports__);
 
 var ReviewAnswersTable = function ReviewAnswersTable() {
   var reviewAnswersPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('review-answers');
-  if (reviewAnswersPage === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  var content = reviewAnswersPage === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
     fields: ['ID', 'Имя', 'Смотреть отзыв', 'Ссылки'],
     head_key: 'review-answers',
     key_field: 'review_answer_id',
+    id_key: "review_answer_id",
     component: _ReviewAnswersItem__WEBPACK_IMPORTED_MODULE_3__["default"],
     items: reviewAnswersPage
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    orderBy: orderBy,
+    filters: filters
+  }), content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewAnswersTable);
+var orderBy = [{
+  label: 'Сортировка: ID комментария',
+  value: 'review_answer_id'
+}, {
+  label: 'Сортировка: Опубликовано ли',
+  value: 'review_answer_id'
+}, {
+  label: 'Сортировка: Дата оставления',
+  value: 'created_at'
+}, {
+  label: 'Сортировка: ID отзыва',
+  value: 'review_id'
+}];
+var filters = [{
+  field: 'is_published',
+  options: [{
+    label: 'Без фильтра публикации',
+    value: 'null,null'
+  }, {
+    label: 'Опубликовано',
+    value: 'equal,1'
+  }, {
+    label: 'Не опубликовано',
+    value: 'equal,0'
+  }]
+}];
 
 /***/ }),
 
@@ -42088,6 +42818,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ReviewItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ReviewItem */ "./resources/js/react/admin-components/Reviews/ReviewItem/index.js");
 /* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
 /* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
+/* harmony import */ var _GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/FilterBar */ "./resources/js/react/admin-components/GeneralComponents/FilterBar/index.js");
+
 
 
 
@@ -42097,17 +42829,53 @@ __webpack_require__.r(__webpack_exports__);
 
 var ReviewsTable = function ReviewsTable() {
   var reviewsPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('reviews');
-  if (reviewsPage === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  var content = reviewsPage === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_4__["default"], {
     fields: ['ID', 'Никнейм', 'Балл', 'Дата', 'Ссылки'],
     head_key: 'reviews',
     key_field: 'reviewer_name',
+    id_key: 'review_id',
     component: _ReviewItem__WEBPACK_IMPORTED_MODULE_3__["default"],
     items: reviewsPage
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    orderBy: orderBy,
+    filters: filters
+  }), content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewsTable);
+var orderBy = [{
+  label: 'Сортировка: ID отзыва',
+  value: 'review_id'
+}, {
+  label: 'Сортировка: Дата',
+  value: 'review_date'
+}];
+var filters = [{
+  field: 'review_mark',
+  options: [{
+    label: 'Без фильтра балла',
+    value: 'null,null'
+  }, {
+    label: 'Позитивные',
+    value: 'more,3'
+  }, {
+    label: 'Негативные',
+    value: 'less-equal,3'
+  }]
+}, {
+  field: 'is_published',
+  options: [{
+    label: 'Без фильтра публикации',
+    value: 'null,null'
+  }, {
+    label: 'Опубликовано',
+    value: 'equal,1'
+  }, {
+    label: 'Не опубликовано',
+    value: 'equal,0'
+  }]
+}];
 
 /***/ }),
 
@@ -42419,6 +43187,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
 /* harmony import */ var _SEOItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../SEOItem */ "./resources/js/react/admin-components/SEO/SEOItem/index.js");
 /* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
+/* harmony import */ var _GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/FilterBar */ "./resources/js/react/admin-components/GeneralComponents/FilterBar/index.js");
+
 
 
 
@@ -42428,17 +43198,27 @@ __webpack_require__.r(__webpack_exports__);
 
 var SEOTable = function SEOTable() {
   var seoPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('seo-attributes');
-  if (seoPage === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  var content = seoPage === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
     fields: ['ID', 'Строковый идентификатор', 'Заголовок', 'Ссылки'],
     head_key: 'seo',
     key_field: 'title_index',
+    id_key: 'id',
     component: _SEOItem__WEBPACK_IMPORTED_MODULE_4__["default"],
     items: seoPage
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    orderBy: orderBy
+  }), content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SEOTable);
+var orderBy = [{
+  label: 'Сортировка: ID',
+  value: 'id'
+}, {
+  label: 'Сортировка: Название страницы',
+  value: 'title'
+}];
 
 /***/ }),
 
@@ -42778,7 +43558,7 @@ var UserMessagesEdit = function UserMessagesEdit() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pt-3 page__button"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    action: "user-messages"
+    tableName: "user-messages"
   })))));
 };
 
@@ -42964,11 +43744,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
-/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
-/* harmony import */ var _UserMessagesItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../UserMessagesItem */ "./resources/js/react/admin-components/UserMessages/UserMessagesItem/index.js");
-/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
-/* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
+/* harmony import */ var _GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/Table */ "./resources/js/react/admin-components/GeneralComponents/Table/index.js");
+/* harmony import */ var _UserMessagesItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../UserMessagesItem */ "./resources/js/react/admin-components/UserMessages/UserMessagesItem/index.js");
+/* harmony import */ var _GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
+/* harmony import */ var _GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/FilterBar */ "./resources/js/react/admin-components/GeneralComponents/FilterBar/index.js");
 
 
 
@@ -42978,18 +43758,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var UserMessagesTable = function UserMessagesTable() {
-  var userMessagesPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_6__["default"])('user-messages');
-  if (userMessagesPage === undefined) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  var userMessagesPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_5__["default"])('user-messages');
+  var content = userMessagesPage === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
     fields: ['ID', 'Имя', 'e-Mail', 'Прочитано', 'Ссылки'],
-    head_key: 'user-messages',
-    key_field: 'message_id',
-    component: _UserMessagesItem__WEBPACK_IMPORTED_MODULE_4__["default"],
+    head_key: "user-messages",
+    key_field: "message_id",
+    id_key: "message_id",
+    component: _UserMessagesItem__WEBPACK_IMPORTED_MODULE_3__["default"],
     items: userMessagesPage
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_5__["default"], null));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    orderBy: orderBy,
+    filters: filters
+  }), content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (UserMessagesTable);
+var orderBy = [{
+  label: 'Сортировка: ID сообщения',
+  value: 'message_id'
+}, {
+  label: 'Сортировка: Дата создания',
+  value: 'created_at'
+}];
+var filters = [{
+  field: 'is_checked',
+  options: [{
+    label: 'Без фильтра просмотра',
+    value: 'null,null'
+  }, {
+    label: 'Просмотрено',
+    value: 'equal,1'
+  }, {
+    label: 'Не просмотрено',
+    value: 'equal,0'
+  }]
+}];
 
 /***/ }),
 
@@ -43027,9 +43831,11 @@ var VideoItem = function VideoItem(_ref) {
   var data = _ref.data;
   var video_id = data.video_id,
       video_title = data.video_title,
-      video_slug = data.video_slug;
+      video_slug = data.video_slug,
+      is_published = data.is_published;
+  var classList = is_published ? 'c-dark' : 'c-dark table-list__item_unpublished';
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-    className: "c-dark"
+    className: classList
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "row"
   }, video_id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video_title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, video_slug), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -43054,6 +43860,158 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _VideoItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VideoItem */ "./resources/js/react/admin-components/Videos/VideoItem/VideoItem.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (_VideoItem__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Videos/VideosCreate/VideosCreate.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Videos/VideosCreate/VideosCreate.js ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
+/* harmony import */ var _admin_hoooks_useUniversalCreateData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalCreateData */ "./resources/js/react/admin-hoooks/useUniversalCreateData.js");
+/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
+/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
+/* harmony import */ var _VideosMainCreate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../VideosMainCreate */ "./resources/js/react/admin-components/Videos/VideosMainCreate/index.js");
+/* harmony import */ var _GeneralComponents_SubmitCreateButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../GeneralComponents/SubmitCreateButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitCreateButton/index.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+var VideosCreate = function VideosCreate() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
+      _useState2 = _slicedToArray(_useState, 2),
+      navPages = _useState2[0],
+      setNavPages = _useState2[1];
+
+  var _useUniversalCreateDa = Object(_admin_hoooks_useUniversalCreateData__WEBPACK_IMPORTED_MODULE_3__["default"])('videos'),
+      tableItemCreate = _useUniversalCreateDa.tableItemCreate,
+      redirect = _useUniversalCreateDa.redirect;
+
+  if (redirect) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_9__["Redirect"], {
+      to: "/admin/videos/".concat(redirect, "/edit")
+    });
+  }
+
+  if (tableItemCreate === null) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    action: "/api/admin/videos/create",
+    method: "POST",
+    className: "page"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    navList: navPages,
+    changeNavList: setNavPages
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+    className: "page__content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    component: _VideosMainCreate__WEBPACK_IMPORTED_MODULE_6__["default"],
+    active: navPages.active,
+    index: 0
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mt-3 page__button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitCreateButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    tableName: 'videos'
+  })))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (VideosCreate);
+var pages = {
+  data: ['Главная'],
+  active: 0
+};
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Videos/VideosCreate/index.js":
+/*!**************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Videos/VideosCreate/index.js ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VideosCreate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VideosCreate */ "./resources/js/react/admin-components/Videos/VideosCreate/VideosCreate.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_VideosCreate__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -43216,6 +44174,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
 /* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
+/* harmony import */ var _FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../FormComponent/Checkbox/Checkbox */ "./resources/js/react/admin-components/FormComponent/Checkbox/Checkbox.js");
+/* harmony import */ var _admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/checkboxToggle */ "./resources/js/react/admin-services/InputOnChange/checkboxToggle.js");
+/* harmony import */ var _VideosMainAbstract__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../VideosMainAbstract */ "./resources/js/react/admin-components/Videos/VideosMainAbstract/index.js");
+
+
+
 
 
 
@@ -43227,46 +44191,14 @@ var VideoMain = function VideoMain() {
   var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_5__["default"]),
       videoEdit = _useSelector.tableItemEdit;
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "page-wrapper card mt-3 p-3"
-  }, fields.map(function (_ref) {
-    var label = _ref.label,
-        field = _ref.field;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Input__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      label: label,
-      field: field,
-      ReduxObj: videoEdit,
-      key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, videoEdit)
-    });
-  }), textareas.map(function (_ref2) {
-    var label = _ref2.label,
-        field = _ref2.field;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      label: label,
-      field: field,
-      ReduxObj: videoEdit,
-      key: field,
-      onChange: Object(_admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"])(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(field, videoEdit)
-    });
-  }));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_VideosMainAbstract__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    data: videoEdit,
+    inputChange: _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_4__["default"],
+    checkboxChange: _admin_services_InputOnChange_checkboxToggle__WEBPACK_IMPORTED_MODULE_7__["default"]
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (VideoMain);
-var fields = [{
-  field: 'video_title',
-  label: 'Название видео'
-}, {
-  field: 'video_ytid',
-  label: 'YouTube Id'
-}, {
-  field: 'video_slug',
-  label: 'Адресный идентификатор'
-}];
-var textareas = [{
-  field: 'video_description',
-  label: 'Описание видео'
-}];
 
 /***/ }),
 
@@ -43285,6 +44217,146 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/react/admin-components/Videos/VideosMainAbstract/VideoMainAbstract.js":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Videos/VideosMainAbstract/VideoMainAbstract.js ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _FormComponent_Input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../FormComponent/Input */ "./resources/js/react/admin-components/FormComponent/Input/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../FormComponent/Textarea */ "./resources/js/react/admin-components/FormComponent/Textarea/index.js");
+/* harmony import */ var _FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../FormComponent/Checkbox/Checkbox */ "./resources/js/react/admin-components/FormComponent/Checkbox/Checkbox.js");
+
+
+
+
+
+
+var VideoMainAbstract = function VideoMainAbstract(_ref) {
+  var data = _ref.data,
+      inputChange = _ref.inputChange,
+      checkboxChange = _ref.checkboxChange;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "page-wrapper card mt-3 p-3"
+  }, fields.map(function (_ref2) {
+    var label = _ref2.label,
+        field = _ref2.field;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Input__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      label: label,
+      field: field,
+      ReduxObj: data,
+      key: field,
+      onChange: inputChange(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, data)
+    });
+  }), textareas.map(function (_ref3) {
+    var label = _ref3.label,
+        field = _ref3.field;
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Textarea__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      label: label,
+      field: field,
+      ReduxObj: data,
+      key: field,
+      onChange: inputChange(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(field, data)
+    });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormComponent_Checkbox_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    value: data.is_published,
+    label: 'Опубликовано',
+    onChange: checkboxChange(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])(data)
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (VideoMainAbstract);
+var fields = [{
+  field: 'video_title',
+  label: 'Название видео'
+}, {
+  field: 'video_ytid',
+  label: 'YouTube Id'
+}, {
+  field: 'video_slug',
+  label: 'Адресный идентификатор'
+}];
+var textareas = [{
+  field: 'video_description',
+  label: 'Описание видео'
+}];
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Videos/VideosMainAbstract/index.js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Videos/VideosMainAbstract/index.js ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VideoMainAbstract__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VideoMainAbstract */ "./resources/js/react/admin-components/Videos/VideosMainAbstract/VideoMainAbstract.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_VideoMainAbstract__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Videos/VideosMainCreate/VideosMainCreate.js":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Videos/VideosMainCreate/VideosMainCreate.js ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _admin_helpers_createSelector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-helpers/createSelector */ "./resources/js/react/admin-helpers/createSelector.js");
+/* harmony import */ var _admin_services_InputOnChange_createInputOnChenge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/createInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/createInputOnChenge.js");
+/* harmony import */ var _VideosMainAbstract__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../VideosMainAbstract */ "./resources/js/react/admin-components/Videos/VideosMainAbstract/index.js");
+/* harmony import */ var _admin_services_InputOnChange_createCheckboxToggle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/createCheckboxToggle */ "./resources/js/react/admin-services/InputOnChange/createCheckboxToggle.js");
+
+
+
+
+
+
+
+var VideosMainCreate = function VideosMainCreate() {
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_createSelector__WEBPACK_IMPORTED_MODULE_2__["default"]),
+      tableItemCreate = _useSelector.tableItemCreate;
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_VideosMainAbstract__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    data: tableItemCreate,
+    inputChange: _admin_services_InputOnChange_createInputOnChenge__WEBPACK_IMPORTED_MODULE_3__["default"],
+    checkboxChange: _admin_services_InputOnChange_createCheckboxToggle__WEBPACK_IMPORTED_MODULE_5__["default"]
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (VideosMainCreate);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Videos/VideosMainCreate/index.js":
+/*!******************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Videos/VideosMainCreate/index.js ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _VideosMainCreate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VideosMainCreate */ "./resources/js/react/admin-components/Videos/VideosMainCreate/VideosMainCreate.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_VideosMainCreate__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
 /***/ "./resources/js/react/admin-components/Videos/VideosTable/VideosTable.js":
 /*!*******************************************************************************!*\
   !*** ./resources/js/react/admin-components/Videos/VideosTable/VideosTable.js ***!
@@ -43300,6 +44372,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _VideoItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VideoItem */ "./resources/js/react/admin-components/Videos/VideoItem/index.js");
 /* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
 /* harmony import */ var _admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalTableData */ "./resources/js/react/admin-hoooks/useUniversalTableData.js");
+/* harmony import */ var _GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/Pagination/Pagination */ "./resources/js/react/admin-components/GeneralComponents/Pagination/Pagination.js");
+/* harmony import */ var _GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../GeneralComponents/FilterBar */ "./resources/js/react/admin-components/GeneralComponents/FilterBar/index.js");
+
+
 
 
 
@@ -43308,21 +44384,42 @@ __webpack_require__.r(__webpack_exports__);
 
 var VideosTable = function VideosTable() {
   var videosPage = Object(_admin_hoooks_useUniversalTableData__WEBPACK_IMPORTED_MODULE_4__["default"])('videos');
-
-  if (videosPage === undefined) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_3__["default"], null);
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  var content = videosPage === undefined ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_3__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Table__WEBPACK_IMPORTED_MODULE_1__["default"], {
     component: _VideoItem__WEBPACK_IMPORTED_MODULE_2__["default"],
     fields: ['ID', 'Название видео', 'Идентификатор видео', 'Изменить'],
     head_key: 'video',
     key_field: 'video_slug',
+    id_key: "video_id",
     items: videosPage
-  }));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Pagination_Pagination__WEBPACK_IMPORTED_MODULE_5__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_FilterBar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    orderBy: orderBy,
+    filters: filters,
+    createButton: true
+  }), content);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (VideosTable);
+var orderBy = [{
+  label: 'Сортировка: ID видео',
+  value: 'video_id'
+}, {
+  label: 'Сортировка: Дата добавления',
+  value: 'created_at'
+}];
+var filters = [{
+  field: 'is_published',
+  options: [{
+    label: 'Без фильтра публикации',
+    value: 'null,null'
+  }, {
+    label: 'Опубликовано',
+    value: 'equal,1'
+  }, {
+    label: 'Не опубликовано',
+    value: 'equal,0'
+  }]
+}];
 
 /***/ }),
 
@@ -43338,6 +44435,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _VideosTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VideosTable */ "./resources/js/react/admin-components/Videos/VideosTable/VideosTable.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (_VideosTable__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-helpers/createSelector.js":
+/*!************************************************************!*\
+  !*** ./resources/js/react/admin-helpers/createSelector.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var createSelector = function createSelector(_ref) {
+  var tableItemCreate = _ref.tableItemCreate;
+  return {
+    tableItemCreate: tableItemCreate
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (createSelector);
 
 /***/ }),
 
@@ -43387,6 +44504,28 @@ var reactOnError = function reactOnError(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (reactOnError);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-helpers/prepareCreateResponse.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/react/admin-helpers/prepareCreateResponse.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var prepareCreateResponse = function prepareCreateResponse(data) {
+  var newData = {};
+  data.forEach(function (item) {
+    return newData[item] = '';
+  });
+  newData['is_published'] === '' ? newData['is_published'] = 0 : null;
+  return newData;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (prepareCreateResponse);
 
 /***/ }),
 
@@ -43467,6 +44606,56 @@ var PageHider = function PageHider(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PageHider);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-hoooks/useUniversalCreateData.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/react/admin-hoooks/useUniversalCreateData.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _admin_actions_table_tableItemCreateActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../admin-actions/table/tableItemCreateActions */ "./resources/js/react/admin-actions/table/tableItemCreateActions.js");
+
+
+
+
+var useUniversalCreateData = function useUniversalCreateData(tableName) {
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["useSelector"])(selector),
+      apiToken = _useSelector.apiToken,
+      tableItemCreate = _useSelector.tableItemCreate,
+      redirect = _useSelector.redirect;
+
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["useDispatch"])();
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    if (apiToken) {
+      dispatch(Object(_admin_actions_table_tableItemCreateActions__WEBPACK_IMPORTED_MODULE_2__["getTableItemCreate"])(tableName));
+    }
+  }, [apiToken]);
+  return {
+    tableItemCreate: tableItemCreate,
+    redirect: redirect
+  };
+};
+
+var selector = function selector(_ref) {
+  var apiToken = _ref.apiToken,
+      tableItemCreate = _ref.tableItemCreate,
+      redirect = _ref.redirect;
+  return {
+    apiToken: apiToken,
+    tableItemCreate: tableItemCreate,
+    redirect: redirect
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (useUniversalCreateData);
 
 /***/ }),
 
@@ -43685,6 +44874,35 @@ var lastPageReducer = function lastPageReducer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (lastPageReducer);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-reducers/appState/redirectReducer.js":
+/*!***********************************************************************!*\
+  !*** ./resources/js/react/admin-reducers/appState/redirectReducer.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var redirectReducer = function redirectReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case 'redirect/update':
+      return action.payload;
+
+    case 'redirect/reset':
+      return null;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (redirectReducer);
 
 /***/ }),
 
@@ -43994,6 +45212,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _filterAttributes_filterAttributesReducer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./filterAttributes/filterAttributesReducer */ "./resources/js/react/admin-reducers/filterAttributes/filterAttributesReducer.js");
 /* harmony import */ var _table_tablePagesReducer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./table/tablePagesReducer */ "./resources/js/react/admin-reducers/table/tablePagesReducer.js");
 /* harmony import */ var _table_tableItemEditReducer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./table/tableItemEditReducer */ "./resources/js/react/admin-reducers/table/tableItemEditReducer.js");
+/* harmony import */ var _table_tableItemCreateReducer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./table/tableItemCreateReducer */ "./resources/js/react/admin-reducers/table/tableItemCreateReducer.js");
+/* harmony import */ var _appState_redirectReducer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./appState/redirectReducer */ "./resources/js/react/admin-reducers/appState/redirectReducer.js");
+
+
 
 
 
@@ -44021,8 +45243,36 @@ __webpack_require__.r(__webpack_exports__);
   imagesCommandLine: _images_imagesCommandLineReducer__WEBPACK_IMPORTED_MODULE_10__["default"],
   tablePages: _table_tablePagesReducer__WEBPACK_IMPORTED_MODULE_12__["default"],
   tableItemEdit: _table_tableItemEditReducer__WEBPACK_IMPORTED_MODULE_13__["default"],
-  filterAttributes: _filterAttributes_filterAttributesReducer__WEBPACK_IMPORTED_MODULE_11__["default"]
+  tableItemCreate: _table_tableItemCreateReducer__WEBPACK_IMPORTED_MODULE_14__["default"],
+  filterAttributes: _filterAttributes_filterAttributesReducer__WEBPACK_IMPORTED_MODULE_11__["default"],
+  redirect: _appState_redirectReducer__WEBPACK_IMPORTED_MODULE_15__["default"]
 }));
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-reducers/table/tableItemCreateReducer.js":
+/*!***************************************************************************!*\
+  !*** ./resources/js/react/admin-reducers/table/tableItemCreateReducer.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var tableItemCreateReducer = function tableItemCreateReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case 'tableItemCreate/update':
+      return action.payload;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (tableItemCreateReducer);
 
 /***/ }),
 
@@ -44416,6 +45666,106 @@ var checkboxToggleImages2 = function checkboxToggleImages2(useDispatch, actionTo
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (checkboxToggleImages2);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-services/InputOnChange/createCheckboxToggle.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/react/admin-services/InputOnChange/createCheckboxToggle.js ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _admin_actions_table_tableItemCreateActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-actions/table/tableItemCreateActions */ "./resources/js/react/admin-actions/table/tableItemCreateActions.js");
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+
+
+var createCheckboxToggle = function createCheckboxToggle(useDispatch) {
+  var fieldToDispatch = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'is_published';
+  var dispatch = useDispatch();
+  return function (data) {
+    return function (e) {
+      var obj = _objectSpread({}, data);
+
+      obj[fieldToDispatch] = Number(e.target.checked);
+      dispatch(Object(_admin_actions_table_tableItemCreateActions__WEBPACK_IMPORTED_MODULE_0__["setTableItemCreate"])(obj));
+    };
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (createCheckboxToggle);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-services/InputOnChange/createInputOnChenge.js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/react/admin-services/InputOnChange/createInputOnChenge.js ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _inputOnChange__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./inputOnChange */ "./resources/js/react/admin-services/InputOnChange/inputOnChange.js");
+/* harmony import */ var _admin_actions_table_tableItemCreateActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-actions/table/tableItemCreateActions */ "./resources/js/react/admin-actions/table/tableItemCreateActions.js");
+
+
+
+var createInputOnChange = function createInputOnChange(useDispatch) {
+  return Object(_inputOnChange__WEBPACK_IMPORTED_MODULE_0__["default"])(useDispatch, _admin_actions_table_tableItemCreateActions__WEBPACK_IMPORTED_MODULE_1__["setTableItemCreate"]);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (createInputOnChange);
 
 /***/ }),
 
@@ -45352,6 +46702,77 @@ var UniversalService = /*#__PURE__*/function (_AbstractService) {
 
       return str;
     };
+
+    _this.getCreate = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var _yield$_this$axios$ge3, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return _this.axios.get("".concat(_this.baseUrl, "/").concat(_this.prefix, "/create?api_token=").concat(_this.apiToken));
+
+            case 3:
+              _yield$_this$axios$ge3 = _context4.sent;
+              data = _yield$_this$axios$ge3.data;
+              return _context4.abrupt("return", data);
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](0);
+
+              _this.handleError(_context4.t0);
+
+            case 11:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 8]]);
+    }));
+
+    _this.store = /*#__PURE__*/function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(data) {
+        var params, headers, _yield$_this$axios$po, _data2;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                params = _objectSpread(_objectSpread({}, data), {}, {
+                  _method: 'POST',
+                  api_token: _this.apiToken
+                });
+                headers = {};
+                _context5.prev = 2;
+                _context5.next = 5;
+                return _this.axios.post("".concat(_this.baseUrl, "/").concat(_this.prefix), params, headers);
+
+              case 5:
+                _yield$_this$axios$po = _context5.sent;
+                _data2 = _yield$_this$axios$po.data;
+                return _context5.abrupt("return", _data2);
+
+              case 10:
+                _context5.prev = 10;
+                _context5.t0 = _context5["catch"](2);
+
+                _this.handleError(_context5.t0);
+
+              case 13:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[2, 10]]);
+      }));
+
+      return function (_x5) {
+        return _ref5.apply(this, arguments);
+      };
+    }();
 
     return _this;
   }

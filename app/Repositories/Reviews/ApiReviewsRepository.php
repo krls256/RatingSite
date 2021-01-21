@@ -4,21 +4,24 @@
 namespace App\Repositories\Reviews;
 
 use App\Models\Reviews as Model;
+use App\Repositories\ApiRepository;
 use App\Repositories\CoreRepository;
 
-class ApiReviewsRepository extends CoreRepository
+class ApiReviewsRepository extends ApiRepository
 {
     protected function getModelClass()
     {
         return Model::class;
     }
 
-    public function getReviewsPaginate($count = 15)
+    public function getReviewsPaginate($count = 15, $options = [])
     {
         $column = ['review_id', 'review_date', 'reviewer_name', 'review_mark', 'is_published'];
         $response = $this->startCondition()
-            ->select($column)
-            ->paginate($count);
+            ->select($column);
+        $response = $this->addOrder($response, $options);
+        $response = $this->addFilters($response, $options);
+        $response = $response->paginate($count);
         return $response;
     }
     public function getEdit($id) {

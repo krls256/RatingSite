@@ -29,6 +29,8 @@ import ReviewAnswerEdit from "./admin-components/ReviewAnswers/ReviewAnswerEdit"
 import UserMessagesEdit from "./admin-components/UserMessages/UserMessagesEdit";
 import SEOEdit from "./admin-components/SEO/SEOEdit";
 import HeadersEdit from "./admin-components/Headers/HeadersEdit/HeadersEdit";
+import VideosCreate from "./admin-components/Videos/VideosCreate";
+import ArticlesCreate from "./admin-components/Articles/ArticlesCreate";
 
 function App() {
        return (
@@ -49,9 +51,11 @@ function App() {
                         <Route path='/admin/images' component={ImagesPage}/>
 
                         <Route path='/admin/articles' component={ArticlesTable}/>
+                        <Route path='/admin/articles/create' component={ArticlesCreate}/>
                         <Route path='/admin/articles/:id/edit' component={ArticleEdit}/>
 
                         <Route path='/admin/videos' component={VideosTable}/>
+                        <Route path='/admin/videos/create' component={VideosCreate}/>
                         <Route path='/admin/videos/:id/edit' component={VideosEdit}/>
 
                         <Route path='/admin/seo' component={SEOTable}/>

@@ -6,24 +6,23 @@ use App\Http\Requests\ApiCompanyUpdateRequest;
 use App\Http\Requests\CompaniesApiRequest;
 use App\Repositories\Companies\ApiCompanyRepository;
 use App\Services\ApiCompanyServices\DeleteStatisticFieldsService;
+use Illuminate\Http\Request;
 
 class ApiCompaniesController extends ApiController
 {
     private $companyRepository;
 
-    public function __construct(ApiCompanyRepository $apiCompanyRepository)
+    public function __construct(ApiCompanyRepository $apiCompanyRepository, Request $request)
     {
+        parent::__construct($request,'companies');
         $this->companyRepository = $apiCompanyRepository;
     }
 
-    public function index(CompaniesApiRequest $request)
+    public function index()
     {
-        $options = $request->all();
-        $response = $this->companyRepository->getCompaniesPaginate(15, $options)->toArray();
+        $response = $this->companyRepository->getCompaniesPaginate(15, $this->options);
 
-        $response['options'] = $options;
-
-        return $response;
+        return $this->returnWithOptions($response, $this->options);
     }
 
 

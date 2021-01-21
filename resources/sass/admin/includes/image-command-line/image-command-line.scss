@@ -4,8 +4,10 @@
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
+    column-gap: .5rem;
+    row-gap: .5rem;
 
-    padding: 1rem;
+    padding: .5rem;
     width: 100%;
     min-height: 5rem;
 
@@ -14,7 +16,6 @@
 
 
     &__item:last-child {
-        margin-left: 3rem;
         box-shadow: 5px 5px 10px $dark-a75;
 
         &:hover {

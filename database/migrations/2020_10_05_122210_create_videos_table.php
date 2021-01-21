@@ -15,13 +15,15 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('video_id')->unsigned();
-            $table->timestamps();
+            $table->boolean('is_published')->default(1);
 
             $table->string('video_ytid');
 //                ->unique();
             $table->string('video_title')->unique();
             $table->string('video_slug')->unique();
             $table->text('video_description');
+
+            $table->timestamps();
         });
     }
 

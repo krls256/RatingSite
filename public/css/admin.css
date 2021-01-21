@@ -10428,13 +10428,15 @@ h3 {
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  padding: 1rem;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+  row-gap: 0.5rem;
+  padding: 0.5rem;
   width: 100%;
   min-height: 5rem;
   border-bottom: 2px solid black;
 }
 .image-command-line__item:last-child {
-  margin-left: 3rem;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.75);
 }
 .image-command-line__item:last-child:hover {
@@ -10502,14 +10504,19 @@ h3 {
 }
 
 .filter-bar {
-  padding: 0 0.5rem;
+  padding: 0.5rem;
   min-height: 3rem;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+  row-gap: 0.5rem;
 }
 .filter-bar__button {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.75);
 }
-.filter-bar__form-wrapper {
-  margin-left: 1rem;
+.filter-bar__button:hover {
+  color: white;
+  box-shadow: none;
 }

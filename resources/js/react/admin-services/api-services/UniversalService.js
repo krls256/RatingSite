@@ -51,6 +51,26 @@ class UniversalService extends AbstractService {
             }
             return str;
         }
+
+        this.getCreate = async () => {
+            try {
+                const {data} = await this.axios.get(`${this.baseUrl}/${this.prefix}/create?api_token=${this.apiToken}`);
+                return data;
+            } catch (e) {
+                this.handleError(e);
+            }
+        }
+
+        this.store = async (data) => {
+            const params = {...data, _method: 'POST', api_token: this.apiToken}
+            const headers = {}
+            try {
+                const {data} = await this.axios.post(`${this.baseUrl}/${this.prefix}`, params, headers);
+                return data;
+            } catch (e) {
+                this.handleError(e);
+            }
+        }
     }
 }
 

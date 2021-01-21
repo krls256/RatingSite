@@ -6,7 +6,6 @@ import Pagination from "../../GeneralComponents/Pagination";
 import Table from "../../GeneralComponents/Table";
 import FilterBar from "../../GeneralComponents/FilterBar";
 import useUniversalTableData from "../../../admin-hoooks/useUniversalTableData";
-import {resetTablePages} from "../../../admin-actions/table/tablePagesActions";
 
 const CompaniesTable = () => {
     const companyPage = useUniversalTableData('companies');
@@ -18,18 +17,17 @@ const CompaniesTable = () => {
                        head_key={'companies'}
                        key_field={'company_name'}
                        component={CompanyItem}
+                       id_key='company_id'
                        items={companyPage} />
                 <Pagination />
             </Fragment>
         )
 
     return (
-        <div>
-            <FilterBar orderBy={orderBy} apply={resetTablePages} />
-            {
-                content
-            }
-        </div>
+        <section>
+            <FilterBar orderBy={orderBy} filters={filters}/>
+            {content}
+        </section>
 
     )
 }
@@ -55,3 +53,48 @@ const orderBy = [
         value: 'company_name'
     }
 ];
+
+const filters = [
+    {
+        field: 'company_average_mark',
+        options: [
+
+            {
+                label: 'Без фильтра среднего балла',
+                value: 'null,null'
+            },
+            {
+                label: 'Средний балл меньше 4',
+                value: 'less-equal,4'
+            },
+            {
+                label: 'Средний балл меньше 3',
+                value: 'less-equal,3'
+            },
+            {
+                label: 'Средний балл больше 3',
+                value: 'more-equal,3'
+            },
+        ]
+
+    },
+    {
+        field: 'is_published',
+        options: [
+
+            {
+                label: 'Без фильтра публикации',
+                value: 'null,null'
+            },
+            {
+                label: 'Опубликовано',
+                value: 'equal,1'
+            },
+            {
+                label: 'Не опубликовано',
+                value: 'equal,0'
+            },
+        ]
+
+    }
+]

@@ -10,14 +10,17 @@ class ApiSEOAttributesController extends ApiController
 {
     private $repository;
 
-    public function __construct(ApiSEORepository $SEORepository)
+    public function __construct(ApiSEORepository $SEORepository, Request $request)
     {
+        parent::__construct($request, 's_e_o_attributes');
         $this->repository = $SEORepository;
     }
 
     public function index()
     {
-        return $this->repository->getSEOPaginate();
+        $response = $this->repository->getSEOPaginate(15, $this->options);
+
+        return $this->returnWithOptions($response, $this->options);
     }
 
     public function edit($id)

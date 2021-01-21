@@ -4,26 +4,30 @@
 namespace App\Repositories\Headers;
 
 
-use App\Repositories\CoreRepository;
 use App\Models\Headers as Model;
+use App\Repositories\ApiRepository;
 
-class ApiHeadersRepository extends CoreRepository
+class ApiHeadersRepository extends ApiRepository
 {
     protected function getModelClass()
     {
         return Model::class;
     }
 
-    public function getHeadersPaginate($count = 15) {
+    public function getHeadersPaginate($count = 15, $options = [])
+    {
         $column = ['header_id', 'header_key', 'header_value', 'header_description'];
         $response = $this->startCondition()
-            ->select($column)
-            ->orderBy('header_id', 'desc')
-            ->paginate($count);
+            ->select($column);
+        $response = $this->addOrder($response, $options);
+        $response = $this->addFilters($response, $options);
+        $response = $response->paginate($count);
+
         return $response;
     }
 
-    public function getHeaderEdit($id) {
+    public function getHeaderEdit($id)
+    {
         $column = ['header_id', 'header_key', 'header_value', 'header_description'];
         $response = $this->startCondition()
             ->select($column)
@@ -32,7 +36,8 @@ class ApiHeadersRepository extends CoreRepository
         return $response;
     }
 
-    public function updateHeader($data, $id) {
+    public function updateHeader($data, $id)
+    {
         $response = $this->startCondition()
             ->where('header_id', $id)
             ->first()

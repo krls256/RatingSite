@@ -4,6 +4,8 @@ import Input from "../../FormComponent/Input";
 import Textarea from "../../FormComponent/Textarea";
 import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
 import editSelector from "../../../admin-helpers/editSelector";
+import Checkbox from "../../FormComponent/Checkbox/Checkbox";
+import checkboxToggle from "../../../admin-services/InputOnChange/checkboxToggle";
 
 const CompanyMain = () => {
     const {tableItemEdit: companyEdit} = useSelector(editSelector)
@@ -25,6 +27,9 @@ const CompanyMain = () => {
                               onChange={generalInputOnChange(useDispatch)(field, companyEdit)}
                               key={field} />)
             }
+            <Checkbox label={'Опубликовано'}
+                      value={companyEdit.is_published}
+                      onChange={checkboxToggle(useDispatch)(companyEdit)}/>
         </div>
     )
 }

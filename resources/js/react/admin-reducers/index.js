@@ -12,6 +12,8 @@ import imagesCommandLineReducer from "./images/imagesCommandLineReducer";
 import filterAttributesReducer from "./filterAttributes/filterAttributesReducer";
 import tablePagesReducer from "./table/tablePagesReducer";
 import tableItemEditReducer from "./table/tableItemEditReducer";
+import tableItemCreateReducer from "./table/tableItemCreateReducer";
+import redirectReducer from "./appState/redirectReducer";
 
 
 export default combineReducers({
@@ -34,6 +36,9 @@ export default combineReducers({
 
     tablePages: tablePagesReducer,
     tableItemEdit: tableItemEditReducer,
+    tableItemCreate: tableItemCreateReducer,
 
-    filterAttributes: filterAttributesReducer
+    filterAttributes: filterAttributesReducer,
+
+    redirect: redirectReducer
 })

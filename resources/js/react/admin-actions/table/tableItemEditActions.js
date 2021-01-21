@@ -22,7 +22,6 @@ const resetTableItemEdit = () => ({type: 'tableItemEdit/reset'});
 const updateTableItemMain = (tableName, id) => (dispatch, getState) => {
     const {apiToken, tableItemEdit} = getState()
 
-
     const service = new UniversalService(apiToken, tableName);
 
     updateStart(dispatch)

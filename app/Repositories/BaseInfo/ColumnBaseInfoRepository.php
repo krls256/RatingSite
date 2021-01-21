@@ -15,6 +15,6 @@ class ColumnBaseInfoRepository extends DBOrientedCoreRepository
     }
     public function getTableColumns($tableName) {
         $response = $this->startCondition()->getSchemaBuilder()->getColumnListing($tableName);
-        dd($response);
+        return $response;
     }
 }

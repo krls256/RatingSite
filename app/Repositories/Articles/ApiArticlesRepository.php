@@ -5,22 +5,25 @@ namespace App\Repositories\Articles;
 
 
 use App\Models\Articles as Model;
+use App\Repositories\ApiRepository;
 use App\Repositories\CoreRepository;
 
-class ApiArticlesRepository extends CoreRepository
+class ApiArticlesRepository extends ApiRepository
 {
     protected function getModelClass()
     {
         return Model::class;
     }
 
-    public function getPaginate($count = 20)
+    public function getPaginate($count = 20, $options = [])
     {
-        $column = ['article_id', 'article_title', 'article_slug'];
+        $column = ['article_id', 'article_title', 'article_slug', 'is_published'];
 
         $response = $this->startCondition()
-            ->select($column)
-            ->paginate($count);
+            ->select($column);
+        $response = $this->addOrder($response, $options);
+        $response = $this->addFilters($response, $options);
+        $response = $response->paginate($count);
 
         return $response;
     }
@@ -36,5 +39,12 @@ class ApiArticlesRepository extends CoreRepository
             ->first();
 
         return $response;
+    }
+
+    public function createArticle($data) {
+        $result = $this->startCondition()
+            ->create($data);
+
+        return $result;
     }
 }

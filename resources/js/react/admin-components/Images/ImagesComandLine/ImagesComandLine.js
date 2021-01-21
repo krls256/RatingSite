@@ -33,7 +33,7 @@ const ImagesCommandLine = () => {
 
     return (
         <nav className='image-command-line'>
-            <button className="btn b-dark c-white mr-2 image-command-line__item" onClick={apply}>Применить фильтры</button>
+            <button className="btn b-dark c-white image-command-line__item" onClick={apply}>Применить фильтры</button>
             <Select id='company_id'
                     onChange={onChange('company_id')}
                     options={shallowCopy.map(({company_id, company_name}) => ({

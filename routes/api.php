@@ -57,12 +57,12 @@ Route::group($adminApiOptions, function ()
     Route::post('images/change-images-state', 'ApiImagesController@changeImagesState')
         ->name('api.admin.reviews.change-images-state');
 
-    $articlesMethods = ['index', 'edit', 'update'];
+    $articlesMethods = ['index', 'edit', 'update', 'create', 'store'];
     Route::apiResource('articles', 'ApiArticlesController')
         ->names('api.admin.articles')
         ->only($articlesMethods);
 
-    $videosMethods = ['index', 'edit', 'update'];
+    $videosMethods = ['index', 'edit', 'update', 'create', 'store'];
     Route::apiResource('videos', 'ApiVideosController')
         ->names('api.admin.videos')
         ->only($videosMethods);

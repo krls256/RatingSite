@@ -1,57 +1,15 @@
 import React from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import Textarea from "../../FormComponent/Textarea";
-import Input from "../../FormComponent/Input";
+import {useSelector} from "react-redux";
 import generalInputOnChange from "../../../admin-services/InputOnChange/generalInputOnChenge";
 import editSelector from "../../../admin-helpers/editSelector";
+import checkboxToggle from "../../../admin-services/InputOnChange/checkboxToggle";
+import ArticleMainAbstract from "../ArticleMainAbstract";
 
 const ArticleMain = () => {
-    const {tableItemEdit: articleEdit} = useSelector(editSelector)
-
-    return (
-        <div className="page-wrapper card mt-3 p-3">
-            {
-                fields.map(({label, field}) => (
-                    <Input label={label}
-                           field={field}
-                           ReduxObj={articleEdit}
-                           key={field}
-                           onChange={generalInputOnChange(useDispatch)(field, articleEdit)} />
-                ))
-            }
-            {
-                textareas.map(({label, field}) => (
-                    <Textarea label={label}
-                              field={field}
-                              ReduxObj={articleEdit}
-                              key={field}
-                              onChange={generalInputOnChange(useDispatch)(field, articleEdit)} />
-                ))
-            }
-        </div>
-    )
+    const {tableItemEdit} = useSelector(editSelector)
+    return <ArticleMainAbstract data={tableItemEdit} inputChange={generalInputOnChange}
+                                checkboxChange={checkboxToggle} />
 }
 
 export default ArticleMain;
 
-const fields = [
-    {
-        field: 'article_title',
-        label: 'Название',
-    },
-    {
-        field: 'article_main_image',
-        label: 'Путь к картинке',
-    },
-    {
-        field: 'article_slug',
-        label: 'Адресный идентификатор',
-    }
-];
-
-const textareas = [
-    {
-        field: 'article_description',
-        label: 'Короткое описание',
-    }
-];

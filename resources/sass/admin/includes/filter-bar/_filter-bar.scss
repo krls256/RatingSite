@@ -1,14 +1,21 @@
 .filter-bar {
-    padding: 0 .5rem;
+    padding: .5rem;
     min-height: 3rem;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    column-gap: .5rem;
+    row-gap: .5rem;
 
     &__button {
+
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.75);
+
+        &:hover {
+            color: $light;
+            box-shadow: none;
+        }
     }
 
-    &__form-wrapper {
-        margin-left: 1rem;
-    }
+
 }

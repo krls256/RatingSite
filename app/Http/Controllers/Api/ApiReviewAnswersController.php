@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\ReviewAnswers\ReviewAnswersUpdateRequest;
 use App\Repositories\ReviewAnswers\ApiReviewAnswersRepository;
+use Illuminate\Http\Request;
 
 class ApiReviewAnswersController extends ApiController
 {
     private $repository;
 
-    public function __construct(ApiReviewAnswersRepository $answersRepository) {
+    public function __construct(ApiReviewAnswersRepository $answersRepository, Request $request) {
+        parent::__construct($request, 'review_answers');
         $this->repository = $answersRepository;
     }
 
@@ -18,7 +20,9 @@ class ApiReviewAnswersController extends ApiController
      */
     public function index()
     {
-        return $this->repository->getReviewAnswersPaginate(15);
+        $response = $this->repository->getReviewAnswersPaginate(15, $this->options);
+
+        return $this->returnWithOptions($response, $this->options);
     }
 
     /**

@@ -19,7 +19,6 @@ const UserMessagesEdit = () => {
                 <Spinner />
             </EditWindow>
         )
-
     return (
         <EditWindow>
             <form action={`/api/admin/user-messages/${id}`} method='POST' className='page'>
@@ -29,7 +28,7 @@ const UserMessagesEdit = () => {
                 <article className="page__content">
                     <PageHider active={navPages.active} index={0} component={UserMessagesMain} />
                     <div className='pt-3 page__button'>
-                        <SubmitButton action='user-messages' />
+                        <SubmitButton  tableName='user-messages' />
                     </div>
                 </article>
             </form>

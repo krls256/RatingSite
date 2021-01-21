@@ -14,10 +14,11 @@ class UserVideosRepository extends CoreRepository
     }
 
     public function getVideosPaginate($count = 15) {
-        $column = ['video_id', 'video_ytid', 'video_title', 'video_description'];
+        $column = ['video_id', 'video_ytid', 'video_title', 'video_description', 'is_published'];
 
         $response = $this->startCondition()
             ->select($column)
+            ->where('is_published', 1)
             ->orderBy('video_id', 'desc')
             ->paginate($count);
 
