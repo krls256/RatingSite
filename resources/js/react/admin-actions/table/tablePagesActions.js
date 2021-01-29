@@ -19,8 +19,16 @@ const getTablePage = (tableName) => (dispatch, getState) => {
 const setTablePage = (key, payload) => ({type: 'tablePages/addPage', key, payload});
 
 const resetTablePages = () => ({type: 'tablePages/reset'});
+const deleteTablePages = () => (dispatch, getState) => {
+    const {currentPage} = getState();
+
+    dispatch(deleteTablePagesCore(currentPage))
+};
+
+const deleteTablePagesCore = (payload) => ({type: 'tablePages/delete', payload})
 
 export {
     getTablePage,
-    resetTablePages
+    resetTablePages,
+    deleteTablePages
 }

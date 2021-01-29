@@ -8,18 +8,26 @@
         <ul class="articles__list">
             @foreach($articles as $article)
                 <li class="articles__list-item">
-                    <img src="{{$article->LinkWithDir}}"
-                         alt="Картинка статьи {{$article->article_title}}"
-                         class="articles__img">
-                    <div class="articles__content">
-                        <h3 class="articles__header">{{$article->article_title}}</h3>
-                        <p class="articles__description">{{$article->article_description}}</p>
-                        <a href="{{ route('rating.user.articles.show', $article->article_slug) }}"
-                           class="articles__link">Читать статью...</a>
-                    </div>
+                    <a href="{{ route('rating.user.articles.show', $article->article_slug) }}" class="articles__anchor-link">
+                        <img src="{{$article->article_main_image}}"
+                             alt="Картинка статьи {{$article->article_title}}"
+                             class="articles__img">
+                        <div class="articles__content">
+                            <h3 class="articles__header">
+                                {{$article->article_title}}
+                            </h3>
+                            <p class="articles__description">{{$article->article_description}}</p>
+                            <small class="articles__read">Читать статью...</small>
+                        </div>
+                    </a>
+
                 </li>
             @endforeach
         </ul>
         {{$articles->links()}}
     </article>
+@endsection
+
+@section('meta')
+    <link rel="canonical" href="/articles" />
 @endsection

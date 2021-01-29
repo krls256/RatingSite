@@ -11,3 +11,7 @@
     @include('rating.user.userIncludes.forms.leaveReviewForm')
     @include('rating.user.userIncludes.forms.writeUsFrom')
 @endsection
+
+@section('meta')
+    <link rel="canonical" href="/about" />
+@endsection

@@ -22,13 +22,15 @@ const getTableItemCreate = (tableName) => (dispatch, getState) => {
 const setTableItemCreate = (payload) => ({type: 'tableItemCreate/update', payload});
 
 const createTableItem = (tableName) => (dispatch, getState) => {
-    const {apiToken, tableItemCreate} = getState()
+    const {apiToken, tableItemCreate, formData} = getState()
 
     const service = new UniversalService(apiToken, tableName);
 
     updateStart(dispatch)
 
-    service.store(tableItemCreate)
+    const needToHandle = formData === null ? service.store(tableItemCreate) : service.storeWithFiles(formData, tableItemCreate)
+
+    needToHandle
         .then(r => {
             const id = r.id;
             delete  r.id;

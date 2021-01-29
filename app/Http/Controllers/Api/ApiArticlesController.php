@@ -30,7 +30,8 @@ class ApiArticlesController extends ApiController
         return $articles->getFillable();
     }
 
-    public function store(ApiArticlesStoreRequest $storeRequest, ApiArticlesRepository $articlesRepository) {
+    public function store(ApiArticlesStoreRequest $storeRequest, ApiArticlesRepository $articlesRepository)
+    {
         $result = $articlesRepository->createArticle($storeRequest->all());
 
         return $this->storeResponse($result, 'article_id');

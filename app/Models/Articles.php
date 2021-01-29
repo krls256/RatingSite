@@ -14,7 +14,6 @@ class Articles extends Model
 
     protected $fillable = [
         'article_title',
-        'article_main_image',
         'article_description',
         'article_content',
         'is_published'
@@ -22,6 +21,11 @@ class Articles extends Model
 
     public function getLinkWithDirAttribute()
     {
-        return '/img/articles/'.$this->article_main_image;
+        return '/img/articles/' . $this->article_main_image;
+    }
+
+    public function getFolderName()
+    {
+        return $this->article_id . '-' . $this->article_folder_suffix;
     }
 }

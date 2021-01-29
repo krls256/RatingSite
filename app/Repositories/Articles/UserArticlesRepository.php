@@ -21,7 +21,7 @@ class UserArticlesRepository extends CoreRepository
 
         $response = $this->startCondition()
             ->select($column)
-            ->orderBy('article_id', 'desc')
+            ->orderBy('created_at', 'desc')
             ->where('is_published', 1)
             ->take($count)
             ->get();
@@ -40,14 +40,14 @@ class UserArticlesRepository extends CoreRepository
         $response = $this->startCondition()
             ->select($column)
             ->where('is_published', 1)
-            ->orderBy('created_at')
+            ->orderBy('created_at', 'desc')
             ->paginate($count);
         return $response;
     }
 
     public function getArticleBySlug($slug) {
         $column = ['article_id', 'created_at', 'article_title', 'article_slug',
-            'article_main_image', 'article_description', 'is_published', 'article_content'];
+            'article_main_image', 'article_description', 'is_published', 'article_html'];
 
         $response = $this->startCondition()
             ->select($column)

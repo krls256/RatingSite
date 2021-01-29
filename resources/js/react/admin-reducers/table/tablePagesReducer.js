@@ -6,6 +6,11 @@ const tablePagesReducer = (state = {}, action) => {
             newState[key] = payload;
             return newState;
         case 'tablePages/reset': return {};
+        case 'tablePages/delete': {
+            const newState = {...state};
+            delete newState[action.payload];
+            return newState
+        }
         default: return state;
     }
 }

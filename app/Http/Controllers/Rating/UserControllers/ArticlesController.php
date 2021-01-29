@@ -20,7 +20,7 @@ class ArticlesController extends UserController
 
     public function index()
     {
-        $articles = $this->articleRepository->getArticlesPaginate(19);
+        $articles = $this->articleRepository->getArticlesPaginate(10);
         $seo = $this->getSEOAttributes('articles');
         $headers = $this->getHeaders(['main', 'articles']);
 
@@ -41,6 +41,9 @@ class ArticlesController extends UserController
         $articles = $articlesRepository->getSomeLastArticle();
         $companies = $companiesRepository->getCompaniesForForm();
         $seo = $this->getSEOAttributes('article');
+
+        $seo->replaceData($article->article_title);
+
         $headers = $this->getHeaders(['main', 'side']);
 
         return view('rating.user.articles.show',

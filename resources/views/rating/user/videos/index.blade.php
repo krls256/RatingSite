@@ -10,3 +10,7 @@
     @include('rating.user.userIncludes.forms.leaveReviewForm')
     @include('rating.user.videos.videosIncludes.videoPlayer')
 @endsection
+
+@section('meta')
+    <link rel="canonical" href="/videos" />
+@endsection

@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 
-    <title>{{$seo->title}}</title>
-    <meta name="description" content="{{$seo->title}}"/>
-    @if($seo->keywords) <meta name="keywords" content="{{$seo->keywords}}" /> @endif
+    <title>{{$seo->title ?? ''}}</title>
+    <meta name="description" content="{{$seo->description ?? ''}}"/>
+    @if($seo->keywords ?? false) <meta name="keywords" content="{{$seo->keywords ?? ''}}" /> @endif
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{asset('img/apple-touch-icon.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicon-32x32.png') }}">
@@ -23,6 +23,8 @@
     <link rel="mask-icon" href="{{ asset('img/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+
+    @section('meta') @show
 </head>
 <body>
     <header class="header">
@@ -36,19 +38,19 @@
                 <ul class="header__list">
                     <li class="header__list-item">
                         <a href="{{ route('rating.user.main') }}"
-                           @if(\Request::route()->getName() === 'rating.user.main') class="header__list-link header__list-link--selected" @else class="header__list-link" @endif>Рейтинг компаний</a>
+                           @if(\Request::route() ? \Request::route()->getName() : '' === 'rating.user.main') class="header__list-link header__list-link--selected" @else class="header__list-link" @endif>Рейтинг компаний</a>
                     </li>
                     <li class="header__list-item">
                         <a href="{{ route('rating.user.about') }}"
-                           @if(\Request::route()->getName() === 'rating.user.about') class="header__list-link header__list-link--selected" @else class="header__list-link" @endif>О проекте</a>
+                           @if(\Request::route() ? \Request::route()->getName() : '' === 'rating.user.about') class="header__list-link header__list-link--selected" @else class="header__list-link" @endif>О проекте</a>
                     </li>
                     <li class="header__list-item">
                         <a href="{{ route('rating.user.articles.index') }}"
-                           @if(\Request::route()->getName() === 'rating.user.articles.index') class="header__list-link header__list-link--selected" @else class="header__list-link" @endif>Статьи</a>
+                           @if(\Request::route() ? \Request::route()->getName() : '' === 'rating.user.articles.index') class="header__list-link header__list-link--selected" @else class="header__list-link" @endif>Статьи</a>
                     </li>
                     <li class="header__list-item">
                         <a href="{{ route('rating.user.videos') }}"
-                           @if(\Request::route()->getName() === 'rating.user.videos') class="header__list-link header__list-link--selected" @else class="header__list-link" @endif>Видео</a>
+                           @if(\Request::route() ? \Request::route()->getName() : '' === 'rating.user.videos') class="header__list-link header__list-link--selected" @else class="header__list-link" @endif>Видео</a>
                     </li>
                 </ul>
             </nav>

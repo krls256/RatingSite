@@ -40,6 +40,8 @@ class CompaniesController extends UserController
         $this->articles = $articlesRepository->getSomeLastArticle(2);
         $this->reviewsRepository = $reviewsRepository;
         $this->seo = $this->getSEOAttributes('companies');
+        $this->seo->replaceData($this->company->company_name);
+
         $this->headers = $this->getHeaders(['main', 'side', 'reviews']);
 
         return 1;

@@ -22,5 +22,10 @@ mix
     .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/style.scss', 'public/css')
     .options({
-        processCssUrls: false
+        processCssUrls: false,
+        postCss: [
+            require('autoprefixer')({
+                grid: true,
+            }),
+        ],
     });

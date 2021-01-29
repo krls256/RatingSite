@@ -37935,7 +37935,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_components_SEO_SEOEdit__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./admin-components/SEO/SEOEdit */ "./resources/js/react/admin-components/SEO/SEOEdit/index.js");
 /* harmony import */ var _admin_components_Headers_HeadersEdit_HeadersEdit__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./admin-components/Headers/HeadersEdit/HeadersEdit */ "./resources/js/react/admin-components/Headers/HeadersEdit/HeadersEdit.js");
 /* harmony import */ var _admin_components_Videos_VideosCreate__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./admin-components/Videos/VideosCreate */ "./resources/js/react/admin-components/Videos/VideosCreate/index.js");
-/* harmony import */ var _admin_components_Articles_ArticlesCreate__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./admin-components/Articles/ArticlesCreate */ "./resources/js/react/admin-components/Articles/ArticlesCreate/index.js");
+/* harmony import */ var _admin_components_Articles_ArticleCreate__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./admin-components/Articles/ArticleCreate */ "./resources/js/react/admin-components/Articles/ArticleCreate/index.js");
 
 
 
@@ -38002,7 +38002,7 @@ function App() {
     component: _admin_components_Articles_ArticlesTable__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/admin/articles/create",
-    component: _admin_components_Articles_ArticlesCreate__WEBPACK_IMPORTED_MODULE_29__["default"]
+    component: _admin_components_Articles_ArticleCreate__WEBPACK_IMPORTED_MODULE_29__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/admin/articles/:id/edit",
     component: _admin_components_Articles_ArticleEdit__WEBPACK_IMPORTED_MODULE_20__["default"]
@@ -38269,6 +38269,34 @@ var resetFilterAttributes = function resetFilterAttributes() {
 
 /***/ }),
 
+/***/ "./resources/js/react/admin-actions/formData/formDataActions.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/react/admin-actions/formData/formDataActions.js ***!
+  \**********************************************************************/
+/*! exports provided: formDataUpdate, formDataReset */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formDataUpdate", function() { return formDataUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "formDataReset", function() { return formDataReset; });
+var formDataUpdate = function formDataUpdate(payload) {
+  return {
+    type: 'formData/update',
+    payload: payload
+  };
+};
+
+var formDataReset = function formDataReset() {
+  return {
+    type: 'formData/reset'
+  };
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/js/react/admin-actions/images/imagesActions.js":
 /*!******************************************************************!*\
   !*** ./resources/js/react/admin-actions/images/imagesActions.js ***!
@@ -38422,11 +38450,13 @@ var createTableItem = function createTableItem(tableName) {
   return function (dispatch, getState) {
     var _getState2 = getState(),
         apiToken = _getState2.apiToken,
-        tableItemCreate = _getState2.tableItemCreate;
+        tableItemCreate = _getState2.tableItemCreate,
+        formData = _getState2.formData;
 
     var service = new _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__["default"](apiToken, tableName);
     Object(_admin_helpers_updateStart__WEBPACK_IMPORTED_MODULE_3__["default"])(dispatch);
-    service.store(tableItemCreate).then(function (r) {
+    var needToHandle = formData === null ? service.store(tableItemCreate) : service.storeWithFiles(formData, tableItemCreate);
+    needToHandle.then(function (r) {
       var id = r.id;
       delete r.id;
       Object(_admin_helpers_updateFinish__WEBPACK_IMPORTED_MODULE_4__["default"])(dispatch, r);
@@ -38509,13 +38539,14 @@ var updateTableItemMain = function updateTableItemMain(tableName, id) {
 /*!*********************************************************************!*\
   !*** ./resources/js/react/admin-actions/table/tablePagesActions.js ***!
   \*********************************************************************/
-/*! exports provided: getTablePage, resetTablePages */
+/*! exports provided: getTablePage, resetTablePages, deleteTablePages */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTablePage", function() { return getTablePage; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetTablePages", function() { return resetTablePages; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTablePages", function() { return deleteTablePages; });
 /* harmony import */ var _admin_services_api_services_UniversalService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../admin-services/api-services/UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
 /* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
 /* harmony import */ var _appState_lastPageActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../appState/lastPageActions */ "./resources/js/react/admin-actions/appState/lastPageActions.js");
@@ -38552,6 +38583,22 @@ var setTablePage = function setTablePage(key, payload) {
 var resetTablePages = function resetTablePages() {
   return {
     type: 'tablePages/reset'
+  };
+};
+
+var deleteTablePages = function deleteTablePages() {
+  return function (dispatch, getState) {
+    var _getState2 = getState(),
+        currentPage = _getState2.currentPage;
+
+    dispatch(deleteTablePagesCore(currentPage));
+  };
+};
+
+var deleteTablePagesCore = function deleteTablePagesCore(payload) {
+  return {
+    type: 'tablePages/delete',
+    payload: payload
   };
 };
 
@@ -38622,10 +38669,17 @@ var ArticleContent = function ArticleContent() {
   var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(_admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_3__["default"]),
       tableItemEdit = _useSelector.tableItemEdit;
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ArticleContentAbstract__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  console.log(tableItemEdit);
+  var article_html = tableItemEdit.article_html;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ArticleContentAbstract__WEBPACK_IMPORTED_MODULE_4__["default"], {
     data: tableItemEdit,
     inputChange: _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_2__["default"]
-  });
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "markdown-body p-2 card mt-4",
+    dangerouslySetInnerHTML: {
+      __html: article_html
+    }
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ArticleContent);
@@ -38752,6 +38806,172 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ArticleContentCreate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleContentCreate */ "./resources/js/react/admin-components/Articles/ArticleContentCreate/ArticleContentCreate.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (_ArticleContentCreate__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleCreate/ArticlesCreate.js":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleCreate/ArticlesCreate.js ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _admin_hoooks_useUniversalCreateData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalCreateData */ "./resources/js/react/admin-hoooks/useUniversalCreateData.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
+/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
+/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
+/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
+/* harmony import */ var _GeneralComponents_SubmitCreateButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../GeneralComponents/SubmitCreateButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitCreateButton/index.js");
+/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
+/* harmony import */ var _ArticleMainCreate__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../ArticleMainCreate */ "./resources/js/react/admin-components/Articles/ArticleMainCreate/index.js");
+/* harmony import */ var _ArticleContentCreate__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../ArticleContentCreate */ "./resources/js/react/admin-components/Articles/ArticleContentCreate/index.js");
+/* harmony import */ var _ArticleFilesCreate__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../ArticleFilesCreate */ "./resources/js/react/admin-components/Articles/ArticleFilesCreate/index.js");
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var ArticlesCreate = function ArticlesCreate() {
+  var tableName = 'articles';
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
+      _useState2 = _slicedToArray(_useState, 2),
+      navPages = _useState2[0],
+      setNavPages = _useState2[1];
+
+  var _useUniversalCreateDa = Object(_admin_hoooks_useUniversalCreateData__WEBPACK_IMPORTED_MODULE_1__["default"])(tableName),
+      tableItemCreate = _useUniversalCreateDa.tableItemCreate,
+      redirect = _useUniversalCreateDa.redirect;
+
+  if (redirect) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+      to: "/admin/".concat(tableName, "/").concat(redirect, "/edit")
+    });
+  }
+
+  if (tableItemCreate === null) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    action: "/api/admin/videos/create",
+    method: "POST",
+    className: "page"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    navList: navPages,
+    changeNavList: setNavPages
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
+    className: "page__content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    active: navPages.active,
+    index: 0,
+    component: _ArticleMainCreate__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    active: navPages.active,
+    index: 1,
+    component: _ArticleContentCreate__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    active: navPages.active,
+    index: 2,
+    component: _ArticleFilesCreate__WEBPACK_IMPORTED_MODULE_11__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mt-3 page__button"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitCreateButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    tableName: tableName
+  })))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticlesCreate);
+var pages = {
+  data: ['Главная', 'Контент', 'Файлы'],
+  active: 0
+};
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleCreate/index.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleCreate/index.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ArticlesCreate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticlesCreate */ "./resources/js/react/admin-components/Articles/ArticleCreate/ArticlesCreate.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_ArticlesCreate__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -38901,6 +39121,153 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ArticleEdit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleEdit */ "./resources/js/react/admin-components/Articles/ArticleEdit/ArticleEdit.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (_ArticleEdit__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleFilesCreate/ArticleFilesCreate.js":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleFilesCreate/ArticleFilesCreate.js ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _admin_actions_formData_formDataActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-actions/formData/formDataActions */ "./resources/js/react/admin-actions/formData/formDataActions.js");
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+
+
+
+
+var ArticleFilesCreate = function ArticleFilesCreate() {
+  var mainInput = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
+  var multiInput = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(new FormData()),
+      _useState2 = _slicedToArray(_useState, 2),
+      dynamicFormData = _useState2[0],
+      setDynamicFormData = _useState2[1];
+
+  var onChange = function onChange(field, input) {
+    return function () {
+      dynamicFormData["delete"](field);
+
+      for (var i in input.current.files) {
+        if (!isNaN(Number(i))) {
+          var key = field === 'main' ? field : field + "[".concat(i, "]");
+          dynamicFormData.append(key, input.current.files[i]);
+        }
+      }
+
+      dispatch(Object(_admin_actions_formData_formDataActions__WEBPACK_IMPORTED_MODULE_2__["formDataUpdate"])(dynamicFormData));
+    };
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card p-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "main_photo"
+  }, "\u0413\u043B\u0430\u0432\u043D\u0430\u044F \u0424\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u0438\u044F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "file",
+    accept: "image/*",
+    id: "main_photo",
+    className: "form-control input input--file",
+    onChange: onChange('main', mainInput),
+    ref: mainInput
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "other_photos"
+  }, "\u0414\u0440\u0443\u0433\u0438\u0435 \u0424\u043E\u0442\u043E\u0433\u0440\u0430\u0444\u0438\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "file",
+    accept: "image/*",
+    id: "other_photos",
+    multiple: true,
+    className: "form-control input input--file",
+    onChange: onChange('other-photos', multiInput),
+    ref: multiInput
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticleFilesCreate);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleFilesCreate/index.js":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleFilesCreate/index.js ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ArticleFilesCreate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleFilesCreate */ "./resources/js/react/admin-components/Articles/ArticleFilesCreate/ArticleFilesCreate.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_ArticleFilesCreate__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -39066,12 +39433,6 @@ var ArticleMainAbstract = function ArticleMainAbstract(_ref) {
 var fields = [{
   field: 'article_title',
   label: 'Название'
-}, {
-  field: 'article_main_image',
-  label: 'Путь к картинке'
-}, {
-  field: 'article_slug',
-  label: 'Адресный идентификатор'
 }];
 var textareas = [{
   field: 'article_description',
@@ -39145,166 +39506,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ArticleMainCreate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleMainCreate */ "./resources/js/react/admin-components/Articles/ArticleMainCreate/ArticleMainCreate.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (_ArticleMainCreate__WEBPACK_IMPORTED_MODULE_0__["default"]);
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-components/Articles/ArticlesCreate/ArticlesCreate.js":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/react/admin-components/Articles/ArticlesCreate/ArticlesCreate.js ***!
-  \***************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_hoooks_useUniversalCreateData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-hoooks/useUniversalCreateData */ "./resources/js/react/admin-hoooks/useUniversalCreateData.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../GeneralComponents/EditWindow */ "./resources/js/react/admin-components/GeneralComponents/EditWindow/index.js");
-/* harmony import */ var _GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../GeneralComponents/Spinner */ "./resources/js/react/admin-components/GeneralComponents/Spinner/index.js");
-/* harmony import */ var _GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../GeneralComponents/EditNavbar */ "./resources/js/react/admin-components/GeneralComponents/EditNavbar/index.js");
-/* harmony import */ var _NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../NotificationComponents/ErrorLine/ErrorLine */ "./resources/js/react/admin-components/NotificationComponents/ErrorLine/ErrorLine.js");
-/* harmony import */ var _GeneralComponents_SubmitCreateButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../GeneralComponents/SubmitCreateButton */ "./resources/js/react/admin-components/GeneralComponents/SubmitCreateButton/index.js");
-/* harmony import */ var _admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../admin-hoc/PageHider */ "./resources/js/react/admin-hoc/PageHider.js");
-/* harmony import */ var _ArticleMainCreate__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../ArticleMainCreate */ "./resources/js/react/admin-components/Articles/ArticleMainCreate/index.js");
-/* harmony import */ var _ArticleContentCreate__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../ArticleContentCreate */ "./resources/js/react/admin-components/Articles/ArticleContentCreate/index.js");
-function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
-}
-
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-var ArticlesCreate = function ArticlesCreate() {
-  var tableName = 'articles';
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(pages),
-      _useState2 = _slicedToArray(_useState, 2),
-      navPages = _useState2[0],
-      setNavPages = _useState2[1];
-
-  var _useUniversalCreateDa = Object(_admin_hoooks_useUniversalCreateData__WEBPACK_IMPORTED_MODULE_1__["default"])(tableName),
-      tableItemCreate = _useUniversalCreateDa.tableItemCreate,
-      redirect = _useUniversalCreateDa.redirect;
-
-  if (redirect) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-      to: "/admin/".concat(tableName, "/").concat(redirect, "/edit")
-    });
-  }
-
-  if (tableItemCreate === null) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], null));
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditWindow__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    action: "/api/admin/videos/create",
-    method: "POST",
-    className: "page"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_EditNavbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    navList: navPages,
-    changeNavList: setNavPages
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NotificationComponents_ErrorLine_ErrorLine__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article", {
-    className: "page__content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    active: navPages.active,
-    index: 0,
-    component: _ArticleMainCreate__WEBPACK_IMPORTED_MODULE_9__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_admin_hoc_PageHider__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    active: navPages.active,
-    index: 1,
-    component: _ArticleContentCreate__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "mt-3 page__button"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GeneralComponents_SubmitCreateButton__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    tableName: tableName
-  })))));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (ArticlesCreate);
-var pages = {
-  data: ['Главная', 'Контент'],
-  active: 0
-};
-
-/***/ }),
-
-/***/ "./resources/js/react/admin-components/Articles/ArticlesCreate/index.js":
-/*!******************************************************************************!*\
-  !*** ./resources/js/react/admin-components/Articles/ArticlesCreate/index.js ***!
-  \******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ArticlesCreate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticlesCreate */ "./resources/js/react/admin-components/Articles/ArticlesCreate/ArticlesCreate.js");
-
-/* harmony default export */ __webpack_exports__["default"] = (_ArticlesCreate__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
@@ -44278,9 +44479,6 @@ var fields = [{
 }, {
   field: 'video_ytid',
   label: 'YouTube Id'
-}, {
-  field: 'video_slug',
-  label: 'Адресный идентификатор'
 }];
 var textareas = [{
   field: 'video_description',
@@ -44540,12 +44738,15 @@ var prepareCreateResponse = function prepareCreateResponse(data) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_actions_appState_successMessageActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../admin-actions/appState/successMessageActions */ "./resources/js/react/admin-actions/appState/successMessageActions.js");
 /* harmony import */ var _admin_actions_appState_isLoadingActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../admin-actions/appState/isLoadingActions */ "./resources/js/react/admin-actions/appState/isLoadingActions.js");
+/* harmony import */ var _admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../admin-actions/table/tablePagesActions */ "./resources/js/react/admin-actions/table/tablePagesActions.js");
+
 
 
 
 var updateFinish = function updateFinish(dispatch, response) {
   dispatch(Object(_admin_actions_appState_successMessageActions__WEBPACK_IMPORTED_MODULE_0__["successMessageUpdate"])(response));
   dispatch(Object(_admin_actions_appState_isLoadingActions__WEBPACK_IMPORTED_MODULE_1__["isLoadingSetFalse"])());
+  dispatch(Object(_admin_actions_table_tablePagesActions__WEBPACK_IMPORTED_MODULE_2__["deleteTablePages"])());
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (updateFinish);
@@ -45049,6 +45250,35 @@ var filterAttributesReducer = function filterAttributesReducer() {
 
 /***/ }),
 
+/***/ "./resources/js/react/admin-reducers/formData/formDataReducer.js":
+/*!***********************************************************************!*\
+  !*** ./resources/js/react/admin-reducers/formData/formDataReducer.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var formDataReducer = function formDataReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case 'formData/update':
+      return action.payload;
+
+    case 'formData/reset':
+      return null;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (formDataReducer);
+
+/***/ }),
+
 /***/ "./resources/js/react/admin-reducers/images/imagesCommandLineReducer.js":
 /*!******************************************************************************!*\
   !*** ./resources/js/react/admin-reducers/images/imagesCommandLineReducer.js ***!
@@ -45214,6 +45444,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _table_tableItemEditReducer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./table/tableItemEditReducer */ "./resources/js/react/admin-reducers/table/tableItemEditReducer.js");
 /* harmony import */ var _table_tableItemCreateReducer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./table/tableItemCreateReducer */ "./resources/js/react/admin-reducers/table/tableItemCreateReducer.js");
 /* harmony import */ var _appState_redirectReducer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./appState/redirectReducer */ "./resources/js/react/admin-reducers/appState/redirectReducer.js");
+/* harmony import */ var _formData_formDataReducer__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./formData/formDataReducer */ "./resources/js/react/admin-reducers/formData/formDataReducer.js");
+
 
 
 
@@ -45245,7 +45477,8 @@ __webpack_require__.r(__webpack_exports__);
   tableItemEdit: _table_tableItemEditReducer__WEBPACK_IMPORTED_MODULE_13__["default"],
   tableItemCreate: _table_tableItemCreateReducer__WEBPACK_IMPORTED_MODULE_14__["default"],
   filterAttributes: _filterAttributes_filterAttributesReducer__WEBPACK_IMPORTED_MODULE_11__["default"],
-  redirect: _appState_redirectReducer__WEBPACK_IMPORTED_MODULE_15__["default"]
+  redirect: _appState_redirectReducer__WEBPACK_IMPORTED_MODULE_15__["default"],
+  formData: _formData_formDataReducer__WEBPACK_IMPORTED_MODULE_16__["default"]
 }));
 
 /***/ }),
@@ -45378,6 +45611,14 @@ var tablePagesReducer = function tablePagesReducer() {
 
     case 'tablePages/reset':
       return {};
+
+    case 'tablePages/delete':
+      {
+        var _newState = _objectSpread({}, state);
+
+        delete _newState[action.payload];
+        return _newState;
+      }
 
     default:
       return state;
@@ -46771,6 +47012,50 @@ var UniversalService = /*#__PURE__*/function (_AbstractService) {
 
       return function (_x5) {
         return _ref5.apply(this, arguments);
+      };
+    }();
+
+    _this.storeWithFiles = /*#__PURE__*/function () {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(params, data) {
+        var i, headers, _yield$_this$axios$po2, _data3;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                for (i in data) {
+                  params.append(i, data[i]);
+                }
+
+                params.append('api_token', _this.apiToken);
+                headers = {
+                  'Content-Type': 'multipart/form-data'
+                };
+                _context6.prev = 3;
+                _context6.next = 6;
+                return _this.axios.post("".concat(_this.baseUrl, "/").concat(_this.prefix), params, headers);
+
+              case 6:
+                _yield$_this$axios$po2 = _context6.sent;
+                _data3 = _yield$_this$axios$po2.data;
+                return _context6.abrupt("return", _data3);
+
+              case 11:
+                _context6.prev = 11;
+                _context6.t0 = _context6["catch"](3);
+
+                _this.handleError(_context6.t0);
+
+              case 14:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, null, [[3, 11]]);
+      }));
+
+      return function (_x6, _x7) {
+        return _ref6.apply(this, arguments);
       };
     }();
 

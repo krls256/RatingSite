@@ -30,7 +30,7 @@ import UserMessagesEdit from "./admin-components/UserMessages/UserMessagesEdit";
 import SEOEdit from "./admin-components/SEO/SEOEdit";
 import HeadersEdit from "./admin-components/Headers/HeadersEdit/HeadersEdit";
 import VideosCreate from "./admin-components/Videos/VideosCreate";
-import ArticlesCreate from "./admin-components/Articles/ArticlesCreate";
+import ArticlesCreate from "./admin-components/Articles/ArticleCreate";
 
 function App() {
        return (

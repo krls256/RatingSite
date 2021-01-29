@@ -8,8 +8,6 @@
                     <h3 class="videos__name">{{$video->video_title}}</h3>
                     <div class="videos__iframe-wrapper" data-ytid="{{$video->video_ytid}}">
                         <picture>
-                            <source type="image/webp"
-                                    srcset="https://i.ytimg.com/vi_webp/{{$video->video_ytid}}/maxresdefault.webp">
                             <img src="https://i.ytimg.com/vi/{{$video->video_ytid}}/maxresdefault.jpg"
                                  alt="Видео {{$video->video_title}}" class="videos__media">
                         </picture>

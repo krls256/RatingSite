@@ -34,6 +34,15 @@ class PrepareCompanyDataFromSeederService
             "company_fb" => $data->fb,
             "company_vk" => $data->vk,
             "company_inn" => $data->inn,
+            "company_email" => $data->email,
+            "company_city" => $data->city,
+            "company_address" => $data->address,
+            "company_creating_date" => $data->creationDate,
+            "company_ok" => $data->ok,
+            "company_whatsapp" => $data->whatsapp,
+            "company_viber" => $data->viber,
+            "company_telegram" => $data->telegram,
+            "company_twitter" => $data->twitter
 
         ];
         return $result;

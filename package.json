@@ -22,9 +22,12 @@
         "react-dom": "^16.2.0",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
-        "sass-loader": "^8.0.0"
+        "sass-loader": "^8.0.0",
+        "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "autoprefixer": "^9.8.6",
+        "postcss": "^7.0.35",
         "react-redux": "^7.2.1",
         "react-router-dom": "^5.2.0",
         "redux": "^4.0.5",

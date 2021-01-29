@@ -10,3 +10,7 @@
     @include('rating.user.userIncludes.forms.leaveReviewForm', ['companies' => $company->getSelfCollection()])
     @include('rating.user.userIncludes.forms.addReviewAnswerForm')
 @endsection
+
+@section('meta')
+    <link rel="canonical" href="/companies/{{$company->company_slug}}" />
+@endsection

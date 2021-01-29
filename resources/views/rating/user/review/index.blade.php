@@ -9,3 +9,7 @@
     </div>
     @include('rating.user.userIncludes.forms.addReviewAnswerForm')
 @endsection
+
+@section('meta')
+    <link rel="canonical" href="/review/{{$review->review_id}}" />
+@endsection

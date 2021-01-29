@@ -19,3 +19,7 @@
         </ul>
     </article>
 @endsection
+
+@section('meta')
+    <meta name="robots" content="noindex" />
+@endsection

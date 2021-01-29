@@ -16,7 +16,7 @@ class UpdateServireCompanyRepository extends CoreRepository
 
     public function getMainCompaniesId()
     {
-        $search = 'Студия Ремонтов';
+        $search = 'Строй Сити';
         $column = ['company_id'];
         $response = $this->startCondition()
             ->select($column)

@@ -43,10 +43,6 @@ const fields = [
     {
         field: 'video_ytid',
         label: 'YouTube Id',
-    },
-    {
-        field: 'video_slug',
-        label: 'Адресный идентификатор',
     }
 ]
 

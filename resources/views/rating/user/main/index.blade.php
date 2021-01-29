@@ -9,3 +9,7 @@
     </div>
     @include('rating.user.userIncludes.forms.leaveReviewForm')
 @endsection
+
+@section('meta')
+    <link rel="canonical" href="/" />
+@endsection

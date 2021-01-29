@@ -49,6 +49,7 @@ class CreateCompaniesTable extends Migration
             $table->string('company_logo_link')->nullable();
             $table->string('company_yandex_map_link')->nullable();
             $table->text('company_description')->nullable();
+            $table->text('company_description_html')->nullable();
             $table->string('company_description_styles')->nullable();
 
             // less important data

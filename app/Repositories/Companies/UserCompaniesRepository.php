@@ -23,8 +23,8 @@ class UserCompaniesRepository extends CoreRepository
         $response = $this->startCondition()
             ->select($column)
             ->where('is_published', 1)
-            ->orderBy('company_mark_difference', 'desc')
             ->orderBy('company_average_mark', 'desc')
+            ->orderBy('company_mark_difference', 'desc')
             ->get();
 
         return $response;
@@ -60,7 +60,7 @@ class UserCompaniesRepository extends CoreRepository
                 'company_fb', 'company_twitter', 'company_telegram', 'company_viber', 'company_whatsapp',
                 'company_vk', 'company_ok', 'company_city',
 
-                'company_description'];
+                'company_description_html'];
 
         $response = $this->startCondition()
             ->select($column)

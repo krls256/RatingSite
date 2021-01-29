@@ -38,14 +38,6 @@ const fields = [
     {
         field: 'article_title',
         label: 'Название',
-    },
-    {
-        field: 'article_main_image',
-        label: 'Путь к картинке',
-    },
-    {
-        field: 'article_slug',
-        label: 'Адресный идентификатор',
     }
 ];
 

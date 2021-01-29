@@ -14,7 +14,7 @@ import tablePagesReducer from "./table/tablePagesReducer";
 import tableItemEditReducer from "./table/tableItemEditReducer";
 import tableItemCreateReducer from "./table/tableItemCreateReducer";
 import redirectReducer from "./appState/redirectReducer";
-
+import formDataReducer from "./formData/formDataReducer";
 
 export default combineReducers({
     errorsMessage: errorsMessageReducer,
@@ -40,5 +40,6 @@ export default combineReducers({
 
     filterAttributes: filterAttributesReducer,
 
-    redirect: redirectReducer
+    redirect: redirectReducer,
+    formData: formDataReducer
 })

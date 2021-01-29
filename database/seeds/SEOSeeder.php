@@ -37,7 +37,7 @@ class SEOSeeder extends Seeder
             'keywords' => 'ключевие слова'
         ], [
             'title_index' => 'article',
-            'title' => 'Статья',
+            'title' => 'Статья (data)',
             'description' => 'Описание статьи сайта Ремонт Москва',
             'keywords' => 'ключевие слова'
         ], [

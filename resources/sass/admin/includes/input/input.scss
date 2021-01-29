@@ -6,4 +6,8 @@
     &:disabled {
         background-color: $silver-a50;
     }
+
+    &--file {
+        height: 2.6rem;
+    }
 }
