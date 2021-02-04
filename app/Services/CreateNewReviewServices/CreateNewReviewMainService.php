@@ -21,7 +21,7 @@ class CreateNewReviewMainService
     {
         $data = $this->request->all();
         $result = collect($this->request->file('images'))->map(function ($item) {
-            return ['image_link' => '/storage/'.$item->store('/userReviews', ['disk' => 'public'])];
+            return ['image_link' => '/storage/'.$item->store('/userReviews', ['disk' => 'publicStorage'])];
         });
 
         $res2 = $this->repository->createNewReview($data, $result);

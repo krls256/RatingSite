@@ -68,6 +68,11 @@ return [
         'resources' => [
             'driver' => 'local',
             'root' => resource_path()
+        ],
+
+        'publicStorage' => [
+            'driver' => 'local',
+            'root' => public_path('/storage')
         ]
 
     ],

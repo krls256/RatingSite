@@ -22,7 +22,7 @@ class StoreReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'reviewer_name' => 'required|string',
+            'reviewer_name' => 'required|string|min:3|max:191',
             'review_text' => 'required|string',
             'review_mark' => 'required|numeric|min:1|max:5',
             'company_id' => 'required|exists:App\Models\Companies,company_id',
@@ -37,6 +37,8 @@ class StoreReviewRequest extends FormRequest
         return [
             'reviewer_name.required' => "Ф.И.О. - это обязательное поле",
             'reviewer_name.string' => "некорректный формат Ф.И.О.",
+            'reviewer_name.min' => "Минимальная длина имени :min символов",
+            'reviewer_name.max' => "Максимальная длина имени :max символов",
             'review_text.required' => "Отзыв - это обязательное поле",
             'review_text.string' => "некорректный формат Отзыва",
             'review_mark.required' => "Оценка - это обязатнльное поле",

@@ -35,9 +35,8 @@ class CreateFolderWithImagesService
     {
         $file = $this->request['main'];
         $fileName = 'main.' . $file->extension();
-        Storage::disk('public')
+        $res = Storage::disk('publicStorage')
             ->putFileAs($this->writeTo, $file, $fileName);
-
         return $fileName;
     }
 
@@ -48,11 +47,10 @@ class CreateFolderWithImagesService
 
         foreach ($data as $k => $v)
         {
-            $path = Storage::disk('public')
+            $path = Storage::disk('publicStorage')
                 ->putFile($this->writeTo, $v);
             $arr[$v->getClientOriginalName()] = '/storage/' . $path;
         }
-
         return $arr;
     }
 }
