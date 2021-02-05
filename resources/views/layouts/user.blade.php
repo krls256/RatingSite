@@ -69,9 +69,9 @@
         </div>
     </main>
     <footer class="footer">
-        <h4 class="c-white text-norm text-center pt-4">Все права защищены © !!!rating-remont-kvartir.ru!!! 2016 – 2019</h4>
+        <h4 class="c-white text-norm text-center pt-4">Все права защищены © 2021 top-remontov.ru </h4>
 
-        <h5 class="c-white text-norm text-center pt-3">Полезные статьи</h5>
+        <a class="c-white text-norm text-center pt-3 d-block" href="{{route('rating.user.articles.index')}}">Полезные статьи</a>
     </footer>
     <script src="{{ asset('/js/script.js') }}"></script>
     <script src="{{ asset('/js/search.js') }}"></script>

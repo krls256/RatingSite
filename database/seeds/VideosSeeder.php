@@ -11,6 +11,6 @@ class VideosSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Models\Videos', 20)->create();
+//        factory('App\Models\Videos', 20)->create();
     }
 }
