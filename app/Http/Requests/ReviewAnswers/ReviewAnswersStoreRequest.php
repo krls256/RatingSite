@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\ReviewAnswers;
 
+use App\Rules\ReCaptchaRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ReviewAnswersStoreRequest extends FormRequest
@@ -26,7 +27,8 @@ class ReviewAnswersStoreRequest extends FormRequest
         return [
             'reviewer_answer_name' => 'required|string|max:191',
             'review_answer_text' => 'required|string|max:65256',
-            'review_id' => 'required|numeric|exists:reviews,review_id'
+            'review_id' => 'required|numeric|exists:reviews,review_id',
+            'g-recaptcha-response' => new ReCaptchaRule()
         ];
     }
 

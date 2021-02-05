@@ -5,6 +5,7 @@ import {writeUsToggle} from './user/forms/writeUs';
 import {watchVideo} from './user/watchVideo';
 import {addReviewAnswerToggle} from './user/forms/addReviewAnswer'
 import {footerToBottom} from './user/footer'
+import protectEachForm from "./user/reCaptcha";
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,4 +17,5 @@ document.addEventListener('DOMContentLoaded', () => {
     watchVideo();
     addReviewAnswerToggle();
     footerToBottom();
+    protectEachForm();
 })

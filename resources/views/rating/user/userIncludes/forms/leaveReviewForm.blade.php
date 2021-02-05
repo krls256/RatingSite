@@ -1,6 +1,6 @@
 <aside class="form @if(!$errors->getBag('default')->get('first') ?? true) form--disable @endif" id="leaveReviewForm">
     <div class="form__wrapper">
-        <form action="{{ route('rating.user.leave.review') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('rating.user.leave.review') }}" method="post" enctype="multipart/form-data" id="leaveReviewFormCore">
             @csrf
             @method("POST")
             <h2 class="form__header">Оставить отзыв</h2>

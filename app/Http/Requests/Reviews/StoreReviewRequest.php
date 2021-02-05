@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Reviews;
 
+use App\Rules\ReCaptchaRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreReviewRequest extends FormRequest
@@ -28,7 +29,8 @@ class StoreReviewRequest extends FormRequest
             'company_id' => 'required|exists:App\Models\Companies,company_id',
             'review_date' => 'date|nullable|before:now',
             'images' => 'nullable|array|max:6',
-            'images.*' => 'file|max:1024|image'
+            'images.*' => 'file|max:1024|image',
+            'g-recaptcha-response' => new ReCaptchaRule()
         ];
     }
 

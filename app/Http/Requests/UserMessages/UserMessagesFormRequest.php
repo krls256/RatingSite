@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\UserMessages;
 
+use App\Rules\ReCaptchaRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserMessagesFormRequest extends FormRequest
@@ -27,6 +28,7 @@ class UserMessagesFormRequest extends FormRequest
             'user_name' => 'string|required|max:256',
             'user_email' => 'string|required|max:256|email',
             'user_message' => 'string|required',
+            'g-recaptcha-response' => new ReCaptchaRule()
         ];
     }
 

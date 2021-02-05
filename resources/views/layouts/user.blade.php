@@ -23,6 +23,7 @@
     <link rel="mask-icon" href="{{ asset('img/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <meta name="g-recaptcha" content="{{env('RECAPTCHA_PUBLIC_KEY')}}">
 
     @section('meta') @show
 </head>
@@ -74,5 +75,12 @@
     </footer>
     <script src="{{ asset('/js/script.js') }}"></script>
     <script src="{{ asset('/js/search.js') }}"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{env('RECAPTCHA_PUBLIC_KEY')}}"></script>
+    <script>
+        function onSubmit(token) {
+            var form = document.getElementById("leaveReviewFormCore");
+            form.submit();
+        }
+    </script>
 </body>
 </html>
