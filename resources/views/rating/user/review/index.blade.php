@@ -11,5 +11,5 @@
 @endsection
 
 @section('meta')
-    <link rel="canonical" href="/review/{{$review->review_id}}" />
+    <link rel="canonical" href="{{ route('rating.user.reviews.index', $review->review_id) }}" />
 @endsection

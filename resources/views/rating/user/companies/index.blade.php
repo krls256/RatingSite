@@ -12,5 +12,13 @@
 @endsection
 
 @section('meta')
-    <link rel="canonical" href="/companies/{{$company->company_slug}}" />
+    <link rel="canonical" href="{{ route('rating.user.companies', $company->company_slug) }}" />
+    @if($reviews->currentPage() !== 1)
+        <link rel="prev"
+              href="{{ route('rating.user.companies', $company->company_slug) }}?page={{$reviews->currentPage() - 1}}" />
+    @endif
+    @if($reviews->currentPage() !== $reviews->lastPage())
+        <link rel="next"
+              href="{{ route('rating.user.companies', $company->company_slug) }}?page={{$reviews->currentPage() + 1}}" />
+    @endif
 @endsection

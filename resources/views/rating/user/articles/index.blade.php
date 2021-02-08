@@ -29,5 +29,5 @@
 @endsection
 
 @section('meta')
-    <link rel="canonical" href="/articles" />
+    <link rel="canonical" href="{{ route('rating.user.articles.index') }}" />
 @endsection

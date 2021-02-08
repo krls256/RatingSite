@@ -11,5 +11,5 @@
 @endsection
 
 @section('meta')
-    <link rel="canonical" href="/" />
+    <link rel="canonical" href="{{ route('rating.user.main') }}" />
 @endsection

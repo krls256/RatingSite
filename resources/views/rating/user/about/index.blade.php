@@ -13,5 +13,5 @@
 @endsection
 
 @section('meta')
-    <link rel="canonical" href="/about" />
+    <link rel="canonical" href="{{ route('rating.user.about') }}" />
 @endsection

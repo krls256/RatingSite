@@ -11,5 +11,5 @@
 @endsection
 
 @section('meta')
-    <link rel="canonical" href="/article/{{$article->article_slug}}" />
+    <link rel="canonical" href="{{ route('rating.user.articles.show', $article->article_slug) }}" />
 @endsection

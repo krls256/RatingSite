@@ -30,8 +30,6 @@ Route::group([], function ()
             ->name('rating.user.main');
         Route::get('/about', 'AboutController@index')
             ->name('rating.user.about');
-        Route::get('/articles', 'ArticlesController@index')
-            ->name('rating.user.articles');
         Route::get('/videos', 'VideosController@index')
             ->name('rating.user.videos');
 
@@ -113,5 +111,14 @@ Route::group([], function ()
     {
         Route::get('/err', 'ExeptionController@notAnAdmin')
             ->name('you-are-not-an-admin');
+    });
+
+
+    $filesGroupData = [
+        'namespace' => "Files",
+    ];
+
+    Route::group($filesGroupData, function () {
+        Route::get('sitemap.xml', 'SitemapController@index');
     });
 });
