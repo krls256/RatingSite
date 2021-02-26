@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('article_title', 256);
             $table->string('article_slug', 256);
             $table->string('article_main_image');
+            $table->string('article_folder');
             $table->string('article_folder_suffix', 16);
             $table->text('article_description');
 

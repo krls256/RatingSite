@@ -31,7 +31,7 @@ class ApiArticlesRepository extends ApiRepository
     public function getEdit($id)
     {
         $column = ['article_id', 'article_title', 'article_html', 'article_description',
-            'article_content', 'is_published'];
+            'article_content', 'is_published', 'article_folder'];
 
         $response = $this->startCondition()
             ->select($column)

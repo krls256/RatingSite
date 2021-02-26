@@ -29,3 +29,5 @@ mix
             }),
         ],
     });
+
+mix.browserSync('rating-2.local');

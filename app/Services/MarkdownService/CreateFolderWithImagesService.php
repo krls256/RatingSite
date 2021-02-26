@@ -26,6 +26,7 @@ class CreateFolderWithImagesService
         $fileArr = $this->createOthersFiles();
 
         return [
+            'folder' => $this->writeTo.'/',
             'main' => '/storage/'.$this->writeTo.'/'.$fileName,
             'other' => $fileArr
         ];

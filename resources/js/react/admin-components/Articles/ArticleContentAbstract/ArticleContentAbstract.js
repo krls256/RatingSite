@@ -11,9 +11,11 @@ const ArticleContentAbstract = ({data, inputChange}) => {
                               field={field}
                               ReduxObj={data}
                               key={field}
+                              rows={30}
                               onChange={inputChange(useDispatch)(field, data)} />
                 ))
             }
+
         </div>
     )
 }

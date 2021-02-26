@@ -6,6 +6,7 @@ import SuccessLine from "../../NotificationComponents/SuccessLine/SuccessLine";
 import PageHider from "../../../admin-hoc/PageHider";
 import ArticleMain from "../ArticleMain";
 import ArticleContent from "../ArticleContent";
+import ArticleView from "../ArticleView";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
 import EditWindow from "../../GeneralComponents/EditWindow";
 import useUniversalEditData from "../../../admin-hoooks/useUniversalEditData";
@@ -29,6 +30,7 @@ const ArticleEdit = () => {
                 <article className="page__content">
                     <PageHider active={navPages.active} index={0} component={ArticleMain} />
                     <PageHider active={navPages.active} index={1} component={ArticleContent} />
+                    <PageHider active={navPages.active} index={2} component={ArticleView} />
 
                     <div className='mt-3 page__button'>
                         <SubmitButton tableName='articles'/>
@@ -45,6 +47,7 @@ const pages = {
     data: [
         'Главная',
         'Контент',
+        'Просмотр'
     ],
     active: 0
 }

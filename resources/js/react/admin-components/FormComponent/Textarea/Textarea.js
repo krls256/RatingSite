@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Textarea = ({field, label, ReduxObj, onChange}) => {
+const Textarea = ({field, label, ReduxObj, onChange, rows = 10}) => {
     return (
         <div className="form-group">
             <label htmlFor={field}>{label}</label>
             <textarea name={field}
                       id={field}
-                      rows="10"
+                      rows={rows}
                       onChange={onChange}
                       className='form-control textarea'
                       value={ReduxObj[field] || ''} />

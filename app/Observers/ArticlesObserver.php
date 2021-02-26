@@ -33,6 +33,7 @@ class ArticlesObserver
 
 
         $articles->article_main_image = $putResult['main'];
+        $articles->article_folder = $putResult['folder'];
 
         foreach ($putResult['other'] as $k => $v)
         {

@@ -6,13 +6,22 @@ import ArticleContentAbstract from "../ArticleContentAbstract";
 
 const ArticleContent = () => {
     const {tableItemEdit} = useSelector(editSelector)
-    console.log(tableItemEdit)
-    const {article_html} = tableItemEdit;
+    const {files} = tableItemEdit;
+
     return (
         <div>
+            <ul className='list-group pt-3'>
+                {
+                    files.map(fileName => (
+                        <li className='list-group-item d-flex justify-content-between align-items-center' key={fileName}>
+                            <b>{fileName}</b>
+                            <span className="badge badge-pill badge-dark" type='button'>Удалить</span>
+                        </li>
+                    ))
+                }
+            </ul>
+
             <ArticleContentAbstract data={tableItemEdit} inputChange={generalInputOnChange} />
-            <div className="markdown-body p-2 card mt-4" dangerouslySetInnerHTML={{__html: article_html}}>
-            </div>
         </div>
     )
 }

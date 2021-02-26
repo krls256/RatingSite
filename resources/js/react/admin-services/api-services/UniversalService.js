@@ -26,7 +26,8 @@ class UniversalService extends AbstractService {
 
         this.getEdit = async (id) => {
             try {
-                const {data} = await this.axios.get(`${this.baseUrl}/${this.prefix}/${id}/edit?api_token=${this.apiToken}`);
+                const url = `${this.baseUrl}/${this.prefix}/${id}/edit?api_token=${this.apiToken}`;
+                const {data} = await this.axios.get(url);
                 return data;
             } catch (e) {
                 this.handleError(e);
