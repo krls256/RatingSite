@@ -47,4 +47,22 @@ class ApiArticlesRepository extends ApiRepository
 
         return $result;
     }
+
+    public function getMainImagePath($id) {
+        $column = ['article_id', 'article_folder', 'article_main_image'];
+
+        $res = $this->startCondition()
+            ->select($column)
+            ->where('article_id', $id)
+            ->first();
+
+        return $res;
+    }
+
+    public function update($id, $data) {
+        $res = $this->startCondition()
+            ->where('article_id', $id)
+            ->update($data);
+        return $res;
+    }
 }

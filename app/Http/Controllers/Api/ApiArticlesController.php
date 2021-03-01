@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\ApiArticleUpdateRequest;
+use App\Http\Requests\Articles\ApiArticlesMainImageRequest;
 use App\Http\Requests\Articles\ApiArticlesStoreRequest;
 use App\Models\Articles;
 use App\Repositories\Articles\ApiArticlesRepository;
+use App\Services\ArticlesService\ArticleImagesServices;
 use App\Services\FSServices\ArticleFSService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class ApiArticlesController extends ApiController
 {
@@ -44,8 +46,7 @@ class ApiArticlesController extends ApiController
         $article = $this->repository->getEdit($id);
 
         $fsService = new ArticleFSService();
-        $article->files = $fsService->filesPublicStorage($article->article_folder);
-        $article->files = $fsService->filesPublicStorage($article->article_folder);
+        $article->files = $fsService->getImagesExceptMain($article->article_folder);
         return $article;
     }
 
@@ -57,6 +58,12 @@ class ApiArticlesController extends ApiController
         $result = $article->update($data);
 
         return $this->updateResponse($result, $id);
+    }
+
+    public function mainImage($id, ApiArticlesMainImageRequest $request, ArticleImagesServices $services) {
+        $res = $services->replaceMainImage($id, $request->file()['file']);
+
+        return $this->updateResponse($res, $id);
     }
 
 }

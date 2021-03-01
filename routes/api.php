@@ -62,6 +62,9 @@ Route::group($adminApiOptions, function ()
         ->names('api.admin.articles')
         ->only($articlesMethods);
 
+    Route::post('articles/{id}/main-image', 'ApiArticlesController@mainImage')
+        ->name('api.admin.articles.main-image');
+
     $videosMethods = ['index', 'edit', 'update', 'create', 'store'];
     Route::apiResource('videos', 'ApiVideosController')
         ->names('api.admin.videos')

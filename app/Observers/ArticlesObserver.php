@@ -5,7 +5,6 @@ namespace App\Observers;
 use App\Models\Articles;
 use App\Services\MarkdownService\CreateFolderWithImagesService;
 use GrahamCampbell\Markdown\Facades\Markdown;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class ArticlesObserver

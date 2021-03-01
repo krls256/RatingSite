@@ -38659,6 +38659,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-services/InputOnChange/generalInputOnChenge */ "./resources/js/react/admin-services/InputOnChange/generalInputOnChenge.js");
 /* harmony import */ var _admin_helpers_editSelector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-helpers/editSelector */ "./resources/js/react/admin-helpers/editSelector.js");
 /* harmony import */ var _ArticleContentAbstract__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ArticleContentAbstract */ "./resources/js/react/admin-components/Articles/ArticleContentAbstract/index.js");
+/* harmony import */ var _ArticleMainPhotoUpdateInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ArticleMainPhotoUpdateInput */ "./resources/js/react/admin-components/Articles/ArticleMainPhotoUpdateInput/index.js");
+
 
 
 
@@ -38671,7 +38673,7 @@ var ArticleContent = function ArticleContent() {
 
   var files = tableItemEdit.files;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "list-group pt-3"
+    className: "list-group pt-3 mb-3"
   }, files.map(function (fileName) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       className: "list-group-item d-flex justify-content-between align-items-center",
@@ -38680,7 +38682,7 @@ var ArticleContent = function ArticleContent() {
       className: "badge badge-pill badge-dark",
       type: "button"
     }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C"));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ArticleContentAbstract__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ArticleMainPhotoUpdateInput__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ArticleContentAbstract__WEBPACK_IMPORTED_MODULE_4__["default"], {
     data: tableItemEdit,
     inputChange: _admin_services_InputOnChange_generalInputOnChenge__WEBPACK_IMPORTED_MODULE_2__["default"]
   }));
@@ -39517,6 +39519,245 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ArticleMainCreate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleMainCreate */ "./resources/js/react/admin-components/Articles/ArticleMainCreate/ArticleMainCreate.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (_ArticleMainCreate__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleMainPhotoUpdateInput/ArticleMainPhotoUpdateInput.js":
+/*!*****************************************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleMainPhotoUpdateInput/ArticleMainPhotoUpdateInput.js ***!
+  \*****************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _updateMainImageFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./updateMainImageFunctions */ "./resources/js/react/admin-components/Articles/ArticleMainPhotoUpdateInput/updateMainImageFunctions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+
+
+
+
+
+var ArticleMainPhotoUpdateInput = function ArticleMainPhotoUpdateInput() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      file = _useState2[0],
+      setFile = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      errorMessage = _useState4[0],
+      setErrorMessage = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      suggestToUpdate = _useState6[0],
+      setSuggestToUpdate = _useState6[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    Object(_updateMainImageFunctions__WEBPACK_IMPORTED_MODULE_1__["handleFileInput"])(file, setErrorMessage, setSuggestToUpdate);
+  }, [file]);
+  var suggestion = suggestToUpdate ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Suggestion, {
+    file: file,
+    setFile: setFile
+  }) : null;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-file"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "file",
+    accept: ".png, .jpg, .jpeg",
+    className: "custom-file-input",
+    id: "customFile",
+    onChange: Object(_updateMainImageFunctions__WEBPACK_IMPORTED_MODULE_1__["onMainImageChange"])(setFile)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "custom-file-label",
+    htmlFor: "customFile"
+  }, (file === null || file === void 0 ? void 0 : file.name) || 'Заменить картинку на обложне'), errorMessage ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-danger"
+  }, errorMessage) : null, suggestion);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticleMainPhotoUpdateInput);
+
+var Suggestion = function Suggestion(_ref) {
+  var file = _ref.file,
+      setFile = _ref.setFile;
+
+  var afterSuccess = function afterSuccess() {
+    setFile(null);
+  };
+
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(suggestionSelector),
+      apiToken = _useSelector.apiToken;
+
+  var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["useParams"])(),
+      id = _useParams.id;
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pt-2 d-flex align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "mb-0 mr-3"
+  }, "\u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u0438\u043D\u043A\u0443?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn b-dark c-white",
+    onClick: _updateMainImageFunctions__WEBPACK_IMPORTED_MODULE_1__["onSubmitSuggestion"].bind(null, dispatch, {
+      apiToken: apiToken,
+      id: id,
+      file: file,
+      afterSuccess: afterSuccess
+    })
+  }, "\u0414\u0430"));
+};
+
+var suggestionSelector = function suggestionSelector(_ref2) {
+  var apiToken = _ref2.apiToken;
+  return {
+    apiToken: apiToken
+  };
+};
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleMainPhotoUpdateInput/index.js":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleMainPhotoUpdateInput/index.js ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ArticleMainPhotoUpdateInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ArticleMainPhotoUpdateInput */ "./resources/js/react/admin-components/Articles/ArticleMainPhotoUpdateInput/ArticleMainPhotoUpdateInput.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (_ArticleMainPhotoUpdateInput__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-components/Articles/ArticleMainPhotoUpdateInput/updateMainImageFunctions.js":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/react/admin-components/Articles/ArticleMainPhotoUpdateInput/updateMainImageFunctions.js ***!
+  \**************************************************************************************************************/
+/*! exports provided: onSubmitSuggestion, onMainImageChange, checkFileType, handleFileInput */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onSubmitSuggestion", function() { return onSubmitSuggestion; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "onMainImageChange", function() { return onMainImageChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkFileType", function() { return checkFileType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "handleFileInput", function() { return handleFileInput; });
+/* harmony import */ var _admin_actions_appState_isLoadingActions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../admin-actions/appState/isLoadingActions */ "./resources/js/react/admin-actions/appState/isLoadingActions.js");
+/* harmony import */ var _admin_services_api_services_ArticlesService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../admin-services/api-services/ArticlesService */ "./resources/js/react/admin-services/api-services/ArticlesService.js");
+/* harmony import */ var _admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../admin-helpers/error-reaction */ "./resources/js/react/admin-helpers/error-reaction.js");
+/* harmony import */ var _admin_actions_appState_successMessageActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../admin-actions/appState/successMessageActions */ "./resources/js/react/admin-actions/appState/successMessageActions.js");
+
+
+
+
+
+var onSubmitSuggestion = function onSubmitSuggestion(dispatch, _ref, e) {
+  var apiToken = _ref.apiToken,
+      id = _ref.id,
+      file = _ref.file,
+      afterSuccess = _ref.afterSuccess;
+  e.preventDefault();
+  var service = new _admin_services_api_services_ArticlesService__WEBPACK_IMPORTED_MODULE_1__["default"](apiToken, 'articles');
+  dispatch(Object(_admin_actions_appState_isLoadingActions__WEBPACK_IMPORTED_MODULE_0__["isLoadingSetTrue"])());
+  service.updateMainImage(id, file).then(function (response) {
+    dispatch(Object(_admin_actions_appState_isLoadingActions__WEBPACK_IMPORTED_MODULE_0__["isLoadingSetFalse"])());
+    dispatch(Object(_admin_actions_appState_successMessageActions__WEBPACK_IMPORTED_MODULE_3__["successMessageUpdate"])(response));
+    afterSuccess();
+  })["catch"](Object(_admin_helpers_error_reaction__WEBPACK_IMPORTED_MODULE_2__["default"])(dispatch));
+};
+
+var onMainImageChange = function onMainImageChange(setValue) {
+  return function (e) {
+    setValue(e.target.files[0] || null);
+  };
+};
+
+var checkFileType = function checkFileType(file) {
+  var types = ['image/png', 'image/jpg', 'image/jpeg'];
+  return !!types.find(function (type) {
+    return type === file.type;
+  });
+};
+
+var handleFileInput = function handleFileInput(file, setErrorMessage, setSuggestToUpdate) {
+  if (file !== null) {
+    if (checkFileType(file) === false) {
+      setErrorMessage('Неверный тип файла');
+      setSuggestToUpdate(false);
+    } else {
+      setErrorMessage(null);
+      setSuggestToUpdate(true);
+    }
+  }
+};
+
+
 
 /***/ }),
 
@@ -46191,6 +46432,224 @@ var AbstractService = function AbstractService(apiToken) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (AbstractService);
+
+/***/ }),
+
+/***/ "./resources/js/react/admin-services/api-services/ArticlesService.js":
+/*!***************************************************************************!*\
+  !*** ./resources/js/react/admin-services/api-services/ArticlesService.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _UniversalService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UniversalService */ "./resources/js/react/admin-services/api-services/UniversalService.js");
+
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _createSuper(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+  return function _createSuperInternal() {
+    var Super = _getPrototypeOf(Derived),
+        result;
+
+    if (hasNativeReflectConstruct) {
+      var NewTarget = _getPrototypeOf(this).constructor;
+
+      result = Reflect.construct(Super, arguments, NewTarget);
+    } else {
+      result = Super.apply(this, arguments);
+    }
+
+    return _possibleConstructorReturn(this, result);
+  };
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+
+
+var ArticlesService = /*#__PURE__*/function (_UniversalService) {
+  _inherits(ArticlesService, _UniversalService);
+
+  var _super = _createSuper(ArticlesService);
+
+  function ArticlesService(apiToken, prefix) {
+    var _this;
+
+    _classCallCheck(this, ArticlesService);
+
+    _this = _super.call(this, apiToken, prefix);
+
+    _this.updateMainImage = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(id, file) {
+        var url, params, headers, _yield$_this$axios$po, data;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                url = "".concat(_this.baseUrl, "/").concat(_this.prefix, "/").concat(id, "/main-image?api_token=").concat(_this.apiToken);
+                params = new FormData();
+                params.append('api_token', _this.apiToken);
+                params.append('file', file);
+                headers = {
+                  'Content-Type': 'multipart/form-data'
+                };
+                _context.prev = 5;
+                _context.next = 8;
+                return _this.axios.post(url, params, headers);
+
+              case 8:
+                _yield$_this$axios$po = _context.sent;
+                data = _yield$_this$axios$po.data;
+                return _context.abrupt("return", data);
+
+              case 13:
+                _context.prev = 13;
+                _context.t0 = _context["catch"](5);
+
+                _this.handleError(_context.t0);
+
+              case 16:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[5, 13]]);
+      }));
+
+      return function (_x, _x2) {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    return _this;
+  }
+
+  return ArticlesService;
+}(_UniversalService__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (ArticlesService);
 
 /***/ }),
 
