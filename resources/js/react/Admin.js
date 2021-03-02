@@ -31,6 +31,7 @@ import SEOEdit from "./admin-components/SEO/SEOEdit";
 import HeadersEdit from "./admin-components/Headers/HeadersEdit/HeadersEdit";
 import VideosCreate from "./admin-components/Videos/VideosCreate";
 import ArticlesCreate from "./admin-components/Articles/ArticleCreate";
+import Modal from "./admin-components/GeneralComponents/Modal";
 
 function App() {
        return (
@@ -40,7 +41,10 @@ function App() {
                     <div className="main">
                         <Route path='/admin' component={SideBar}/>
                         <Route path='/admin' component={LoadingScreen}/>
+                        <Route path='/admin' component={Modal}/>
+
                         <Route path='/admin' exact component={MainPage}/>
+
 
                         <Route path='/admin/companies' component={CompaniesTable}/>
                         <Route path='/admin/companies/:id/edit' component={CompanyEdit}/>

@@ -43,6 +43,12 @@ class ArticleFSService
         return $res;
     }
 
+    public function storeFile($path, $file) {
+        $this->storage = Storage::disk('publicStorage');
+
+        return $this->storage->putFile($path, $file);
+    }
+
     public function createMainPhoto($dir, $file) {
         $this->storage = Storage::disk('publicStorage');
 

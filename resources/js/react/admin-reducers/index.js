@@ -15,11 +15,13 @@ import tableItemEditReducer from "./table/tableItemEditReducer";
 import tableItemCreateReducer from "./table/tableItemCreateReducer";
 import redirectReducer from "./appState/redirectReducer";
 import formDataReducer from "./formData/formDataReducer";
+import modalReducer from "./appState/modalReducer";
 
 export default combineReducers({
     errorsMessage: errorsMessageReducer,
     successMessage: successMessageReducer,
     isLoading: isLoadngReducer,
+    modal: modalReducer,
 
     apiToken: apiTokenReducer,
     csrfToken: csrfTokenReducer,

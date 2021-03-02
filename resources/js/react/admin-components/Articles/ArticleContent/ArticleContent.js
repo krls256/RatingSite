@@ -4,22 +4,16 @@ import generalInputOnChange from "../../../admin-services/InputOnChange/generalI
 import editSelector from "../../../admin-helpers/editSelector";
 import ArticleContentAbstract from "../ArticleContentAbstract";
 import ArticleMainPhotoUpdateInput from "../ArticleMainPhotoUpdateInput";
+import ArticleImagesList from "../ArticleImagesList";
+import ArticleUploadImage from "../ArticleUploadImage";
 
 const ArticleContent = () => {
     const {tableItemEdit} = useSelector(editSelector)
     const {files} = tableItemEdit;
     return (
         <div>
-            <ul className='list-group pt-3 mb-3'>
-                {
-                    files.map(fileName => (
-                        <li className='list-group-item d-flex justify-content-between align-items-center' key={fileName}>
-                            <b>{fileName}</b>
-                            <span className="badge badge-pill badge-dark" type='button'>Удалить</span>
-                        </li>
-                    ))
-                }
-            </ul>
+            <ArticleUploadImage />
+            <ArticleImagesList files={files}/>
             <ArticleMainPhotoUpdateInput />
             <ArticleContentAbstract data={tableItemEdit} inputChange={generalInputOnChange} />
         </div>

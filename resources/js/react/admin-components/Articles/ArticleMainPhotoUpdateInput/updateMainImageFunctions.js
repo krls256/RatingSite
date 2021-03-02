@@ -2,6 +2,7 @@ import {isLoadingSetFalse, isLoadingSetTrue} from "../../../admin-actions/appSta
 import ArticlesService from "../../../admin-services/api-services/ArticlesService";
 import reactOnError from "../../../admin-helpers/error-reaction";
 import {successMessageUpdate} from "../../../admin-actions/appState/successMessageActions";
+import isImage from "../../../admin-helpers/isImage";
 
 const onSubmitSuggestion = (dispatch, {apiToken, id, file, afterSuccess}, e) => {
     e.preventDefault();
@@ -23,14 +24,11 @@ const onMainImageChange = (setValue) => (e) => {
     setValue(e.target.files[0] || null)
 }
 
-const checkFileType = (file) => {
-    const types = ['image/png', 'image/jpg', 'image/jpeg'];
-    return !!types.find(type => type === file.type);
-}
+
 
 const handleFileInput = (file, setErrorMessage, setSuggestToUpdate) => {
     if (file !== null) {
-        if (checkFileType(file) === false) {
+        if (isImage(file) === false) {
             setErrorMessage('Неверный тип файла')
             setSuggestToUpdate(false);
         } else {
@@ -40,4 +38,4 @@ const handleFileInput = (file, setErrorMessage, setSuggestToUpdate) => {
     }
 }
 
-export {onSubmitSuggestion, onMainImageChange, checkFileType, handleFileInput}
+export {onSubmitSuggestion, onMainImageChange, handleFileInput}

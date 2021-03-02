@@ -65,6 +65,12 @@ Route::group($adminApiOptions, function ()
     Route::post('articles/{id}/main-image', 'ApiArticlesController@mainImage')
         ->name('api.admin.articles.main-image');
 
+    Route::post('articles/delete-image', 'ApiArticlesController@deleteImage')
+        ->name('api.admin.articles.delete-image');
+
+    Route::post('articles/{id}/upload-image', 'ApiArticlesController@uploadImage')
+        ->name('api.admin.articles.upload-image');
+
     $videosMethods = ['index', 'edit', 'update', 'create', 'store'];
     Route::apiResource('videos', 'ApiVideosController')
         ->names('api.admin.videos')

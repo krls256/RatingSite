@@ -34,9 +34,14 @@ const updateTableItemMain = (tableName, id) => (dispatch, getState) => {
         .catch(reactOnError(dispatch))
 }
 
+const addFileToItemEdit = (payload) => ({type: 'tableItemEdit/addFile', payload})
+const removeFileFromItemEdit = (payload) => ({type: 'tableItemEdit/removeFile', payload})
+
 export {
     getTableItemEdit,
     resetTableItemEdit,
     setTableItemEdit,
-    updateTableItemMain
+    updateTableItemMain,
+    addFileToItemEdit,
+    removeFileFromItemEdit
 }

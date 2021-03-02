@@ -32,4 +32,22 @@ class ArticleImagesServices
 
         return $res;
     }
+
+    public function deleteImage($path) {
+        if(preg_match('/main\..+/', $path)) {
+            return false;
+        }
+        $this->FSService->deleteArticleFile($path);
+        return true;
+    }
+
+
+    public function uploadImage($id, $image) {
+        $article = $this->repository->getMainImagePath($id);
+        if(!$article) {
+            return false;
+        }
+
+        return $this->FSService->storeFile($article->article_folder, $image);
+    }
 }
