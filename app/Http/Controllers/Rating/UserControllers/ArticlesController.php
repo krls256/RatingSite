@@ -14,6 +14,7 @@ class ArticlesController extends UserController
 
     public function __construct(UserArticlesRepository $articlesRepository)
     {
+        parent::__construct();
         $this->articleRepository = $articlesRepository;
     }
 

@@ -24,6 +24,7 @@ class CompaniesController extends UserController
         UserReviewsRepository $reviewsRepository
     )
     {
+        parent::__construct();
         $slug = $request['slug'];
 
         if($slug === null) {
