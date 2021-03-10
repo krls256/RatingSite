@@ -5,6 +5,7 @@ namespace App\Services\MarkdownService;
 
 
 use App\Models\Articles;
+use App\Services\FSServices\ArticleFSService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -13,21 +14,22 @@ class CreateFolderWithImagesService
 {
     private $request;
     private $writeTo;
-
-    public function __construct(Request $request)
+    private $FSService;
+    public function __construct(Request $request, ArticleFSService $FSService)
     {
+        $this->FSService = $FSService;
         $this->request = $request;
     }
 
     public function index(Articles $articles)
     {
-        $this->writeTo = $writeTo = 'articles/' . $articles->getFolderName();
+        $this->writeTo = 'articles/' . $articles->getFolderName();
         $fileName = $this->createMainPhoto();
         $fileArr = $this->createOthersFiles();
 
         return [
             'folder' => $this->writeTo.'/',
-            'main' => '/storage/'.$this->writeTo.'/'.$fileName,
+            'main' => $fileName,
             'other' => $fileArr
         ];
     }
@@ -35,21 +37,19 @@ class CreateFolderWithImagesService
     private function createMainPhoto()
     {
         $file = $this->request['main'];
-        $fileName = 'main.' . $file->extension();
-        $res = Storage::disk('publicStorage')
-            ->putFileAs($this->writeTo, $file, $fileName);
-        return $fileName;
+        $res = $this->FSService->createMainPhoto($this->writeTo, $file);
+
+        return $res['fileName'];
     }
 
     private function createOthersFiles()
     {
-        $data = $this->request['other-photos'];
+        $data = $this->request['other-photos'] ? $this->request['other-photos'] : [];
         $arr = [];
 
         foreach ($data as $k => $v)
         {
-            $path = Storage::disk('publicStorage')
-                ->putFile($this->writeTo, $v);
+            $path = $this->FSService->storeFile($this->writeTo, $v);
             $arr[$v->getClientOriginalName()] = '/storage/' . $path;
         }
         return $arr;

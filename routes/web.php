@@ -17,7 +17,7 @@ $MainGroupData = [
 ];
 
 
-Route::group([], function ()
+Route::group($MainGroupData, function ()
 {
     //UserGroup
     $userGroupData = [

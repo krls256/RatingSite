@@ -4,7 +4,6 @@ import {updateModal} from "../../../admin-actions/appState/modalActions";
 import {sendRequestToDeleteImage} from "./articleImagesListFunctions";
 
 const ArticleImagesList = ({files}) => {
-
     return (
         <ul className='list-group pt-3 mb-3'>
             {
@@ -32,8 +31,6 @@ const ArticleImagesListItem = ({fileName}) => {
             sendRequestToDeleteImage(fileName, {apiToken}, dispatch)
         }
     }
-
-
 
     const onClick = () => {
         dispatch(updateModal(payload))

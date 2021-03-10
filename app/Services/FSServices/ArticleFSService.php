@@ -52,6 +52,7 @@ class ArticleFSService
     public function createMainPhoto($dir, $file) {
         $this->storage = Storage::disk('publicStorage');
 
+        $dir = substr($dir, -1) === '/' ? $dir : $dir.'/';
         $fileName = 'main' .'.'. $file->extension();
         $res = $this->storage
             ->putFileAs($dir, $file, $fileName);
