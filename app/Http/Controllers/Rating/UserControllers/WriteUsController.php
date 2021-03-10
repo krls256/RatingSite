@@ -28,7 +28,8 @@ class WriteUsController extends UserController
         return view('rating.user.redirects.index', [
             'path' => $path,
             'message' => 'Ваше письмо отправлено админу',
-            'seo' => $seo
-            ]);
+            'seo' => $seo,
+            'footer_videos' => $this->getSomeLastVideos(2)
+        ]);
     }
 }

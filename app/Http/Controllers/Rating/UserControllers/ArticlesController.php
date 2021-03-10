@@ -27,7 +27,8 @@ class ArticlesController extends UserController
         return view('rating.user.articles.index', [
             'articles' => $articles,
             'seo' => $seo,
-            'headers' => $headers
+            'headers' => $headers,
+            'footer_videos' => $this->getSomeLastVideos(2)
         ]);
     }
 
@@ -52,7 +53,8 @@ class ArticlesController extends UserController
                 'articles' => $articles,
                 'companies' => $companies,
                 'seo' => $seo,
-                'headers' => $headers
+                'headers' => $headers,
+                'footer_videos' => $this->getSomeLastVideos(2)
             ]);
     }
 }

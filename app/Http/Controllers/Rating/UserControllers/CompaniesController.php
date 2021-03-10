@@ -56,7 +56,8 @@ class CompaniesController extends UserController
                 'articles' => $this->articles,
                 'reviews' => $reviews,
                 'seo' => $this->seo,
-                'headers' => $this->headers
+                'headers' => $this->headers,
+                'footer_videos' => $this->getSomeLastVideos(2)
             ]);
     }
 
@@ -70,7 +71,8 @@ class CompaniesController extends UserController
                 'articles' => $this->articles,
                 'reviews' => $reviews,
                 'seo' => $this->seo,
-                'headers' => $this->headers
+                'headers' => $this->headers,
+                'footer_videos' => $this->getSomeLastVideos(2)
             ]);
     }
 
@@ -84,7 +86,8 @@ class CompaniesController extends UserController
                 'articles' => $this->articles,
                 'reviews' => $reviews,
                 'seo' => $this->seo,
-                'headers' => $this->headers
+                'headers' => $this->headers,
+                'footer_videos' => $this->getSomeLastVideos(2)
             ]);
     }
 }

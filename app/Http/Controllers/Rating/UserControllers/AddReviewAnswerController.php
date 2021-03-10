@@ -31,7 +31,8 @@ class AddReviewAnswerController extends UserController
         return view('rating.user.redirects.index', [
             'path' => $path,
             'message' => 'Ваш комментарий принят на рассмотрение, и в ближайшее время появится на сайте',
-            'seo' => $seo
+            'seo' => $seo,
+            'footer_videos' => $this->getSomeLastVideos(2)
         ]);
     }
 }

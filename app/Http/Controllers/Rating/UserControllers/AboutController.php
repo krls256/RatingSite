@@ -20,7 +20,8 @@ class AboutController extends UserController
             'articles' => $articles,
             'companies' => $companies,
             'seo' => $seo,
-            'headers' => $headers
+            'headers' => $headers,
+            'footer_videos' => $this->getSomeLastVideos(2)
             ]);
     }
 }

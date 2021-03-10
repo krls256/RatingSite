@@ -26,6 +26,8 @@ class ReviewController extends UserController
             'review' => $review,
             'articles' => $articles,
             'seo' => $seo,
-            'headers' => $headers]);
+            'headers' => $headers,
+            'footer_videos' => $this->getSomeLastVideos(2)
+        ]);
     }
 }

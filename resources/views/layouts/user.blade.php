@@ -78,22 +78,16 @@
         <div class="footer__content">
             <h2 class="h h--main c-white pt-6">Новые видео</h2>
             <ul class="footer__card-list">
+                @foreach($footer_videos as $footer_video)
                 <li class="footer__card">
-                    <a href="{{route('rating.user.videos', ['ytid' => 'hB9XZY2VRHo'])}}" class="footer__card-link">
-                        <h3 class="footer__card-label">Video</h3>
+                    <a href="{{route('rating.user.videos', ['ytid' => $footer_video->video_ytid])}}" class="footer__card-link">
+                        <h3 class="footer__card-label">{{$footer_video->video_title}}</h3>
                         <picture class="footer__card-pic">
-                            <img class="footer__card-img" src="https://i.ytimg.com/vi/hB9XZY2VRHo/maxresdefault.jpg" alt="Видео Какой смеситель лучше взять для ванны">
+                            <img class="footer__card-img" src="https://i.ytimg.com/vi/{{$footer_video->video_ytid}}/maxresdefault.jpg" alt="Видео Какой смеситель лучше взять для ванны">
                         </picture>
                     </a>
                 </li>
-                <li class="footer__card">
-                    <a href="{{route('rating.user.videos', ['ytid' => 'hB9XZY2VRHo'])}}" class="footer__card-link">
-                        <h3 class="footer__card-label">Video</h3>
-                        <picture class="footer__card-pic">
-                            <img class="footer__card-img" src="https://i.ytimg.com/vi/hB9XZY2VRHo/maxresdefault.jpg" alt="Видео Какой смеситель лучше взять для ванны">
-                        </picture>
-                    </a>
-                </li>
+                @endforeach
             </ul>
         </div>
 

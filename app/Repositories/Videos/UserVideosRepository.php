@@ -37,4 +37,14 @@ class UserVideosRepository extends CoreRepository
 
         return $fResponse;
     }
+
+    public function getSomeLastVideos($count = 2) {
+        $column = ['video_id', 'video_ytid', 'video_title', 'is_published'];
+        $res = $this->startCondition()
+            ->select($column)
+            ->orderBy('video_id', 'desc')
+            ->take($count)
+            ->get();
+        return $res;
+    }
 }
