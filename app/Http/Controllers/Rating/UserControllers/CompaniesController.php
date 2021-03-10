@@ -18,14 +18,12 @@ class CompaniesController extends UserController
     private $headers;
 
     public function __construct(
-        UserSEORepository $SEORepository,
         Request $request,
         UserCompaniesRepository $companiesRepository,
         UserArticlesRepository $articlesRepository,
         UserReviewsRepository $reviewsRepository
     )
     {
-        parent::__construct($SEORepository);
         $slug = $request['slug'];
 
         if($slug === null) {

@@ -11,9 +11,9 @@ abstract class UserController extends Controller
     private $seoRepository;
     private $headersRepository;
 
-    public function __construct(UserSEORepository $SEORepository)
+    public function __construct()
     {
-        $this->seoRepository = $SEORepository;
+        $this->seoRepository = new UserSEORepository();
         $this->headersRepository = new UserHeadersRepository();
     }
 

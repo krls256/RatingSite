@@ -9,8 +9,6 @@ use App\Repositories\SEO\UserSEORepository;
 
 class ReviewController extends UserController
 {
-    public function __construct(UserSEORepository $SEORepository) { parent::__construct($SEORepository); }
-
     public function index($review_id, UserReviewsRepository $reviewsRepository, UserArticlesRepository $articlesRepository)
     {
         $review = $reviewsRepository->getReviewById($review_id);

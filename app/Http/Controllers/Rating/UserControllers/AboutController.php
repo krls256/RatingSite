@@ -10,8 +10,6 @@ use Illuminate\Http\Request;
 
 class AboutController extends UserController
 {
-    public function __construct(UserSEORepository $SEORepository) { parent::__construct($SEORepository); }
-
     public function index(UserArticlesRepository $articlesRepository, UserCompaniesRepository $companiesRepository) {
         $articles = $articlesRepository->getSomeLastArticle(2);
         $companies = $companiesRepository->getCompaniesForForm();

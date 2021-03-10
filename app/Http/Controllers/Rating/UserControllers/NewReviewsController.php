@@ -9,8 +9,6 @@ use App\Services\CreateNewReviewServices\CreateNewReviewMainService;
 
 class NewReviewsController extends UserController
 {
-    public function __construct(UserSEORepository $SEORepository) { parent::__construct($SEORepository); }
-
     public function index(StoreReviewRequest $request, CreateNewReviewMainService $service)
     {
         $response = $service->index();

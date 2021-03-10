@@ -10,7 +10,6 @@ use App\Services\WriteUsServices\WriteUsService;
 
 class WriteUsController extends UserController
 {
-    public function __construct(UserSEORepository $SEORepository) { parent::__construct($SEORepository); }
 
     public function index(UserMessagesFormRequest $request, WriteUsService $writeUsService) {
         $result = $writeUsService->main();

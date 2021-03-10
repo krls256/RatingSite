@@ -9,14 +9,14 @@ use App\Repositories\Videos\UserVideosRepository;
 
 class VideosController extends UserController
 {
-    public function __construct(UserSEORepository $SEORepository) { parent::__construct($SEORepository); }
 
     public function index(
         UserVideosRepository $videosRepository,
         UserArticlesRepository $articlesRepository,
         UserCompaniesRepository $companiesRepository)
     {
-        $videos = $videosRepository->getVideosPaginate(15);
+
+        $videos = $videosRepository->getVideosPaginate(3);
         if ($videos->count() === 0)
         {
             abort(404);
@@ -25,6 +25,7 @@ class VideosController extends UserController
         $companies = $companiesRepository->getCompaniesForForm();
         $seo = $this->getSEOAttributes('videos');
         $headers = $this->getHeaders(['main', 'side', 'videos']);
+
         return view('rating.user.videos.index',
             [
                 'videos' => $videos,

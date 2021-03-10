@@ -11,6 +11,7 @@
     align-items: center;
 
     background-color: $dark-a50;
+    backdrop-filter: blur(4px);
     cursor: pointer;
 
     &__content {

@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 
 class AddReviewAnswerController extends UserController
 {
-    public function __construct(UserSEORepository $SEORepository) { parent::__construct($SEORepository); }
 
     public function index(ReviewAnswersStoreRequest $request, UserReviewAnswersRepository $answersRepository)
     {

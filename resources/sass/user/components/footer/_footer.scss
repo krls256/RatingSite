@@ -1,7 +1,107 @@
 .footer {
+    $imageMaxHeight: 202.5px;
+    position: relative;
+    z-index: 0;
+
     width: 100%;
     min-height: 4.25rem;
     margin-top: 4rem;
 
     background-color: $dark-blue;
+    overflow: hidden;
+
+
+    &__content {
+        margin: 0 auto;
+        max-width: calc(360px - 2rem);
+    }
+    &__nav-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    &__nav-item {
+        display: flex;
+        align-items: center;
+        flex-basis: 50%;
+        height: 2rem;
+    }
+
+    &__nav-link {
+        @include reset-link;
+        color: $white;
+        font-size: .875rem;
+
+        &--selected {
+            color: $yellow-light;
+        }
+    }
+
+    &__hr {
+        position: relative;
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    &__card-list {
+        padding-top: 1rem;
+    }
+
+    &__card-img {
+        display: block;
+        width: 100%;
+        max-height: $imageMaxHeight;
+        background-color: black;
+        opacity: .5;
+        object-fit: contain;
+
+        transition: .25s all;
+    }
+
+    &__card-label {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+
+        max-width: 100%;
+        max-height: 100%;
+        padding: 1rem;
+
+        color: $white;
+        text-shadow: .25rem .25rem .5rem $black;
+        text-align: right;
+
+        overflow: hidden;
+
+    }
+    &__card-link {
+        &:hover {
+            .footer__card-img {
+                transform: scale(1.15);
+                opacity: .7;
+            }
+        }
+    }
+    &__card {
+        position: relative;
+        z-index: 1;
+        margin-bottom: .5rem;
+
+        max-height: $imageMaxHeight;
+        border-radius: .25rem;
+        overflow: hidden;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__copywriting {
+        font-size: .875rem;
+        padding: .5rem 0 1rem;
+    }
 }
+
+
+@import "footerAdaptive";
