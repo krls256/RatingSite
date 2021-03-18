@@ -16,12 +16,23 @@ $MainGroupData = [
     'middleware' => 'web',
 ];
 
+//    Auth::routes();
+Route::get('login', 'Auth\LoginController@showLoginForm')
+    ->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')
+    ->name('logout');
+
+Route::get('/auth', 'AuthController@index')
+    ->name('auth');
+
 
 Route::group($MainGroupData, function ()
 {
     //UserGroup
     $userGroupData = [
-        'namespace' => "Rating\UserControllers"
+        'namespace' => "Rating\UserControllers",
+        'middleware' => ['auth']
     ];
 
     Route::group($userGroupData, function ()
@@ -59,7 +70,7 @@ Route::group($MainGroupData, function ()
 
     $userFormGroupData = [
         'namespace' => "Rating\UserControllers",
-        'prefix' => 'form'
+        'prefix' => 'form',
     ];
 
     Route::group($userFormGroupData, function ()
@@ -82,17 +93,6 @@ Route::group($MainGroupData, function ()
         Route::get('/add-comment', 'AddReviewAnswerController@redirect')
             ->name('rating.user.addReviewAnswer.redirect');
     });
-
-
-//    Auth::routes();
-    Route::get('login', 'Auth\LoginController@showLoginForm')
-        ->name('login');
-    Route::post('login', 'Auth\LoginController@login');
-    Route::post('logout', 'Auth\LoginController@logout')
-        ->name('logout');
-
-    Route::get('/auth', 'AuthController@index')
-        ->name('auth');
 
 
     $adminGroupData = [
