@@ -19,15 +19,14 @@
 
             <div class="form__group">
                 <label for="review_text" class="form__label">Отзыв: <span class="c-red">*</span></label>
-                <textarea type="text"
-                          name="review_text"
+                <textarea name="review_text"
                           id="review_text"
                           placeholder="Ваше мнение поможет сделать правельный выбор другим людям"
                           class="form__textarea" rows="5">{{old('review_text')}}</textarea>
             </div>
 
             <div class="form__group" id="formStars">
-                <label for="review_mark" class="form__label">Оценка:<span class="c-red">*</span></label>
+                <div class="form__label">Оценка:<span class="c-red">*</span></div>
                 @include('rating.user.userIncludes.stars', ['rate' => old('review_mark' ,0)])
                 <input type="hidden" value="{{old('review_mark' ,0)}}" name="review_mark">
             </div>
@@ -49,7 +48,7 @@
 
             <div class="form__group">
                 <label for="file" class="form__label">Добавить фото (не более 6-ти, до 1024Кб)</label>
-                <input type="file" id="file" multiple="" name="images[]" value=""
+                <input type="file" id="file" multiple="" name="images[]"
                        class="form__input">
             </div>
 

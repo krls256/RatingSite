@@ -20,8 +20,7 @@
 
             <div class="form__group">
                 <label for="review_answer_text" class="form__label form__label--hidden">Комментарий: <span class="c-red">*</span></label>
-                <textarea type="text"
-                          name="review_answer_text"
+                <textarea name="review_answer_text"
                           id="review_answer_text"
                           placeholder="Ваше мнение поможет сделать правельный выбор другим людям"
                           class="form__textarea" rows="5">{{old('review_answer_text')}}</textarea>

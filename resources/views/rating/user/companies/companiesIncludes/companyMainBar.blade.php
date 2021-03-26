@@ -1,4 +1,4 @@
-<section class="company__main-bar">
+<div class="company__main-bar">
     <div class="company__logo-wrapper">
         <img @if($company->company_logo_link) src="{{ asset('logo/'.$company->company_logo_link) }}" @else src="{{ asset('logo/default.png') }}" @endif
              alt="Логотип Компании {{$company->company_name}}"
@@ -24,4 +24,4 @@
             </a>
         </div>
     </div>
-</section>
+</div>

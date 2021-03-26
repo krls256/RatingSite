@@ -25,8 +25,7 @@
 
             <div class="form__group">
                 <label for="user_message" class="form__label">Письмо: <span class="c-red">*</span></label>
-                <textarea type="text"
-                          name="user_message"
+                <textarea name="user_message"
                           id="user_message"
                           placeholder="Ваше мнение поможет сделать правельный выбор другим людям"
                           class="form__textarea" rows="5">{{old('user_message')}}</textarea>

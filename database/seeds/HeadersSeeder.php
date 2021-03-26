@@ -50,6 +50,11 @@ class HeadersSeeder extends Seeder
             'header_key' => 'side',
             'header_value' => 'Новые статьи',
             'header_description' => 'Загаловок перед sidebar'
-        ]
+        ],
+        [
+            'header_key' => 'about-company',
+            'header_value' => 'Информация о компании &#171;(data)&#187;',
+            'header_description' => 'Заголовок, описывающий компанию'
+        ],
     ];
 }

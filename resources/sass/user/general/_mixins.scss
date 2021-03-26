@@ -18,6 +18,7 @@
 @mixin box {
     border: 0.125rem solid $gray-light;
     background-color: $gray-light-3-a3;
+    border-radius: .25rem;
 }
 
 @mixin text-overflow {

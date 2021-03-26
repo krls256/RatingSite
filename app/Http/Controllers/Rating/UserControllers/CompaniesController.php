@@ -41,7 +41,8 @@ class CompaniesController extends UserController
         $this->seo = $this->getSEOAttributes('companies');
         $this->seo->replaceData($this->company->company_name);
 
-        $this->headers = $this->getHeaders(['main', 'side', 'reviews']);
+        $this->headers = $this->getHeaders(['main', 'side', 'reviews', 'about-company']);
+        $this->replaceHeaders($this->headers, '(data)', $this->company->company_name);
 
         return 1;
     }

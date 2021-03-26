@@ -15,6 +15,7 @@ abstract class UserController extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         $this->seoRepository = new UserSEORepository();
         $this->headersRepository = new UserHeadersRepository();
         $this->videosRepository = new UserVideosRepository();
@@ -31,5 +32,13 @@ abstract class UserController extends Controller
 
     protected function getSomeLastVideos($count = 2) {
         return $this->videosRepository->getSomeLastVideos($count);
+    }
+
+    protected function replaceHeaders(&$headers, $key, $value)
+    {
+        foreach ($headers as $k => $v)
+        {
+            $headers[$k] = str_replace($key, $value, $v);
+        }
     }
 }
