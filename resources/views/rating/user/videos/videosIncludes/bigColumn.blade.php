@@ -9,7 +9,9 @@
                     <div class="videos__iframe-wrapper" data-ytid="{{$video->video_ytid}}">
                         <picture>
                             <img src="https://i.ytimg.com/vi/{{$video->video_ytid}}/maxresdefault.jpg"
-                                 alt="Видео {{$video->video_title}}" class="videos__media">
+                                 alt="Видео {{$video->video_title}}"
+                                 title="Видео {{$video->video_title}}"
+                                 class="videos__media">
                         </picture>
                         <button class="videos__button" aria-label="Посмотреть видео">
                             <svg class="videos__button-svg" width="68" height="48" viewBox="0 0 68 48">

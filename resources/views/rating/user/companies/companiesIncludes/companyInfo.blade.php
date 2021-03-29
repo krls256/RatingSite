@@ -35,7 +35,7 @@
         @if($company->company_email)
             <li class="company__info-item">
                 <h4 class="company__info-key">Почта:</h4>
-                <a href="mailto:{{$company->company_email}}"
+                <a href="mailto:"
                    class="company__info-value company__info-value--link c-orange-light">{{$company->company_email}}</a>
             </li>
         @endif

@@ -4,7 +4,10 @@
         <div class="page__nav">Рейтинг компаний > <span class="c-orange-light">О проекте</span></div>
         <div class="about-project__content mb-6">
             <div class="about-project__logo">
-                <img src="{{ asset("img/logo.svg") }}" alt="Логотип сайта" class="about-project__logo-img">
+                <img src="{{ asset("img/logo.svg") }}"
+                     alt="Логотип сайта top-remontov.ru"
+                     title="Логотип сайта top-remontov.ru"
+                     class="about-project__logo-img">
                 <p class="about-project__logo-text">Ремонт Москва</p>
             </div>
             <p class="about-project__content-text">

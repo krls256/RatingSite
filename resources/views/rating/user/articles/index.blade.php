@@ -11,6 +11,7 @@
                     <a href="{{ route('rating.user.articles.show', $article->article_slug) }}" class="articles__anchor-link">
                         <img src="{{$article->article_main_image}}"
                              alt="Картинка статьи {{$article->article_title}}"
+                             title="Картинка статьи {{$article->article_title}}"
                              class="articles__img">
                         <div class="articles__content">
                             <h3 class="articles__header">

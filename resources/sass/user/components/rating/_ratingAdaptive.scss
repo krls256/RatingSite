@@ -10,6 +10,12 @@
 
         }
 
+        &__list-item {
+            &:hover {
+                transform: translateX(-.25rem);
+            }
+        }
+
         &__index {
             &::before, &::after {
                 right: 1rem;

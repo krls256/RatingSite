@@ -1,4 +1,4 @@
-# Список зависимостей внешних проекта
+# Список внешних зависимостей проекта
 
 * [Зависимость для работы с Markdown](https://github.com/GrahamCampbell/Laravel-Markdown)
     * Установка: composer require graham-campbell/markdown:^13.1

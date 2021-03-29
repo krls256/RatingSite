@@ -31,7 +31,10 @@
 <header class="header">
     <div class="header__wrapper ph-3">
         <a href="{{route('rating.user.main')}}" class="header__link">
-            <img src="{{ asset("img/logo.svg") }}" alt="Главный логотип сайта" class="header__logo mr-1">
+            <img src="{{ asset("img/logo.svg") }}"
+                 alt="Главный логотип сайта top-remontov.ru"
+                 title="Главный логотип сайта top-remontov.ru"
+                 class="header__logo mr-1">
             <p class="header__name">Ремонт Москва</p>
         </a>
         <nav class="header__nav header__nav--disabled header__nav--initial">
@@ -82,7 +85,10 @@
                     <a href="{{route('rating.user.videos', ['ytid' => $footer_video->video_ytid])}}" class="footer__card-link">
                         <h3 class="footer__card-label">{{$footer_video->video_title}}</h3>
                         <picture class="footer__card-pic">
-                            <img class="footer__card-img" src="https://i.ytimg.com/vi/{{$footer_video->video_ytid}}/maxresdefault.jpg" alt="Видео Какой смеситель лучше взять для ванны">
+                            <img class="footer__card-img"
+                                 src="https://i.ytimg.com/vi/{{$footer_video->video_ytid}}/maxresdefault.jpg"
+                                 alt="{{$footer_video->video_title}}"
+                                 title="{{$footer_video->video_title}}">
                         </picture>
                     </a>
                 </li>

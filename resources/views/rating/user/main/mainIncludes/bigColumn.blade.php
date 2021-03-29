@@ -30,6 +30,7 @@
                                     @if($company->company_logo_link) src="{{asset("/logo/$company->company_logo_link")}}"
                                     @else src="{{asset("/logo/default.png")}}" @endif
                                     alt="Логотип Компании {{$company->company_name}}"
+                                    title="Логотип Компании {{$company->company_name}}"
                                     class="rating__logo">
                                 <div class="rating__name">{{$company->company_name}}</div>
                                 <div

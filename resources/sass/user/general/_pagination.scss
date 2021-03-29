@@ -9,6 +9,17 @@
         justify-content: center;
     }
 
+    &__link, &__arrow {
+        transition: .25s all;
+        &:hover {
+            transform: translateY(-.125rem);
+        }
+    }
+    &__dots {
+        cursor: default;
+    }
+
+
     & > li {
         display: inline;
 
