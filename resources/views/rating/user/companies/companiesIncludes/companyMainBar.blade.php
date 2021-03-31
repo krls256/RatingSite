@@ -6,11 +6,11 @@
              class="company__logo">
     </div>
     <div class="company__title-wrapper">
-        <h1 class="company__title">{{$company->company_name}}</h1>
-        <h2 class="company__top">
+        <h2 class="company__title">{{$company->company_name}}</h2>
+        <div class="company__top">
             <span class="company__top-key">Номер в рейтинге:</span>
             <span class="company__top-value">{{$company->company_top}}</span>
-        </h2>
+        </div>
     </div>
     <div class="company__statistic">
         <div class="company__star">

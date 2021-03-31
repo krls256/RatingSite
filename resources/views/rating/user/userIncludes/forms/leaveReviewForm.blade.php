@@ -57,6 +57,6 @@
             <button type="submit" class="btn bg-green pv-3 ph-4">Оставить отзыв</button>
             <input type="hidden" value="{{url()->current()}}" name="site-path">
         </form>
-        <div class="close" id="leaveClose"></div>
+        <div class="close close--form" id="leaveClose"></div>
     </div>
 </aside>

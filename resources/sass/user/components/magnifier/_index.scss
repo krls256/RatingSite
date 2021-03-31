@@ -1,0 +1,33 @@
+@mixin magnifierThin {
+    &:before {
+        border: .125rem solid $white;
+    }
+
+    &:after {
+        width: .75rem;
+        height: .125rem;
+        transform: rotate(43deg);
+    }
+}
+
+@mixin magnifierBold {
+    &:before {
+        width: 2rem;
+        height: 2rem;
+        border: .325rem solid $white;
+    }
+    &:after {
+        width: 1.25rem;
+        height: .325rem;
+    }
+}
+
+@mixin magnifierBig {
+    width: 2.5rem;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    min-height: 2.5rem;
+}
+
+@import "magnifier";
+@import "magnifierAdaptive";

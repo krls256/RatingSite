@@ -14,7 +14,10 @@ class MainController extends UserController {
         $articles = $articlesRepository->getSomeLastArticle();
         $companies = $companiesRepository->getCompaniesForRating();
         $seo = $this->getSEOAttributes('main');
-        $headers = $this->getHeaders(['main', 'rating', 'side']);
+        $headers = $this->getHeaders(
+            ['main.home', 'rating', 'side'],
+            ['main.home' => 'main']
+        );
 
         return view('rating.user.main.index', [
             'articles' => $articles,

@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="ru">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, width=device-width">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -35,7 +34,7 @@
                  alt="Главный логотип сайта top-remontov.ru"
                  title="Главный логотип сайта top-remontov.ru"
                  class="header__logo mr-1">
-            <p class="header__name">Ремонт Москва</p>
+            <p class="header__name">Топ Ремонтов</p>
         </a>
         <nav class="header__nav header__nav--disabled header__nav--initial">
             <ul class="header__list">
@@ -61,7 +60,10 @@
                 </li>
             </ul>
         </nav>
+        <div class="header__space"></div>
         <div class="header__overlay header__overlay--disable"></div>
+        <button id="search-open" class="magnifier magnifier--lg-thin magnifier--header-offsets">
+        </button>
         <button class="burger">
             <span class="burger__line burger__line--1"></span>
             <span class="burger__line burger__line--2"></span>
@@ -70,6 +72,10 @@
     </div>
 
 </header>
+<aside class="search-line">
+    <div class="search-line__substrate"></div>
+    <div class="search-line__main" id="search"></div>
+</aside>
 <main class="main">
     <div class="container">
         @yield('content')
@@ -77,6 +83,8 @@
 </main>
 <footer class="footer">
     <div class="container">
+    {{--    TODO: auto footer    --}}
+        @if(isset($footer_videos))
         <div class="footer__content">
             <h2 class="h h--main c-white pt-6">Новые видео</h2>
             <ul class="footer__card-list">
@@ -97,6 +105,7 @@
         </div>
 
         <hr class="footer__hr">
+        @endif
 
         <div class="footer__content">
             <nav class="footer__nav">
@@ -127,8 +136,8 @@
         </div>
     </div>
 </footer>
-<script src="{{ asset('/js/script.js') }}"></script>
-<script src="{{ asset('/js/search.js') }}"></script>
+<script src="{{ asset('/js/script.js') }}" defer></script>
+<script src="{{ asset('/js/search.js') }}" defer></script>
 <script src="https://www.google.com/recaptcha/api.js?render={{env('RECAPTCHA_PUBLIC_KEY')}}"></script>
 <script>
     function onSubmit(token) {

@@ -150,12 +150,41 @@
     }
 
     &__map {
+        position: relative;
         height: 300px;
 
         iframe {
             width: 100%;
             height: 100%;
             border: 0;
+        }
+
+
+
+        &::before {
+            content: 'Нажмите для взаимодействия с картой';
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100%;
+
+            font-size: 20px;
+            font-weight: 900;
+            color: $dark-blue-a8;
+            text-shadow: 1px 1px 2px $black;
+            cursor: pointer;
+
+            background-color: $dark-blue-a5;
+        }
+
+        &--checked:before {
+            display: none;
         }
     }
     &__description {

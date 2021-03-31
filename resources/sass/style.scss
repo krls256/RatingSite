@@ -13,7 +13,7 @@
 @import "user/general/bg";
 @import "user/general/stars";
 @import "user/general/smile";
-@import "user/general/close";
+@import "user/general/animations";
 
 @import "user/general/d";
 @import "user/general/page";
@@ -22,7 +22,6 @@
 @import "user/components/header";
 @import "user/components/footer/footer";
 @import "user/components/burger";
-@import "user/components/searchBar";
 @import "user/components/beforeRating";
 @import "user/components/splitter";
 @import "user/components/calcSideForm";
@@ -36,7 +35,11 @@
 @import "user/components/review";
 @import "user/components/form";
 @import "user/components/articles";
+//@import "user/components/searchBar";
 @import "user/components/search";
+@import "user/components/searchLine";
 @import "markdown/index";
 @import "user/components/errors";
 @import "user/general/recaptcha";
+@import "user/components/magnifier";
+@import "user/components/close";

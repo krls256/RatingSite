@@ -1,0 +1,9 @@
+@media (min-width: $smallDevices) {
+    .close {
+        &--sm {
+            &-big {
+                @include closeBig;
+            }
+        }
+    }
+}

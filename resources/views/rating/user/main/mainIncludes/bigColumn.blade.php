@@ -8,7 +8,8 @@
             <i class="before-rating__star"></i>
             <i class="before-rating__star"></i>
         </span>
-            <h1 class="h h--page text-black">{{$headers['rating']}}</h1>
+            <h2 class="h h--page text-black">{{$headers['rating']}}</h2>
+            <p class="before-rating__paragraph">Сравнение цен на услуги ремонта и дизайна интерьера квартир в строительных компаниях. Читайте отзывы и комментарии.</p>
         </div>
 
         <div class="rating pt-6">

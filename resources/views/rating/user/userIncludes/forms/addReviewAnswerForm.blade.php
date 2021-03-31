@@ -30,6 +30,6 @@
             <input type="hidden" value="{{url()->current()}}" name="site-path">
             <input type="hidden" value="{{ old('review_id') }}" name="review_id">
         </form>
-        <div class="close" id="commentClose"></div>
+        <div class="close close--form" id="commentClose"></div>
     </div>
 </aside>

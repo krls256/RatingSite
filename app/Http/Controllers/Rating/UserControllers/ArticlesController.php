@@ -22,7 +22,10 @@ class ArticlesController extends UserController
     {
         $articles = $this->articleRepository->getArticlesPaginate(10);
         $seo = $this->getSEOAttributes('articles');
-        $headers = $this->getHeaders(['main', 'articles']);
+        $headers = $this->getHeaders(
+            ['main.articles', 'articles'],
+            ['main.articles' => 'main']
+        );
 
         return view('rating.user.articles.index', [
             'articles' => $articles,
@@ -45,7 +48,10 @@ class ArticlesController extends UserController
 
         $seo->replaceData($article->article_title);
 
-        $headers = $this->getHeaders(['main', 'side']);
+        $headers = $this->getHeaders(
+            ['main.article', 'side'],
+            ['main.article' => 'main']
+        );
 
         return view('rating.user.articles.show',
             [

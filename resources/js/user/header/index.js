@@ -1,5 +1,7 @@
 import toggleNav from "./toggleNav";
+import openSearch from "./openSearch";
 
 export {
-    toggleNav
+    toggleNav,
+    openSearch
 }

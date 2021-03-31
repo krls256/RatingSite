@@ -206,4 +206,44 @@
 
         object-fit: cover;
     }
+
+    &__controls {
+        width: 4.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__control {
+        display: block;
+        width: 2rem;
+        height: 2rem;
+
+        &--sub-pos {
+            background: url("/img/smile-sub-happy.svg") center center / cover;
+            cursor: pointer;
+
+            &:hover {
+                background: url("/img/smile-happy.svg") center center / cover;
+            }
+        }
+
+        &--sub-neg {
+            background: url("/img/smile-sub-sad.svg") center center / cover;
+            cursor: pointer;
+
+            &:hover {
+                background: url("/img/smile-sad.svg") center center / cover;
+            }
+        }
+
+        &--positive {
+            background: url("/img/smile-happy.svg") center center / cover !important;
+            cursor: auto;
+        }
+        &--negative {
+            background: url("/img/smile-sad.svg") center center / cover !important;
+            cursor: auto;
+        }
+    }
 }

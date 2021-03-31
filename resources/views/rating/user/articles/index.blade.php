@@ -2,7 +2,6 @@
 
 @section('content')
     @include('rating.user.userIncludes.aboutSite')
-    @include('rating.user.userIncludes.searchBar')
     <article class="articles pt-4 ph-4">
         <h1 class="h h--page text-black page__header">{{$headers['articles']}}</h1>
         <ul class="articles__list">

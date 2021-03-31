@@ -1,6 +1,7 @@
 @media (min-width: $mediumDevices) {
     .splitter {
         flex-direction: row;
+        padding-top: 5rem;
         &__main {
             flex-basis: 70%;
             flex-grow: 10;

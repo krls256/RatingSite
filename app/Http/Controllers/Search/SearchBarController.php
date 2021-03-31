@@ -12,10 +12,10 @@ class SearchBarController extends UserController
     private $companiesSearchRepository;
     private $articlesSearchRepository;
 
-    public function __construct(UserSEORepository $SEORepository, CompaniesSearchRepository $companiesSearchRepository,
+    public function __construct(CompaniesSearchRepository $companiesSearchRepository,
         ArticlesSearchRepository $articlesSearchRepository)
     {
-        parent::__construct($SEORepository);
+        parent::__construct();
         $this->companiesSearchRepository = $companiesSearchRepository;
         $this->articlesSearchRepository = $articlesSearchRepository;
     }
@@ -45,14 +45,15 @@ class SearchBarController extends UserController
         }
 
         $seo = $this->getSEOAttributes('search');
-        $headers = $this->getHeaders(['main']);
+        $headers = $this->getHeaders(['main.search'], ['main.search' => 'main']);
 
         return view('rating.user.search.show',
             [
                 'query' => $query,
                 'response' => $companies->merge($articles),
                 'seo' => $seo,
-                'headers' => $headers
+                'headers' => $headers,
+                'footer_videos' => $this->getSomeLastVideos(2)
             ]);
     }
 }

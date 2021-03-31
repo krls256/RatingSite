@@ -4,16 +4,6 @@
         padding-top: .25rem;
         max-width: 100%;
     }
-    &__label {
-        display: block;
-        margin-bottom: .25rem;
-
-        font-size: 0.875rem;
-        font-weight: 700;
-        color: $black;
-
-
-    }
     &__header {
         font-size: 1.125rem;
     }
@@ -24,75 +14,12 @@
         border: 0.063rem solid $gray-light-2;
         background-color: $white;
     }
-    &__input {
-        display: block;
-        border-radius: .25rem;
-    }
 
     &__list {
         @include scrollbar;
 
         max-height: 300px;
         overflow-y: auto;
-    }
-
-    &__input-wrapper {
-        position: relative;
-        z-index: 2;
-        margin-bottom: .25rem;
-        width: 100%;
-    }
-
-    &__live-search {
-        position: absolute;
-        top:calc(100%);
-
-        width: 100%;
-
-        background-color: $gray-light-3;
-        border-bottom-left-radius: .25rem;
-        border-bottom-right-radius: .25rem;
-        border-bottom: .125rem solid $gray-light;
-        border-left: .125rem solid $gray-light;
-        border-right: .125rem solid $gray-light;
-
-        transition: .25s all;
-
-        &--disable {
-            height: 0;
-            opacity: 0;
-            z-index: -1;
-        }
-    }
-
-    &__list-item {
-        &--real {
-            cursor: pointer;
-
-            &:hover {
-                background-color: $blue-light-a5;
-            }
-        }
-
-        &--selected {
-            background-color: $blue-light-a5;
-        }
-    }
-
-
-
-    &__list-link {
-        @include reset-link;
-
-        display: block;
-        height: 100%;
-        width: 100%;
-
-        color: black;
-
-        &:hover {
-            text-decoration: none;
-        }
     }
 }
 

@@ -35,6 +35,6 @@
             <button class="btn btn--medium bg-green pv-3">Отправить</button>
             <input type="hidden" value="{{url()->current()}}" name="site-path">
         </form>
-        <div class="close" id="writeClose"></div>
+        <div class="close close--form" id="writeClose"></div>
     </div>
 </aside>

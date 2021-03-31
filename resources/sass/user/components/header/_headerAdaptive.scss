@@ -14,15 +14,17 @@
         }
 
         &__logo {
-            max-height: 4rem;
-            max-width: 4rem;
+            height: 4rem;
+            width: 4rem;
         }
 
         &__nav {
             position: relative;
 
             display: flex;
-            align-items: center;
+            align-items: stretch;
+            justify-content: flex-end;
+            flex-grow: 2;
 
             min-height: 5.3rem;
             height: unset;
@@ -43,14 +45,22 @@
             }
         }
 
+
+        &__space {
+             display: none;
+        }
+
         &__list {
             display: flex;
             align-items: center;
+
             justify-content: flex-end;
+
         }
 
         &__list-item {
             margin-right: 3rem;
+            height: 100%;
 
             &:last-child {
                 margin-right: 0;
@@ -59,6 +69,9 @@
 
         &__list-link {
             min-height: unset;
+            height: 100%;
+            display: flex;
+            align-items: center;
 
             font-size: 1rem;
         }

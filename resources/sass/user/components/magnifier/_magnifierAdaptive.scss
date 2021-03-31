@@ -1,0 +1,49 @@
+@media (min-width: $largeDevices) {
+    .magnifier {
+        &--lg-thin {
+            &:before {
+                border: .125rem solid $white;
+            }
+
+            &:after {
+                width: .75rem;
+                height: .125rem;
+                transform: rotate(43deg);
+            }
+        }
+
+        &--lg-big {
+            @include magnifierBig;
+        }
+
+        &--header-offsets {
+            margin: 0 0 0 2rem;
+        }
+    }
+}
+
+
+@media (min-width: $smallDevices) {
+    .magnifier {
+        &--sm-thin {
+
+
+            &:before {
+                border: .125rem solid $white;
+            }
+
+            &:after {
+                width: .75rem;
+                height: .125rem;
+                transform: rotate(43deg);
+            }
+        }
+
+        &--sm-bold {
+            @include magnifierBold;
+        }
+        &--sm-big {
+            @include magnifierBig;
+        }
+    }
+}

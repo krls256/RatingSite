@@ -12,33 +12,36 @@
     &__wrapper {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         min-height: 3rem;
     }
 
     &__link {
-        @include reset-link;
-
         display: flex;
         align-items: center;
+        flex-grow: 0;
 
         color: $orange-light;
+        text-decoration: none;
+
+        &:hover, &:focus {
+            filter: drop-shadow(0 0 3px $orange-light);
+        }
     }
 
     &__name {
-        @include reset-link;
-
         height: 100%;
         font-weight: 700;
         align-self: flex-end;
+        white-space: nowrap;
 
         color: $orange-light;
+
     }
 
     &__logo {
         display: block;
-        max-height: 2rem;
-        max-width: 2rem;
+        height: 2rem;
+        width: 2rem;
 
         object-fit: contain;
     }
@@ -73,8 +76,8 @@
         }
     }
 
-    &__list-item {
-
+    &__space {
+        flex-grow: 1;
     }
 
     &__list-link {

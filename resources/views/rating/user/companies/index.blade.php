@@ -2,7 +2,6 @@
 
 @section('content')
     @include('rating.user.userIncludes.aboutSite')
-    @include('rating.user.userIncludes.searchBar')
     <div class="splitter pt-6 ph-4">
         @include('rating.user.companies.companiesIncludes.bigColumn')
         @include('rating.user.companies.companiesIncludes.sideColumn')

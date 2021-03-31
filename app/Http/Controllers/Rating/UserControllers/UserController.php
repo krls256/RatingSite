@@ -26,8 +26,8 @@ abstract class UserController extends Controller
         return $this->seoRepository->getSEOByIndex($index);
     }
 
-    protected function getHeaders($arr) {
-        return $this->headersRepository->getHeadersByKeys($arr);
+    protected function getHeaders($arr, $replacements = []) {
+        return $this->headersRepository->getHeadersByKeys($arr, $replacements);
     }
 
     protected function getSomeLastVideos($count = 2) {

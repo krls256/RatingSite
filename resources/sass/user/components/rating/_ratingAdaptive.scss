@@ -7,7 +7,6 @@
             flex-direction: row;
             max-width: unset;
             margin: 0;
-
         }
 
         &__list-item {
@@ -91,8 +90,8 @@
                 top: .125rem;
 
                 display: block;
-                height: calc(2rem * .55);
-                width: calc(2rem * .55);
+                height: calc(2rem * .63);
+                width: calc(2rem * .63);
                 border-left: 0.125rem solid $yellow;
                 border-bottom: 0.125rem solid $yellow;
                 transform: rotate(-135deg);
@@ -107,8 +106,8 @@
                 top: .14rem;
 
                 display: block;
-                height: calc(2rem * .545);
-                width: calc(2rem * .545);
+                height: calc(2rem * .63);
+                width: calc(2rem * .63);
                 border-left: 0.125rem solid $yellow;
                 border-bottom: 0.125rem solid $yellow;
                 transform: rotate(-135deg);

@@ -1,0 +1,24 @@
+@mixin closeBig {
+    width: 3rem;
+    height: 3rem;
+
+    &::before, &::after {
+        top: calc(50% - .1625rem);
+        height: .325rem;
+        border-radius: .1625rem;
+    }
+}
+
+@mixin closeNormal {
+    width: 2rem;
+    height: 2rem;
+
+    &::before, &::after {
+        top: calc(50% - .125rem);
+        height: .25rem;
+        border-radius: .125rem;
+    }
+}
+
+@import "close";
+@import "closeAdaptive";

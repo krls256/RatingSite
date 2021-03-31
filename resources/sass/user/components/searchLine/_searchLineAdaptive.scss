@@ -1,0 +1,7 @@
+@media (min-width: $smallDevices) {
+    .search-line {
+        &__input {
+            padding: .75rem;
+        }
+    }
+}

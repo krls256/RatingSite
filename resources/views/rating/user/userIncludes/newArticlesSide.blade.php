@@ -1,5 +1,5 @@
-<aside class="new-articles-side pt-4">
-    <h3 class="h h--side mb-3">{{$headers['side']}}</h3>
+<aside class="new-articles-side">
+    <h2 class="h h--side mb-3">{{$headers['side']}}</h2>
     @foreach($articles as $article)
         @php $cycle = route('rating.user.articles.show', $article->article_slug) === request()->url() @endphp
         <div class="new-articles-side__item p-3">

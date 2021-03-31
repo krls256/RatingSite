@@ -15,14 +15,16 @@ class UserHeadersRepository extends CoreRepository
         return Model::class;
     }
 
-    public function getHeadersByKeys($keys) {
+    public function getHeadersByKeys($keys, $replacements = []) {
         $column = ['header_id', 'header_key', 'header_value'];
         $response = $this->startCondition()
             ->select($column)
             ->whereIn('header_key', $keys)
             ->toBase()
             ->get()
-            ->keyBy('header_key')
+            ->keyBy(function ($value, $key) use ($replacements) {
+                return $replacements[$value->header_key] ?? $value->header_key;
+            })
             ->map(function ($item) {
                return $item->header_value;
             });

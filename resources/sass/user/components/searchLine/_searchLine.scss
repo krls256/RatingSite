@@ -1,0 +1,130 @@
+.search-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    &--active {
+        display: flex;
+        z-index: 6;
+        width: 100%;
+        height: 100vh;
+
+        .search-line__main {
+            animation: .25s ease-in .125s x-flip-90 forwards;
+        }
+    }
+
+    &__substrate {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 4;
+
+        width: 100%;
+        height: 100%;
+        background-color: $black-a5;
+
+        backdrop-filter: blur(.25rem);
+        cursor: pointer;
+    }
+
+    &__main {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        width: min(calc(100vw - 2rem), 600px);
+        padding: 1rem 0;
+        transform: rotateX(90deg);
+    }
+
+    &__button {
+        display: block;
+        padding: 0.75rem 1.5rem;
+        margin-left: .5rem;
+
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+
+        border: none;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        background-color: $orange;
+    }
+
+    &__input {
+        display: block;
+        border-radius: .25rem;
+        padding: .5rem;
+        font-size: 1rem;
+
+        border: none;
+        outline: none;
+    }
+
+    &__input-wrapper {
+        position: relative;
+        z-index: 2;
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+    }
+
+    &__live-search {
+        position: absolute;
+        top: calc(100% + .5rem);
+
+        max-height: 35vh;
+        width: 100%;
+
+        background-color: $gray-light-3;
+        border-radius: .25rem;
+        border: .125rem solid $gray-light;
+
+        overflow-y: auto;
+        transition: .25s all;
+
+        @include scrollbar;
+
+        &--disable {
+            height: 0;
+            opacity: 0;
+            z-index: -1;
+        }
+    }
+
+    &__list-item {
+        &--real {
+            cursor: pointer;
+
+            &:hover {
+                background-color: $blue-light-a5;
+            }
+        }
+
+        &--selected {
+            background-color: $blue-light-a5;
+        }
+    }
+
+    &__list-link {
+        @include reset-link;
+
+        display: block;
+        height: 100%;
+        width: 100%;
+
+        color: black;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

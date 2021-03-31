@@ -16,15 +16,11 @@
         width: 9rem;
     }
 
-    &--search {
-        display: none;
-    }
-}
-
-@media (min-width: $smallDevices) {
-    .btn {
-        &--search {
-            display: unset;
-        }
+    &--reset {
+        display: block;
+        padding: 0;
+        border: none;
+        outline: none;
+        background-color: transparent;
     }
 }

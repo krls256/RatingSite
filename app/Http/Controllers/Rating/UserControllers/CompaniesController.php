@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Rating\UserControllers;
 
-use App\Http\Controllers\Controller;
 use App\Repositories\Articles\UserArticlesRepository;
 use App\Repositories\Companies\UserCompaniesRepository;
 use App\Repositories\Reviews\UserReviewsRepository;
-use App\Repositories\SEO\UserSEORepository;
 use Illuminate\Http\Request;
 
 class CompaniesController extends UserController
@@ -41,14 +39,15 @@ class CompaniesController extends UserController
         $this->seo = $this->getSEOAttributes('companies');
         $this->seo->replaceData($this->company->company_name);
 
-        $this->headers = $this->getHeaders(['main', 'side', 'reviews', 'about-company']);
-        $this->replaceHeaders($this->headers, '(data)', $this->company->company_name);
-
         return 1;
     }
 
     public function index()
     {
+        $this->prepareHeaders(
+            ['main.companies', 'side', 'reviews', 'about-company'],
+            ['main.companies' => 'main']
+        );
         $reviews = $this->reviewsRepository->getCompanyReviewsPagination($this->company->company_id);
 
         return view('rating.user.companies.index',
@@ -64,6 +63,10 @@ class CompaniesController extends UserController
 
     public function positive()
     {
+        $this->prepareHeaders(
+            ['main.companies', 'side', 'reviews.positive', 'about-company'],
+            ['reviews.positive' => 'reviews', 'main.companies' => 'main']
+        );
         $reviews = $this->reviewsRepository->getCompanyPositiveReviewsPagination($this->company->company_id);
 
         return view('rating.user.companies.index',
@@ -79,6 +82,10 @@ class CompaniesController extends UserController
 
     public function negative()
     {
+        $this->prepareHeaders(
+            ['main.companies', 'side', 'reviews.negative', 'about-company'],
+            ['reviews.negative' => 'reviews', 'main.companies' => 'main']
+        );
         $reviews = $this->reviewsRepository->getCompanyNegativeReviewsPagination($this->company->company_id);
 
         return view('rating.user.companies.index',
@@ -90,5 +97,10 @@ class CompaniesController extends UserController
                 'headers' => $this->headers,
                 'footer_videos' => $this->getSomeLastVideos(2)
             ]);
+    }
+
+    protected function prepareHeaders($headers, array $replacements = []) {
+        $this->headers = $this->getHeaders($headers, $replacements);
+        $this->replaceHeaders($this->headers, '(data)', $this->company->company_name);
     }
 }

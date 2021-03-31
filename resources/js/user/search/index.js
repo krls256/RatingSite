@@ -14,7 +14,9 @@ class Search extends Component {
             active: null,
             isAllowedRequest: true,
             isTyping: true,
-            workingList: []
+            workingList: [],
+            asideRoot: null,
+            backgroundRoot: null
         }
 
         this.onChange = onChange.bind(this);
@@ -36,7 +38,34 @@ class Search extends Component {
             const {query} = this.state;
             document.location.href = `/search/${query}`;
         }
+
+        this.close = () => {
+            const { asideRoot } = this.state;
+            if(asideRoot) {
+                asideRoot.classList.remove('search-line--active')
+            }
+        }
+
+        this.inputBlur = (e) => {
+            if(e.target === this.state.backgroundRoot)
+                this.onBlur();
+        }
     }
+    componentDidMount() {
+        const asideRoot = document.querySelector('.search-line');
+        const backgroundRoot = asideRoot.querySelector('.search-line__substrate');
+        this.setState({asideRoot, backgroundRoot})
+
+        asideRoot.addEventListener('click', this.inputBlur);
+        backgroundRoot.addEventListener('click', this.close);
+    }
+
+    componentWillUnmount() {
+        const {asideRoot, backgroundRoot} = this.state;
+        asideRoot.removeEventListener('click', this.inputBlur);
+        backgroundRoot.removeEventListener('click', this.close);
+    }
+
     componentDidUpdate(prevProps, prevState) {
         const {query, isAllowedRequest, isTyping} = this.state;
         if(prevState.query !== query && query !== '' && isAllowedRequest && isTyping) {
@@ -48,23 +77,25 @@ class Search extends Component {
 
     render() {
         const {query, active, focus, workingList} = this.state;
+
         return (
             <Fragment>
-                <label htmlFor="query" className="search-bar__label">Поиск по сайту:</label>
-                <div className="search-bar__input-wrapper">
+                <div className="search-line__input-wrapper">
                     <input type="text"
                            name="query"
                            id="query"
                            placeholder="Введите название компании"
-                           className="search-bar__input p-3"
+                           className="search-line__input"
                            value={query} onChange={this.onChange}
                            autoComplete="off"
                            onFocus={this.onFocus}
-                           onBlur={this.onBlur}
+                           onClick={this.onFocus}
                            onKeyDown={this.handleArrowClick}/>
                     <LiveSearch workingList={workingList} focus={focus} active={active}/>
                 </div>
-                <button className="btn bg-orange pv-3 ph-6 btn--search" onClick={this.buttonFunction}>Найти</button>
+                {/*<button className="search-line__button" onClick={this.buttonFunction}>Найти</button>*/}
+                <button className={'magnifier magnifier--thin magnifier--sm-big magnifier--sm-bold ml-1 ml-sm-3'} onClick={this.buttonFunction} />
+                <button className={'close close--normal close--sm-big close--white ml-1 ml-sm-3 btn--reset'} onClick={this.close}/>
             </Fragment>
         )
     }

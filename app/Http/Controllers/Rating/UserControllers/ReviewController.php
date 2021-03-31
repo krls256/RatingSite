@@ -21,7 +21,10 @@ class ReviewController extends UserController
         $seo = $this->getSEOAttributes('review');
         $seo->replaceData($review->reviewer_name);
 
-        $headers = $this->getHeaders(['main', 'side']);
+        $headers = $this->getHeaders(
+            ['main.review', 'side'],
+            ['main.review' => 'main']
+        );
         return view('rating.user.review.index', [
             'review' => $review,
             'articles' => $articles,

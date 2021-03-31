@@ -1,11 +1,17 @@
 @media (min-width: $mediumDevices) {
     .before-rating {
         &__stars {
+            top: .25rem;
             margin-right: .5rem;
         }
         &__star {
             width: 1.5rem;
             height: 1.5rem;
+        }
+
+        &__paragraph {
+            line-height: 1.375rem;
+            font-size: 1rem;
         }
     }
 }
