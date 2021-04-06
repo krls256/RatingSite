@@ -2,7 +2,7 @@ import React from 'react';
 
 const Checkbox = ({label, value, onChange}) => {
     return (
-        <label className='checkbox'>
+        <label className='checkbox mb-0'>
             <input
                 className='checkbox__input'
                 name="is_published"

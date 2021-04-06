@@ -49,6 +49,7 @@ Route::group($adminApiOptions, function ()
     Route::apiResource('reviews', 'ApiReviewsController')
         ->names('api.admin.reviews')
         ->only($reviewsMethods);
+    Route::post('/reviews/publish', 'ApiReviewsController@publish')->name('api.admin.reviews.publish');
 
     $imagesMethod = ['index'];
     Route::apiResource('images', 'ApiImagesController')
@@ -93,10 +94,10 @@ Route::group($adminApiOptions, function ()
         ->only($headersMethods);
 
     $reviewAnswerMethods = ['index', 'edit', 'update'];
-
     Route::apiResource('review-answers', 'ApiReviewAnswersController')
         ->only($reviewAnswerMethods)
         ->names('api.admin.review-answers');
+
 
     $userMessagesMethods = ['index', 'edit', 'update'];
 

@@ -16,6 +16,7 @@ import tableItemCreateReducer from "./table/tableItemCreateReducer";
 import redirectReducer from "./appState/redirectReducer";
 import formDataReducer from "./formData/formDataReducer";
 import modalReducer from "./appState/modalReducer";
+import tablePagesEditingReducer from "./table/tablePagesEditingReducer";
 
 export default combineReducers({
     errorsMessage: errorsMessageReducer,
@@ -36,7 +37,9 @@ export default combineReducers({
     imagesCommandLine: imagesCommandLineReducer,
 
 
+
     tablePages: tablePagesReducer,
+    tablePagesEditing: tablePagesEditingReducer,
     tableItemEdit: tableItemEditReducer,
     tableItemCreate: tableItemCreateReducer,
 

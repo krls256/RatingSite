@@ -8,7 +8,7 @@ import {
 import {resetTablePages} from "../../../admin-actions/table/tablePagesActions";
 import {useLocation} from 'react-router-dom';
 
-const FilterBar = ({orderBy, filters = [], createButton = false}) => {
+const FilterBar = ({orderBy, filters = [], createButton = false, additionalComponent : AdditionalComponent = null}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -17,6 +17,7 @@ const FilterBar = ({orderBy, filters = [], createButton = false}) => {
 
         return () => dispatch(resetFilterAttributes());
     }, [])
+
 
 
     const onChangeOrderBy = (e) => {
@@ -51,6 +52,9 @@ const FilterBar = ({orderBy, filters = [], createButton = false}) => {
             }
             {
                 createButton ? <CreateButton /> : null
+            }
+            {
+                AdditionalComponent
             }
         </aside>
     )

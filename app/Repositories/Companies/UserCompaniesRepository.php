@@ -6,6 +6,7 @@ namespace App\Repositories\Companies;
 
 use App\Models\Companies as Model;
 use App\Repositories\CoreRepository;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserCompaniesRepository extends CoreRepository
 {
@@ -20,11 +21,9 @@ class UserCompaniesRepository extends CoreRepository
             'company_slug', 'company_positive', 'company_negative',
             'company_mark_difference', 'company_average_mark', 'company_logo_link', 'company_quantity_review'];
 
-        $response = $this->startCondition()
+        $response = $this->getCompaniesOrderBuilder()
             ->select($column)
             ->where('is_published', 1)
-            ->orderBy('company_average_mark', 'desc')
-            ->orderBy('company_mark_difference', 'desc')
             ->get();
 
         return $response;
@@ -78,10 +77,9 @@ class UserCompaniesRepository extends CoreRepository
     private function getCompanyRateIndex(int $company_id)
     {
         $column = ['company_id', 'company_mark_difference'];
-        $response = $this->startCondition()
+        $response = $this->getCompaniesOrderBuilder()
             ->select($column)
             ->where('is_published', 1)
-            ->orderBy('company_mark_difference', 'desc')
             ->toBase()
             ->get()
             ->where('company_id', $company_id)
@@ -89,5 +87,18 @@ class UserCompaniesRepository extends CoreRepository
             ->first();
 
         return $response + 1;
+    }
+
+    /**
+     * @return Builder;
+     */
+
+    private function getCompaniesOrderBuilder() {
+        $order1 = 'company_mark_difference';
+        $order2 = 'company_average_mark';
+        $res = $this->startCondition()
+            ->orderBy($order1, 'desc')
+            ->orderBy($order2, 'desc');
+        return $res;
     }
 }

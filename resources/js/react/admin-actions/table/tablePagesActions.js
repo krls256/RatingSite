@@ -27,8 +27,18 @@ const deleteTablePages = () => (dispatch, getState) => {
 
 const deleteTablePagesCore = (payload) => ({type: 'tablePages/delete', payload})
 
+const toggleIsPublishedInTablePages = (index) => (dispatch, getState) => {
+    const {currentPage} = getState();
+    dispatch({type: 'tablePages/toggleIsPublish', page: currentPage, index})
+}
+
+const substituteTablePages = (payload) => ({type: 'tablePages/substitute', payload})
+
+
 export {
+    substituteTablePages,
     getTablePage,
     resetTablePages,
-    deleteTablePages
+    deleteTablePages,
+    toggleIsPublishedInTablePages
 }

@@ -20,11 +20,14 @@ abstract class ApiController extends Controller
         $this->options = $service->prepareData($request->all());
     }
 
-    protected function updateResponse($result, $id)
+    protected function updateResponse($result, $id = null)
     {
+        $message = $id === null ?  ['База была успешно обновлена'] : ['База была успешно обновлена', "Id обновленной записи равен $id"];
         if ($result)
-            return ['msg' => ['База была успешно обновлена', "Id обновленной записи равен $id"]];
-        return ['msg' => ['Что-то пошло не так']];
+            return response()
+                ->json(['msg' => $message], 200);
+        return response()
+            ->json(['msg' => ['Что-то пошло не так']], 500);
     }
 
     protected function returnWithOptions($response, $options)
@@ -40,8 +43,11 @@ abstract class ApiController extends Controller
         if ($result)
         {
             $id = $result[$field];
-            return ['msg' => ['Запись была успешно содана', "Id созданой записи равен $id"], 'id' => $id];
+            return response()
+                    ->json(['msg' => ['Запись была успешно содана', "Id созданой записи равен $id"], 'id' => $id], 200);
         }
-        return ['msg' => ['Что-то пошло не так']];
+
+        return response()
+            ->json(['msg' => ['Что-то пошло не так']], 500);
     }
 }

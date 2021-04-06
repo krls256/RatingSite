@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\ApiReviewUpdateRequest;
+use App\Http\Requests\Reviews\ApiReviewsPublishRequest;
 use App\Repositories\Reviews\ApiReviewsRepository;
 use Illuminate\Http\Request;
 
@@ -44,5 +45,12 @@ class ApiReviewsController extends ApiController
         $result = $response->update($request->all());
 
         return $this->updateResponse($result, $id);
+    }
+
+    public function publish(ApiReviewsPublishRequest $request)
+    {
+        $res = $this->repository->setPublish($request->get('ids_publish'), $request->get('ids_unpublish'));
+
+        return $this->updateResponse($res);
     }
 }

@@ -1,17 +1,26 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import Pagination from "../../GeneralComponents/Pagination";
 import Spinner from "../../GeneralComponents/Spinner";
 import ReviewItem from "../ReviewItem";
 import Table from "../../GeneralComponents/Table";
 import useUniversalTableData from "../../../admin-hoooks/useUniversalTableData";
 import FilterBar from "../../GeneralComponents/FilterBar";
+import ReviewPublishControl from "../ReviewPublishControl";
+import PublishingEditContext from '../ReviewsContexts/PublishingEditContext';
+import ErrorLine from "../../NotificationComponents/ErrorLine/ErrorLine";
+import SuccessLine from "../../NotificationComponents/SuccessLine/SuccessLine";
 
 const ReviewsTable = () => {
     const reviewsPage = useUniversalTableData('reviews');
+    const [isPublishingEdit, setIsPublishingEdit] = useState(false);
+    const toggleIsPublishingEdit = () => setIsPublishingEdit(!isPublishingEdit);
+    const tableColumns = ['ID', 'Никнейм', 'Балл', 'Дата', 'Ссылки'];
+    if(isPublishingEdit)
+        tableColumns.push('Публикация')
     const content = reviewsPage === undefined ? <Spinner/> :
         (
             <Fragment>
-                <Table fields={['ID', 'Никнейм', 'Балл', 'Дата', 'Ссылки']}
+                <Table fields={tableColumns}
                        head_key={'reviews'}
                        key_field={'reviewer_name'}
                        id_key={'review_id'}
@@ -21,8 +30,12 @@ const ReviewsTable = () => {
         )
     return (
         <section>
-            <FilterBar orderBy={orderBy} filters={filters}/>
-            {content}
+            <PublishingEditContext.Provider value={{isPublishingEdit, toggleIsPublishingEdit}}>
+                <FilterBar orderBy={orderBy} filters={filters} additionalComponent={<ReviewPublishControl/>}/>
+                <ErrorLine />
+                <SuccessLine />
+                {content}
+            </PublishingEditContext.Provider>
         </section>
     )
 }

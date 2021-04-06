@@ -13,8 +13,8 @@ const Table = ({fields, head_key, component, items, key_field, id_key}) => {
             </thead>
             <tbody>
             {
-                items.map(data => {
-                    return <Component data={data} key={`${data[id_key]}.${data[key_field]}`}/>
+                items.map((data, index) => {
+                    return <Component data={data} key={`${data[id_key]}.${data[key_field]}`} index={index}/>
                 })
             }
             </tbody>
